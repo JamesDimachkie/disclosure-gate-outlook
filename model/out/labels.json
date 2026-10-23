@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "base_model": "jhu-clsp/ettin-encoder-17m",
+  "base_revision": "987607455c61e7a5bbc85f7758e0512ea6d0ae4c",
+  "labels": [
+    "none",
+    "access",
+    "personal",
+    "economics",
+    "negotiation",
+    "remark"
+  ],
+  "thresholds": {
+    "access": 1.01,
+    "personal": 0.554762324469307,
+    "economics": 0.5054771719540945,
+    "negotiation": 1.01,
+    "remark": 0.6684738657538627
+  },
+  "max_length": 128,
+  "input": "context_text",
+  "trained_on_data_commit": "2a77177b3dd5175197287b81452c9b064681f347",
+  "dev_sha256": "3ef6c21e2d8b14c0e9817d4106276360a0c9e7d8f4a9928dd5b88fad87566bda",
+  "input_template": "Previous sentence: {context}\nCurrent sentence: {text}",
+  "quantization": "int8 weights; fp32 encoder activations; per-sentence dynamic uint8 final projection",
+  "calibration": {
+    "temperature": 0.75,
+    "none_logit_bias": 0
+  },
+  "benign_training": {
+    "emails": 120,
+    "sentences_added": 836,
+    "heldout_emails": 30,
+    "splitter_sha256": "e6d64fea8ff723f805e9b2b2b324afadeefcdb85e7a9ac996c218ac9d8fb455c",
+    "pool_sha256": "6ff7f5a3b1802a5161e89777449bed6c745591701ff3a3bbb16dc672468987f7"
+  },
+  "product_note": "access and negotiation are switched off (threshold above 1): on realistic email their scores overlap ordinary sentences, so those categories stay with the rules. Decided 2026-10-23 from the realistic tier-1 calibration run."
+}

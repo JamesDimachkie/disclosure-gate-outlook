@@ -1,0 +1,149 @@
+/* The Disclosure Gate review pane (spec §6.C), drawn to the product film (v3, 0:20 to 0:44): quiet
+   until Send, an amber edge while checking or held and a green one when clear. 320 to 360 px wide.
+   Colours, type, spacing and motion come from the v4 tokens (voice/web/design/tokens.css): zinc
+   neutrals, amber for held and checking, green for clear; light and dark from one set of pairs. */
+.sprite { display: none; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  letter-spacing: var(--tracking-tight);
+}
+
+.pane {
+  --edge: var(--border);
+  --edge-glow: transparent;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 100vh;
+  padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 2px);
+}
+/* The edge the film draws between the email and the pane. */
+.pane::before {
+  content: "";
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--edge);
+  box-shadow: 0 0 14px 1px var(--edge-glow);
+  transition: background var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
+}
+.pane[data-state="checking"], .pane[data-state="held"], .pane[data-state="unavailable"] { --edge: var(--advisory-mark); --edge-glow: color-mix(in srgb, var(--advisory-mark) 40%, transparent); }
+.pane[data-state="clear"] { --edge: var(--ok-mark); --edge-glow: color-mix(in srgb, var(--ok-mark) 40%, transparent); }
+
+/* Header: the mark, the name, the pill. */
+.head { display: flex; align-items: center; gap: var(--space-2); min-height: 26px; }
+.mark { width: 22px; height: 22px; flex: none; }
+.mark__square { fill: #18181b; stroke: light-dark(transparent, #3f3f46); stroke-width: 0.75; }
+.name { margin: 0; font-size: var(--text-lg); line-height: var(--leading-lg); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-tighter); }
+.pill-slot { margin-left: auto; display: flex; }
+
+/* The line under the name: what the pane does before Send, then checking. */
+.line { display: flex; align-items: center; gap: var(--space-1-5); margin: calc(-1 * var(--space-2-5)) 0 0; color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--leading-xs); }
+.line:empty { display: none; }
+.line--checking { color: var(--advisory-fg); font-weight: var(--weight-medium); }
+.line__dot { width: 6px; height: 6px; flex: none; border-radius: 50%; background: var(--advisory-mark); animation: pulse 1.2s var(--ease-standard) infinite; }
+@keyframes pulse { 50% { opacity: 0.3; } }
+
+/* Pills: a sentence-case word with its mark. */
+.chip {
+  --pill-fg: var(--neutral-fg); --pill-bg: var(--neutral-bg); --pill-border: var(--neutral-border);
+  display: inline-flex; align-items: center; gap: 4px;
+  min-height: 22px; padding: 0 8px;
+  border: 1px solid var(--pill-border); border-radius: var(--radius-full);
+  background: var(--pill-bg); color: var(--pill-fg);
+  font-size: var(--text-xs); line-height: var(--leading-xs); font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+.chip .icon { width: 12px; height: 12px; flex: none; }
+.chip--held, .chip--outside { --pill-fg: var(--advisory-fg); --pill-bg: var(--advisory-bg); --pill-border: color-mix(in srgb, var(--advisory-mark) 55%, transparent); }
+.chip--clear { --pill-fg: var(--ok-fg); --pill-bg: var(--ok-bg); --pill-border: color-mix(in srgb, var(--ok-mark) 55%, transparent); }
+.chip--landed { animation: land var(--dur-stamp) var(--ease-out); }
+@keyframes land { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+
+.section h2 { margin: 0 0 var(--space-1-5); color: var(--fg-subtle); font-size: var(--text-xs); line-height: var(--leading-xs); font-weight: var(--weight-medium); }
+
+/* Who will see this: one row per recipient, outside first. */
+.people { list-style: none; margin: 0; padding: 0; }
+.person { display: flex; align-items: center; gap: var(--space-2-5); padding: var(--space-2) 0; border-top: 1px solid var(--border); transition: opacity var(--dur-base) var(--ease-out); }
+.pane[data-state="checking"] .person { opacity: 0.5; }
+.avatar {
+  --avatar-hue: 220;
+  display: inline-grid; place-items: center;
+  width: 28px; height: 28px; flex: none;
+  border-radius: 50%;
+  background: light-dark(hsl(var(--avatar-hue) 70% 94%), hsl(var(--avatar-hue) 40% 22%));
+  color: light-dark(hsl(var(--avatar-hue) 55% 30%), hsl(var(--avatar-hue) 80% 84%));
+  box-shadow: inset 0 0 0 1px light-dark(hsl(var(--avatar-hue) 50% 86%), hsl(var(--avatar-hue) 40% 30%));
+  font-size: 11px; line-height: 1; font-weight: var(--weight-semibold); letter-spacing: 0;
+  user-select: none;
+}
+.avatar--h0 { --avatar-hue: 220; } .avatar--h1 { --avatar-hue: 262; } .avatar--h2 { --avatar-hue: 330; } .avatar--h3 { --avatar-hue: 16; }
+.avatar--h4 { --avatar-hue: 38; } .avatar--h5 { --avatar-hue: 152; } .avatar--h6 { --avatar-hue: 188; } .avatar--h7 { --avatar-hue: 290; }
+.person__text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.person__name, .person__address { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.person__name { font-weight: var(--weight-semibold); }
+.person__address { color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--leading-xs); }
+.person > .chip { flex: none; }
+
+/* What stopped it: one card per finding. */
+.cards { display: grid; gap: var(--space-2-5); }
+.card { display: grid; gap: var(--space-2); padding: var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-surface); }
+.card__label { margin: 0; color: var(--advisory-fg); font-size: var(--text-sm); line-height: var(--leading-sm); font-weight: var(--weight-semibold); }
+.card__place { margin: calc(-1 * var(--space-1)) 0 0; color: var(--fg-subtle); font-size: var(--text-xs); line-height: var(--leading-xs); }
+.card__excerpt { margin: 0; overflow-wrap: anywhere; }
+.card__excerpt--quote::before { content: "\201C"; }
+.card__excerpt--quote::after { content: "\201D"; }
+.card__excerpt mark, .card__context mark { padding: 0 2px; border-radius: 3px; background: color-mix(in srgb, var(--advisory-mark) 26%, transparent); color: var(--advisory-fg); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.card__file { font-family: var(--font-mono); font-size: var(--text-xs); }
+.card__why { margin: 0; color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--leading-xs); }
+.card__note { margin: 0; color: var(--fg-subtle); font-size: var(--text-xs); line-height: var(--leading-xs); }
+.card__context { margin: 0; padding: var(--space-2) var(--space-2-5); border-radius: var(--radius-sm); background: var(--bg-sunk); color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--leading-xs); overflow-wrap: anywhere; }
+.card__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1-5); }
+.card__error { margin: 0; color: var(--attention-fg); font-size: var(--text-xs); line-height: var(--leading-xs); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 28px; padding: 0 var(--space-2-5);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-md);
+  background: transparent; color: var(--fg);
+  font: inherit; font-size: var(--text-xs); line-height: var(--leading-xs); font-weight: var(--weight-semibold); letter-spacing: inherit;
+  cursor: pointer;
+}
+.btn .icon { width: 14px; height: 14px; flex: none; }
+.btn:hover { background: var(--bg-hover); }
+.btn:active { background: var(--bg-active); }
+.btn:focus-visible { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.btn:disabled { cursor: default; opacity: 0.6; }
+#check-again { align-self: flex-start; }
+#check-again[hidden] { display: none; }
+.btn--text { border-color: transparent; color: var(--fg-muted); font-weight: var(--weight-medium); }
+.btn--text:hover { background: transparent; color: var(--fg); }
+.btn--text[aria-expanded="true"] { color: var(--fg); }
+
+/* State D. */
+.notice { margin: 0; padding: var(--space-3); border: 1px solid color-mix(in srgb, var(--advisory-mark) 45%, transparent); border-radius: var(--radius-lg); background: var(--advisory-bg); color: var(--fg); }
+
+.foot { display: grid; gap: var(--space-1-5); margin-top: auto; }
+.foot p { margin: 0; }
+.foot__nothing { color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--leading-xs); }
+.foot__checked { display: flex; align-items: center; gap: 6px; color: var(--fg); }
+.foot__checked .icon { width: 14px; height: 14px; flex: none; color: var(--ok-mark); }
+.foot__data { color: var(--fg-subtle); font-size: var(--text-xs); line-height: var(--leading-xs); }
+
+@media (prefers-reduced-motion: reduce) { .line__dot, .chip--landed { animation: none; } .pane::before, .person { transition: none; } }
+@media (forced-colors: active) {
+  .pane::before { forced-color-adjust: none; background: Highlight; box-shadow: none; }
+  .chip, .card, .notice, .btn { border-color: CanvasText; }
+  .line__dot { forced-color-adjust: none; background: Highlight; }
+  .card__excerpt mark, .card__context mark { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+}
+
+

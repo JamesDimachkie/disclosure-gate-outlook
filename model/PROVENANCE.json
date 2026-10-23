@@ -1,0 +1,33 @@
+{
+  "source": "../dg-email-model/model",
+  "sourceCheckoutHead": "ad81971319aff27f79446cb54b742427ee0dd274",
+  "note": "Exact named-file copy from lane/model ad819713, verified by SHA-256. labels.json differs from the source: access and negotiation thresholds set above 1 by the integrator (see its product_note).",
+  "baseModel": "jhu-clsp/ettin-encoder-17m",
+  "baseRevision": "987607455c61e7a5bbc85f7758e0512ea6d0ae4c",
+  "input": "context_text",
+  "maxLength": 128,
+  "accuracy": "Measured 2026-10-23 on the realistic2 held-out tier: see evaluation/heldout/realistic2/final-semantic-v2.json",
+  "files": {
+    "classifier.mjs": {
+      "bytes": 4154,
+      "sha256": "3b72bcf10a47512a2e3a2ab75a67ef81d9cf7a66aff356fbed611af47ae7335c"
+    },
+    "tokenize.mjs": {
+      "bytes": 959,
+      "sha256": "acae582956ec777be0b6e64edbe5e603fdddda8211ed07197236ebccf3f239ce"
+    },
+    "out/model.onnx": {
+      "bytes": 17309676,
+      "sha256": "59ccc6704590d54e3aee4d76960db69ab588934da0a20a18e495c0aa23648c5c"
+    },
+    "out/tokenizer.json": {
+      "bytes": 2132967,
+      "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
+    },
+    "out/labels.json": {
+      "bytes": 1401,
+      "sha256": "4229dedc9e870b16fc00e2add687f71c2ad41c97288f0f8dc6ecc980afd86d61"
+    }
+  },
+  "upstreamLicense": "https://raw.githubusercontent.com/jhu-clsp/ettin-encoder-vs-decoder/main/LICENSE"
+}

@@ -1,0 +1,18 @@
+Disclosure Gate OCR assets
+
+tesseract.js 7.0.0 and tesseract.js-core 7.0.0: Apache-2.0.
+https://github.com/naptha/tesseract.js
+https://github.com/naptha/tesseract.js-core
+The core compiles Tesseract and Leptonica and their bundled image codecs.
+The unmodified distribution worker and its bundled dependency notices are included.
+
+English traineddata: @tesseract.js-data/eng 1.0.0, 4.0.0_best_int.
+https://github.com/naptha/tessdata/tree/gh-pages
+https://github.com/naptha/tessdata/blob/gh-pages/LICENSE (Apache-2.0)
+The npm wrapper package declares MIT but contains no licence file. The data repository
+licenses the traineddata under Apache-2.0; that licence is included alongside the model.
+
+Only the LSTM engine is used. The portable non-SIMD core avoids downloading a choice of
+cores. Workers, core, WASM and English model resolve to this add-in's own static origin.
+No email content or image is sent for OCR. No traineddata or email cache is written to
+IndexedDB by Tesseract (cacheMethod none). Item sessionData holds bounded OCR results.

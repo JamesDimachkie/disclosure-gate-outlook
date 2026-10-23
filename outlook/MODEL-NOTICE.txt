@@ -1,0 +1,26 @@
+Disclosure Gate optional on-device sentence classification
+
+ONNX Runtime Web 1.30.0, Microsoft, MIT; original WASM loader/binary are copied from
+the pinned npm package. Runtime licence and third-party notices are included here.
+The notice files were verified against upstream tag v1.30.0 on 23 October 2026:
+LICENSE-onnxruntime.txt:
+https://raw.githubusercontent.com/microsoft/onnxruntime/v1.30.0/LICENSE
+NOTICE-onnxruntime.txt:
+https://raw.githubusercontent.com/microsoft/onnxruntime/v1.30.0/ThirdPartyNotices.txt
+Both match upstream after CRLF-to-LF normalization; only line endings differ.
+Hugging Face Tokenizers 0.2.0, Apache-2.0; bundled only when the actual classifier
+imports it. Its unmodified licence is included here.
+
+The classifier is fine-tuned from jhu-clsp/ettin-encoder-17m, base revision
+987607455c61e7a5bbc85f7758e0512ea6d0ae4c. The upstream MIT licence is included
+as LICENSE-ettin.txt (Johns Hopkins University Center for Language and Speech Processing).
+Model source and the real int8 export are copied from the model lane. assets.json
+states whether this build contains it and records exact byte sizes and SHA-256 hashes.
+An unavailable export never produces a prediction. Measured accuracy is in README.md
+(How well it works). Native Outlook compatibility is not implied by bundling.
+The shipped model reads context_text (previous sentence plus current sentence) and
+adds personal details, internal costs/economics and remarks only. Access and
+negotiation stay rules-only, disabled in the model by thresholds of 1.01.
+
+Only public static assets are cached. Mail is classified in a local worker; inputs,
+tokenized mail and predictions are never sent to a server or stored in the model cache.

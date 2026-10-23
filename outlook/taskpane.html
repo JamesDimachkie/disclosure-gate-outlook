@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Disclosure Gate</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="taskpane.css">
+<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+<script defer src="model/loader.js"></script>
+<script defer src="pane.js"></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 10.5l3.5 3.5 7.5-8"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.25"/><path d="M6.75 10.25l2.25 2.25 4.25-4.5"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7.25"/><path d="M8.25 7.25v5.5M11.75 7.25v5.5"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="5.5" r="2.25"/><circle cx="5.5" cy="14.5" r="2.25"/><path d="M7.4 6.7l9.35 8.3M7.4 13.3l9.35-8.3"/></symbol>
+</svg>
+<main class="pane" id="pane" data-state="idle">
+  <header class="head">
+    <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="mark__square" d="M8 2h8a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z"/><circle cx="7.25" cy="12" r="1.75" fill="#ffffff"/><rect x="11" y="5.75" width="2" height="12.5" rx="1" fill="#ffffff"/><circle cx="16.75" cy="12" r="2.25" fill="#22c55e"/></svg>
+    <h1 class="name" id="name"></h1>
+    <div class="pill-slot" id="pill"></div>
+  </header>
+  <p class="line" id="line" role="status" aria-live="polite"></p>
+  <p class="notice" id="notice" hidden></p>
+  <button class="btn" id="check-again" type="button" data-focus="check-again" hidden></button>
+  <p class="help" id="ocr-status" role="status" aria-live="polite" hidden></p>
+  <section class="section" id="recipients" aria-labelledby="recipients-title" hidden>
+    <h2 id="recipients-title"></h2>
+    <ul class="people" id="people"></ul>
+  </section>
+  <section class="section" id="findings" aria-labelledby="findings-title" hidden>
+    <h2 id="findings-title"></h2>
+    <div class="cards" id="cards"></div>
+  </section>
+  <footer class="foot" id="foot"></footer>
+</main>
+</body>
+</html>

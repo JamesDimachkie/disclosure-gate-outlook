@@ -1,0 +1,598 @@
+{
+  "timestamp": "2026-10-23T20:30:04.338Z",
+  "browser": "149.0.7827.55",
+  "origin": "http://127.0.0.1:57956",
+  "runs": 3,
+  "samples": [
+    {
+      "rate": 1,
+      "runtime": "fresh",
+      "trial": 0,
+      "sentences": 10,
+      "sendMs": 675.2999999821186,
+      "cacheReads": 6,
+      "cacheMs": 1.6000000834465027,
+      "hashes": 6,
+      "hashMs": 24.599999994039536,
+      "workers": 1,
+      "initMs": 462.7999999821186,
+      "inferMs": 100.10000002384186,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "repeat",
+      "trial": 0,
+      "sentences": 10,
+      "sendMs": 604.9000000059605,
+      "cacheReads": 6,
+      "cacheMs": 11.5,
+      "hashes": 6,
+      "hashMs": 24.499999970197678,
+      "workers": 1,
+      "initMs": 430,
+      "inferMs": 96,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "fresh",
+      "trial": 1,
+      "sentences": 10,
+      "sendMs": 643.2000000178814,
+      "cacheReads": 6,
+      "cacheMs": 1.3000000417232513,
+      "hashes": 6,
+      "hashMs": 26.299999982118607,
+      "workers": 1,
+      "initMs": 436.19999998807907,
+      "inferMs": 97.90000000596046,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "repeat",
+      "trial": 1,
+      "sentences": 10,
+      "sendMs": 575.8999999761581,
+      "cacheReads": 6,
+      "cacheMs": 8.300000041723251,
+      "hashes": 6,
+      "hashMs": 23.899999976158142,
+      "workers": 1,
+      "initMs": 417.40000000596046,
+      "inferMs": 93.2000000178814,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "fresh",
+      "trial": 2,
+      "sentences": 10,
+      "sendMs": 579.9000000059605,
+      "cacheReads": 6,
+      "cacheMs": 1.3999999463558197,
+      "hashes": 6,
+      "hashMs": 23.700000017881393,
+      "workers": 1,
+      "initMs": 427.80000001192093,
+      "inferMs": 94.09999999403954,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "repeat",
+      "trial": 2,
+      "sentences": 10,
+      "sendMs": 591.1999999880791,
+      "cacheReads": 6,
+      "cacheMs": 1.300000011920929,
+      "hashes": 6,
+      "hashMs": 24.099999994039536,
+      "workers": 1,
+      "initMs": 435.7999999821186,
+      "inferMs": 96,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "fresh",
+      "trial": 0,
+      "sentences": 60,
+      "sendMs": 964.8000000119209,
+      "cacheReads": 6,
+      "cacheMs": 1.5999999940395355,
+      "hashes": 6,
+      "hashMs": 25.69999998807907,
+      "workers": 1,
+      "initMs": 443.80000001192093,
+      "inferMs": 456.5,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "repeat",
+      "trial": 0,
+      "sentences": 60,
+      "sendMs": 938,
+      "cacheReads": 6,
+      "cacheMs": 1.600000023841858,
+      "hashes": 6,
+      "hashMs": 24.19999998807907,
+      "workers": 1,
+      "initMs": 424.59999999403954,
+      "inferMs": 437.40000000596046,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "fresh",
+      "trial": 1,
+      "sentences": 60,
+      "sendMs": 925,
+      "cacheReads": 6,
+      "cacheMs": 1.399999976158142,
+      "hashes": 6,
+      "hashMs": 23.999999970197678,
+      "workers": 1,
+      "initMs": 423.80000001192093,
+      "inferMs": 440.69999998807907,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "repeat",
+      "trial": 1,
+      "sentences": 60,
+      "sendMs": 929.8000000119209,
+      "cacheReads": 6,
+      "cacheMs": 1.9000000059604645,
+      "hashes": 6,
+      "hashMs": 23.80000004172325,
+      "workers": 1,
+      "initMs": 432.40000000596046,
+      "inferMs": 438.40000000596046,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "fresh",
+      "trial": 2,
+      "sentences": 60,
+      "sendMs": 955,
+      "cacheReads": 6,
+      "cacheMs": 1.3999999463558197,
+      "hashes": 6,
+      "hashMs": 23.5,
+      "workers": 1,
+      "initMs": 428.90000000596046,
+      "inferMs": 464.30000001192093,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "repeat",
+      "trial": 2,
+      "sentences": 60,
+      "sendMs": 959,
+      "cacheReads": 6,
+      "cacheMs": 1.4000000357627869,
+      "hashes": 6,
+      "hashMs": 23.899999976158142,
+      "workers": 1,
+      "initMs": 430.2000000178814,
+      "inferMs": 469.19999998807907,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 1,
+      "runtime": "compose-prepared",
+      "trial": 0,
+      "sentences": 10,
+      "sendMs": 526.4000000059605,
+      "cacheReads": 0,
+      "cacheMs": 0,
+      "hashes": 0,
+      "hashMs": 0,
+      "workers": 1,
+      "initMs": 427.30000001192093,
+      "inferMs": 94,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "fresh",
+      "trial": 0,
+      "sentences": 10,
+      "sendMs": 894.1999999880791,
+      "cacheReads": 6,
+      "cacheMs": 5.700000017881393,
+      "hashes": 6,
+      "hashMs": 96.7999999821186,
+      "workers": 1,
+      "initMs": 557.3000000119209,
+      "inferMs": 105.39999997615814,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "repeat",
+      "trial": 0,
+      "sentences": 10,
+      "sendMs": 888.9000000059605,
+      "cacheReads": 6,
+      "cacheMs": 22.100000023841858,
+      "hashes": 6,
+      "hashMs": 110.50000002980232,
+      "workers": 1,
+      "initMs": 529.7999999821186,
+      "inferMs": 101,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "fresh",
+      "trial": 1,
+      "sentences": 10,
+      "sendMs": 857.5999999940395,
+      "cacheReads": 6,
+      "cacheMs": 3.699999988079071,
+      "hashes": 6,
+      "hashMs": 98.19999998807907,
+      "workers": 1,
+      "initMs": 524.1999999880791,
+      "inferMs": 103.90000000596046,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "repeat",
+      "trial": 1,
+      "sentences": 10,
+      "sendMs": 856,
+      "cacheReads": 6,
+      "cacheMs": 4.4000000059604645,
+      "hashes": 6,
+      "hashMs": 101.30000001192093,
+      "workers": 1,
+      "initMs": 527.3000000119209,
+      "inferMs": 94.2000000178814,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "fresh",
+      "trial": 2,
+      "sentences": 10,
+      "sendMs": 877.6999999880791,
+      "cacheReads": 6,
+      "cacheMs": 4.800000011920929,
+      "hashes": 6,
+      "hashMs": 102.10000002384186,
+      "workers": 1,
+      "initMs": 547.5999999940395,
+      "inferMs": 99.89999997615814,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "repeat",
+      "trial": 2,
+      "sentences": 10,
+      "sendMs": 845.7999999821186,
+      "cacheReads": 6,
+      "cacheMs": 3.899999976158142,
+      "hashes": 6,
+      "hashMs": 101.59999999403954,
+      "workers": 1,
+      "initMs": 514.2000000178814,
+      "inferMs": 103.7000000178814,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "fresh",
+      "trial": 0,
+      "sentences": 60,
+      "sendMs": 1267.5,
+      "cacheReads": 6,
+      "cacheMs": 5.399999976158142,
+      "hashes": 6,
+      "hashMs": 100.2000000178814,
+      "workers": 1,
+      "initMs": 530.5,
+      "inferMs": 483.09999999403954,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "repeat",
+      "trial": 0,
+      "sentences": 60,
+      "sendMs": 1248.5999999940395,
+      "cacheReads": 6,
+      "cacheMs": 3.399999976158142,
+      "hashes": 6,
+      "hashMs": 96.80000004172325,
+      "workers": 1,
+      "initMs": 519.7999999821186,
+      "inferMs": 486.80000001192093,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "fresh",
+      "trial": 1,
+      "sentences": 60,
+      "sendMs": 1262.2999999821186,
+      "cacheReads": 6,
+      "cacheMs": 3.2000000178813934,
+      "hashes": 6,
+      "hashMs": 96.7000000178814,
+      "workers": 1,
+      "initMs": 523.6999999880791,
+      "inferMs": 502.40000000596046,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "repeat",
+      "trial": 1,
+      "sentences": 60,
+      "sendMs": 1260.8999999761581,
+      "cacheReads": 6,
+      "cacheMs": 3.4000000059604645,
+      "hashes": 6,
+      "hashMs": 101.7000000178814,
+      "workers": 1,
+      "initMs": 551.3000000119209,
+      "inferMs": 468.2000000178814,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "fresh",
+      "trial": 2,
+      "sentences": 60,
+      "sendMs": 1197,
+      "cacheReads": 6,
+      "cacheMs": 3.5999999940395355,
+      "hashes": 6,
+      "hashMs": 97.09999999403954,
+      "workers": 1,
+      "initMs": 512.4000000059605,
+      "inferMs": 449.60000002384186,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "repeat",
+      "trial": 2,
+      "sentences": 60,
+      "sendMs": 1240.9000000059605,
+      "cacheReads": 6,
+      "cacheMs": 16.899999976158142,
+      "hashes": 6,
+      "hashMs": 100.69999998807907,
+      "workers": 1,
+      "initMs": 522.5999999940395,
+      "inferMs": 464.2000000178814,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    },
+    {
+      "rate": 4,
+      "runtime": "compose-prepared",
+      "trial": 0,
+      "sentences": 10,
+      "sendMs": 646.8999999761581,
+      "cacheReads": 0,
+      "cacheMs": 0,
+      "hashes": 0,
+      "hashMs": 0,
+      "workers": 1,
+      "initMs": 521.4000000059605,
+      "inferMs": 103.2999999821186,
+      "semantic": "used",
+      "allowEvent": true,
+      "completed": 1
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/model/engine.js"
+    },
+    {
+      "method": "GET",
+      "path": "/model/ort-wasm-simd-threaded.mjs"
+    },
+    {
+      "method": "GET",
+      "path": "/model/ort-wasm-simd-threaded.wasm"
+    },
+    {
+      "method": "GET",
+      "path": "/model/model.onnx"
+    },
+    {
+      "method": "GET",
+      "path": "/model/tokenizer.json"
+    },
+    {
+      "method": "GET",
+      "path": "/model/labels.json"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    },
+    {
+      "method": "GET",
+      "path": "/"
+    },
+    {
+      "method": "GET",
+      "path": "/runtime-browser.js"
+    }
+  ],
+  "note": "Synthetic synchronous Office callbacks; real built handler, gate, cache, digest, worker, WASM and classifier. CDP throttle is an approximation, not an older-laptop qualification."
+}
