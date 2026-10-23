@@ -18,9 +18,9 @@ Model source and the real int8 export are copied from the model lane. assets.jso
 states whether this build contains it and records exact byte sizes and SHA-256 hashes.
 An unavailable export never produces a prediction. Measured accuracy is in README.md
 (How well it works). Native Outlook compatibility is not implied by bundling.
-The shipped model reads context_text (previous sentence plus current sentence) and
-adds personal details, internal costs/economics and remarks only. Access and
-negotiation stay rules-only, disabled in the model by thresholds of 1.01.
+The shipped model (v2.1) reads context_text (previous sentence plus current sentence)
+and covers physical access, personal details, internal costs/economics, negotiation
+and remarks. It is off unless IT turns it on.
 
 Only public static assets are cached. Mail is classified in a local worker; inputs,
 tokenized mail and predictions are never sent to a server or stored in the model cache.

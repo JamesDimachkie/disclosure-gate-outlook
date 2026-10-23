@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "base_model": "jhu-clsp/ettin-encoder-17m",
   "base_revision": "987607455c61e7a5bbc85f7758e0512ea6d0ae4c",
   "labels": [
@@ -11,28 +11,34 @@
     "remark"
   ],
   "thresholds": {
-    "access": 1.01,
-    "personal": 0.554762324469307,
-    "economics": 0.5054771719540945,
-    "negotiation": 1.01,
-    "remark": 0.6684738657538627
+    "access": 0.28959833060025375,
+    "personal": 0.1040300349551194,
+    "economics": 0.8801698331288689,
+    "negotiation": 0.7123683436504538,
+    "remark": 0.0507146929893588
   },
-  "max_length": 128,
-  "input": "context_text",
-  "trained_on_data_commit": "2a77177b3dd5175197287b81452c9b064681f347",
-  "dev_sha256": "3ef6c21e2d8b14c0e9817d4106276360a0c9e7d8f4a9928dd5b88fad87566bda",
-  "input_template": "Previous sentence: {context}\nCurrent sentence: {text}",
-  "quantization": "int8 weights; fp32 encoder activations; per-sentence dynamic uint8 final projection",
   "calibration": {
     "temperature": 0.75,
-    "none_logit_bias": 0
+    "none_logit_bias": 0.0
   },
-  "benign_training": {
-    "emails": 120,
-    "sentences_added": 836,
-    "heldout_emails": 30,
-    "splitter_sha256": "e6d64fea8ff723f805e9b2b2b324afadeefcdb85e7a9ac996c218ac9d8fb455c",
-    "pool_sha256": "6ff7f5a3b1802a5161e89777449bed6c745591701ff3a3bbb16dc672468987f7"
+  "input": "context_text",
+  "max_length": 128,
+  "input_template": "Previous sentence: {context}\nCurrent sentence: {text}",
+  "quantization": "int8 weights and embeddings; fp32 encoder activations; per-sentence dynamic uint8 final projection",
+  "training": {
+    "recipe": "mixed",
+    "seed": 42,
+    "selected_epoch": 4,
+    "author_data_commits": {
+      "gpt": "094051e0cad82b8677592b5b10011c6ddbce848c",
+      "claude": "9e2ad7dff4df41be67d5dd3c8de597a9de803336"
+    },
+    "v2_sentence_training_commit": "2a77177b3dd5175197287b81452c9b064681f347"
   },
-  "product_note": "access and negotiation are switched off (threshold above 1): on realistic email their scores overlap ordinary sentences, so those categories stay with the rules. Decided 2026-10-23 from the realistic tier-1 calibration run."
+  "calibration_data": {
+    "sha256": "f4610b694c7c08b0e096492de2363860199880c4ff1e50d220ff469f3ecc169a",
+    "ordinary_margin": 0.001,
+    "method": "per-class max ordinary calibration score + margin; select temperature by disclosure-email catches",
+    "independent_test": false
+  }
 }

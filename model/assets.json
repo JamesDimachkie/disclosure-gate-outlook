@@ -17,16 +17,16 @@
     },
     "model.onnx": {
       "bytes": 17309676,
-      "sha256": "59ccc6704590d54e3aee4d76960db69ab588934da0a20a18e495c0aa23648c5c"
+      "sha256": "c2f555a9c755a367555943898b5306fa759b51169036a368eeebae74a7935025"
     },
     "tokenizer.json": {
       "bytes": 2132967,
       "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
     },
     "labels.json": {
-      "bytes": 1401,
-      "sha256": "4229dedc9e870b16fc00e2add687f71c2ad41c97288f0f8dc6ecc980afd86d61"
+      "bytes": 1370,
+      "sha256": "ffa18e6e8a64fa2527f2ef77cd4fce3e3021fb963365708f1ac9ef4a6bb82155"
     }
   },
-  "revision": "67b36cb3c0ae061ace709e950e4de56eb88d3735415ff314eae59bd8bbb024f6"
+  "revision": "c2b7d440360e79fd342c25f51b37e7c3e9bf54f84726ca86d0bfb52932652e7c"
 }
