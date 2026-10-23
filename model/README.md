@@ -5,9 +5,8 @@ Exact source and real int8 export copied from `../dg-email-model/model` on `lane
 data was copied or inspected. Measured accuracy is in [README: How well it works](../README.md#how-well-it-works).
 
 `classifier.mjs` and `tokenize.mjs` are supplied by the model lane. Their source is unchanged.
-The integrator disabled access and negotiation with thresholds of 1.01 in `out/labels.json`:
-the shipped model adds personal details, internal costs/economics and remarks only. Access and
-negotiation stay rules-only. The current metadata selects `context_text`: previous sentence plus
+`out/` is v2.1 (lane/model d61a1856) with the trainer's thresholds; it covers all five categories.
+The current metadata selects `context_text`: previous sentence plus
 current sentence, within a combined 128-token window. The browser worker
 skips a whole semantic pass when its untruncated tokenizer input exceeds that window. Rules still
 check the full admitted text.

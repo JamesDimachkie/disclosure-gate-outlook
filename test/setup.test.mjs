@@ -28,7 +28,7 @@ test('setup bundle makes configured XML locally and reports invalid domains',asy
     assert.ok(output.includes('findings='+findings+'&amp;failures='+failures));
   }
   assert.match(node('model-help').textContent,/Off is the default/);assert.doesNotMatch(await blob.text(),/model=/);
-  node('model').value='on';handlers['model:change']();assert.match(node('model-help').textContent,/47 of 200/);
+  node('model').value='on';handlers['model:change']();assert.match(node('model-help').textContent,/20 of 200/);
   handlers['setup-form:submit']({preventDefault(){}});assert.match(await blob.text(),/&amp;model=on/);node('model').value='off';
   node('domains').value='*';handlers['setup-form:submit']({preventDefault(){}});assert.equal(clicked,6);assert.equal(node('setup-error').hidden,false);
 });

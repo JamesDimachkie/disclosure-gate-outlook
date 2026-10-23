@@ -91,14 +91,13 @@ These apply only when at least one recipient is outside or can't be checked. Tex
 subject, the body including any quoted earlier messages, and the text of readable attachments
 (section 6). Each finding points to one sentence, file or recipient.
 
-When IT turns it on, in clients that support it, a small on-device sentence model also flags personal details (§5.4),
-internal economics (§5.5) and remarks (§5.7). It adds findings using the same sender-facing copy; a
-rule finding on that sentence takes precedence. Access (§5.1) and negotiation position (§5.6) stay
-with the rules: the model's scores for them overlapped ordinary sentences in realistic email
-(decided 23 October 2026). On a held-out set of 160 realistic emails, rules plus the model caught
-30 of 60 disclosures in §5.1 and §5.4–§5.7 (rules alone: 7) and flagged 2 of 100 ordinary emails
-(rules alone: 0), but on a held-out set of 200 everyday outside emails it flagged 47 (rules alone: 0).
-It therefore ships off; IT can turn it on at setup (§3).
+When IT turns it on, in clients that support it, a small on-device sentence model (v2.1) also flags
+physical access (§5.1, last two bullets), personal details (§5.4), internal economics (§5.5),
+negotiation position (§5.6) and remarks (§5.7). It adds findings using the same sender-facing copy; a
+rule finding on that sentence takes precedence. On a held-out set of 300 realistic emails, rules plus
+the model caught 48 of 60 such disclosures (rules alone: 4) and flagged 1 of 240 ordinary emails
+(rules alone: 0); on a held-out set of 200 everyday outside emails by another author it flagged 20
+(rules alone: 0). It therefore ships off; IT can turn it on at setup (§3).
 
 For meeting invitations and updates, required attendees map to To and optional attendees to Cc.
 Room addresses returned by Outlook's enhanced location API also count as recipients, under the same

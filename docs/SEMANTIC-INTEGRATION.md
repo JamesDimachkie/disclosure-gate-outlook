@@ -21,8 +21,10 @@ never creates a can't-check outcome. IT's `model=off` skips both preload and cla
 
 ## Coverage and input contract
 
-The shipped model adds **personal details, internal costs/economics and remarks only**. Access and
-negotiation stay **rules-only**, disabled in the model by thresholds of 1.01 in `model/out/labels.json`.
+The shipped model is v2.1 (lane/model d61a1856, `model/out21-17m`): it covers access, personal
+details, internal costs/economics, negotiation and remarks, with the trainer's thresholds in
+`model/out/labels.json`. (v2 disabled access and negotiation; v2.1's calibration on whole emails
+from two authors supports all five.)
 Measured accuracy is in [README: How well it works](../README.md#how-well-it-works); no accuracy
 evaluation was rerun for this timing/fix lane.
 
@@ -196,3 +198,12 @@ alone flagged 0 of 200; rules plus the model flagged 47 of 200 (personal and eco
 one remark). The model therefore ships off (`model` defaults to `off`; `model=on` turns it on), and
 a default install never preloads or calls it. Improving its precision on everyday mail is the main
 work for the next release; the `everyday` tier must not be used to tune it.
+
+## v2.1 model (23 October 2026)
+
+Retrained on whole emails written by two AI authors (GPT-6 Astra and Claude Opus 5.5, every sentence
+labelled as Send splits it), Ettin-17M, trainer's thresholds unchanged. Single held-out runs:
+`realistic3` (300, Sol) 48/60 caught, 1/240 ordinary flagged; `everyday` (200, Opus) 20/200 ordinary
+flagged. The everyday flags were read: all are model errors on harmless sentences (a dental
+"surgery" room, a pet's "booster", a tyre "puncture"), not label errors. The default stays Off; the
+bar remains at most 1% on both everyday-style sets. Neither set may be used for tuning.

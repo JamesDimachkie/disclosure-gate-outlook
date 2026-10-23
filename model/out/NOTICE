@@ -1,10 +1,9 @@
-Ettin encoder 17M
+Ettin encoder 17m
 Base: https://huggingface.co/jhu-clsp/ettin-encoder-17m
 Revision: 987607455c61e7a5bbc85f7758e0512ea6d0ae4c
 Licence: MIT; see LICENSE.
 Upstream licence source: https://raw.githubusercontent.com/JHU-CLSP/ettin-encoder-vs-decoder/6cbf954a2ecaa7c753be6468a1bccdef401d5f93/LICENSE
 
-Modified for Disclosure Gate: quantization-aware six-class sequence classifier;
-int8 weights and embeddings; per-sentence dynamic UINT8 final projection;
-fp32 encoder activations; trained on synthetic train/dev data.
+Modified for Disclosure Gate: six-class sequence classifier, trained on synthetic emails;
+quantization-aware int8 weights/embeddings, fp32 encoder activations, per-sentence dynamic uint8 final projection.
 No upstream endorsement is implied.

@@ -28,10 +28,12 @@ test emails written to vary their wording, the rules caught **7 of 60** of these
 second pair of eyes for these, not a guarantee.
 
 **Experimental, off by default:** IT can turn on a small model that runs on each computer and reads
-every sentence for personal details, internal costs and insults however they're worded. In testing it
-raised those catches to **30 of 60**, but it also asked about **47 of 200** everyday outside emails
-that the rules let through (rules alone: none of 200). That is too many questions for most teams, so
-it ships off; a better model is the next release's main work. It runs in Outlook on the web, the new
+every sentence for personal details, internal costs, negotiating position, insults and physical
+security (hidden keys, alarms off) however they're worded. On 300 fresh test emails it raised those
+catches from **4 of 60** (rules alone) to **48 of 60**, and asked about 1 of 240 ordinary ones. But on
+200 everyday outside emails written by a different AI author it asked about **20** (rules alone:
+none), reacting to words like "surgery" or "booster" in harmless sentences. That is too many questions
+for most teams, so it ships off while a better model is trained. It runs in Outlook on the web, the new
 Outlook and Outlook for Mac, never in classic Outlook for Windows, and needs no AI service or account.
 
 Email that stays inside your organization is never held. The full contract is in [SPEC.md](SPEC.md).
