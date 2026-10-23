@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xsi:type="MailApp">
+  <Id>15f4b69e-59f2-4f5a-ad8b-697db42b1d81</Id>
+  <Version>2.0.0.0</Version>
+  <ProviderName>Disclosure Gate</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Disclosure Gate"/>
+  <Description DefaultValue="Asks before email or a meeting invitation takes something outside your company that should stay inside. Your IT team can require a hold."/>
+  <IconUrl DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/taskpane.html?dg=2&amp;findings=ask&amp;failures=ask&amp;domains="/>
+  <Hosts><Host Name="Mailbox"/></Hosts>
+  <Requirements><Sets><Set Name="Mailbox" MinVersion="1.1"/></Sets></Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead"><DesktopSettings><SourceLocation DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/taskpane.html?dg=2&amp;findings=ask&amp;failures=ask&amp;domains="/><RequestedHeight>250</RequestedHeight></DesktopSettings></Form>
+  </FormSettings>
+  <Permissions>ReadWriteItem</Permissions>
+  <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Requirements><bt:Sets DefaultMinVersion="1.12"><bt:Set Name="Mailbox"/></bt:Sets></Requirements>
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <Runtimes><Runtime resid="Runtime.Url"><Override type="javascript" resid="Script.Url"/></Runtime></Runtimes>
+          <DesktopFormFactor>
+            <SupportsSharedFolders>true</SupportsSharedFolders>
+            <FunctionFile resid="Runtime.Url"/>
+            <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="dgGroup">
+                  <Label resid="Group.Label"/>
+                  <Control xsi:type="Button" id="dgOpenPane">
+                    <Label resid="Pane.Label"/>
+                    <Supertip><Title resid="Pane.Label"/><Description resid="Pane.Tip"/></Supertip>
+                    <Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon>
+                    <Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/></Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+            <ExtensionPoint xsi:type="AppointmentOrganizerCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="dgMeetingGroup">
+                  <Label resid="Group.Label"/>
+                  <Control xsi:type="Button" id="dgOpenMeetingPane">
+                    <Label resid="Pane.Label"/>
+                    <Supertip><Title resid="Pane.Label"/><Description resid="MeetingPane.Tip"/></Supertip>
+                    <Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon>
+                    <Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/></Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+            <ExtensionPoint xsi:type="LaunchEvent">
+              <LaunchEvents><LaunchEvent Type="OnAppointmentAttachmentsChanged" FunctionName="onMessageAttachmentsChangedHandler"/><LaunchEvent Type="OnNewAppointmentOrganizer" FunctionName="onMessageComposeHandler"/><LaunchEvent Type="OnAppointmentSend" FunctionName="onAppointmentSendHandler" SendMode="PromptUser"/><LaunchEvent Type="OnMessageAttachmentsChanged" FunctionName="onMessageAttachmentsChangedHandler"/><LaunchEvent Type="OnMessageCompose" FunctionName="onMessageComposeHandler"/><LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" SendMode="PromptUser"/></LaunchEvents>
+              <SourceLocation resid="Runtime.Url"/>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16" DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/assets/icon-16.png"/>
+          <bt:Image id="Icon.32" DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/assets/icon-32.png"/>
+          <bt:Image id="Icon.80" DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/assets/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="Runtime.Url" DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/commands.html?dg=2&amp;findings=ask&amp;failures=ask&amp;domains="/>
+          <bt:Url id="Script.Url" DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/runtime.js?dg=2&amp;findings=ask&amp;failures=ask&amp;domains="/>
+          <bt:Url id="Taskpane.Url" DefaultValue="https://jamesdimachkie.github.io/disclosure-gate-outlook/taskpane.html?dg=2&amp;findings=ask&amp;failures=ask&amp;domains="/>
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="Group.Label" DefaultValue="Disclosure Gate"/>
+          <bt:String id="Pane.Label" DefaultValue="Disclosure Gate"/>
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="MeetingPane.Tip" DefaultValue="See who will receive this meeting invitation and what Disclosure Gate found."/>
+          <bt:String id="Pane.Tip" DefaultValue="See who will receive this email and what Disclosure Gate found."/>
+        </bt:LongStrings>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>

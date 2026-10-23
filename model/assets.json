@@ -1,0 +1,32 @@
+{
+  "available": true,
+  "ort": "1.30.0",
+  "tokenizer": "0.2.0",
+  "files": {
+    "engine.js": {
+      "bytes": 89205,
+      "sha256": "0a58be5e3a56922d312dddb052eb9dc1b04a985e6ee26018fc159ac877e89577"
+    },
+    "ort-wasm-simd-threaded.mjs": {
+      "bytes": 24381,
+      "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b"
+    },
+    "ort-wasm-simd-threaded.wasm": {
+      "bytes": 14239897,
+      "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+    },
+    "model.onnx": {
+      "bytes": 17309676,
+      "sha256": "59ccc6704590d54e3aee4d76960db69ab588934da0a20a18e495c0aa23648c5c"
+    },
+    "tokenizer.json": {
+      "bytes": 2132967,
+      "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
+    },
+    "labels.json": {
+      "bytes": 1401,
+      "sha256": "4229dedc9e870b16fc00e2add687f71c2ad41c97288f0f8dc6ecc980afd86d61"
+    }
+  },
+  "revision": "67b36cb3c0ae061ace709e950e4de56eb88d3735415ff314eae59bd8bbb024f6"
+}

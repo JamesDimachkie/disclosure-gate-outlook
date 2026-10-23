@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-theme="auto"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Disclosure Gate for Outlook</title>
+<meta name="description" content="Disclosure Gate asks before an email or meeting invitation takes something outside your company that should stay inside. Every check runs on your device. Your IT team can require a hold.">
+<link rel="icon" href="assets/icon-32.png"><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="taskpane.css"><link rel="stylesheet" href="setup.css"><link rel="stylesheet" href="landing.css"></head>
+<body><main class="setup landing">
+<header><img src="assets/icon-64.png" width="40" height="40" alt=""><p class="eyebrow">Disclosure Gate for Outlook</p>
+<h1>Asks before it leaves.</h1>
+<p class="lede">When you press Send, Disclosure Gate checks your email or meeting invitation on your device. If it goes outside your company with something that should stay inside, it explains the concern and asks if you're sure. Choose Send Anyway, Review, or Don't Send. You don't have to reword an intentional disclosure.</p>
+<p>Your IT team can require a hold, separately for findings and for checks that fail. Both settings start on Ask.</p>
+<p class="cta"><a class="btn primary" href="setup.html">Set it up for your organization</a><a class="btn" href="https://github.com/JamesDimachkie/disclosure-gate-outlook">Source on GitHub</a></p></header>
+
+<section class="setup-card" aria-labelledby="stops"><h2 id="stops">What it looks for</h2>
+<ul class="checks">
+<li><strong>Passwords, keys and codes.</strong> A password or PIN that is actually given, a login with its password, API keys and tokens (AWS, GitHub, Slack, Stripe, Google, OpenAI, Anthropic), private keys, JSON Web Tokens, database connection strings, and door, gate, alarm or Wi-Fi codes.</li>
+<li><strong>Card and bank details.</strong> Card numbers that pass the Luhn check, valid IBANs, US routing numbers with an account number, UK sort codes with an account number.</li>
+<li><strong>Government ID numbers.</strong> US Social Security, UK National Insurance and Canadian SIN numbers, and passport, licence and personal tax ID numbers.</li>
+<li><strong>Lookalike addresses.</strong> An address that looks like your company's but isn't, such as <code>north1ine.com</code> for <code>northline.com</code>.</li>
+<li><strong>Exposed recipient lists.</strong> Eight or more outside addresses from three or more organizations in To and Cc. The sender is asked to use Bcc and can still send.</li>
+<li><strong>Files it can't read.</strong> An attachment whose text it can't check, such as a ZIP file or an attached email, going outside.</li>
+<li><strong>Text in pictures and scans.</strong> Screenshots, scanned PDFs and pictures are read on the device and their text is checked like the rest. A photo or logo it can't read doesn't stop the email: an attached one asks the sender to take a look, and they can send it anyway.</li>
+</ul>
+<p class="narrow"><strong>Also, more narrowly:</strong> your own margins and costs, your negotiating position, personal details about someone (health, family, legal, HR) and insults. Rules match common phrasings and miss others. An experimental on-device model, off unless IT turns it on, also reads each sentence for personal details, internal costs and insults however they're worded: in testing it caught 30 of 60 such disclosures (rules alone: 7) but asked about 47 of 200 everyday outside emails (rules alone: none). Treat the check as a second pair of eyes, not a guarantee.</p>
+<p class="narrow">Email that stays inside your organization is never held. Ordinary business email, including prices and quotes you give customers, invoice and order numbers, and password-reset talk, goes straight through.</p></section>
+
+<section class="setup-card" aria-labelledby="private"><h2 id="private">Nothing leaves Outlook to be checked</h2>
+<p>Every check runs inside Outlook on the sender's own device. The add-in is a folder of static files. There is no server, no account, no AI service, no telemetry and no log. It never edits, deletes or sends an email on its own.</p>
+<p>The code is open source under the Apache 2.0 licence, so your security team can read exactly what runs, or host the files themselves.</p></section>
+
+<section class="setup-card" aria-labelledby="results"><h2 id="results">How well it works</h2>
+<p>The rules were measured on two synthetic test sets written from the product spec by AI models that never saw the rules, from a different model family than the rules' author. On a further 200 everyday outside emails the rules flagged none. For the experimental model's results, see <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook#how-well-it-works">README: How well it works</a>.</p>
+<table class="results"><thead><tr><th>Test set</th><th>Ordinary emails flagged by mistake</th><th>Flagged as it should</th></tr></thead><tbody>
+<tr><td>150 realistic emails (long threads, signatures, quoted replies, attachments)</td><td>0 of 100</td><td>32 of 40</td></tr>
+<tr><td>440 short emails, one tricky sentence each</td><td>0 of 264</td><td>113 of 164</td></tr>
+</tbody></table>
+<p class="narrow">In the realistic set it flagged 22 of 23 emails carrying a secret, a card or bank number, an ID number or a lookalike address, and 10 of 17 carrying internal figures, a negotiating position, personal details or an insult. Every long outside recipient list was flagged.</p>
+<p class="narrow">After measuring, we fixed problems the misses and two independent code reviews pointed to, such as amounts in pounds and euros. The current build flags 34 of 40 and 118 of 164 on the same sets, still with no ordinary email flagged, but those fixes were informed by the misses, so the figures above are the fair ones. Attachment reading was run on 578 real Word, Excel and PowerPoint files and 679 real PDFs from public test collections: none crashed, each took under half a second, and files it can't fully read return "can't check" (the failures setting decides whether the sender is asked or the email is held). "Flagged" means the sender is asked (or, if your IT team chose Hold, the email is held). These are synthetic tests, not a measure on your mail.</p>
+</section>
+
+<section class="setup-card" aria-labelledby="install"><h2 id="install">Install in about five minutes</h2>
+<p>A Microsoft 365 admin installs it once for everyone. Users don't do anything.</p>
+<ol><li><strong>Make your manifest.</strong> On the <a href="setup.html">setup page</a>, choose Ask or Hold for findings and for failed checks. Both default to Ask. Add your other internal domains; your own domain is always inside.</li>
+<li><strong>Upload it.</strong> In the Microsoft 365 admin center, go to Settings &gt; Integrated apps &gt; Upload custom apps and choose the manifest.</li>
+<li><strong>Assign it.</strong> Pick the users or groups. Microsoft can take up to a day to deliver it to Outlook.</li>
+<li><strong>If either setting is Hold, set three Outlook policies</strong> for offline/load/Simple MAPI cases. The <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook#make-hold-settings-work-everywhere">README</a> lists them.</li></ol>
+<p class="help"><strong>Ask</strong> suits most teams: the sender sees the concern and decides. <strong>Hold</strong> is for teams whose policy requires a change before sending. With both settings on Ask, even if the add-in can't load, Outlook still lets people send. Older Outlook versions can't ask, so with a Hold setting they hold everything that would otherwise ask.</p></section>
+
+<section class="setup-card" aria-labelledby="where"><h2 id="where">Where it works</h2>
+<p>Outlook on the web, the new Outlook for Windows, classic Outlook for Windows (version 2206 or later) and Outlook for Mac (16.65 or later), with Exchange Online.</p>
+<p class="narrow">Meeting invitations are checked when sent from their own window; on the web and in the new Outlook, invitations sent from the small built-in form, forwarded meetings and attendee replies aren't. It also doesn't see items protected so that add-ins can't read them, mail sent from phones, other apps or scripts, or anything Exchange changes after Send. Hold settings also need the Outlook policies in the <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook#make-hold-settings-work-everywhere">README</a>.</p></section>
+
+<footer class="help">Disclosure Gate for Outlook is open source (Apache 2.0). Report a security issue through <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook/security">GitHub</a>.</footer>
+</main></body></html>
