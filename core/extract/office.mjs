@@ -1,6 +1,6 @@
 // Text of DOCX, XLSX and PPTX files: everything a recipient can open and read, in document order,
 // and nothing silently skipped. Every part of the package is accounted for by its content type:
-// it is read, it is known to hold no text a recipient reads (styles, themes, images, layout data),
+// it is read, collected for picture OCR, known to hold no extra readable text (styles, themes, layout),
 // or the whole file can't be checked. Unknown parts, macros, ActiveX controls, OLE objects, shared-
 // workbook revision logs, Power Pivot data and parts that fail to parse all make it "can't check".
 // Office files embedded in the file (a workbook inside a document, a chart's data) are read too,
@@ -23,7 +23,9 @@
 import { decodeBytes } from '../bytes.mjs';
 import { listEntries, readEntry } from './zip.mjs';
 import { scanXml, readText, attrs, attr, relId, guard, localName, decodeXml } from './xml.mjs';
-import { pdfText } from './pdf.mjs';
+import { pdfCoverage, pdfImages } from './pdf.mjs';
+import { imageInfo } from '../image-info.mjs';
+import { OCR_POLICY, OCR_MAX_PAGES, OCR_MAX_PIXELS } from '../ocr-policy.mjs';
 
 export { decodeXml };
 
@@ -93,7 +95,8 @@ function classify(type) {
   const t = type.toLowerCase().split(';')[0].trim();
   if (CLASS_OF.has(t)) return CLASS_OF.get(t);
   if (t === 'image/svg+xml') return 'all';
-  if (/^(?:image|audio|video|font|model)\//.test(t)) return 'ignore';
+  if (/^image\//.test(t)) return 'image';
+  if (/^(?:audio|video|font|model)\//.test(t)) return 'ignore';
   return null;
 }
 
@@ -385,6 +388,21 @@ function pivotRecords(xml, fields, limit = Infinity) {
 // Read one part by its class; a class this reader doesn't know makes the file "can't check".
 function readPart(pkg, name, cls) {
   pkg.consumed.add(name);
+  if (pictureParts(pkg).has(name) && cls !== 'all' && cls !== 'pdf') cls = 'image';
+  // Media paths and raster suffixes cannot hide behind a forged "styles" content type.
+  if (/^(?:word|ppt|xl)\/media\/.+\.(?:png|jpe?g|gif|bmp|tiff?|webp)$/i.test(name)) cls = 'image';
+  // A cached package thumbnail repeats the document preview, not additional document content.
+  if (cls === 'image' && /^docProps\/thumbnail\.[^/]+$/i.test(name) && !usedAsContent(pkg, name)) return;
+  if (cls === 'image') {
+    const bytes = readEntry(pkg.buf, pkg.entries.get(name));
+    let info;
+    try { info = imageInfo(bytes); } catch (error) {
+      return keepImage(pkg, { reason: ['image_size', 'image_frames'].includes(error.message) ? error.message : 'ocr_unsupported' });
+    }
+    // Match the measured inline spacer exception; larger logos can also contain readable words.
+    if (bytes.length <= OCR_POLICY.inlineBytes && info.width <= OCR_POLICY.inlineSide && info.height <= OCR_POLICY.inlineSide && info.width * info.height <= OCR_POLICY.inlinePixels) return;
+    return keepImage(pkg, { bytes, width: info.width, height: info.height });
+  }
   if (cls === 'ignore') return;
   if (!cls) fail('unknown_part');
   if (cls.slice(0, 7) === 'refuse:') fail(cls.slice(7));
@@ -393,7 +411,14 @@ function readPart(pkg, name, cls) {
     if (text) pkg.chunks.push(text);
     return;
   }
-  if (cls === 'pdf') return add(pkg, pdfText(readEntry(pkg.buf, pkg.entries.get(name))).split('\n'));
+  if (cls === 'pdf') {
+    const bytes = readEntry(pkg.buf, pkg.entries.get(name)), coverage = pdfCoverage(bytes);
+    if (coverage.ocrPages.length) {
+      pkg.ctx.pdfScans = true;
+      for (const image of pdfImages(bytes, coverage.ocrPages)) keepImage(pkg, image);
+    } else if (!coverage.hasPageText) fail('no_text');
+    return add(pkg, coverage.text.split('\n'));
+  }
   if (cls === 'customprop') return add(pkg, [decodeBytes(readEntry(pkg.buf, pkg.entries.get(name)), 'utf-16le', true)]);
   const xml = pkg.read(name), limit = room(pkg);
   switch (cls) {
@@ -403,7 +428,12 @@ function readPart(pkg, name, cls) {
     case 'settings': return add(pkg, readText(xml, SETTINGS, limit));
     case 'numbering': return add(pkg, numberingLines(xml, limit));
     case 'app': return add(pkg, readText(xml, APP, limit));
-    case 'all': return add(pkg, readText(xml, ALL, limit));
+    case 'all': {
+      if (String(pkg.typeOf(name)).toLowerCase().split(';')[0].trim() === 'image/svg+xml') {
+        scanXml(xml, { open(tag) { if (['image', 'feImage', 'foreignObject', 'use'].includes(localName(tag))) keepImage(pkg, { reason: 'ocr_unsupported' }); }, text() {}, close() {} });
+      }
+      return add(pkg, readText(xml, ALL, limit));
+    }
     case 'core': return add(pkg, readText(xml, CORE, limit));
     case 'vml': return add(pkg, vmlLines(xml));
     case 'sst': return add(pkg, sharedStrings(xml));
@@ -425,6 +455,37 @@ function readPart(pkg, name, cls) {
     case 'pivotrec': return add(pkg, pivotRecords(xml, null, limit));
     default: fail('unknown_part');
   }
+}
+
+function keepImage(pkg, image) {
+  if (!pkg.ctx.images) fail('ocr_required');
+  // Keep a terminal unread-picture marker rather than silently truncating coverage. The rest
+  // of the package is still natively validated under the ZIP/XML budgets.
+  if (pkg.ctx.images.length >= OCR_MAX_PAGES) { pkg.ctx.images[OCR_MAX_PAGES - 1] = { reason: 'image_size' }; return; }
+  if (image.width && (pkg.ctx.pixels += image.width * image.height) > OCR_MAX_PIXELS) image = { reason: 'image_size' };
+  pkg.ctx.images.push(image);
+}
+
+function usedAsContent(pkg, target) {
+  pictureParts(pkg);
+  return pkg.contentPictures.has(target);
+}
+
+function pictureParts(pkg) {
+  if (pkg.pictureParts) return pkg.pictureParts;
+  pkg.pictureParts = new Set();
+  pkg.contentPictures = new Set();
+  // Bounded by the package entry/expansion limits; relationships are parsed and cached once.
+  for (const n of pkg.entries.keys()) {
+    const m = /^(.*\/)?_rels\/([^/]*)\.rels$/i.exec(n);
+    if (!m) continue;
+    const source = (m[1] || '') + m[2];
+    for (const r of pkg.rels(source)) if (r.part) {
+      if (source || r.type !== 'thumbnail') pkg.contentPictures.add(r.part);
+      if (r.type === 'image') pkg.pictureParts.add(r.part);
+    }
+  }
+  return pkg.pictureParts;
 }
 
 // Everything not read yet, in name order with package metadata last: read, known to hold nothing
@@ -512,7 +573,16 @@ function officeText(buf, kind, ctx) {
   ctx.depth--;
   return pkg.chunks.join('\n');
 }
-const start = (buf, kind, opts = {}) => officeText(buf, kind, { depth: 0, budget: MAX_EXPANSION, chars: 0, maxChars: opts.maxChars || MAX_CHARS });
+const context = (opts = {}) => ({ depth: 0, budget: MAX_EXPANSION, chars: 0, maxChars: opts.maxChars || MAX_CHARS, images: opts.images, pixels: 0, pdfScans: false });
+const start = (buf, kind, opts) => officeText(buf, kind, context(opts));
+
+// Collect pictures while performing the same full native extraction. Standalone text readers
+// refuse an unaccounted picture; callers using this seam must consume every collected result.
+export function officeCoverage(buf, kind) {
+  const images = [];
+  const ctx = context({ images }), text = officeText(buf, kind, ctx);
+  return { text, images, pdfScans: ctx.pdfScans };
+}
 
 export const docxText = (buf, opts) => start(buf, 'docx', opts);
 export const xlsxText = (buf, opts) => start(buf, 'xlsx', opts);

@@ -2,6 +2,8 @@ import { MODEL_FILES, modelPaths, modelCapable } from './model-config.mjs';
 import { SEMANTIC_BUDGET_MS } from '../core/semantic.mjs';
 
 export const MODEL_PRELOAD_MS = 20000;
+// Sentences per worker message, and how long before the deadline the last chunk may start.
+const CLASSIFY_CHUNK = 16, CHUNK_MARGIN_MS = 150;
 const CACHE_PREFIX = 'dg-semantic-v1-';
 const skipped = reason => Object.assign(new Error('model_skipped'), { semanticReason: reason });
 // Persistent caches contain only public files. Never cache mail, tokenized inputs or predictions.
@@ -134,17 +136,36 @@ export function createModelService(root, manifest) {
     if (Date.now() >= deadline) throw skipped('timeout');
     active = true;
     const ownGeneration = generation;
+    // Sentences go to the worker a chunk at a time, in email order. If time runs out, the chunks
+    // already classified are kept (marked partial) rather than thrown away: a long email on a slow
+    // computer still gets the model on its first sentences instead of on none.
+    const done = [];
+    const partial = () => { const out = done.slice(); out.partial = true; return out; };
     let timer;
     try {
-      return await Promise.race([(async () => {
+      const work = (async () => {
         await ensureWorker(false);
-        if (ownGeneration !== generation || Date.now() >= deadline) throw skipped('timeout');
-        if (root.DisclosureGateOcr?.busy?.()) throw skipped('ocr_busy');
-        return new Promise((resolve, reject) => {
-          pending = { resolve, reject };
-          worker.postMessage({ type: 'classify', items });
-        });
-      })(), new Promise((_, reject) => { timer = setTimeout(() => reject(skipped('timeout')), Math.max(0, deadline - Date.now())); })]);
+        for (let at = 0; at < items.length; at += CLASSIFY_CHUNK) {
+          if (ownGeneration !== generation) throw skipped('timeout');
+          if (at > 0 && Date.now() >= deadline - CHUNK_MARGIN_MS) return partial();
+          if (Date.now() >= deadline) throw skipped('timeout');
+          if (root.DisclosureGateOcr?.busy?.()) throw skipped('ocr_busy');
+          const part = await new Promise((resolve, reject) => {
+            pending = { resolve, reject };
+            worker.postMessage({ type: 'classify', items: items.slice(at, at + CLASSIFY_CHUNK) });
+          });
+          if (!Array.isArray(part)) throw skipped('invalid');
+          done.push(...part);
+        }
+        return done;
+      })();
+      work.catch(() => {});
+      const result = await Promise.race([work, new Promise((resolve, reject) => {
+        timer = setTimeout(() => (done.length ? resolve(partial()) : reject(skipped('timeout'))), Math.max(0, deadline - Date.now()));
+      })]);
+      // A partial result stops the chunk still running; a complete one leaves the session warm.
+      if (result.partial) cancel();
+      return result;
     } catch (error) { cancel(); throw error; }
     finally { clearTimeout(timer); pending = null; active = false; }
   }

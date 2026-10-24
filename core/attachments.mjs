@@ -1,9 +1,9 @@
 // Attachment policy (spec §6). Native text extraction always runs for documents, even when inline.
-// OCR is only for image files or a PDF returning no_text, with a fresh byte hash. Unknown, oversized,
+// OCR covers file images, PDF image pages and Office pictures, with a fresh whole-file byte hash. Unknown, oversized,
 // encrypted or unreadable files hold outside mail. No isInline flag or OCR entry bypasses this path.
-import { docxText, xlsxText, pptxText } from './extract/office.mjs';
+import { officeCoverage } from './extract/office.mjs';
 import { fromBase64, decodeBytes } from './bytes.mjs';
-import { pdfText, pdfFormText } from './extract/pdf.mjs';
+import { pdfCoverage } from './extract/pdf.mjs';
 import { imageAttachment } from './ocr-policy.mjs';
 import { imageInfo } from './image-info.mjs';
 import { sha256 } from './sha256.mjs';
@@ -66,9 +66,11 @@ export function attachmentText(attachment) {
   if (!bytes.length && attachment.size > 0) return { ok: false, reason: 'not_read' };
   if (bytes.length > MAX_ATTACHMENT_BYTES) return { ok: false, reason: 'size' };
   const readyOcr = () => {
-    if (ocr?.status === 'failed' && ocr.reason === 'ocr_low_confidence' && typeof ocr.hint === 'string') {
+    if (ocr?.hash && ocr.hash !== sha256(bytes)) return { ok: false, reason: 'ocr_hash' };
+    if (ocr?.status === 'failed' && (typeof ocr.hint === 'string' || typeof ocr.text === 'string')) {
       if (!/^[a-f0-9]{64}$/.test(ocr.hash || '') || ocr.hash !== sha256(bytes)) return { ok: false, reason: 'ocr_hash' };
-      return { ok: false, reason: 'ocr_low_confidence', hint: ocr.hint };
+      if ((ocr.hint || '').length + (ocr.text || '').length > MAX_TEXT_CHARS) return { ok: false, reason: 'too_long' };
+      return { ...ocrFailure(), hint: ocr.hint, text: ocr.text };
     }
     if (ocr?.status !== 'ready') return ocrFailure();
     if (!/^[a-f0-9]{64}$/.test(ocr.hash || '') || ocr.hash !== sha256(bytes)) return { ok: false, reason: 'ocr_hash' };
@@ -77,19 +79,27 @@ export function attachmentText(attachment) {
   };
   try {
     if (image) { imageInfo(bytes); return readyOcr(); }
-    let text;
+    let text, needsOcr = false, embedded = false;
     if (kind === 'txt' || kind === 'csv') text = decodeText(bytes);
-    else if (kind === 'docx') text = docxText(bytes);
-    else if (kind === 'xlsx') text = xlsxText(bytes);
-    else if (kind === 'pptx') text = pptxText(bytes);
-    else text = pdfText(bytes);
-    if (kind === 'pdf' && !text.trim()) {
-      if (!ocr) return { ok: false, reason: 'no_text' };
-      // A scan read by OCR: its filled form fields and comments are checked with the page text.
+    else if (kind !== 'pdf') {
+      const coverage = officeCoverage(bytes, kind);
+      text = coverage.text;
+      needsOcr = coverage.images.length > 0;
+      embedded = needsOcr && !coverage.pdfScans;
+    } else {
+      const coverage = pdfCoverage(bytes);
+      text = coverage.text;
+      needsOcr = coverage.ocrPages.length > 0 || !coverage.hasPageText;
+    }
+    if (needsOcr) {
+      if (!ocr && !embedded && kind === 'pdf') return { ok: false, reason: 'no_text', ...(text ? { text } : {}) };
       const read = readyOcr();
-      if (!read.ok) return read;
-      const extra = pdfFormText(bytes);
-      return { ok: true, text: extra ? read.text + '\n' + extra : read.text };
+      if (!read.ok) {
+        text = [text, read.text].filter(Boolean).join('\n');
+        if (text.length > MAX_TEXT_CHARS) return { ok: false, reason: 'too_long' };
+        return { ...read, text, picture: embedded };
+      }
+      text = [text, read.text].filter(Boolean).join('\n');
     }
     if (text.length > MAX_TEXT_CHARS) return { ok: false, reason: 'too_long' };
     return { ok: true, text };

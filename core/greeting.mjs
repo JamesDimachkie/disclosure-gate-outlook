@@ -8,7 +8,7 @@
 
 // The greeting word, an optional title, then one name closed by punctuation or the end of the line
 // ("Hi Alex,", "Dear Mrs Patel", "Morning Sam!"). "Hi, I'll be round" names nobody.
-const GREETING = /^\s*(?:hi|hello|hey|dear|hiya|morning|afternoon|evening|good\s+(?:morning|afternoon|evening))\b[\s,]+(?:(?:mr|mrs|ms|miss|mx|dr|prof)\.?\s+)?(?<name>[\p{L}][\p{L}’'-]{1,30})(?<close>\s*(?:[,!.:;–—-]|$))/iu;
+const GREETING = /^\s*(?:hi|hello|hey|dear|hiya|morning|afternoon|evening|good\s+(?:morning|afternoon|evening))\b[\s,]+(?<title>(?:mr|mrs|ms|miss|mx|dr|prof)\.?\s+)?(?<name>[\p{L}][\p{L}’'-]{1,30})(?<close>\s*(?:[,!.:;–—-]|$))/iu;
 const NOT_A_NAME = new Set(['all', 'team', 'everyone', 'everybody', 'folks', 'guys', 'there', 'both', 'sir', 'madam', 'sirs', 'colleagues',
   'friends', 'partners', 'again', 'you', 'ya', 'yall', 'mate', 'gents', 'ladies', 'committee', 'board', 'parents', 'families', 'members',
   'neighbours', 'neighbors', 'customer', 'customers', 'client', 'clients', 'friend', 'valued', 'support', 'accounts', 'sales', 'hr', 'it',
@@ -51,6 +51,8 @@ function givenName(r) {
   // (morgan.vale@, morgan_vale@) still gives a first name; anything else (dragonfly77@) can't tell.
   if (!name || name.includes('@')) {
     const parts = /^([a-z]{2,20})[._-]([a-z]{2,30})$/.exec(local);
+    // A one-word address is a first name only when it is a common one (dan@, not buying@ or rooms@).
+    if (!parts && ALIASES.has(local)) return local;
     // "mreed.home@" is a surname and a suffix, not a first name and a surname.
     if (!parts || /^(?:home|work|personal|private|mail|email|uk|us|au|nz|ca|ie|office|jr|sr|online|net|family|biz|pro|me|official|main)$/.test(parts[2])) return null;
     return parts[1];
@@ -98,6 +100,8 @@ export function greetingFinding(bodyText, recipients) {
   // Every To recipient must name a person by first name; otherwise the check can't tell.
   if (given.some((g) => !g)) return null;
   if (to.some((r) => matches(greeted, r))) return null;
+  // "Dear Mrs Doyle" greets a surname, which a first-name-only address (margaret@) can't confirm or rule out.
+  if (m.groups.title && to.some((r) => (!r.name || String(r.name).includes('@')) && ALIASES.has(fold(String(r.address).split('@')[0])))) return null;
   // The person greeted may be on Cc or Bcc (a reply that moved them): then it is not a wrong address.
   if ((recipients || []).some((r) => r.field !== 'to' && matches(greeted, r))) return null;
   const addresses = to.map((r) => r.address);

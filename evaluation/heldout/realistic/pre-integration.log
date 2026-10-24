@@ -1,0 +1,153 @@
+PRE-INTEGRATION baseline; 150 cases validated; SHA-256 200f400ff9f380f4e38dc7c5061dc615239278025bc6ccc5b12cce25e2bba6fb
+Confusion counts (rows expected; columns actual):
+┌─────────┬──────────┬──────┬────────┬──────┬───────┐
+│ (index) │ expected │ stop │ prompt │ pass │ error │
+├─────────┼──────────┼──────┼────────┼──────┼───────┤
+│ 0       │ 'stop'   │ 18   │ 0      │ 0    │ 22    │
+│ 1       │ 'prompt' │ 0    │ 0      │ 0    │ 10    │
+│ 2       │ 'pass'   │ 3    │ 0      │ 10   │ 87    │
+└─────────┴──────────┴──────┴────────┴──────┴───────┘
+False-stop rate on pass cases: 3/100 (3.00%)
+Unwanted prompts on pass cases: 0/100 (0.00%)
+Any hold on pass cases: 3/100 (3.00%)
+Catch rate on stop cases: 18/40 (45.00%)
+Prompt accuracy: 0/10 (0.00%)
+Exact expectation matches: 28/150 (18.67%); errors: 119
+┌─────────┬─────────────────┬───────┬───────────────┬─────────────────┬───────────────┬─────────┬────────┬─────────────┬───────────────────┬──────────────────┬────────┐
+│ (index) │ category        │ total │ expected_stop │ expected_prompt │ expected_pass │ correct │ misses │ false_stops │ prompt_mismatches │ unwanted_prompts │ errors │
+├─────────┼─────────────────┼───────┼───────────────┼─────────────────┼───────────────┼─────────┼────────┼─────────────┼───────────────────┼──────────────────┼────────┤
+│ 0       │ 'secrets'       │ 25    │ 8             │ 0               │ 17            │ 6       │ 3      │ 3           │ 0                 │ 0                │ 16     │
+│ 1       │ 'payment'       │ 17    │ 5             │ 0               │ 12            │ 1       │ 5      │ 0           │ 0                 │ 0                │ 16     │
+│ 2       │ 'government_id' │ 15    │ 5             │ 0               │ 10            │ 3       │ 2      │ 0           │ 0                 │ 0                │ 12     │
+│ 3       │ 'personal'      │ 25    │ 5             │ 0               │ 20            │ 10      │ 2      │ 0           │ 0                 │ 0                │ 15     │
+│ 4       │ 'economics'     │ 16    │ 5             │ 0               │ 11            │ 3       │ 3      │ 0           │ 0                 │ 0                │ 13     │
+│ 5       │ 'negotiation'   │ 10    │ 4             │ 0               │ 6             │ 3       │ 1      │ 0           │ 0                 │ 0                │ 7      │
+│ 6       │ 'remark'        │ 13    │ 3             │ 0               │ 10            │ 2       │ 1      │ 0           │ 0                 │ 0                │ 11     │
+│ 7       │ 'lookalike'     │ 7     │ 5             │ 0               │ 2             │ 0       │ 5      │ 0           │ 0                 │ 0                │ 7      │
+│ 8       │ 'exposed_list'  │ 15    │ 0             │ 10              │ 5             │ 0       │ 0      │ 0           │ 10                │ 0                │ 15     │
+│ 9       │ 'file'          │ 2     │ 0             │ 0               │ 2             │ 0       │ 0      │ 0           │ 0                 │ 0                │ 2      │
+│ 10      │ 'none'          │ 5     │ 0             │ 0               │ 5             │ 0       │ 0      │ 0           │ 0                 │ 0                │ 5      │
+└─────────┴─────────────────┴───────┴───────────────┴─────────────────┴───────────────┴─────────┴────────┴─────────────┴───────────────────┴──────────────────┴────────┘
+MISS realistic-103: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-105: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-106: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-109: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-110: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-111: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-112: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-113: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-116: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-117: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-119: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-121: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-124: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-126: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-128: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-131: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-135: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-136: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-137: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-138: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-139: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+MISS realistic-140: expected=stop actual=error findings=(none) error=UNEXPECTED_RESULT
+FALSE_STOP realistic-016: expected=pass actual=stop findings=access
+FALSE_STOP realistic-032: expected=pass actual=stop findings=access
+FALSE_STOP realistic-039: expected=pass actual=stop findings=access
+PROMPT_MISMATCH realistic-141: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-142: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-143: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-144: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-145: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-146: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-147: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-148: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-149: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+PROMPT_MISMATCH realistic-150: expected=prompt actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-001: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-002: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-003: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-004: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-005: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-006: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-007: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-008: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-009: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-011: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-012: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-013: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-014: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-015: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-017: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-018: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-019: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-021: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-022: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-023: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-024: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-025: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-026: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-027: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-028: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-029: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-031: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-033: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-034: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-035: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-036: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-037: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-038: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-041: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-042: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-043: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-044: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-045: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-046: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-047: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-048: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-049: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-051: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-052: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-053: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-054: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-055: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-056: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-057: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-058: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-059: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-061: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-062: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-063: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-064: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-065: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-066: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-067: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-068: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-069: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-071: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-072: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-073: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-074: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-075: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-076: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-077: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-078: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-079: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-081: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-082: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-083: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-084: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-085: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-086: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-087: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-088: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-089: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-091: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-092: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-093: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-094: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-095: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-096: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-097: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-098: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+ERROR_ON_PASS realistic-099: expected=pass actual=error findings=(none) error=UNEXPECTED_RESULT
+JSON report: realistic\pre-integration.json

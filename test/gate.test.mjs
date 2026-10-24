@@ -14,7 +14,7 @@ test('E1: the demo email to Kate with Dan in Cc is held with two findings in ord
   assert.deepEqual(r.findings.map((f) => f.marks.map((m) => f.sentence.text.slice(m.start, m.end))), [['triple the margin we bid'], ["If Dan pushes on CO 12, we've got room"]]);
   assert.equal(r.message, SPEC_B_TWO);
   assert.match(r.fallbackMessage, /choose Send Anyway\. Open Disclosure Gate from the ribbon to see why\.$/);
-  assert.deepEqual(r.recipients.map((x) => [x.name, x.label]), [['Dan Whitfield', 'Outside the company'], ['Kate Morgan', 'Inside']]);
+  assert.deepEqual(r.recipients.map((x) => [x.name, x.label]), [['Dan Whitfield', 'Outside'], ['Kate Morgan', 'Inside']]);
   assert.ok(r.findings.every((f) => f.removable && f.place === null));
 });
 

@@ -200,8 +200,11 @@ Does not flag: blunt disagreement, firm requests, criticism of work, drawings or
 - **Greeting to someone else.** The first line of the new text greets one person by name ("Hi Alex,",
   "Dear Ms Patel") and nobody on the To, Cc or Bcc line has that name (first name, surname, a common
   nickname or a matching initial, from the display name or the address). Asks with Send anyway,
-  naming who is greeted and who it goes to. It stays quiet when it can't tell: a recipient without a
-  first name (a role mailbox such as `Lettings` or `info@`, a business name, "Mrs Hooper"), a group, more
+  naming who is greeted and who it goes to. An address with no display name gives a first name when it
+  is shaped like one (`morgan.vale@`) or is a single common first name (`dan@`). It stays quiet when it
+  can't tell: a recipient without a first name (a role mailbox such as `Lettings` or `info@`, a
+  one-word address that isn't a common first name such as `buying@` or `kmorgan@`, a business name,
+  "Mrs Hooper", or "Dear Mrs Doyle" sent to a first-name-only address such as `margaret@`), a group, more
   than four To recipients, a greeting to several people or to a group ("Hi all", "Dear Leaseholders"),
   or a quoted greeting.
 
@@ -255,6 +258,12 @@ inline picture is ignored, and an attached one asks the sender to look at it, wi
 settings (a SoftBlock or Block installation before Mailbox 1.14 holds it too). A picture still being read, or
 changed since it was read, is a failure under the failures setting.
 
+Pictures embedded in DOCX, XLSX and PPTX use the attached-picture rule too, even when the document
+itself is inline: unsupported, oversized, uncertain or failed picture recognition asks. Pending or
+changed OCR, API/identity errors, timeouts and cache limits follow the failures setting. Native
+document text is still checked. An incomplete PDF scan read follows the
+failures setting, rather than the picture exception.
+
 ### 5.10 Marked for inside the company
 
 Flags: text that says it isn't for outside readers, in an email going outside: `internal only`, `for
@@ -275,6 +284,27 @@ run when the file is attached and cached, so Send stays fast. OCR text with good
 checked like any other text; an image with confidently no text is clear; an image whose OCR
 confidence is low is handled as in §5.9. Where OCR can't run (classic Outlook's event runtime),
 pictures are handled the same way. OCR is English only.
+
+PDF coverage is assessed per page and displayed object: image-only pages and images beside native
+text require OCR, and that text is combined with the native page, form-field and annotation text.
+The scan reader supports JPEG and simple raw/Flate RGB or grayscale images, at most 12 PDF pages
+and 12 images, totalling 12 megapixels. It is not a full PDF renderer: masks, clipping/painting,
+inline PDF images, image-bearing annotation appearances and unsupported encodings are can't-check.
+An unreadable text run (including an unmapped symbol), a Type3 glyph program, a tiling pattern or
+more than eight nested Form XObjects makes the PDF can't-check; readable text elsewhere never
+excuses a missing run. The native reader does not interpret text drawn only as vector outlines.
+
+Raster pictures in Office packages (including word/media, ppt/media and xl/media, and pictures in
+embedded Office files) are collected for OCR, at most 12 pictures totalling 12 megapixels per file.
+Only micro-images at most 8 by 8 pixels and 256 bytes are ignored, matching the inline spacer
+exception; a larger logo might carry words. Cached package thumbnails repeat the preview and are
+ignored unless referenced as document content; SVG text is read natively, while SVG image/use/
+foreignObject content and unsupported picture formats ask. Exceeding the Office picture count or
+pixel budget leaves an unread-picture prompt; native text is still checked. Unknown or unreadable
+non-picture parts still make the document can't-check. Native text plus OCR must fit the 200,000
+character file limit. OCR results bind to a fresh hash of the whole attachment, not only its images.
+Office XML has independent bounds of 256 nested elements and 4,194,304 processing units per part
+(characters, tokens, namespace copies and attributes); exceeding either is can't-check.
 
 ## 7. What the sender sees
 
@@ -388,10 +418,14 @@ wall-clock checks. A new Send always checks again. Pre-reads and OCR are cached 
 byte hashes, so a second attempt can finish sooner. Unsupported or unchanged oversized files still
 cannot be read. Actual startup, callback timing and end-to-end latency need live verification.
 
+XML depth/work and PDF stream/operator limits bound synchronous parsing independently of the timer.
+The timer and late wall-clock checks do not preempt JavaScript already running on the Send thread.
+
 Model assets are prepared on compose and attachment-change events and cached as public static files.
-Send gives cached model initialization and classification at most 1,500 ms within its existing
-deadline, reserving 500 ms for the final re-read and result storage. A cold model download never
-delays Send. OCR takes priority over model work in the same runtime.
+Send gives cached model initialization and classification at most 2,500 ms within its existing
+deadline, reserving 500 ms for the final re-read and result storage. Sentences are classified in
+chunks of 16 in email order; if time runs out, the chunks already classified still count (the check is
+recorded as partial) and rules cover the whole text. A cold model download never delays Send. OCR takes priority over model work in the same runtime.
 Preparation also initializes a worker/session. It is reused only while that runtime survives;
 the implementation does not depend on memory surviving event completion. A fresh runtime restores
 and verifies the public cache and initializes again. Timeout, error or OCR preemption terminates

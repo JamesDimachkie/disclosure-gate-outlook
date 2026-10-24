@@ -83,7 +83,7 @@ test('a slow or hanging classifier is cancelled and late output cannot mutate th
   assert.equal(r.state, 'clear'); assert.equal(r.checked.semantic, 'skipped:timeout'); assert.equal(cancelled, 1);
   resolve([prediction('personal')]); await new Promise(r => setTimeout(r, 5));
   assert.deepEqual(r.findings, []); assert.equal(r.checked.semantic, 'skipped:timeout');
-  assert.equal(SEMANTIC_BUDGET_MS, 1500);
+  assert.equal(SEMANTIC_BUDGET_MS, 2500);
 });
 
 test('a synchronous classifier overrun is caught by the wall-clock guard', async () => {
@@ -158,8 +158,8 @@ test('an explicit evaluator budget can exceed the production default', async t =
   let clock = 100;
   t.mock.method(Date, 'now', () => clock);
   const d = clean({ body: { text: 'Ordinary detail.' } });
-  const semantic = { classify: items => { clock += 1600; return items.map(() => prediction('personal')); } };
-  assert.equal((await checkDraft(d, { semantic, semanticBudgetMs: 3000 })).checked.semantic, 'used');
+  const semantic = { classify: items => { clock += 2600; return items.map(() => prediction('personal')); } };
+  assert.equal((await checkDraft(d, { semantic, semanticBudgetMs: 4000 })).checked.semantic, 'used');
   assert.equal((await checkDraft(d, { semantic })).checked.semantic, 'skipped:timeout');
 });
 
@@ -179,4 +179,13 @@ test('a disclosure read as context does not spill a finding onto the next senten
   assert.deepEqual(r.findings.filter(f => f.found_by === 'model').map(f => f.sentence.text), ['Kim is having knee surgery on Monday.']);
   const two = await checkDraft(draft({ subject: '', body: { text: 'Kim is having knee surgery on Monday. Lee needs surgery too. Thanks.' } }), { semantic: { classify } });
   assert.equal(two.findings.filter(f => f.found_by === 'model').length, 2, 'a second disclosure that stands on its own is kept');
+});
+
+test('a result marked partial covers the first sentences: their findings count and the check says partial', async () => {
+  const body = ['Priya has started chemo.', 'See you Tuesday.', 'Thanks.'].join(String.fromCharCode(10));
+  const partialOf = (labels) => Object.assign(labels.map(l => prediction(l)), { partial: true });
+  const r = await checkDraft(clean({ body: { text: body } }), { semantic: { classify: async () => partialOf(['personal']) } });
+  assert.equal(r.checked.semantic, 'partial'); assert.deepEqual(r.findings.map(f => [f.category, f.found_by]), [['personal', 'model']]);
+  const unmarked = await checkDraft(clean({ body: { text: body } }), { semantic: { classify: async () => [prediction('personal')] } });
+  assert.equal(unmarked.checked.semantic, 'skipped:invalid'); assert.deepEqual(unmarked.findings, []);
 });

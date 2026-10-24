@@ -15,7 +15,7 @@ import { draft, CLEAN_BODY, PNG_B64, PNG_SIZE } from './helpers.mjs';
 const digest = b => createHash('sha256').update(b).digest('hex');
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const result = items => items.map(() => ({ label: 'personal', score: 0.99, scores: {} }));
-function harness({ cacheDenied = false, workerHangs = false, workerFails = false, fetchFails = false, initHangs = false } = {}) {
+function harness({ cacheDenied = false, workerHangs = false, workerFails = false, fetchFails = false, initHangs = false, hangAfterChunks = Infinity } = {}) {
   const bytes = Object.fromEntries(MODEL_FILES.map(n => [n, Buffer.from(n.endsWith('.json') ? '{}' : 'public asset ' + n)]));
   const manifest = { available: true, revision: 'a'.repeat(64), files: Object.fromEntries(MODEL_FILES.map(n => [n, { bytes: bytes[n].length, sha256: digest(bytes[n]) }])) };
   const entries = new Map(), requests = [], workers = [], cacheNames = [], objectUrls = new Map(), revoked = [], storedCaches = new Set(), deletedCaches = [];
@@ -32,6 +32,7 @@ function harness({ cacheDenied = false, workerHangs = false, workerFails = false
         this.transfers.push(transfer.map(b => b.byteLength));
         message = structuredClone(message, { transfer }); this.messages.push(message);
         if (message.type === 'init' ? initHangs : workerHangs) return;
+        if (message.type === 'classify' && this.messages.filter(m => m.type === 'classify').length > hangAfterChunks) return;
         queueMicrotask(() => {
           if (this.terminated) return;
           if (workerFails && message.type === 'classify') this.onerror?.({ message: 'Ordinary detail.' });
@@ -248,7 +249,7 @@ test('real Send bridge passes the remaining deadline and persists model findings
   const started = Date.now(), decision = await l.send();
   assert.equal(decision.allowEvent, false); assert.equal(decision.commandId, 'dgOpenPane');
   assert.ok(deadline >= started + 3900 && deadline <= started + 4100);
-  assert.equal(budget, 1500, 'the production handler keeps the cap even though evaluators can lift it');
+  assert.equal(budget, 2500, 'the production handler keeps the cap even though evaluators can lift it');
   const checked = JSON.parse(l.values['dg-result']).result;
   assert.equal(checked.checked.semantic, 'used'); assert.equal(checked.findings[0].found_by, 'model');
 });
@@ -324,4 +325,18 @@ test('a default install (no model setting) preloads on compose and asks the mode
   assert.equal(preloads, 1);
   await l.send();
   assert.equal(sends, 1);
+});
+
+test('long emails go to the worker in chunks; when time runs out the classified chunks are kept, marked partial', async () => {
+  const items = Array.from({ length: 40 }, (_, i) => ({ text: 'Ordinary detail ' + i + '.', context: '' }));
+  const full = harness(); await full.service.preload();
+  const all = await full.service.classify(items);
+  assert.equal(all.length, 40); assert.equal(all.partial, undefined);
+  assert.deepEqual(full.workers[0].messages.filter(m => m.type === 'classify').map(m => m.items.length), [16, 16, 8]);
+  const slow = harness({ hangAfterChunks: 1 }); await slow.service.preload();
+  const some = await slow.service.classify(items, { budgetMs: 300 });
+  assert.equal(some.partial, true); assert.equal(some.length, 16);
+  assert.equal(slow.workers[0].terminated, true, 'the chunk still running is stopped');
+  const none = harness({ workerHangs: true }); await none.service.preload();
+  await assert.rejects(none.service.classify(items, { budgetMs: 200 }), e => e.semanticReason === 'timeout');
 });

@@ -78,4 +78,18 @@ test('an unknown outside address shown as its own name still gives a first name 
   assert.equal(greetingFinding('Hi Morgan,\nok', [bare('morgan.vale@cedar.example')]), null);
   assert.equal(greetingFinding('Hi Alex,\nok', [bare('dragonfly77@mail.example')]), null);
   assert.equal(greetingFinding('Hi Alex,\nok', [bare('sales.team@cedar.example')]), null);
+  // A one-word address counts only when it is a common first name; a titled greeting names a surname.
+  assert.equal(greetingFinding('Hi Kate,\nok', [bare('dan@whitfielddev.example')])?.greeted, 'Kate');
+  assert.equal(greetingFinding('Hi Kate,\nok', [bare('katherine@whitfielddev.example')]), null);
+  assert.equal(greetingFinding('Hi Tom,\nok', [bare('buying@grocers.example')]), null);
+  assert.equal(greetingFinding('Hi Kate,\nok', [bare('kmorgan@cedar.example')]), null);
+  assert.equal(greetingFinding('Dear Mrs Doyle,\nok', [bare('margaret@mail.example')]), null);
+});
+
+test('a named person with identity details in prose is a record; a checklist naming document types is not', () => {
+  assert.equal(records('The delegation travel details are: Avery Hale, date of birth 12 April 1972, passport PASSPORT-DEMO-04, visa reference VISA-TEST-008.').length, 1);
+  assert.equal(records('As requested, the payroll record for Avery Reed is: employee EMP-DEMO-15, Social Security identifier SSN-TEST-0007, annual pay USD 78,400.').length, 1);
+  assert.equal(records('Dear Rowan, the heading "tax ID" can remain, and the checklist can say passport or national ID.').length, 0);
+  assert.equal(screenText('Please keep this review of a possible exit within the team for now.').filter((f) => f.category === 'internal').length, 1);
+  assert.equal(screenText('Keep the receipt within the box.').filter((f) => f.category === 'internal').length, 0);
 });

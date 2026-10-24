@@ -1,0 +1,41 @@
+{
+  "mode": "full",
+  "cases_sha256": "7fddcde51d3f480d53a94cf22dc9937ebded82da6d88d050bcd1a97706aabb3c",
+  "total": 360,
+  "pass": 300,
+  "stops": {
+    "total": 60,
+    "secrets": 12,
+    "personal": 12,
+    "economics": 12,
+    "negotiation": 12,
+    "remark": 12
+  },
+  "stop_placements": {
+    "body": 43,
+    "quoted": 11,
+    "subject": 6
+  },
+  "english": {
+    "UK": 161,
+    "AU": 69,
+    "US": 86,
+    "IE": 6,
+    "NZ": 12,
+    "CA": 12,
+    "IN": 6,
+    "ZA": 3,
+    "SG": 5
+  },
+  "distinct_pass_industries": 299,
+  "passes_with_quoted_history": 31,
+  "pass_words": {
+    "min": 8,
+    "median": 57,
+    "mean": 66,
+    "max": 228
+  },
+  "errors": 0,
+  "validator": "validate.mjs",
+  "node": "v24.20.0"
+}

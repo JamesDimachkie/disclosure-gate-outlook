@@ -1,0 +1,247 @@
+{
+  "validation": "passed",
+  "node": "v24.20.0",
+  "cases_sha256": "200f400ff9f380f4e38dc7c5061dc615239278025bc6ccc5b12cce25e2bba6fb",
+  "cases": 150,
+  "counts": {
+    "pass": 100,
+    "stop": 40,
+    "prompt": 10
+  },
+  "composition": {
+    "secrets": {
+      "stop": 8,
+      "prompt": 0,
+      "pass": 17,
+      "total": 25
+    },
+    "payment": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 12,
+      "total": 17
+    },
+    "government_id": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 10,
+      "total": 15
+    },
+    "personal": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 20,
+      "total": 25
+    },
+    "economics": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 11,
+      "total": 16
+    },
+    "negotiation": {
+      "stop": 4,
+      "prompt": 0,
+      "pass": 6,
+      "total": 10
+    },
+    "remark": {
+      "stop": 3,
+      "prompt": 0,
+      "pass": 10,
+      "total": 13
+    },
+    "lookalike": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 2,
+      "total": 7
+    },
+    "exposed_list": {
+      "stop": 0,
+      "prompt": 10,
+      "pass": 5,
+      "total": 15
+    },
+    "file": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 2,
+      "total": 2
+    },
+    "none": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 5,
+      "total": 5
+    }
+  },
+  "body_length_characters": {
+    "all": {
+      "count": 150,
+      "min": 922,
+      "median": 1039,
+      "mean": 1339.93,
+      "max": 2559,
+      "over_2000": 36
+    },
+    "pass": {
+      "count": 100,
+      "min": 964,
+      "median": 1063,
+      "mean": 1432.58,
+      "max": 2559,
+      "over_2000": 30
+    },
+    "stop": {
+      "count": 40,
+      "min": 922,
+      "median": 1005,
+      "mean": 1121.18,
+      "max": 2252,
+      "over_2000": 4
+    },
+    "prompt": {
+      "count": 10,
+      "min": 1012,
+      "median": 1056.5,
+      "mean": 1288.5,
+      "max": 2280,
+      "over_2000": 2
+    }
+  },
+  "quoted_emails": 60,
+  "nested_quoted_emails": 13,
+  "inside_only": 10,
+  "attachments": 8,
+  "stop_placements": {
+    "quoted": 25,
+    "subject": 5,
+    "attachment": 5,
+    "recipient": 5
+  },
+  "exposed_list_boundaries": [
+    {
+      "id": "realistic-055",
+      "visible_outside": 7,
+      "outside_domains": 3,
+      "bcc": 0,
+      "expect": "pass"
+    },
+    {
+      "id": "realistic-059",
+      "visible_outside": 9,
+      "outside_domains": 1,
+      "bcc": 0,
+      "expect": "pass"
+    },
+    {
+      "id": "realistic-065",
+      "visible_outside": 7,
+      "outside_domains": 3,
+      "bcc": 1,
+      "expect": "pass"
+    },
+    {
+      "id": "realistic-075",
+      "visible_outside": 6,
+      "outside_domains": 2,
+      "bcc": 4,
+      "expect": "pass"
+    },
+    {
+      "id": "realistic-099",
+      "visible_outside": 8,
+      "outside_domains": 2,
+      "bcc": 0,
+      "expect": "pass"
+    },
+    {
+      "id": "realistic-141",
+      "visible_outside": 8,
+      "outside_domains": 3,
+      "bcc": 0,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-142",
+      "visible_outside": 8,
+      "outside_domains": 3,
+      "bcc": 0,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-143",
+      "visible_outside": 8,
+      "outside_domains": 3,
+      "bcc": 0,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-144",
+      "visible_outside": 8,
+      "outside_domains": 3,
+      "bcc": 0,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-145",
+      "visible_outside": 8,
+      "outside_domains": 3,
+      "bcc": 0,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-146",
+      "visible_outside": 9,
+      "outside_domains": 4,
+      "bcc": 0,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-147",
+      "visible_outside": 8,
+      "outside_domains": 3,
+      "bcc": 2,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-148",
+      "visible_outside": 8,
+      "outside_domains": 3,
+      "bcc": 0,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-149",
+      "visible_outside": 8,
+      "outside_domains": 3,
+      "bcc": 0,
+      "expect": "prompt"
+    },
+    {
+      "id": "realistic-150",
+      "visible_outside": 12,
+      "outside_domains": 4,
+      "bcc": 0,
+      "expect": "prompt"
+    }
+  ],
+  "checks": [
+    "JSONL parsing",
+    "unique IDs, drafts and bodies",
+    "draft schema",
+    "reserved recipient domains",
+    "canonical UTF-8 base64 and exact byte size",
+    "CSV rectangularity",
+    "README composition agreement",
+    "length and quote targets",
+    "inside-only expected pass",
+    "visible-recipient thresholds including Bcc and admin domains",
+    "card and SIN Luhn",
+    "IBAN mod97",
+    "SSN and NI shapes",
+    "token shape",
+    "single occurrence and location of each authored deciding span"
+  ]
+}

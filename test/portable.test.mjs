@@ -45,3 +45,11 @@ test('PDF text and HTML text read the same with Outlook on the web\'s replaced s
     assert.equal(visibleText('<div>A</div><!-- note --><div>B</div>'),'\nA\n\nB\n');
   } finally { String.prototype.startsWith=native;String.prototype.endsWith=nativeEnds; }
 });
+test('every shipped script is pure ASCII, so a host that serves .js without a charset cannot break it', async () => {
+  const { readdirSync, readFileSync } = await import('node:fs');
+  const dist = new URL('../dist/', import.meta.url);
+  const scripts = readdirSync(dist).filter((f) => f.endsWith('.js')).map((f) => new URL(f, dist));
+  for (const sub of ['model/']) for (const f of readdirSync(new URL(sub, dist))) if (f.endsWith('.js')) scripts.push(new URL(sub + f, dist));
+  assert.ok(scripts.length >= 4);
+  for (const url of scripts) assert.equal(/[^\x00-\x7f]/.test(readFileSync(url, 'utf8')), false, url.pathname);
+});

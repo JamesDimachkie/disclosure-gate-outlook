@@ -7,9 +7,9 @@
 // Node (tests), so it uses no platform API.
 import { splitSentences, fold } from './sentences.mjs';
 import { startsAt } from './bytes.mjs';
+import { ENTITIES, LEGACY } from './html-entities.mjs';
 
-const ENTITIES = { nbsp: '\u00a0', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", mdash: '—', ndash: '–', hellip: '…', rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“', bull: '•', middot: '·', copy: '©', reg: '®', trade: '™', euro: '€', pound: '£', cent: '¢', deg: '°', times: '×', divide: '÷', laquo: '«', raquo: '»', shy: '­', zwj: '\u200d', zwnj: '\u200c', ensp: ' ', emsp: ' ', thinsp: ' ', sect: '§', para: '¶', frac12: '½', frac14: '¼', frac34: '¾', eacute: 'é', egrave: 'è', aacute: 'á', agrave: 'à', ouml: 'ö', uuml: 'ü', auml: 'ä', ccedil: 'ç', ntilde: 'ñ' };
-const BLOCK = new Set(['address', 'article', 'aside', 'blockquote', 'br', 'dd', 'div', 'dl', 'dt', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'li', 'main', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul', 'body', 'html']);
+const BLOCK = new Set(['address', 'article', 'aside', 'blockquote', 'br', 'dd', 'div', 'dl', 'dt', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'li', 'main', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'tbody', 'tfoot', 'thead', 'tr', 'ul', 'body', 'html']);
 const HIDDEN = new Set(['head', 'script', 'style', 'title', 'template', 'xml']);
 const WHITESPACE = /[\n\r\t\f]/;
 const isSpace = (c) => c === ' ' || c === '\t' || c === '\n' || c === '\r' || c === '\f' || c === '\u00a0';
@@ -35,7 +35,12 @@ export function htmlText(html) {
       const name = m[2].toLowerCase(), closing = m[1] === '/';
       if (hidden) { if (closing && name === hidden) hidden = null; }
       else if (!closing && HIDDEN.has(name) && !/\/\s*$/.test(html.slice(i, j))) hidden = name;
-      else if (BLOCK.has(name)) push('\n', -1, -1);
+      // A table row starts a new line once (rows stay adjacent, so a header row and its data rows
+      // read as one table); other blocks keep their break.
+      else if (BLOCK.has(name)) { if (name !== 'tr' || (out.length && out[out.length - 1].ch !== '\n')) push('\n', -1, -1); }
+      // A tab between cells, as a pasted table reads, so a header row and its values stay together
+      // for the checks that read tables.
+      else if (!closing && (name === 'td' || name === 'th') && out.length && out[out.length - 1].ch !== '\n') push('\t', -1, -1);
       i = j + 1;
       continue;
     }
@@ -44,8 +49,16 @@ export function htmlText(html) {
       const m = /^&(?:#x([0-9a-fA-F]{1,6})|#([0-9]{1,7})|([a-zA-Z][a-zA-Z0-9]{1,31}));?/.exec(html.slice(i, i + 40));
       if (m) {
         const code = m[1] ? parseInt(m[1], 16) : m[2] ? parseInt(m[2], 10) : null;
-        const ch = code !== null ? (code > 0 && code <= 0x10ffff ? String.fromCodePoint(code) : '�') : ENTITIES[m[3]] ?? ENTITIES[m[3].toLowerCase()];
-        if (ch !== undefined && (m[0].endsWith(';') || code !== null)) { for (const unit of ch) push(unit, i, i + m[0].length); i += m[0].length; continue; }
+        if (code !== null) {
+          const ch = code > 0 && code <= 0x10ffff ? String.fromCodePoint(code) : '�';
+          for (const unit of ch) push(unit, i, i + m[0].length);
+          i += m[0].length; continue;
+        }
+        // Named references: the full WHATWG table; without a semicolon only the legacy names, longest first.
+        let name = m[3], len = m[0].length;
+        if (!m[0].endsWith(';')) { while (name && !LEGACY.has(name)) name = name.slice(0, -1); len = name.length + 1; }
+        const ch = name ? ENTITIES.get(name) : undefined;
+        if (ch !== undefined) { for (const unit of ch) push(unit, i, i + len); i += len; continue; }
       }
     }
     const cp = html.codePointAt(i), len = cp > 0xffff ? 2 : 1;
@@ -60,7 +73,7 @@ export function htmlText(html) {
 // The text a reader sees, with a line break wherever the markup makes one. Outlook on the web's own
 // plain-text view of a body drops the breaks between its <div> lines, so the check reads this instead.
 export function visibleText(html) {
-  return htmlText(html).map((c) => (c.from < 0 ? '\n' : c.ch)).join('');
+  return htmlText(html).map((c) => c.ch).join('');
 }
 
 // The index range [start, end) of the occurrence-th sentence whose folded text equals the target.

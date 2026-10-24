@@ -6,7 +6,7 @@ import { imageInfo } from '../core/image-info.mjs';
 import { pdfImages } from '../core/extract/pdf.mjs';
 import { OCR_POLICY, decideOcr, compactOcr, tinyInline } from '../core/ocr-policy.mjs';
 import { ocrPaths, OCR_ASSETS } from '../outlook/ocr-config.mjs';
-import { createOcrService } from '../outlook/ocr-service.mjs';
+import { createOcrService, validEntry } from '../outlook/ocr-service.mjs';
 import { STRINGS } from '../core/copy.mjs';
 import { sha256 } from '../core/sha256.mjs';
 import { makeZip } from './zip-fixture.mjs';
@@ -79,6 +79,21 @@ test('cache reuses only an exact identity; replacement and removal invalidate pe
   h.replace([file({ name: 'replacement.png', size: 34 })]); await h.service.prepare(h.office); await h.service.wait(h.office, Date.now() + 1000);
   assert.equal(apply(), undefined); assert.equal(h.reads, 2);
   h.replace([]); await h.service.prepare(h.office); assert.deepEqual(JSON.parse(h.values['dg-ocr-v1']).attachments, {});
+});
+
+test('service validation and apply retain exact id/name/size/type identity; core verifies fresh bytes', async () => {
+  const a=file({content:png}), e={name:a.name,size:a.size,status:'ready',text:'hello',hash:sha256(header())};
+  assert.equal(validEntry(a,e),true);
+  for(const changed of [{...a,name:'different.png'},{...a,size:a.size+1},{...a,type:'item'},{...a,name:'note.txt'}]) assert.equal(validEntry(changed,e),false);
+  for(const hash of [undefined,'invalid']) assert.equal(validEntry(a,{...e,hash}),false);
+  const h=harness();await h.service.prepare(h.office,[a]);await h.service.wait(h.office,Date.now()+1000);
+  const exact={...a},wrongId={...a,id:'different'},wrongName={...a,name:'other.png'},wrongSize={...a,size:a.size+1},wrongType={...a,type:'item'};
+  h.service.apply(h.office,[exact,wrongId,wrongName,wrongSize,wrongType]);
+  assert.equal(exact.ocr.status,'ready');
+  for(const changed of [wrongId,wrongName,wrongSize,wrongType]) assert.equal(changed.ocr,undefined);
+  // Same id/name/size still needs matching bytes, including cached failed results.
+  const {attachmentText}=await import('../core/attachments.mjs');
+  assert.equal(attachmentText({...a,ocr:{...e,hash:'f'.repeat(64)}}).reason,'ocr_hash');
 });
 test('a removed pending image cannot publish late ready text; same-tuple Added starts fresh', async () => {
   let release; const h = harness(() => new Promise(r => { release = r; }));

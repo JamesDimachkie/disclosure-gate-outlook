@@ -1,0 +1,2414 @@
+{
+  "label": "pre-integration",
+  "semantic_model": ".qa/v22c",
+  "semantic_states": {
+    "used": 300
+  },
+  "cases_sha256": "7eafe4015ea51a8013c3bb3ef3c60702f2486db32d5d52d409444156d91badf1",
+  "total": 300,
+  "composition": {
+    "secrets": {
+      "stop": 10,
+      "prompt": 0,
+      "pass": 0
+    },
+    "payment": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "government_id": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "personal": {
+      "stop": 15,
+      "prompt": 0,
+      "pass": 0
+    },
+    "economics": {
+      "stop": 15,
+      "prompt": 0,
+      "pass": 0
+    },
+    "negotiation": {
+      "stop": 10,
+      "prompt": 0,
+      "pass": 0
+    },
+    "remark": {
+      "stop": 10,
+      "prompt": 0,
+      "pass": 0
+    },
+    "lookalike": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "exposed_list": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "file": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "none": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 240
+    }
+  },
+  "confusion": {
+    "stop": {
+      "stop": 38,
+      "prompt": 0,
+      "pass": 22,
+      "error": 0
+    },
+    "prompt": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0,
+      "error": 0
+    },
+    "pass": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 240,
+      "error": 0
+    }
+  },
+  "false_stop_rate": 0,
+  "catch_rate": 0.6333333333333333,
+  "unwanted_prompts": 0,
+  "correct": 278,
+  "errors": 0,
+  "by_category": [
+    {
+      "category": "secrets",
+      "total": 10,
+      "expected_stop": 10,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 7,
+      "misses": 3,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "payment",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "government_id",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "personal",
+      "total": 15,
+      "expected_stop": 15,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 14,
+      "misses": 1,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "economics",
+      "total": 15,
+      "expected_stop": 15,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 7,
+      "misses": 8,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "negotiation",
+      "total": 10,
+      "expected_stop": 10,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 3,
+      "misses": 7,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "remark",
+      "total": 10,
+      "expected_stop": 10,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 7,
+      "misses": 3,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "lookalike",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "exposed_list",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "file",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "none",
+      "total": 240,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 240,
+      "correct": 240,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    }
+  ],
+  "results": [
+    {
+      "id": "realistic3-001",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-002",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-003",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-004",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-005",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-006",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-007",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-008",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-009",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-010",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-011",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-012",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-013",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-014",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-015",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-016",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-017",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-018",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-019",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-020",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-021",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-022",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-023",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-024",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-025",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-026",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-027",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-028",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-029",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-030",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-031",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-032",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-033",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-034",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-035",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-036",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-037",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-038",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-039",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-040",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-041",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-042",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-043",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-044",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-045",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-046",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-047",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-048",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-049",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-050",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-051",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-052",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-053",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-054",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-055",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-056",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-057",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-058",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-059",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-060",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-061",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-062",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-063",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-064",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-065",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-066",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-067",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-068",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-069",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-070",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-071",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-072",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-073",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-074",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-075",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-076",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-077",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-078",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-079",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-080",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-081",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-082",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-083",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-084",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-085",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-086",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-087",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-088",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-089",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-090",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-091",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-092",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-093",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-094",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-095",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-096",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-097",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-098",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-099",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-100",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-101",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-102",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-103",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-104",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-105",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-106",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-107",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-108",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-109",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-110",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-111",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-112",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-113",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-114",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-115",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-116",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-117",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-118",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-119",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-120",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-121",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-122",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-123",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-124",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-125",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-126",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-127",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-128",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-129",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-130",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-131",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-132",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-133",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-134",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-135",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-136",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-137",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-138",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-139",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-140",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-141",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-142",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-143",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-144",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic3-145",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-146",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic3-147",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-148",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic3-149",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-150",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-151",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-152",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-153",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-154",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-155",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-156",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-157",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-158",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-159",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-160",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-161",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-162",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-163",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-164",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-165",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-166",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-167",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-168",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-169",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-170",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-171",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-172",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-173",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-174",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-175",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-176",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-177",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-178",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-179",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-180",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-181",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-182",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-183",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-184",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-185",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-186",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-187",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-188",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-189",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-190",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-191",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-192",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-193",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-194",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-195",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-196",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-197",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-198",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-199",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-200",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-201",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-202",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-203",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-204",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-205",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-206",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-207",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-208",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-209",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-210",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-211",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-212",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-213",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-214",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-215",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-216",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-217",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-218",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-219",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-220",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-221",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-222",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-223",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-224",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-225",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-226",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-227",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-228",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-229",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-230",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-231",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-232",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-233",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-234",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-235",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-236",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-237",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-238",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-239",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-240",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-241",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-242",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-243",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-244",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-245",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-246",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-247",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-248",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-249",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-250",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-251",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-252",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-253",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-254",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-255",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-256",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-257",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-258",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-259",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-260",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-261",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-262",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic3-263",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-264",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-265",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-266",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic3-267",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic3-268",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic3-269",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic3-270",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-271",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-272",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-273",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-274",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "realistic3-275",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-276",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-277",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-278",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-279",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "realistic3-280",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "realistic3-281",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-282",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic3-283",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic3-284",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-285",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic3-286",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic3-287",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-288",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic3-289",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic3-290",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic3-291",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic3-292",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic3-293",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-294",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic3-295",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic3-296",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic3-297",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-298",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic3-299",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic3-300",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    }
+  ]
+}

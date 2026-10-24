@@ -14,6 +14,7 @@ import { semanticFindings, SEMANTIC_BUDGET_MS } from './semantic.mjs';
 // Reasons that mean the picture itself couldn't be read: only these are excused (§5.9). Anything
 // else about a picture (still being read, changed, a result that didn't fit the shared cache, an
 // API or engine failure, bytes that aren't a picture) stops like any file that can't be checked.
+// Embedded Office pictures also ask on a failed recognition, per their attached-picture contract.
 const HINT_CATEGORIES = new Set(['access', 'financial', 'identity']);
 const PICTURE_UNREADABLE = new Set(['ocr_low_confidence', 'ocr_unsupported', 'image_size', 'image_frames', 'ocr_pixels', 'size']);
 export { STRINGS } from './copy.mjs';
@@ -59,7 +60,7 @@ export function snapshotOf(draft, domains) {
   if (list.length > LIMITS.attachments) throw new Error('too_many_attachments');
   const attachments = list.map((a) => {
     if (!a || typeof a !== 'object' || typeof a.name !== 'string' || !a.name.trim() || a.name.length > LIMITS.name) throw new Error('invalid_attachments');
-    return { ocr: ['ready', 'pending', 'failed', 'unsupported'].includes(a.ocr?.status) ? { status: a.ocr.status, hash: a.ocr.hash, text: a.ocr.status === 'ready' ? String(a.ocr.text ?? '').slice(0, 200001) : undefined, reason: typeof a.ocr.reason === 'string' ? a.ocr.reason.slice(0, 40) : undefined, hint: a.ocr.status === 'failed' && typeof a.ocr.hint === 'string' ? a.ocr.hint.slice(0, 200001) : undefined } : null, id: String(a.id ?? '').slice(0, 512), name: a.name, size: Number.isSafeInteger(a.size) && a.size >= 0 ? a.size : -1, isInline: a.isInline === true,
+    return { ocr: ['ready', 'pending', 'failed', 'unsupported'].includes(a.ocr?.status) ? { status: a.ocr.status, hash: a.ocr.hash, text: (a.ocr.status === 'ready' || a.ocr.status === 'failed') && typeof a.ocr.text === 'string' ? a.ocr.text.slice(0, 200001) : undefined, reason: typeof a.ocr.reason === 'string' ? a.ocr.reason.slice(0, 40) : undefined, hint: a.ocr.status === 'failed' && typeof a.ocr.hint === 'string' ? a.ocr.hint.slice(0, 200001) : undefined } : null, id: String(a.id ?? '').slice(0, 512), name: a.name, size: Number.isSafeInteger(a.size) && a.size >= 0 ? a.size : -1, isInline: a.isInline === true,
       type: ['file', 'item', 'cloud'].includes(a.type) ? a.type : 'file', contentType: typeof a.contentType === 'string' ? a.contentType.slice(0, 200) : '',
       content: typeof a.content === 'string' ? a.content : null };
   });
@@ -116,15 +117,17 @@ export async function checkDraft(draft, { config, now = () => Date.now(), semant
   snap.attachments.forEach((a, fileIndex) => {
     const read = attachmentText(a);
     if (read.ok) { texts.push({ source: 'attachment', file: a.name, fileIndex, text: read.text }); return; }
+    // Native document text still counts when one of its pictures/pages cannot be read.
+    if (read.text) texts.push({ source: 'attachment', file: a.name, fileIndex, text: read.text });
     // Text OCR read with low confidence can't clear a file, but a finding in it still counts.
-    if (typeof read.hint === 'string' && read.hint && screenText(read.hint, { source: 'attachment', file: a.name }).some((f) => HINT_CATEGORIES.has(f.category))) { texts.push({ source: 'attachment', file: a.name, fileIndex, text: read.hint, hint: true }); return; }
+    if (typeof read.hint === 'string' && read.hint && screenText(read.hint, { source: 'attachment', file: a.name }).some((f) => HINT_CATEGORIES.has(f.category))) { texts.push({ source: 'attachment', file: a.name, fileIndex, text: read.hint, hint: true }); if (!readableKind(a)) return; }
     // A picture whose text can't be read confidently (a photo, a stylised logo, a phone photo too large
     // to read) doesn't stop the email: inline it is ignored (signatures and logos), attached it asks the
     // sender to look, with Send anyway. Text that is read is screened like any other. A picture still
     // being read, or whose bytes changed since, still stops.
-    if (imageAttachment(a) && !readableKind(a) && PICTURE_UNREADABLE.has(read.reason)) {
+    if ((read.picture || imageAttachment(a) && !readableKind(a)) && (PICTURE_UNREADABLE.has(read.reason) || read.picture && read.reason === 'ocr_failed')) {
       // Inline is ignored only when the bytes were seen to be a picture ('size' means they weren't read).
-      if (a.isInline && read.reason !== 'size') return;
+      if (!read.picture && a.isInline && read.reason !== 'size') return;
       findings.push({ category: 'attachment', subkind: 'picture', detail: read.reason, severity: 'prompt', source: 'attachment', file: a.name, fileIndex, marks: [], found_by: 'attachment',
         sentence: { text: a.name, index: -1, occurrence: 0, start: 0, end: a.name.length } });
       return;

@@ -6,7 +6,7 @@ import {STRINGS} from '../core/copy.mjs';
 import {screenText} from '../core/rules.mjs';
 import {removeSentenceFromHtml} from '../core/remove.mjs';
 import {officeZip,NS,slide,shape,sheet,wdoc} from './office-fixture.mjs';
-import {JOHN,DAN,DEMO_BODY,CLEAN_BODY} from './helpers.mjs';
+import {JOHN,DAN,DEMO_BODY,CLEAN_BODY,PNG_B64,PNG_SIZE} from './helpers.mjs';
 import {load,demo,person,plain,SOURCE} from './runtime-helper.mjs';
 const failureMessage = reason => "Disclosure Gate couldn't check this email. " + reason + " It hasn't been sent. Press Send again to check it again, or ask your IT team.";
 test('classic bundle parses as ES2016 and runs without Node, DOM, network or browser encoding globals',async()=>{
@@ -97,10 +97,16 @@ test('VM reads a DOCX text box, an embedded workbook and a sheet found by relati
   const found=JSON.parse(l.values['dg-result']).result.findings.map(f=>[f.file,f.category]);
   assert.deepEqual(found,[['site.docx','access'],['site.docx','access']]);
 });
-test('OCR cache requires exact id, name, size, byte hash and an OCR file type',()=>{
-  const l=load(),hash='a'.repeat(64),atts=[{id:'one',name:'x.png',size:20,type:'file',contentHash:hash},{id:'two',name:'y.png',size:20,type:'file',contentHash:hash}];
-  l.draftApi.applyOcrCache(atts,{version:1,attachments:{one:{name:'x.png',size:20,status:'ready',text:'hello',hash},two:{name:'old.png',size:20,status:'ready',text:'stale',hash}}});
-  assert.deepEqual(plain(atts[0].ocr),{status:'ready',text:'hello',hash});assert.equal(atts[1].ocr,undefined);
+test('without the OCR service an image is unreadable and Send is held, even with a stored ready entry',async()=>{
+  const a={id:'one',name:'photo.png',size:PNG_SIZE,attachmentType:'file'};
+  const cache={version:1,attachments:{one:{name:a.name,size:a.size,status:'ready',text:'',hash:'a'.repeat(64)}}};
+  const l=load({state:demo({body:CLEAN_BODY,attachments:[a],contents:{one:PNG_B64}}),initialValues:{'dg-ocr-v1':JSON.stringify(cache)}});
+  vm.runInContext('globalThis.DisclosureGateOcr=undefined',l.context);
+  assert.equal((await l.send()).allowEvent,false);
+  const finding=JSON.parse(l.values['dg-result']).result.findings[0];
+  assert.deepEqual([finding.subkind,finding.detail],['picture','ocr_unsupported']);
+  assert.equal(l.checks[0].attachments[0].ocr,undefined);
+  assert.equal(l.draftApi.applyOcrCache,undefined);
 });
 test('explicit sentence removal and a fresh check clear the draft',async()=>{
   const state=demo(),l=load({state});assert.equal((await l.send()).allowEvent,false);

@@ -109,7 +109,7 @@
         var config=root.DisclosureGateCore.runtimeConfig(office,root);
         try { if(root.DisclosureGateSemantic && config.model==='on') semantic=root.DisclosureGateSemantic.forSend(semanticDeadline); } catch(e) {}
         return root.DisclosureGateCore.checkDraft(draft,{
-          config:config,semantic:semantic,semanticBudgetMs:1500,semanticDeadline:semanticDeadline
+          config:config,semantic:semantic,semanticBudgetMs:2500,semanticDeadline:semanticDeadline
         });
       },
       reviewButton:function(){try{return office.context.requirements.isSetSupported('Mailbox','1.14');}catch(e){return false;}},

@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "validated_at_utc": "2026-10-23T16:42:12.390Z",
+  "author_model": "gpt-6.1-sol",
+  "authored_date": "2026-10-23",
+  "node_version": "v24.20.0",
+  "cases_sha256": "4dda6b2d87f50e4b2519e3a4bd27d7dce1a54b3ea3056a0d33afebbd55506919",
+  "validator_sha256": "2827ab42c75611c14ee969e89d75ca7806fc523227d447298a9816be3a100f97",
+  "total": 160,
+  "composition": {
+    "secrets": {
+      "stop": 10,
+      "prompt": 0,
+      "pass": 17
+    },
+    "payment": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "government_id": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "personal": {
+      "stop": 14,
+      "prompt": 0,
+      "pass": 20
+    },
+    "economics": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 17
+    },
+    "negotiation": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 14
+    },
+    "remark": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 17
+    },
+    "lookalike": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "exposed_list": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "file": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "none": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 15
+    }
+  },
+  "routing": {
+    "external_stops": 60,
+    "external_passes": 90,
+    "inside_only_passes": 10
+  },
+  "body_lengths": {
+    "unit": "Unicode code points; body only, including quoted history and signatures",
+    "count": 160,
+    "min": 563,
+    "p25": 732.5,
+    "median": 1019.5,
+    "p75": 1057.25,
+    "max": 1171,
+    "mean": 912.5,
+    "total_characters": 146000,
+    "above_900": 93
+  },
+  "stop_placements": {
+    "body": 22,
+    "quoted": 26,
+    "subject": 6,
+    "attachment": 6
+  },
+  "attachments": {
+    "total": 6,
+    "canonical_base64": true,
+    "exact_utf8_byte_sizes": true,
+    "globally_unique_ids": true
+  },
+  "checks": {
+    "schema": true,
+    "unique_ordered_ids": true,
+    "unique_bodies": true,
+    "exact_composition": true,
+    "readme_table": true,
+    "reserved_domains": true,
+    "unrelated_external_domains": true,
+    "inside_routing": true,
+    "quoted_span_exactly_once": true,
+    "placement_manifest": true
+  },
+  "checker_invoked": false,
+  "semantic_limit": "Structural validation does not adjudicate labels or prove the absence of a second semantic disclosure; those were reviewed during spec-only authorship."
+}

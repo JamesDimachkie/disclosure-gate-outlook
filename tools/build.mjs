@@ -2,7 +2,7 @@ import { build } from 'esbuild';
 import { transformAsync } from '@babel/core';
 import presetEnv from '@babel/preset-env';
 import rewritePattern from 'regexpu-core';
-import { parse } from 'acorn';
+import { parse, tokenizer } from 'acorn';
 import { readFile, writeFile, mkdir, cp } from 'node:fs/promises';
 import { DEV_ID } from '../outlook/config.mjs';
 import { generateManifest } from '../outlook/manifest.mjs';
@@ -10,6 +10,31 @@ import { validateManifest } from './validate-manifest.mjs';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { buildModel } from './build-model.mjs';
+
+// Every shipped script is pure ASCII: a host that serves .js without a charset (self-hosted IIS or S3)
+// would otherwise misread a character inside a regular expression and the whole add-in would fail to
+// load. Outside templates a \u escape means the same character (strings, regex literals). Inside a
+// template it becomes an interpolation, ${"’"}: String.raw would keep a bare ’ as six
+// characters, but an interpolation inserts the character itself.
+const escapeChar = (ch) => {
+  const cp = ch.codePointAt(0);
+  const units = cp > 0xffff ? [0xd800 + ((cp - 0x10000) >> 10), 0xdc00 + ((cp - 0x10000) & 0x3ff)] : [cp];
+  return units.map((u) => '\\u' + u.toString(16).padStart(4, '0')).join('');
+};
+export function asciiOnly(code) {
+  if (!/[^\x00-\x7f]/.test(code)) return code;
+  const templates = [];
+  for (const token of tokenizer(code, { ecmaVersion: 'latest', allowHashBang: true })) {
+    if (token.type.label === 'template') templates.push([token.start, token.end]);
+  }
+  let out = '', at = 0;
+  for (const [start, end] of templates) {
+    out += code.slice(at, start).replace(/[^\x00-\x7f]/gu, escapeChar);
+    out += code.slice(start, end).replace(/[^\x00-\x7f]/gu, (ch) => '${"' + escapeChar(ch) + '"}');
+    at = end;
+  }
+  return out + code.slice(at).replace(/[^\x00-\x7f]/gu, escapeChar);
+}
 const root=fileURLToPath(new URL('../',import.meta.url));
 const noTernary=({types:t})=>({visitor:{ConditionalExpression:{exit(path) {
   const {test,consequent,alternate}=path.node;
@@ -73,7 +98,7 @@ export async function buildSite() {
       if(Object.keys(result.metafile.inputs).some(p=>/onnxruntime|huggingface|model\/classifier|outlook\/model-/.test(p.replace(/\\/g,'/')))) throw new Error('Model engine/loader in classic bundle');
       console.log('Classic runtime: ES2016 parse passed; no model engine, loader or ORT.');
     }
-    await writeFile(resolve(root,'dist',out),compiled.code+'\n');
+    await writeFile(resolve(root,'dist',out),asciiOnly(compiled.code)+'\n');
   }
   for(const file of ['index.html','landing.css','commands.html','taskpane.html','taskpane.css','tokens.css','setup.html','setup.css']) await cp(resolve(root,'outlook',file),resolve(root,'dist',file));
   await cp(resolve(root,'outlook/assets'),resolve(root,'dist/assets'),{recursive:true});
@@ -102,7 +127,7 @@ export async function buildSite() {
   // the mandatory gate can register its handlers. The large engine is still lazy and separate.
   const browser=await build({absWorkingDir:root,entryPoints:['outlook/browser-entry.mjs'],bundle:true,write:false,format:'iife',platform:'browser',target:'es2016',plugins:[legacyRules],logLevel:'silent',define:{__DG_MODEL_MANIFEST__:JSON.stringify(modelManifest)}});
   const browserCompiled=await transformAsync(browser.outputFiles[0].text,{configFile:false,babelrc:false,comments:false,compact:true,presets:[[presetEnv,{targets:{edge:'14'},modules:false}]]});
-  await writeFile(resolve(root,'dist/runtime-browser.js'),browserCompiled.code+'\n');
+  await writeFile(resolve(root,'dist/runtime-browser.js'),asciiOnly(browserCompiled.code)+'\n');
   await writeFile(resolve(root,'dist/.nojekyll'),'');
   for(const [name,options] of [['manifest.xml',{}],['manifest-dev.xml',{baseUrl:'https://localhost:3443/',id:DEV_ID,findings:'ask',failures:'ask'}]]) {
     const xml=generateManifest(options); const validation=validateManifest(xml);

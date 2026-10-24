@@ -82,7 +82,7 @@ test('PDF: a plain page, a check box, links and a scan with a note read as befor
   assert.equal(pdfText(boxes), 'Direct deposit form');
   const scan = makePdf(['<< /Type /Catalog /Pages 2 0 R >>', '<< /Type /Pages /Kids [3 0 R] /Count 1 >>', '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Annots [5 0 R] >>',
     stream('q 100 0 0 100 72 600 cm /Im1 Do Q'), '<< /Type /Annot /Subtype /Text /Contents (Scanned for the file.) /Rect [0 0 1 1] >>']);
-  assert.deepEqual(attachmentText(file('scan.pdf', scan)), { ok: false, reason: 'no_text' });
+  assert.deepEqual(attachmentText(file('scan.pdf', scan)), { ok: false, reason: 'no_text', text: 'Scanned for the file.' });
 });
 
 test('a scanned PDF read by OCR also has its filled fields and comments checked', async () => {

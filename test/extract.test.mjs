@@ -69,6 +69,17 @@ test('a composite font reads through its ToUnicode map, and without one the file
   assert.throws(() => pdfText(composite(false)), /unmapped_font/);
 });
 
+test('an accented i drawn as dotless i plus a combining accent reads as the accented letter', () => {
+  const cmap = '/CIDInit /ProcSet findresource begin 12 dict begin begincmap 1 begincodespacerange <0000> <FFFF> endcodespacerange 1 beginbfrange <0001> <001A> <0061> endbfrange 1 beginbfchar <0030> <01310302> endbfchar endcmap end end';
+  const code = (s) => s.split('').map((c) => (c.charCodeAt(0) - 96).toString(16).padStart(4, '0')).join('');
+  const pdf = makePdf(['<< /Type /Catalog /Pages 2 0 R >>', '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+    '<< /Type /Page /Parent 2 0 R /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>',
+    '<< /Type /Font /Subtype /Type0 /BaseFont /Fake /Encoding /Identity-H /DescendantFonts [6 0 R] /ToUnicode 7 0 R >>',
+    stream(`BT /F1 12 Tf 72 720 Td <${code('fra')}0030${code('che')}> Tj ET`),
+    '<< /Type /Font /Subtype /CIDFontType2 /BaseFont /Fake /DW 500 >>', stream(cmap)]);
+  assert.equal(pdfText(pdf), 'fraîche');
+});
+
 test('encrypted, image-only and non-PDF files fail closed', () => {
   const encrypted = makePdf(['<< /Type /Catalog /Pages 2 0 R >>', '<< /Type /Pages /Kids [] /Count 0 >>', '<< /Filter /Standard /V 2 >>'], { trailer: '/Encrypt 3 0 R ' });
   assert.throws(() => pdfText(encrypted), /encrypted/);

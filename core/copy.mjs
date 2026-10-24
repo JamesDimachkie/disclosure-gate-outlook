@@ -14,7 +14,7 @@ export const STRINGS = Object.freeze({
   pill: Object.freeze({ held: 'Held', ask: 'Review', clear: 'Clear' }),
   checking: 'Checking before it leaves…',
   sections: Object.freeze({ recipients: 'Who will see this', findings: 'What needs review' }),
-  recipient: Object.freeze({ inside: 'Inside', outside: 'Outside the company', cantCheck: "Can't check" }),
+  recipient: Object.freeze({ inside: 'Inside', outside: 'Outside', cantCheck: "Can't check" }),
   actions: Object.freeze({ remove: 'Remove this sentence', show: 'Show me' }),
   labels: Object.freeze({
     economics: 'Internal economics',
@@ -198,8 +198,10 @@ export function dialogContent(result, { ask = true, reviewButton = true, setting
   if (!settingsKnown) action = d.settingsUnknown + (findings.length && !reviewButton ? ' ' + d.noReviewButton : '') + (tooLargeToRetry(result) ? ' ' + d.sizeAction : '');
   else if (tooLargeToRetry(result)) action = findings.length ? action + ' ' + d.sizeAction : ask ? d.sizeAsk : d.sizeHold;
   action = copy(action);
-  // Include a failure among the first three bullets whenever a mixed result has one.
-  const chosen = [...findings.slice(0, failures.length ? 2 : 3), ...failures.slice(0, findings.length ? 1 : 3)];
+  // Include a failure among the first three bullets whenever a mixed result has one. A recipient
+  // problem (wrong person, lookalike address, exposed list) comes first: it is why everything else leaks.
+  const listed = [...findings.filter(f => f.source === 'recipient'), ...findings.filter(f => f.source !== 'recipient')];
+  const chosen = [...listed.slice(0, failures.length ? 2 : 3), ...failures.slice(0, findings.length ? 1 : 3)];
   const more = all.length - chosen.length;
   const phrases = [...new Set(findings.map(f => {
     try { return mentionFor(f).replace(/^(?:mentions|includes) /, ''); } catch { return d.unknownFinding; }

@@ -4,3 +4,6 @@ model/tokenize.mjs -text
 model/out/model.onnx -text
 model/out/tokenizer.json -text
 model/out/labels.json -text whitespace=cr-at-eol
+
+# PDF xref offsets require byte-preserving checkouts, even for synthetic ASCII-only fixtures.
+*.pdf binary

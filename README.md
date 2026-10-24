@@ -1,75 +1,86 @@
 # Disclosure Gate for Outlook
 
-An Outlook add-in that asks before an email or meeting invitation takes something outside your
-organization that should stay inside. Press Send and it explains the concern. You can choose
-Send Anyway, Review, or Don't Send. Intentional disclosures do not require rewording.
-Your IT team can require a hold, separately for findings and for checks that fail.
+**An Outlook add-in that asks "are you sure?" before an email takes something sensitive outside your
+organisation.** Press Send and, if the email carries a password, a card number, a spreadsheet of
+people's details, your margin or a remark about a client, or looks like it is going to the wrong
+person, Outlook shows what it found and where. The sender chooses Send Anyway, Review or Don't Send.
 
-Every check runs inside Outlook on the sender's device. The add-in is a folder of static files:
-there is no server, no account, no AI service, no telemetry and no log.
+Everything runs inside Outlook on the sender's own computer: rules, attachment readers, on-device OCR
+and a small on-device language model. There is no server, no account, no AI service, no telemetry and
+no log. Nothing in an email is sent anywhere to be checked.
 
-**Set it up:** https://jamesdimachkie.github.io/disclosure-gate-outlook/
+**Set it up:** https://jamesdimachkie.github.io/disclosure-gate-outlook/ ·
+[How it works](ARCHITECTURE.md) · [How it was tested](EVALUATION.md) · [Spec](SPEC.md)
 
-## What it does
+<p>
+<img src="docs/images/send-dialog.png" width="480" alt="Outlook's Send dialog from Disclosure Gate: This email goes outside your company and includes your margin and your negotiating position. Greets Kate, sent to dan@whitfielddev.example. In the body: your margin. In the body: your negotiating position. And 1 more. Buttons: Send anyway, Review, Don't send.">
+&nbsp;
+<img src="docs/images/review-pane.png" width="230" alt="The Review pane for the same email: one outside recipient, then cards for the greeting that doesn't match the recipient, internal economics, negotiation position and a gate code, each sentence highlighted with Remove this sentence and Show me.">
+</p>
+
+*A fictional email written to Kate but addressed to the client, on Send in Outlook on the web (left),
+and the Review pane it opens (right).*
+
+## What it catches
 
 | | |
 | --- | --- |
 | Passwords, keys and codes | A password or PIN that is actually given, a login with its password, API keys and tokens (AWS, GitHub, Slack, Stripe, Google, OpenAI, Anthropic), private keys, JSON Web Tokens, database connection strings, and door, gate, alarm or Wi-Fi codes |
 | Card and bank details | Luhn-valid card numbers, valid IBANs, US routing numbers with an account number, UK sort codes with an account number |
 | Government ID numbers | US Social Security, UK National Insurance and Canadian SIN numbers; passport, licence and personal tax ID numbers |
-| Lookalike addresses | An address that looks like your organization's but isn't (`north1ine.com` for `northline.com`) |
-| Lists of people's details | A spreadsheet, table or form that pairs people with what is sensitive about them: home addresses, ID or tax numbers, health, offences, pay, family members, claims |
-| Wrong recipient | A greeting to someone who isn't on the recipient lines ("Hi Alex," sent only to Morgan Vale) |
+| Lists of people's details | A spreadsheet, table, form or sentence that pairs people with what is sensitive about them: home addresses, ID or tax numbers, health, offences, pay, family members, claims |
+| What it means, not just what it says | Personal details about someone, your own costs and margins, your negotiating position, insults, and physical security (a hidden key, an alarm left off), however they are worded, read by an on-device model |
+| Wrong recipient | A greeting to someone who isn't on the recipient lines ("Hi Alex," sent only to Morgan Vale), and addresses that look like yours but aren't (`north1ine.com`) |
 | Marked internal | "Internal only", "not for external distribution", "don't forward this to the client" in an email going outside |
-| Exposed recipient lists | Eight or more outside addresses from three or more organizations in To and Cc (the sender is asked to use Bcc and can still send) |
-| Files it can't read | A ZIP file, an attached email or another attachment whose text can't be checked |
-| Text in pictures and scans | Screenshots, scanned PDFs and pictures are read on the device (Tesseract OCR, English) and their text is checked like the rest; anything found counts even when the reading was uncertain. A photo or logo where it finds nothing doesn't stop the email: an attached one asks the sender to look, with Send anyway |
+| Exposed recipient lists | Eight or more outside addresses from three or more organisations in To and Cc |
+| Attachments and pictures | Word, Excel, PowerPoint, PDF, CSV and text files use local parsers; supported PDF image pages and embedded Office pictures also receive on-device OCR. Incomplete coverage asks or holds; unreadable pictures ask. Micro-images and scan limits are described below |
 
-It also catches, more narrowly, personal details about someone (health, family, legal, HR), your
-own costs and margins, your negotiating position, and insults, but only in common wordings. On 160
-test emails written to vary their wording, the rules caught **7 of 60** of these. Treat it as a
-second pair of eyes for these, not a guarantee.
-
-**On-device model, on by default:** a small model that runs on each computer reads every sentence for
-personal details, internal costs, negotiating position, insults and physical security (hidden keys,
-alarms off) however they're worded. It is set to catch rather than miss: on a test set it had never
-seen, written by an AI author that wrote none of its training data, it raised those catches from
-**14 of 60** (rules alone) to **50 of 60**, and asked about **12 of 300** (4%) everyday outside emails,
-each with Send Anyway. It runs in Outlook on the web,
-the new Outlook and Outlook for Mac (classic Outlook for Windows uses the rules only), needs no AI
-service or account, and IT can switch it off at setup.
-
-Email that stays inside your organization is never held. The full contract is in [SPEC.md](SPEC.md).
+Email that stays inside your organisation is never held. Meeting invitations are checked the same way.
 
 ## How well it works
 
-These measurements predate Ask/Ask. They count findings, not required holds under the current defaults.
-They measure the rules alone; the on-device model's figures are above.
-On a further 200 everyday outside emails (quotes, scheduling, support, recruiting, client letters),
-the rules flagged none.
+On a blind test set of 360 everyday outside emails, written by an AI model that wrote none of the
+training data and scored once against a bar fixed before anyone deciding had seen the set:
 
-Measured on two synthetic test sets written from [SPEC.md](SPEC.md) by AI models that never saw the
-rules, from a different model family than the rules' author:
-
-| Test set | Ordinary emails flagged by mistake | Flagged as it should |
+| | Disclosures caught | Ordinary emails asked about |
 | --- | --- | --- |
-| 150 realistic emails (long threads, signatures, quoted replies, attachments) | 0 of 100 | 32 of 40 |
-| 440 short emails, one tricky sentence each ([evaluation/heldout](evaluation/heldout/)) | 0 of 264 | 113 of 164 |
+| Rules, recipients and the on-device model (default) | **50 of 60** | **12 of 300** (4%) |
+| Rules and recipient checks only (model off) | 14 of 60 | 1 of 300 |
 
-In the realistic set it flagged 22 of 23 emails carrying a secret, a card or bank number, an ID
-number or a lookalike address, and 10 of 17 carrying internal figures, a negotiating position,
-personal details or an insult; every long outside recipient list was flagged.
+It is tuned to catch rather than miss: a question on an ordinary email costs one click; a missed
+disclosure can cost a client, a fine or a career. On 49 real, documented email incidents rebuilt with
+invented names, it asks about 33. [EVALUATION.md](EVALUATION.md) has the method, every gate including
+the ones that failed, and the limits: all test mail is synthetic, and 60 disclosures leave a margin of
+roughly ±10 points.
 
-After measuring we fixed problems the misses and two independent code reviews pointed to (amounts in
-pounds and euros among them). The current build flags 34 of 40 and 118 of 164 on the same sets, still
-with no ordinary email flagged, but those fixes were informed by the misses, so the figures above are
-the fair ones. The short set and its runner are published here so you can rerun them; the realistic
-set stays private so it can measure the next release.
+Attachments: 36 everyday documents saved by Chromium and Microsoft Word, as PDF and `.docx`, all read
+in full with every amount, name and accented or non-Latin phrase intact
+([evaluation/everyday-docs](evaluation/everyday-docs/)). On 1,008 Mozilla pdf.js PDFs and 578 Apache
+POI Office files, regression collections built to break parsers, each file runs in its own bounded
+process: no crashes or timeouts, and the slowest check took 644 ms (OCR inference excluded). A file
+that can't be read completely is reported as can't-check and asks, instead of passing on what was
+read; that rule puts 88 of those PDFs and 15 of the Office files in can't-check and sends 55 Office
+files to OCR for their embedded pictures. Neither collection measures accuracy on ordinary mail.
+Outcomes, provenance and the command are in [DEVELOPMENT.md](docs/DEVELOPMENT.md#public-attachment-corpus-check).
 
-Attachment reading was run on 578 real Word, Excel and PowerPoint files (the Apache POI test corpus)
-and 679 real PDFs (the Mozilla pdf.js test corpus): none crashed, each took under half a second, and
-files it can't fully read return "can't check" (now governed by the failures setting). These are synthetic tests, not a measure on your
-mail.
+PDF image-only pages and images beside native text require OCR, which is combined with native page,
+form and annotation text. The bounded scan reader supports JPEG and simple raw/Flate RGB/gray images,
+up to 12 PDF pages, 12 images and 12 megapixels. Unsupported rendering (including masks, clipping,
+painting, inline images and image-bearing annotations) follows the failures setting. Unmapped PDF
+text runs, Type3 glyph programs, tiling patterns and forms nested beyond eight levels also make the
+file can't-check. Text drawn only as vector outlines is outside the native reader's coverage.
+Office pictures, including those in embedded Office files, use the attached-picture rule: unavailable
+or failed recognition asks with Send Anyway; pending OCR, changed bytes, API/identity errors,
+timeouts and cache limits follow the failures setting.
+Native document text is checked in either case. Office pictures share a 12-image/12-megapixel limit;
+only micro-images up to 8×8 pixels and 256 bytes, and cached package thumbnails, are ignored. Larger
+logos may contain words. Referenced thumbnails are checked too. SVG text is read natively; SVG
+embedded images and unsupported picture formats ask, as do Office picture-count/pixel overflows. XML depth/work
+limits fail closed. See [SPEC §6](SPEC.md#6-attachments) for the exact limits. OCR requires a capable
+runtime, runs in English on the device, and never replaces native document validation.
+
+The model runs in Outlook on the web, the new Outlook for Windows and Outlook for Mac; classic Outlook
+for Windows uses the rules alone. IT can switch the model off at setup.
 
 ## Install
 
@@ -123,12 +134,12 @@ Microsoft's reference: [Smart Alerts behaviour](https://learn.microsoft.com/en-u
 The sentence model is on unless IT turns it off. Classic Outlook for Windows uses rules only. Other clients skip it
 if browser capabilities are missing, it is not ready in time, or there are more than 400 readable
 sentences. Model failure never fails the check: rules still run over the full text. The model has
-at most 1.5 seconds within Send's 4.5-second deadline. Public assets are cached; email is not.
+at most 2.5 seconds within Send's 4.5-second deadline; on a long email it keeps whatever it finished in time. Public assets are cached; email is not.
 Compose preparation initializes a worker/session that repeat Sends reuse if that runtime survives.
 A fresh Send runtime still verifies cached public files and initializes its own session. Timeouts
 and OCR preemption terminate the worker. [Browser Send timings and their limits](docs/SEMANTIC-INTEGRATION.md#browser-send-timing).
 The model reads each sentence with the one before it; an input beyond its 128-token window skips the model pass.
-Timing and caching inside each Outlook client have not yet been measured live.
+Live in Outlook on the web, Send to dialog took about 1.2 to 1.4 seconds with the model; the other clients have not yet been measured live.
 
 Works in Outlook on the web, the new Outlook for Windows, classic Outlook for Windows (2206 or later)
 and Outlook for Mac (new UI, 16.65 or later), with Exchange Online. Outlook on phones doesn't run Send

@@ -1,5 +1,6 @@
 // Local synthetic browser benchmark; never reads evaluation data or uses Office/network mail.
-// Build first. Pass the installed Playwright package with --playwright=<absolute index.mjs>.
+// Build first. Pass the installed Playwright package with --playwright=<absolute index.mjs>, and optionally
+// a browser binary with --chromium=<absolute path> when Playwright's own download is not installed.
 import http from 'node:http';
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve, extname } from 'node:path';
@@ -49,7 +50,7 @@ const server = http.createServer(async (req, res) => {
 });
 await new Promise(r => server.listen(0, '127.0.0.1', r));
 const origin = `http://127.0.0.1:${server.address().port}`;
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, executablePath: arg('chromium') });
 try {
   const context = await browser.newContext(), page = await context.newPage(), errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -77,9 +78,9 @@ try {
   if (screenshot) {
     await cdp.send('Emulation.setCPUThrottlingRate', { rate: 1 });
     await page.goto(origin + '/index.html');
-    result.landing = { title: await page.title(), modelCopy: await page.getByText(/Access and negotiation stay rules-only/).count() };
+    result.landing = { title: await page.title(), results: await page.getByRole('heading', { name: 'How well it works' }).count() };
     assert.equal(result.landing.title, 'Disclosure Gate for Outlook');
-    assert.equal(result.landing.modelCopy, 1);
+    assert.equal(result.landing.results, 1);
     assert.equal(await page.getByRole('heading', { name: 'Asks before it leaves.' }).isVisible(), true);
     for (const [name, width, height] of [['desktop', 1280, 900], ['phone', 390, 844]]) {
       await page.setViewportSize({ width, height });

@@ -1,0 +1,1445 @@
+{
+  "label": "pre-integration",
+  "cases_sha256": "200f400ff9f380f4e38dc7c5061dc615239278025bc6ccc5b12cce25e2bba6fb",
+  "total": 150,
+  "composition": {
+    "secrets": {
+      "stop": 8,
+      "prompt": 0,
+      "pass": 17
+    },
+    "payment": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 12
+    },
+    "government_id": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 10
+    },
+    "personal": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 20
+    },
+    "economics": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 11
+    },
+    "negotiation": {
+      "stop": 4,
+      "prompt": 0,
+      "pass": 6
+    },
+    "remark": {
+      "stop": 3,
+      "prompt": 0,
+      "pass": 10
+    },
+    "lookalike": {
+      "stop": 5,
+      "prompt": 0,
+      "pass": 2
+    },
+    "exposed_list": {
+      "stop": 0,
+      "prompt": 10,
+      "pass": 5
+    },
+    "file": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 2
+    },
+    "none": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 5
+    }
+  },
+  "confusion": {
+    "stop": {
+      "stop": 18,
+      "prompt": 0,
+      "pass": 0,
+      "error": 22
+    },
+    "prompt": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0,
+      "error": 10
+    },
+    "pass": {
+      "stop": 3,
+      "prompt": 0,
+      "pass": 10,
+      "error": 87
+    }
+  },
+  "false_stop_rate": 0.03,
+  "catch_rate": 0.45,
+  "unwanted_prompts": 0,
+  "correct": 28,
+  "errors": 119,
+  "by_category": [
+    {
+      "category": "secrets",
+      "total": 25,
+      "expected_stop": 8,
+      "expected_prompt": 0,
+      "expected_pass": 17,
+      "correct": 6,
+      "misses": 3,
+      "false_stops": 3,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 16
+    },
+    {
+      "category": "payment",
+      "total": 17,
+      "expected_stop": 5,
+      "expected_prompt": 0,
+      "expected_pass": 12,
+      "correct": 1,
+      "misses": 5,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 16
+    },
+    {
+      "category": "government_id",
+      "total": 15,
+      "expected_stop": 5,
+      "expected_prompt": 0,
+      "expected_pass": 10,
+      "correct": 3,
+      "misses": 2,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 12
+    },
+    {
+      "category": "personal",
+      "total": 25,
+      "expected_stop": 5,
+      "expected_prompt": 0,
+      "expected_pass": 20,
+      "correct": 10,
+      "misses": 2,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 15
+    },
+    {
+      "category": "economics",
+      "total": 16,
+      "expected_stop": 5,
+      "expected_prompt": 0,
+      "expected_pass": 11,
+      "correct": 3,
+      "misses": 3,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 13
+    },
+    {
+      "category": "negotiation",
+      "total": 10,
+      "expected_stop": 4,
+      "expected_prompt": 0,
+      "expected_pass": 6,
+      "correct": 3,
+      "misses": 1,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 7
+    },
+    {
+      "category": "remark",
+      "total": 13,
+      "expected_stop": 3,
+      "expected_prompt": 0,
+      "expected_pass": 10,
+      "correct": 2,
+      "misses": 1,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 11
+    },
+    {
+      "category": "lookalike",
+      "total": 7,
+      "expected_stop": 5,
+      "expected_prompt": 0,
+      "expected_pass": 2,
+      "correct": 0,
+      "misses": 5,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 7
+    },
+    {
+      "category": "exposed_list",
+      "total": 15,
+      "expected_stop": 0,
+      "expected_prompt": 10,
+      "expected_pass": 5,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 10,
+      "unwanted_prompts": 0,
+      "errors": 15
+    },
+    {
+      "category": "file",
+      "total": 2,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 2,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 2
+    },
+    {
+      "category": "none",
+      "total": 5,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 5,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 5
+    }
+  ],
+  "results": [
+    {
+      "id": "realistic-001",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-002",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-003",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-004",
+      "category_expected": "negotiation",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-005",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-006",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-007",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-008",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-009",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-010",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-011",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-012",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-013",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-014",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-015",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-016",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic-017",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-018",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-019",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-020",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-021",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-022",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-023",
+      "category_expected": "negotiation",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-024",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-025",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-026",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-027",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-028",
+      "category_expected": "negotiation",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-029",
+      "category_expected": "lookalike",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-030",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-031",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-032",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic-033",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-034",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-035",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-036",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-037",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-038",
+      "category_expected": "lookalike",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-039",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic-040",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-041",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-042",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-043",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-044",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-045",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-046",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-047",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-048",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-049",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-050",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-051",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-052",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-053",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-054",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-055",
+      "category_expected": "exposed_list",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-056",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-057",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-058",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-059",
+      "category_expected": "exposed_list",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-060",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-061",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-062",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-063",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-064",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-065",
+      "category_expected": "exposed_list",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-066",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-067",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-068",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-069",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-070",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-071",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-072",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-073",
+      "category_expected": "negotiation",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-074",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-075",
+      "category_expected": "exposed_list",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-076",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-077",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-078",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-079",
+      "category_expected": "negotiation",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-080",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-081",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-082",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-083",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-084",
+      "category_expected": "negotiation",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-085",
+      "category_expected": "payment",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-086",
+      "category_expected": "secrets",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-087",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-088",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-089",
+      "category_expected": "file",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-090",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-091",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-092",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-093",
+      "category_expected": "economics",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-094",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-095",
+      "category_expected": "government_id",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-096",
+      "category_expected": "remark",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-097",
+      "category_expected": "file",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-098",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-099",
+      "category_expected": "exposed_list",
+      "expect": "pass",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-100",
+      "category_expected": "personal",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "realistic-101",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic-102",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic-103",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-104",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic-105",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-106",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-107",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic-108",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "realistic-109",
+      "category_expected": "payment",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-110",
+      "category_expected": "payment",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-111",
+      "category_expected": "payment",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-112",
+      "category_expected": "payment",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-113",
+      "category_expected": "payment",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-114",
+      "category_expected": "government_id",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic-115",
+      "category_expected": "government_id",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic-116",
+      "category_expected": "government_id",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-117",
+      "category_expected": "government_id",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-118",
+      "category_expected": "government_id",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic-119",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-120",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic-121",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-122",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic-123",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "realistic-124",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-125",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic-126",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-127",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "realistic-128",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-129",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "realistic-130",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "realistic-131",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-132",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "realistic-133",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic-134",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "realistic-135",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-136",
+      "category_expected": "lookalike",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-137",
+      "category_expected": "lookalike",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-138",
+      "category_expected": "lookalike",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-139",
+      "category_expected": "lookalike",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-140",
+      "category_expected": "lookalike",
+      "expect": "stop",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-141",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-142",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-143",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-144",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-145",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-146",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-147",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-148",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-149",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    },
+    {
+      "id": "realistic-150",
+      "category_expected": "exposed_list",
+      "expect": "prompt",
+      "actual": "error",
+      "finding_categories": [],
+      "error_code": "UNEXPECTED_RESULT"
+    }
+  ]
+}

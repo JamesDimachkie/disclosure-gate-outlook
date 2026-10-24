@@ -37,7 +37,11 @@ const PREFIX = new Map([
   [M + 'powerpoint/2018/8/main', 'p188'],
   ['urn:schemas-microsoft-com:vml', 'v'], ['urn:schemas-microsoft-com:office:office', 'o'], ['urn:schemas-microsoft-com:office:excel', 'x'],
 ]);
-const lookup = (scope, prefix) => { for (let s = scope; s; s = s.parent) if (s.map.has(prefix)) return s.map.get(prefix); return undefined; };
+// Effective environments: tag lookup never walks ancestor scopes. Copies and tokens have their
+// own budget, independent of the amount of text a reader produces.
+export const MAX_XML_DEPTH = 256;
+export const MAX_XML_WORK = 4 * 1024 * 1024;
+const lookup = (scope, prefix) => scope ? scope.get(prefix) : undefined;
 function canonical(q, scope) {
   const i = q.indexOf(':');
   const uri = lookup(scope, i < 0 ? '' : q.slice(0, i));
@@ -76,9 +80,12 @@ const TOKEN = '<!--[\\s\\S]*?-->|<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>|<\\?[\\s\\S]*?
 export function scanXml(xml, on) {
   const re = new RegExp(TOKEN, 'y');
   const stack = [];
-  let scope = null, pos = 0;
+  let scope = null, pos = 0, work = 0;
+  const spend = n => { if ((work += n) > MAX_XML_WORK) bad('too_complex'); };
+  spend(xml.length);
   if (xml.charCodeAt(0) === 0xfeff) pos = 1;
   while (pos < xml.length) {
+    spend(1);
     re.lastIndex = pos;
     const m = re.exec(xml);
     if (!m) bad();
@@ -99,10 +106,13 @@ export function scanXml(xml, on) {
       continue;
     }
     let inner = scope;
+    if (stack.length >= MAX_XML_DEPTH) bad('too_complex');
     if (m[4].indexOf('xmlns') >= 0) {
-      const a = attrs(m[4]), map = new Map();
+      spend(scope ? scope.size : 0);
+      const a = attrs(m[4]), map = new Map(scope || []);
       for (const k in a) if (k === 'xmlns') map.set('', a[k]); else if (k.slice(0, 6) === 'xmlns:') map.set(k.slice(6), a[k]);
-      if (map.size) inner = { map, parent: scope };
+      spend(Object.keys(a).length);
+      inner = map;
     }
     const name = canonical(m[3], inner);
     on.open(name, m[4], !!m[5], top ? top.name : null);

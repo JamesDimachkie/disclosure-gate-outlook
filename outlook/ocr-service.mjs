@@ -1,6 +1,7 @@
 import { fromBase64 } from '../core/bytes.mjs';
-import { attachmentText, MAX_ATTACHMENT_BYTES } from '../core/attachments.mjs';
-import { pdfImages } from '../core/extract/pdf.mjs';
+import { MAX_ATTACHMENT_BYTES } from '../core/attachments.mjs';
+import { pdfImages, pdfCoverage } from '../core/extract/pdf.mjs';
+import { officeCoverage } from '../core/extract/office.mjs';
 import { imageInfo } from '../core/image-info.mjs';
 import { OCR_KEY, ocrCandidate, sameAttachment, tinyInline, OCR_MAX_TEXT } from '../core/ocr-policy.mjs';
 import { ocrPaths } from './ocr-config.mjs';
@@ -69,11 +70,14 @@ export function createOcrService(root) {
       if (!bytes.length || bytes.length > MAX_ATTACHMENT_BYTES) throw new Error('ocr_size');
       entry.hash = sha256(bytes);
       let images;
+      const officeKind = /\.(docx|pptx|xlsx)$/i.exec(a.name);
       if (/\.pdf$/i.test(a.name)) {
-        const text = attachmentText({ ...a, content: content.content, ocr: null });
-        if (text.ok) { Object.assign(entry, { status: 'failed', reason: 'pdf_text_layer' }); return; }
-        if (text.reason !== 'no_text') throw new Error('scan_unreadable');
-        images = pdfImages(bytes);
+        const coverage = pdfCoverage(bytes);
+        if (!coverage.ocrPages.length && coverage.hasPageText) { Object.assign(entry, { status: 'ready', text: '', reason: 'native_text' }); return; }
+        images = pdfImages(bytes, coverage.ocrPages.length ? coverage.ocrPages : undefined);
+      } else if (officeKind) {
+        images = officeCoverage(bytes, officeKind[1].toLowerCase()).images;
+        if (!images.length) { Object.assign(entry, { status: 'ready', text: '', reason: 'native_text' }); return; }
       } else {
         const info = imageInfo(bytes);
         if (tinyInline(a, info) && typeof root.createImageBitmap === 'function' && root.Blob) {
@@ -88,24 +92,30 @@ export function createOcrService(root) {
         images = [{ bytes }];
       }
       // Text PDFs and tiny spacers never load the engine or traineddata.
-      const engine = await loadEngine(), texts = [], hints = [];
+      const texts = [], hints = [];
+      let engine, failure;
       for (const image of images) {
         if (s.entries[a.id] !== entry) return;
+        if (image.reason) { failure = failure || image.reason; continue; }
         const info = imageInfo(image.bytes);
         if (image.width && (image.width !== info.width || image.height !== info.height)) throw new Error('scan_dimensions');
-        const read = await engine.recognize(image.bytes);
-        if (read?.status === 'failed' && read.reason === 'ocr_low_confidence') { hints.push(typeof read.hint === 'string' ? read.hint : ''); continue; }
-        if (read?.status !== 'ready' || typeof read.text !== 'string') throw new Error(read?.reason || 'ocr_failed');
+        let read;
+        try { engine = engine || await loadEngine(); read = await engine.recognize(image.bytes); }
+        catch (error) { if (!officeKind) throw error; failure = failure || 'ocr_failed'; continue; }
+        if (read?.status === 'failed' && read.reason === 'ocr_low_confidence') { failure = failure || 'ocr_low_confidence'; hints.push(typeof read.hint === 'string' ? read.hint : ''); continue; }
+        if (read?.status !== 'ready' || typeof read.text !== 'string') {
+          if (!officeKind) throw new Error(read?.reason || 'ocr_failed');
+          failure = failure || 'ocr_failed'; continue;
+        }
         texts.push(read.text);
       }
       const text = texts.join('\n');
-      if (hints.length) {
+      if (failure) {
         // A page or picture read with low confidence: the file can't be cleared, but what was read is a
         // hint the gate screens, so a secret read imperfectly still counts.
-        const hint = [...texts, ...hints].filter(Boolean).join('\n');
-        if (hint.length > OCR_MAX_TEXT) throw new Error('too_long');
-        delete entry.text;
-        Object.assign(entry, hint ? { status: 'failed', reason: 'ocr_low_confidence', hint } : { status: 'failed', reason: 'ocr_low_confidence' });
+        const hint = hints.filter(Boolean).join('\n');
+        if (hint.length + text.length > OCR_MAX_TEXT) throw new Error('too_long');
+        Object.assign(entry, { status: 'failed', reason: failure, ...(text ? { text } : {}), ...(hint ? { hint } : {}) });
         return;
       }
       if (text.length > OCR_MAX_TEXT) throw new Error('too_long');

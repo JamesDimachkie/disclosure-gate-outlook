@@ -311,6 +311,7 @@ function fontDecoder(doc, fontRef) {
   return made;
 }
 function makeDecoder(doc, font) {
+  if (font.Subtype?.name === 'Type3') fail('unmapped_font');
   const width = widthTable(doc, font);
   const tu = objectOf(doc, font.ToUnicode);
   let bytes = 1, decode1;
@@ -328,7 +329,7 @@ function makeDecoder(doc, font) {
   }
   const codes = (s) => { const out = []; for (let i = 0; i + bytes <= s.length; i += bytes) out.push(bytes === 2 ? (s[i] << 8) | s[i + 1] : s[i]); return out; };
   return {
-    decode(s) { let out = ''; for (const c of codes(s)) { const u = decode1(c); if (u === undefined) return null; out += u; } return out; },
+    decode(s) { if (s.length % bytes) return null; let out = ''; for (const c of codes(s)) { const u = decode1(c); if (u === undefined || u === '') return null; out += u; } return out; },
     advance(s) { let w = 0, spaces = 0; for (const c of codes(s)) { w += width(c); if (bytes === 1 && c === 32) spaces++; } return [w, spaces, codes(s).length]; },
   };
 }
@@ -365,7 +366,7 @@ function contentOf(doc, contents) {
 }
 
 function runContent(doc, data, resources, sink, depth = 0) {
-  if (depth > 8) return;
+  if (depth > 8) fail('form_depth');
   const res = dictOf(doc, resources) || {};
   const fonts = dictOf(doc, res.Font) || {};
   const xobjects = dictOf(doc, res.XObject) || {};
@@ -373,7 +374,7 @@ function runContent(doc, data, resources, sink, depth = 0) {
   if ((work.ops += FORM_COST) > MAX_DOC_OPS) fail('too_complex');
   const lex = lexer(data, 0, work);
   const stack = [];
-  let text = null, decoder = null, size = 12, tm = [1, 0, 0, 1, 0, 0], tlm = [1, 0, 0, 1, 0, 0], leading = 0, ops = 0, tc = 0, tw = 0, th = 1;
+  let decoder = null, size = 12, tm = [1, 0, 0, 1, 0, 0], tlm = [1, 0, 0, 1, 0, 0], leading = 0, ops = 0, tc = 0, tw = 0, th = 1;
   const cache = new Map();
   const setFont = (name) => { if (!cache.has(name)) cache.set(name, fontDecoder(doc, fonts[name])); decoder = cache.get(name); };
   const move = (tx, ty) => { tlm = [tlm[0], tlm[1], tlm[2], tlm[3], tlm[4] + tx * tlm[0] + ty * tlm[2], tlm[5] + tx * tlm[1] + ty * tlm[3]]; tm = tlm.slice(); };
@@ -411,9 +412,11 @@ function runContent(doc, data, resources, sink, depth = 0) {
       case 'Do': {
         const o = objectOf(doc, xobjects[a[0]?.name]);
         if (o?.stream && o.v.dict.Subtype?.name === 'Form') runContent(doc, decode(doc, o), o.v.dict.Resources ?? resources, sink, depth + 1);
+        else sink.image(); // An unresolved displayed object must also require scan coverage.
         break;
       }
-      case 'BI': { if (text === null) text = latin1(data); const at = text.indexOf('EI', lex.state.pos); lex.state.pos = at < 0 ? data.length : at + 2; break; }
+      case 'BI': fail('scan_rendering'); break;
+      case 'scn': case 'SCN': if (dictOf(doc, res.Pattern)) fail('pattern'); break;
       default: break;
     }
   }
@@ -426,13 +429,13 @@ function assembler() {
   // Runs are collected in a list and joined once. Whether the text so far ends in a space is kept
   // from the last run: testing the growing string itself rescans or flattens it on every run.
   const out = [];
-  let blank = true, lastY = null, lastEnd = null, lastSize = 12, unmapped = 0, shown = 0;
+  let blank = true, lastY = null, lastEnd = null, lastSize = 12, images = 0;
   const scale = (tm) => Math.hypot(tm[2], tm[3]) || 1;
   return {
-    unmapped() { unmapped++; },
+    unmapped() { fail('unmapped_font'); },
+    image() { images++; },
     text(t, tm, size, end) {
       if (!t) return;
-      shown++;
       const eff = size * scale(tm), y = tm[5], x = tm[4];
       const line = Math.max(eff, lastSize);
       if (lastY !== null && Math.abs(y - lastY) >= 0.5 * line) { if (!blank) out.push(Math.abs(y - lastY) > 1.6 * line ? '\n' : ' '); }
@@ -441,7 +444,7 @@ function assembler() {
       blank = /\s$/.test(t);
       lastY = y; lastEnd = end; lastSize = eff;
     },
-    result() { return { text: out.join(''), unmapped, shown }; },
+    result() { return { text: out.join(''), images }; },
   };
 }
 
@@ -539,8 +542,8 @@ function appearanceText(doc, annot, resources) {
   }
   const sink = assembler();
   runContent(doc, decode(doc, o), o.v.dict.Resources ?? resources, sink);
-  const { text, unmapped, shown } = sink.result();
-  if (unmapped > 0 && unmapped >= shown * 0.02) fail('unmapped_font');
+  const { text, images } = sink.result();
+  if (images) fail('annotation_unreadable');
   return text.trim();
 }
 
@@ -608,30 +611,37 @@ export function pdfFormText(buf) {
   }
 }
 
-export function pdfText(buf) {
+export function pdfCoverage(buf) {
   try {
     const doc = load(buf);
-    const sink = assembler();
-    for (const page of pages(doc)) runContent(doc, contentOf(doc, page.node.Contents), page.resources, sink);
-    const { text, unmapped, shown } = sink.result();
-    if (unmapped > 0 && unmapped >= shown * 0.02) fail('unmapped_font');
-    const clean = text.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+    const texts = [], ocrPages = [], pageList = pages(doc);
+    for (let i = 0; i < pageList.length; i++) {
+      const page = pageList[i], sink = assembler();
+      runContent(doc, contentOf(doc, page.node.Contents), page.resources, sink);
+      const part = sink.result();
+      texts.push(part.text);
+      if (part.images) ocrPages.push(i);
+    }
+    const text = texts.join('\n');
+    // Some generators (Chromium among them) map an accented i or j to a dotless base plus a combining
+    // accent ("fraı̂che"); read it as the letter it shows so word rules match.
+    const clean = text.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').replace(/ı(?=[̀-ͯ])/g, 'i').replace(/ȷ(?=[̀-ͯ])/g, 'j').normalize('NFC').trim();
     if (!readsAsText(clean)) fail('garbled');
-    // Form and annotation text joins the page text. A PDF whose pages have no text stays empty (it
-    // is a scan, and can't be checked) even when it carries a note or a filled field.
+    // Notes and fields never substitute for unread page content; hasPageText keeps that distinction.
     const extra = pdfExtraLines(doc);
-    if (clean && extra.length) return clean + '\n' + extra.join('\n');
-    return clean;
+    return { text: [clean, ...extra].filter(Boolean).join('\n'), ocrPages, hasPageText: !!clean };
   } catch (error) {
     if (error instanceof PdfError) throw error;
     throw new PdfError('unreadable');
   }
 }
+export const pdfText = buf => { const read = pdfCoverage(buf); if (read.hasPageText && read.ocrPages.length) fail('ocr_required'); return read.hasPageText ? read.text : ''; };
 
 // A deliberately bounded scan extractor, not a PDF renderer. Every displayed object on every
-// page must be an extractable image (or a form containing only images/transforms). No masks,
+// selected page must contain extractable images (or forms containing images/transforms). Native
+// text operators are allowed only for pages already read by pdfCoverage. No masks,
 // clipping, painting, inline images, special colorspaces or unsupported filters are guessed at.
-export function pdfImages(buf) {
+export function pdfImages(buf, selectedPages) {
   const doc = load(buf), all = [], pageList = pages(doc); let pixels = 0;
   if (!pageList.length || pageList.length > OCR_MAX_PAGES) fail('scan_pages');
   function image(o) {
@@ -651,20 +661,26 @@ export function pdfImages(buf) {
   }
   function walk(data, resources, depth = 0) {
     if (depth > 8) fail('scan_depth');
-    const xobjects = dictOf(doc, (dictOf(doc, resources) || {}).XObject) || {}, lex = lexer(data), stack = []; let ops = 0;
+    const xobjects = dictOf(doc, (dictOf(doc, resources) || {}).XObject) || {}, lex = lexer(data, 0, doc.work), stack = []; let ops = 0;
     for (let t; (t = lex.token());) {
-      if (++ops > MAX_OPS) fail('scan_ops');
-      if (t.num !== undefined || t.name !== undefined) { stack.push(t); if (stack.length > 32) fail('scan_operands'); continue; }
+      if (++ops > MAX_OPS || ++doc.work.ops > MAX_DOC_OPS) fail('scan_ops');
+      if (t.op === undefined || t.op === '[' || t.op === '<<') { stack.push(t.op ? lex.value(t) : t); if (stack.length > 32) fail('scan_operands'); continue; }
       if (t.op === 'Do') {
         const o = objectOf(doc, xobjects[stack[0]?.name]);
         if (!o?.stream) fail('scan_object');
         if (o.v.dict.Subtype?.name === 'Image') image(o);
         else if (o.v.dict.Subtype?.name === 'Form' && !o.v.dict.Group) walk(decode(doc, o), o.v.dict.Resources || resources, depth + 1);
         else fail('scan_object');
-      } else if (!['q', 'Q', 'cm'].includes(t.op)) fail('scan_rendering');
+      } else if (!['q', 'Q', 'cm'].includes(t.op) && !(selectedPages && ['BT', 'ET', 'Tf', 'Td', 'TD', 'Tm', 'TL', 'Tc', 'Tw', 'Tz', 'T*', 'Tj', 'TJ', "'", '"', 'Tr', 'Ts'].includes(t.op))) fail('scan_rendering');
       stack.length = 0;
     }
   }
-  for (const page of pageList) { const before = all.length; if (page.node.Annots) fail('scan_annotations'); walk(contentOf(doc, page.node.Contents), page.resources); if (all.length === before) fail('scan_no_image'); }
+  for (let i = 0; i < pageList.length; i++) {
+    if (selectedPages && !selectedPages.includes(i)) continue;
+    const page = pageList[i], before = all.length;
+    if (page.node.Annots) fail('scan_annotations');
+    walk(contentOf(doc, page.node.Contents), page.resources);
+    if (all.length === before) fail('scan_no_image');
+  }
   return all;
 }

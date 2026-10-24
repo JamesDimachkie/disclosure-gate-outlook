@@ -1,9 +1,10 @@
-// The local rule screen (spec §5): deterministic patterns for the five content findings, run on this
-// computer before anything is sent to the hosted check. A hit holds the email at once and never
-// reaches the hosted check (the prototype's order, and the meeting product's "detectors are a hard
-// veto"). Each rule names the words to highlight with a `mark` group; the finding is the enclosing
-// sentence. The rules are deliberately narrow (written business email, high precision) with the
-// hosted check behind them for what they miss. The patterns are case-insensitive, so a rule that needs
+// The local rule screen (spec §5): deterministic patterns for the content findings, run on this
+// computer; nothing is sent anywhere. Rule findings are never removed or changed by the on-device
+// model, which only adds findings on sentences the rules did not flag; the admin's findings setting
+// decides whether a finding asks or holds. Each rule names the words to highlight with a `mark` group;
+// the finding is the enclosing sentence. The rules are deliberately narrow (written business email,
+// high precision); the model covers meaning they miss. Every pattern must stay linear on hostile input
+// (bounded number shapes, one way to split whitespace), and long unbroken text is read in windows. The patterns are case-insensitive, so a rule that needs
 // a name checks the original casing itself.
 import { splitSentences, occurrences, labelValuePairs, tableRows } from './sentences.mjs';
 import { recordsHits } from './records.mjs';
@@ -15,7 +16,12 @@ const AP = "['’]"; // straight or curly apostrophe
 // A currency before the number ($, £, €, ¥, ₹, US$/A$/C$/NZ$/S$/HK$, or an ISO code) or after it (dollars,
 // euros, quid, a code, € or £). "Pounds" is left out on purpose: "we carried 40 pounds" is often weight.
 const CUR = String.raw`(?:[$£€¥₹]|(?:US|AU|A|CA|C|NZ|HK|S)\$|(?:USD|GBP|EUR|AUD|CAD|NZD|CHF|JPY|INR|SGD|HKD)\s?)`;
-const AMOUNT = String.raw`(?:${CUR}\s?\d[\d,]*(?:\.\d+)?(?:\s*(?:k|m|mm|bn|thousand|million|grand)\b)?|\d[\d,]*(?:\.\d+)?\s*(?:(?:k|m|thousand|million|grand|dollars|bucks|quid|euros?|usd|gbp|eur|aud|cad|nzd|chf)\b|[€£])|\d[\d,]*(?:\.\d+)?\s*(?:%|percent\b|per\s?cent\b))`;
+// A number as amounts are written: digits in groups of three (up to seven groups) or up to 15 digits.
+// Bounded on purpose: an unbounded digit-and-comma run rescans from every start (quadratic on a CSV row).
+// Long unbroken stretches are read in windows of this size, overlapping by OVERLAP (see screenText).
+const WINDOW = 2000, OVERLAP = 400;
+const NUM = String.raw`(?:\d{1,3}(?:,\d{3}){1,6}|\d{1,15})`;
+const AMOUNT = String.raw`(?:${CUR}\s?${NUM}(?:\.\d+)?(?:\s*(?:k|m|mm|bn|thousand|million|grand)\b)?|\b${NUM}(?:\.\d+)?\s*(?:(?:k|m|thousand|million|grand|dollars|bucks|quid|euros?|usd|gbp|eur|aud|cad|nzd|chf)\b|[€£])|\b${NUM}(?:\.\d+)?\s*(?:%|percent\b|per\s?cent\b))`;
 const HEDGE = String.raw`(?:about\s+|around\s+|roughly\s+|only\s+|just\s+|nearly\s+|almost\s+|under\s+|over\s+|below\s+|above\s+|close\s+to\s+|at\s+least\s+)?`;
 const RATIO = String.raw`(?:double|triple|quadruple|twice|half|two\s+times|three\s+times|four\s+times|a\s+third\s+of|a\s+quarter\s+of|half\s+of)`;
 const MARGIN = String.raw`(?:(?:gross|net|original|planned|expected|bid|budgeted|target|estimated)\s+)?(?:margins?|mark-?ups?|profits?)`;
@@ -150,7 +156,7 @@ export const RULES = Object.freeze([
   // Internal economics: margin, markup, profit, costs, contingency, budget, floor or walk-away price.
   { id: 'econ.ratio-margin', category: 'economics', subkind: 'margin', re: rx(String.raw`\b(?<mark>${RATIO}\s+(?:the\s+|our\s+|what\s+)?${MARGIN}${WE_DID}?)\b`) },
   { id: 'econ.our-margin', category: 'economics', subkind: 'margin', re: rx(String.raw`\b(?<mark>(?:our|my|the\s+company${AP}s|internal)\s+(?:gross\s+|net\s+|actual\s+|real\s+|true\s+|overall\s+|average\s+|blended\s+)?(?:margins?|mark-?ups?|profits?|profitability)(?:\s+(?:on|for)\s+(?:(?:this|that|the|it|our)(?:\s+[\w-]+){0,3}?|[\w-]+(?:\s+[\w-]+){0,2}?))?\s+${COPULA}\s+${HEDGE}(?:${AMOUNT}|${QUALITY}))`) },
-  { id: 'econ.amount-margin', category: 'economics', subkind: 'margin', re: rx(String.raw`(?<mark>(?:\b\d[\d,]*(?:\.\d+)?\s*(?:%|percent\b|per\s?cent\b)|${CUR}\s?\d[\d,]*(?:\.\d+)?\s*(?:k|m)?\b)\s*(?:gross\s+|net\s+)?(?:margin|mark-?up|profit)s?)\b(?!\s+(?:of\s+error|for\s+error|of\s+safety|call))`) },
+  { id: 'econ.amount-margin', category: 'economics', subkind: 'margin', re: rx(String.raw`(?<mark>(?:\b${NUM}(?:\.\d+)?\s*(?:%|percent\b|per\s?cent\b)|${CUR}\s?${NUM}(?:\.\d+)?\s*(?:k|m)?\b)\s*(?:gross\s+|net\s+)?(?:margin|mark-?up|profit)s?)\b(?!\s+(?:of\s+error|for\s+error|of\s+safety|call))`) },
   { id: 'econ.we-clear', category: 'economics', subkind: 'profit', re: rx(String.raw`\b(?<mark>we(?:${AP}ll|\s+will|${AP}re|\s+are|\s+would|${AP}d|\s+should|\s+stand\s+to)?\s+(?:make|making|made|clear|clearing|cleared|net|netting|netted|pocket|pocketing|pocketed)\s+${HEDGE}${AMOUNT}(?:\s+(?:on|from|off)\s+(?:this|that|it|the\s+[\w-]+))?)`) },
   { id: 'econ.profitable', category: 'economics', subkind: 'profit', re: rx(String.raw`\b(?<mark>(?:this|that|the)\s+(?:job|project|contract|deal|order|work)\s+(?:is|was|${AP}s)\s+(?:very\s+|really\s+|super\s+|quite\s+|hugely\s+|so\s+)?(?:profitable|lucrative|a\s+money[\s-]?maker|a\s+gold\s*mine|a\s+cash\s+cow|losing\s+(?:us\s+)?money|underwater)|we${AP}re\s+(?:losing|making)\s+(?:a\s+lot\s+of\s+|good\s+|serious\s+)?money\s+on\s+(?:this|that|it|the\s+[\w-]+))`) },
   { id: 'econ.our-cost', category: 'economics', subkind: 'cost', re: rx(String.raw`\b(?<mark>(?:our|my|internal|the\s+real|the\s+actual|the\s+true)\s+(?:internal\s+|actual\s+|real\s+|true\s+|total\s+|unit\s+|labou?r\s+|material\s+|delivery\s+|direct\s+|all-in\s+|landed\s+)?costs?(?:\s+(?:on|for)\s+(?:this|that|the|it)(?:\s+[\w-]+){0,3}?)?\s+${COPULA}\s+${HEDGE}(?:${AMOUNT}|${QUALITY}))`) },
@@ -195,7 +201,7 @@ export const RULES = Object.freeze([
   { id: 'access.otp', category: 'access', subkind: 'code', code: 'sign-in', re: rx(String.raw`\b(?<mark>(?:verification|one[\s-]time|2fa|mfa|otp|authentication|auth|sign[\s-]?in|log[\s-]?in)\s+(?:code|pin|passcode)\s*(?:is|was|:|=|-)\s*(?:still\s+)?#?\s*\d{4,8})\b`) },
   // A password given: "the password is Tr4ctor!22", "PIN: 4471", "Wi-Fi key: Harbor-2026". Never a mask,
   // a template or a value the sentence calls an example.
-  { id: 'access.password', category: 'access', subkind: 'password', re: rx(String.raw`\b(?<mark>(?<kw>password|passwd|passcode|pass\s?code|passphrase|pw|pwd|wi-?fi\s+key|network\s+key|wpa2?\s+key|pin(?:\s+(?:number|code))?)\s*(?:(?:for|to|on)\s+(?:the\s+|our\s+|my\s+|your\s+)?[\w-]+(?:\s+[\w-]+)?\s*)?(?<sep>(?:(?:has\s+been\s+|was\s+|is\s+|will\s+be\s+)?(?:set|changed|reset|updated)\s+to|is|was|will\s+be|:|=|-)\s*:?\s*(?:still\s+|now\s+|just\s+)?)["'“‘]?(?<secret>[^\s"'”’]{3,})["'”’]?)`), check: passwordGiven },
+  { id: 'access.password', category: 'access', subkind: 'password', re: rx(String.raw`\b(?<mark>(?<kw>password|passwd|passcode|pass\s?code|passphrase|pw|pwd|wi-?fi\s+key|network\s+key|wpa2?\s+key|pin(?:\s+(?:number|code))?)\s*(?:(?:for|to|on)\s+(?:the\s+|our\s+|my\s+|your\s+)?[\w-]+(?:\s+[\w-]+)?\s*)?(?<sep>(?:(?:has\s+been\s+|was\s+|is\s+|will\s+be\s+)?(?:set|changed|reset|updated)\s+to|is|was|will\s+be|:|=|-)\s*(?::\s*)?(?:still\s+|now\s+|just\s+)?)["'“‘]?(?<secret>[^\s"'”’]{3,})["'”’]?)`), check: passwordGiven },
   { id: 'access.login', category: 'access', subkind: 'password', re: rx(String.raw`\b(?<mark>(?:log\s?in|user\s?name|user\s+id|credentials?(?:\s+are)?)\s*(?:is|are|:)?\s*\S+\s*(?:\/|and|,)\s*(?:(?:the\s+)?(?:password|pw|pwd)\s*(?:is|:)?\s*)?(?<secret>\S{4,}))`), check: (m) => /[\d!@#$%^&*_]/.test(m.groups.secret) && !isPlaceholderPassword(m.groups.secret.replace(/[.,;:]+$/, '')) },
   { id: 'access.api-key', category: 'access', subkind: 'password', re: rx(String.raw`\b(?<mark>(?:api\s+key|access\s+token|secret\s+key|auth\s+token|bearer\s+token)\s*(?:is|:|=)\s*(?<value>[a-z0-9_\-.]{16,}))`), check: (m) => looksRandom(m.groups.value.replace(/\.+$/, '')) },
   { id: 'access.security-status', category: 'access', subkind: 'security', re: rx(String.raw`\b(?<mark>(?:the\s+)?(?:alarm|alarms|alarm\s+system|security\s+system|camera|cameras|cctv|security\s+cameras?|motion\s+sensors?|security\s+lights?|site\s+lights)${WHERE}\s+(?:(?:is|are|was|were|has\s+been|have\s+been|will\s+be|${AP}s|${AP}re)\s+(?:still\s+|currently\s+|now\s+|going\s+to\s+be\s+)?(?:off|down|disabled|broken|offline|disarmed|out\s+of\s+order|switched\s+off|turned\s+off|dead|faulty|not\s+(?:working|armed|set|on|recording|connected|monitored))|(?:isn${AP}t|aren${AP}t|wasn${AP}t|weren${AP}t|doesn${AP}t|don${AP}t|won${AP}t)\s+(?:work(?:ing)?|armed|set|on|recording|connected|monitored|cover(?:ing)?)\b[^.?!;]{0,30}))`) },
@@ -207,7 +213,7 @@ export const RULES = Object.freeze([
 
   // Marked for inside the company (§5.10): text that says it isn't for outside readers, in an email that
   // is going outside. A plain "please don't forward this link" to a customer stays clear.
-  { id: 'internal.marker', category: 'internal', subkind: 'marker', re: rx(String.raw`\b(?<mark>(?:strictly\s+)?(?:for\s+)?internal\s+(?:use\s+)?only|for\s+internal\s+(?:use|eyes|circulation|discussion)|internal\s+(?:and|&)\s+confidential|not\s+for\s+(?:external|outside|public|client|customer)\s+(?:distribution|use|circulation|eyes|release)|not\s+to\s+be\s+(?:shared|forwarded|sent|circulated|distributed)\s+(?:externally|outside|with\s+(?:the\s+)?(?:client|customer|supplier|buyer|seller|other\s+side)s?)|(?:do\s+not|don${AP}t|please\s+don${AP}t|please\s+do\s+not)\s+(?:forward|share|send|show|pass)\s+(?:this|it|these|the\s+(?:numbers|figures|details|email))?\s*(?:on\s+)?(?:to|with)\s+(?:the\s+|our\s+|their\s+)?(?:client|customer|supplier|buyer|seller|tenant|landlord|other\s+side|contractor|vendor|them)s?|keep\s+(?:this|it|these)\s+(?:between\s+(?:us|ourselves)|in-?house|internal)|(?:this|it)\s+stays\s+(?:between\s+us|in-?house|internal))\b`) },
+  { id: 'internal.marker', category: 'internal', subkind: 'marker', re: rx(String.raw`\b(?<mark>(?:strictly\s+)?(?:for\s+)?internal\s+(?:use\s+)?only|for\s+internal\s+(?:use|eyes|circulation|discussion)|internal\s+(?:and|&)\s+confidential|not\s+for\s+(?:external|outside|public|client|customer)\s+(?:distribution|use|circulation|eyes|release)|not\s+to\s+be\s+(?:shared|forwarded|sent|circulated|distributed)\s+(?:externally|outside|with\s+(?:the\s+)?(?:client|customer|supplier|buyer|seller|other\s+side)s?)|(?:do\s+not|don${AP}t|please\s+don${AP}t|please\s+do\s+not)\s+(?:forward|share|send|show|pass)\s+(?:this|it|these|the\s+(?:numbers|figures|details|email))?\s*(?:on\s+)?(?:to|with)\s+(?:the\s+|our\s+|their\s+)?(?:client|customer|supplier|buyer|seller|tenant|landlord|other\s+side|contractor|vendor|them)s?|keep\s+(?:this|it|these)\s+(?:between\s+(?:us|ourselves)|in-?house|internal)|keep\s+(?:this|it|these)\s+(?:[a-z]+\s+){0,6}?within\s+(?:the|our)\s+(?:project\s+)?(?:team|company|firm|group|office|department)|(?:this|it)\s+stays\s+(?:between\s+us|in-?house|internal))\b`) },
   // Remark about a person: an insult or disparaging remark about a person or a company.
   { id: 'remark.is-insult', category: 'remark', subkind: 'insult', re: rx(String.raw`\b(?:is|are|was|were|${AP}s|${AP}re|being|seems\s+like|sounds\s+like|what)\s+(?<mark>(?:(?:a|an|such\s+an?|a\s+total|a\s+complete|a\s+real|an\s+absolute|an\s+utter|a\s+bunch\s+of|a\s+pack\s+of|total|complete|absolute|utter)\s+)?(?:(?:useless|incompetent|clueless|lazy|stupid|dumb|bloody|fucking|damn|lying|thieving)\s+)?${INSULT}\b(?:\s+who(?:${AP}s|${AP}ve|\s+has|\s+have|\s+is|\s+are|\s+can${AP}t|\s+cannot|\s+couldn${AP}t|\s+never|\s+doesn${AP}t|\s+don${AP}t|\s+wouldn${AP}t|\s+won${AP}t)\b[^.?!,;]{1,60})?)`) },
   { id: 'remark.those-insults', category: 'remark', subkind: 'insult', re: rx(String.raw`\b(?<mark>(?:that|those|these|this|bunch\s+of|pack\s+of)\s+(?:(?:total|complete|absolute|useless|incompetent|clueless|lazy|stupid|bloody|fucking|damn)\s+)?${INSULT})\b`) },
@@ -348,7 +354,20 @@ export function screenText(text, { source = 'body', file = null } = {}) {
       if (!hit.rules.includes(id)) hit.rules.push(id);
     };
     // The whole text and where this sentence starts in it, for a label on a neighbouring line.
-    screenOne(s.text, { text, offset: s.start }, RULES, add);
+    // A very long unbroken stretch (a pasted log, a CSV row with no full stops) is read in overlapping
+    // windows: every rule's match is far shorter than the overlap, and no pattern's cost can grow with
+    // the stretch's length. The detectors' own window logic still sees the whole text through ctx.
+    if (s.text.length <= WINDOW) screenOne(s.text, { text, offset: s.start }, RULES, add);
+    else {
+      const seen = new Set();
+      for (let w = 0; w < s.text.length; w += WINDOW - OVERLAP) {
+        screenOne(s.text.slice(w, w + WINDOW), { text, offset: s.start + w }, RULES, (id, category, subkind, start, end, codeKind) => {
+          const key = id + ':' + (start + w) + ':' + (end + w);
+          if (!seen.has(key)) { seen.add(key); add(id, category, subkind, start + w, end + w, codeKind); }
+        });
+        if (w + WINDOW >= s.text.length) break;
+      }
+    }
     for (const h of paired.get(index) || []) add(h.id, h.category, h.subkind, h.start, h.end, h.codeKind);
     for (const h of table.hits.get(index) || []) add(h.id, h.category, h.subkind, h.start, h.end, h.codeKind);
     for (const h of records.get(index) || []) add(h.id, h.category, h.subkind, h.start, h.end);

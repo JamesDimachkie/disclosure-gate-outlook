@@ -73,10 +73,14 @@ function context(f) {
   return parts;
 }
 
+// A long address wraps after its @ (dan@ / whitfielddev.example) before anywhere else.
+const breakAfterAt = (address) => { const s = String(address || ''), at = s.indexOf('@'); return at < 0 ? s : [s.slice(0, at + 1), document.createElement('wbr'), s.slice(at + 1)]; };
 function personRow(r) {
+  // Outlook shows an address typed without a name as its own name: show it once, initials from before the @.
+  const name = r.name && !String(r.name).includes('@') ? r.name : '';
   return el('li', { class: 'person' },
-    el('span', { class: `avatar avatar--h${hue(r.address || r.name)}`, 'aria-hidden': 'true' }, initials(r.name, r.address)),
-    el('span', { class: 'person__text' }, el('span', { class: 'person__name' }, r.name || r.address), r.name ? el('span', { class: 'person__address' }, r.address) : null),
+    el('span', { class: `avatar avatar--h${hue(r.address || r.name)}`, 'aria-hidden': 'true' }, initials(name || String(r.address || '').split('@')[0].replace(/[._-]+/g, ' '), r.address)),
+    el('span', { class: 'person__text' }, el('span', { class: 'person__name' + (name ? '' : ' person__name--address') }, name || breakAfterAt(r.address)), name ? el('span', { class: 'person__address' }, r.address) : null),
     el('span', { class: 'chip' + (r.reach === 'inside' ? '' : ' chip--outside') }, r.label));
 }
 
@@ -102,7 +106,8 @@ function card(f) {
   return el('article', { class: 'card', 'aria-labelledby': 'label-' + key },
     el('h3', { class: 'card__label', id: 'label-' + key }, f.label),
     f.place ? el('p', { class: 'card__place' }, f.place) : null,
-    (file || recipient) ? el('p', { class: 'card__excerpt card__file' }, recipient ? (f.address || f.recipient?.address || f.sentence.text) : f.sentence.text) : el('p', { class: 'card__excerpt card__excerpt--quote' }, highlighted(f.sentence.text, f.marks)),
+    f.subkind === 'greeting' ? el('p', { class: 'card__excerpt' }, STRINGS.dialog.greeting.replace('{name}', f.greeted || '').replace('{to}', (f.recipients || []).join(', ') || f.sentence.text))
+      : (file || recipient) ? el('p', { class: 'card__excerpt card__file' }, recipient ? (f.address || f.recipient?.address || f.sentence.text) : f.sentence.text) : el('p', { class: 'card__excerpt card__excerpt--quote' }, highlighted(f.sentence.text, f.marks)),
     around && state.expanded.has(f.id) ? el('p', { class: 'card__context', id: 'context-' + key }, around) : null,
     el('p', { class: 'card__why' }, f.why),
     file || inFile ? el('p', { class: 'card__note' }, STRINGS.pane.fileNote) : null,
@@ -141,7 +146,9 @@ function render() {
   else line.replaceChildren();
   // A held result whose every card is gone (removed or edited away) has nothing left to review:
   // it says the draft changed and offers Check again, rather than an empty list.
-  const findings = view === 'held' ? live(state.result?.findings || []) : [];
+  const kept = view === 'held' ? live(state.result?.findings || []) : [];
+  // Recipient problems first, as in the Send dialog: a wrong recipient is why everything else leaks.
+  const findings = [...kept.filter((f) => f.source === 'recipient'), ...kept.filter((f) => f.source !== 'recipient')];
   const resolved = view === 'held' && !findings.length && !!state.result?.findings?.length;
   // State D.
   const notice = $('notice');
@@ -167,9 +174,9 @@ function render() {
   $('recipients-title').textContent = STRINGS.sections.recipients;
   $('recipients').hidden = !people.length || view === 'idle' || view === 'empty';
   $('people').replaceChildren(...people.map(personRow));
-  // What stopped it.
+  // What stopped it: only when there is a card to show (never an empty heading while checking or clear).
   $('findings-title').textContent = STRINGS.sections.findings;
-  $('findings').hidden = !['checking', 'held', 'clear'].includes(view) || resolved;
+  $('findings').hidden = !findings.length;
   $('cards').replaceChildren(...findings.map(card));
   // The footer.
   const foot = [];

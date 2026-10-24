@@ -1,0 +1,223 @@
+{
+  "files": 36,
+  "readInFull": 36,
+  "allPhrases": 36,
+  "results": [
+    {
+      "file": "checklist.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "checklist.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "checklist.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "contract.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "contract.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "contract.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "invoice.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "invoice.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "invoice.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "letter.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "letter.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "letter.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "menu.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "menu.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "menu.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "minutes.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "minutes.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "minutes.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "multilingual.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "multilingual.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "multilingual.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "newsletter.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "newsletter.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "newsletter.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "payslip_template.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "payslip_template.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "payslip_template.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "policy.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "policy.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "policy.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "quote.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "quote.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "quote.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "report.chromium.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "report.word.docx",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    },
+    {
+      "file": "report.word.pdf",
+      "ok": true,
+      "reason": null,
+      "missing": []
+    }
+  ]
+}

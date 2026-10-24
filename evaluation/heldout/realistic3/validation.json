@@ -1,0 +1,165 @@
+{
+  "status": "validated",
+  "author": "gpt-6.1-sol",
+  "date": "2026-10-23",
+  "spec": "SPEC.md v2, 23 October 2026",
+  "scope": "realistic3 only; no checker or model imported or executed",
+  "checkpoint": false,
+  "total": 300,
+  "cases_sha256": "7eafe4015ea51a8013c3bb3ef3c60702f2486db32d5d52d409444156d91badf1",
+  "composition": {
+    "secrets": {
+      "stop": 10,
+      "prompt": 0,
+      "pass": 0
+    },
+    "payment": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "government_id": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "personal": {
+      "stop": 15,
+      "prompt": 0,
+      "pass": 0
+    },
+    "economics": {
+      "stop": 15,
+      "prompt": 0,
+      "pass": 0
+    },
+    "negotiation": {
+      "stop": 10,
+      "prompt": 0,
+      "pass": 0
+    },
+    "remark": {
+      "stop": 10,
+      "prompt": 0,
+      "pass": 0
+    },
+    "lookalike": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "exposed_list": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "file": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "none": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 240
+    }
+  },
+  "lengths": {
+    "body_characters": {
+      "min": 90,
+      "p25": 414,
+      "median": 903,
+      "p75": 957,
+      "max": 1586,
+      "mean": 688.46
+    },
+    "subject_plus_body_characters": {
+      "min": 108,
+      "p25": 441,
+      "median": 931,
+      "p75": 990,
+      "max": 1627,
+      "mean": 719.37
+    }
+  },
+  "stop_placements": {
+    "body": 40,
+    "quoted_history": 15,
+    "subject": 5
+  },
+  "english": {
+    "UK": 103,
+    "US": 97,
+    "AU": 100
+  },
+  "industries": [
+    "Accounting",
+    "Agriculture",
+    "Architecture",
+    "Automotive repair",
+    "Bicycle retail",
+    "Bookkeeping",
+    "Charity administration",
+    "Cleaning services",
+    "Clinic administration",
+    "Commercial law",
+    "Construction",
+    "Courier services",
+    "Dental administration",
+    "Digital agency",
+    "Education services",
+    "Energy services",
+    "Engineering consultancy",
+    "Equipment rental",
+    "Events",
+    "Exhibition design",
+    "Fitness services",
+    "Food wholesale",
+    "Freight",
+    "Furniture supply",
+    "Garden services",
+    "Healthcare administration",
+    "Hospitality",
+    "Hotel operations",
+    "Insurance administration",
+    "Language services",
+    "Legal services",
+    "Manufacturing",
+    "Museum services",
+    "Music education",
+    "Office supplies",
+    "Packaging",
+    "Print services",
+    "Property management",
+    "Public relations",
+    "Publishing",
+    "Real estate",
+    "Recruitment",
+    "Renewable energy",
+    "Research administration",
+    "Retail",
+    "Software support",
+    "Training services",
+    "Transport services",
+    "Travel services",
+    "Veterinary administration",
+    "Waste services",
+    "Water services"
+  ],
+  "checks": [
+    "schema",
+    "sequential unique ids",
+    "unique normalized bodies",
+    "README table and statistics",
+    "reserved domains",
+    "outside routing",
+    "no potential lookalike fixture routing",
+    "visible outside recipients below eight",
+    "no attachments",
+    "numeric and credential shape screen",
+    "exact deciding sentence occurrence and placement",
+    "quoted SPEC rationale",
+    "unique literal deciding verbs and nouns"
+  ],
+  "semantic_limit": "Disclosure labels and absence of second findings are author judgments; structural checks do not prove semantic completeness."
+}

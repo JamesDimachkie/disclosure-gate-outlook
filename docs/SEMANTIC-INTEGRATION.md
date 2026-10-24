@@ -221,7 +221,7 @@ disclosing sentences per category, and thresholds fitted on only 72 ordinary ema
   stopped 4/300 ordinary (bar 3). Two of the four were phrase rules ("Weekdays are a nightmare",
   "make sure the side gate is unlocked for the van"), fixed in 29fe8e5d.
 - Candidate C (same weights; thresholds with zero flags over 872 outside ordinary emails from the
-  reserved and retired sets) was pre-registered (8b402d6b) before `everyday3` (gpt-6-astra) existed.
+  reserved and retired sets) was pre-registered (8b402d6b) before `everyday3` (gpt-6-astra) was seen or scored (its author had already started; see docs/gates).
 - Gate 2, one run: `everyday3` 42/60 stopped, 0/300 ordinary stopped; `realistic3` 38/60, 0/240.
   Rules alone: 7/60 and 4/60, 0 ordinary. It passes the bar (at most 1% ordinary, at least half the
   disclosures, on each set), so `model` now defaults to `on`; `model=off` turns it off.
@@ -232,8 +232,21 @@ disclosing sentences per category, and thresholds fitted on only 72 ordinary ema
 
 James: catching anything potentially risky or damaging matters more than an extra "are you sure?" the
 sender can click through. Candidate D (same v2.2 weights; thresholds chosen on all development ordinary
-mail for about 5% questioned) was pre-registered (lane/model afb48657) before the blind `everyday4`
-(claude-sonnet-5-5) existed. One run: 50/60 disclosures stopped, 12/300 ordinary questioned (4%); bar
+mail for about 5% questioned) was pre-registered (lane/model afb48657) before anyone deciding saw the blind `everyday4`
+(claude-sonnet-5-5). One run: 50/60 disclosures stopped, 12/300 ordinary questioned (4%); bar
 at most 5% questioned and at least 75% caught, so D ships. Same set, for comparison only: previous
 thresholds 42/60 and 2/300; rules alone 14/60 and 1/300. The one rules-only question was a vet's "care
 instructions for Milo after his surgery" (a pet read as a person).
+
+## Budget 2.5 s, partial results (24 October 2026)
+
+Measured with `tools/measure-semantic-send.mjs` (headless Chromium, this laptop): a fresh runtime pays
+about 0.45 to 0.55 s to restore and start the model, then about 0.1 s per 10 sentences; a 60-sentence
+email took about 1.3 s, close to the old 1.5 s cap, and CDP CPU throttling does not slow the worker, so
+slower computers would have lost the model on long emails entirely. Now the model's share of Send is
+2.5 s, sentences go to the worker 16 at a time in email order, and when time runs out the classified
+chunks still count (state `partial`). The handler's 4.5 s deadline is unchanged.
+
+The benchmark also found that the built scripts carried raw non-ASCII characters inside regular
+expressions: a host serving .js without a charset would make the whole add-in fail to load. The build
+now writes pure ASCII (`asciiOnly` in tools/build.mjs) and a test enforces it.

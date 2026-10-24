@@ -1,0 +1,2785 @@
+{
+  "label": "pre-integration",
+  "cases_sha256": "7fddcde51d3f480d53a94cf22dc9937ebded82da6d88d050bcd1a97706aabb3c",
+  "total": 360,
+  "composition": {
+    "secrets": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "payment": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "government_id": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "personal": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "economics": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "negotiation": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "remark": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "lookalike": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "exposed_list": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "file": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "none": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 300
+    }
+  },
+  "confusion": {
+    "stop": {
+      "stop": 14,
+      "prompt": 0,
+      "pass": 46,
+      "error": 0
+    },
+    "prompt": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0,
+      "error": 0
+    },
+    "pass": {
+      "stop": 1,
+      "prompt": 0,
+      "pass": 299,
+      "error": 0
+    }
+  },
+  "false_stop_rate": 0.0033333333333333335,
+  "catch_rate": 0.23333333333333334,
+  "unwanted_prompts": 0,
+  "correct": 313,
+  "errors": 0,
+  "by_category": [
+    {
+      "category": "secrets",
+      "total": 12,
+      "expected_stop": 12,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 2,
+      "misses": 10,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "payment",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "government_id",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "personal",
+      "total": 12,
+      "expected_stop": 12,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 1,
+      "misses": 11,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "economics",
+      "total": 12,
+      "expected_stop": 12,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 4,
+      "misses": 8,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "negotiation",
+      "total": 12,
+      "expected_stop": 12,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 5,
+      "misses": 7,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "remark",
+      "total": 12,
+      "expected_stop": 12,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 2,
+      "misses": 10,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "lookalike",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "exposed_list",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "file",
+      "total": 0,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 0,
+      "correct": 0,
+      "misses": 0,
+      "false_stops": 0,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    },
+    {
+      "category": "none",
+      "total": 300,
+      "expected_stop": 0,
+      "expected_prompt": 0,
+      "expected_pass": 300,
+      "correct": 299,
+      "misses": 0,
+      "false_stops": 1,
+      "prompt_mismatches": 0,
+      "unwanted_prompts": 0,
+      "errors": 0
+    }
+  ],
+  "results": [
+    {
+      "id": "everyday4-001",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-002",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-003",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-004",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-005",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-006",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-007",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-008",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-009",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-010",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-011",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-012",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-013",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-014",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-015",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-016",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-017",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-018",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-019",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-020",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-021",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-022",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-023",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-024",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-025",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "everyday4-026",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-027",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-028",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-029",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-030",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-031",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-032",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-033",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-034",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-035",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-036",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-037",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-038",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-039",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-040",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-041",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-042",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-043",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-044",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-045",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-046",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-047",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-048",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-049",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-050",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-051",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-052",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-053",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-054",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-055",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-056",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-057",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-058",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-059",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-060",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-061",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-062",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-063",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-064",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-065",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "everyday4-066",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-067",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-068",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-069",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-070",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-071",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-072",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-073",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-074",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-075",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-076",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-077",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-078",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-079",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-080",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-081",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-082",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-083",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-084",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-085",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-086",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-087",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-088",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-089",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-090",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-091",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-092",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-093",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-094",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-095",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-096",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-097",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-098",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-099",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-100",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-101",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-102",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-103",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-104",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-105",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "everyday4-106",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-107",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-108",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-109",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-110",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-111",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-112",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-113",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-114",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-115",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-116",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-117",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-118",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-119",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-120",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-121",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-122",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-123",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-124",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-125",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-126",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-127",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-128",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-129",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-130",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-131",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-132",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-133",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-134",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-135",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-136",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-137",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-138",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-139",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-140",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-141",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-142",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-143",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-144",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-145",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-146",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-147",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-148",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-149",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-150",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-151",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-152",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-153",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-154",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-155",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-156",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-157",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-158",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-159",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-160",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "everyday4-161",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-162",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-163",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-164",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-165",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-166",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-167",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-168",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-169",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-170",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-171",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-172",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-173",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "access"
+      ]
+    },
+    {
+      "id": "everyday4-174",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-175",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-176",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-177",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-178",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-179",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-180",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-181",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-182",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-183",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-184",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-185",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-186",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-187",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-188",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-189",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-190",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-191",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-192",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-193",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-194",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-195",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-196",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-197",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-198",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-199",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-200",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics",
+        "negotiation"
+      ]
+    },
+    {
+      "id": "everyday4-201",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-202",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-203",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-204",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-205",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-206",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-207",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-208",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-209",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-210",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-211",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-212",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-213",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-214",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-215",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-216",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-217",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-218",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-219",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-220",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-221",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-222",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-223",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-224",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-225",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "remark"
+      ]
+    },
+    {
+      "id": "everyday4-226",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-227",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-228",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-229",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-230",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-231",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-232",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "everyday4-233",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-234",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-235",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-236",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-237",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-238",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-239",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-240",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-241",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-242",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-243",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-244",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-245",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-246",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-247",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-248",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-249",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-250",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-251",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-252",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-253",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-254",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-255",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-256",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-257",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-258",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-259",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-260",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-261",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-262",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-263",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-264",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-265",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-266",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-267",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-268",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-269",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-270",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-271",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-272",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-273",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-274",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-275",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-276",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-277",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-278",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-279",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-280",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-281",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-282",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-283",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-284",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-285",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-286",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-287",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-288",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-289",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-290",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-291",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-292",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-293",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-294",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-295",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-296",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-297",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-298",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-299",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-300",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-301",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-302",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-303",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-304",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-305",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-306",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-307",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-308",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-309",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-310",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-311",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-312",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "everyday4-313",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-314",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-315",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-316",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-317",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "everyday4-318",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-319",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-320",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-321",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-322",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-323",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-324",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-325",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-326",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-327",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-328",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "everyday4-329",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-330",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-331",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-332",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-333",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-334",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-335",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-336",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-337",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-338",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-339",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-340",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-341",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-342",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-343",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-344",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-345",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-346",
+      "category_expected": "none",
+      "expect": "pass",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-347",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-348",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-349",
+      "category_expected": "secrets",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-350",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "personal"
+      ]
+    },
+    {
+      "id": "everyday4-351",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-352",
+      "category_expected": "personal",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-353",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-354",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "everyday4-355",
+      "category_expected": "economics",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "economics"
+      ]
+    },
+    {
+      "id": "everyday4-356",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-357",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-358",
+      "category_expected": "negotiation",
+      "expect": "stop",
+      "actual": "stop",
+      "finding_categories": [
+        "negotiation"
+      ]
+    },
+    {
+      "id": "everyday4-359",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    },
+    {
+      "id": "everyday4-360",
+      "category_expected": "remark",
+      "expect": "stop",
+      "actual": "pass",
+      "finding_categories": []
+    }
+  ]
+}

@@ -68,10 +68,11 @@ test('unknown settings use neutral instructions in every dialog shape and fit th
 
 test('landing and README describe flags and failures without claiming an automatic hold', () => {
   for (const path of ['../outlook/index.html', '../README.md']) {
-    assert.match(read(path), /Ordinary emails flagged by mistake/);
+    assert.match(read(path), /Ordinary emails asked about/);
     assert.doesNotMatch(read(path), /Ordinary emails held by mistake|are held as "can't check"/);
   }
-  assert.match(read('../outlook/index.html'), /return "can't check" \(the failures setting decides whether the sender is asked or the email is held\)/);
+  assert.match(read('../outlook/index.html'), /pending OCR or incomplete PDF coverage follows IT's failures setting/);
+  assert.match(read('../outlook/index.html'), /unreadable attached or embedded picture asks the sender to look, with Send Anyway/);
 });
 
 function strings(value, out = []) {
@@ -111,4 +112,13 @@ test('handler uses the copy module; generated dev manifest has the default setti
   assert.match(manifest, /findings=ask&amp;failures=ask/);
   assert.match(manifest, /<Permissions>ReadWriteItem<\/Permissions>/);
   for (const url of manifest.match(/https:\/\/[^"]+/g)) assert.ok(url.startsWith('https://localhost:3443/'), url);
+});
+
+test('a wrong-recipient finding is listed first in the dialog, ahead of what the email contains', () => {
+  const found = [{ category: 'economics', subkind: 'margin', source: 'body' }, { category: 'negotiation', subkind: 'other', source: 'body' },
+    { category: 'access', subkind: 'code', source: 'body' }, { category: 'recipient', subkind: 'greeting', source: 'recipient', greeted: 'Kate', recipients: ['dan@whitfielddev.example'] }];
+  const { errorMessageMarkdown } = dialogContent({ state: 'held', findings: found }, { ask: true });
+  const bullets = errorMessageMarkdown.split('\n').filter((l) => l.startsWith('- '));
+  assert.match(bullets[0], /Greets Kate, sent to dan@whitfielddev\.example/);
+  assert.match(bullets.at(-1), /and 1 more/);
 });

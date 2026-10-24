@@ -127,12 +127,12 @@ test('PDF: object headers are found in linear time past a long run of digits', (
   assert.equal(quick(() => pdfText(pdf)), 'Gate code 4417');
 });
 
-test('PDF: tens of thousands of text runs and inline images stay linear', () => {
+test('PDF: tens of thousands of text runs stay linear; unsupported inline images fail closed', () => {
   const runs = Array.from({ length: 40000 }, (_, i) => `(w${i % 10}) Tj 0 -14 Td`).join(' ');
   const text = quick(() => pdfText(onePage(`BT /F1 12 Tf 72 720 Td ${runs} ET`)));
   assert.equal(text.split(/\s+/).length, 40000);
   const images = 'q 1 0 0 1 0 0 cm BI /W 1 /H 1 /CS /G /BPC 8 ID x EI Q\n'.repeat(20000);
-  assert.equal(quick(() => pdfText(onePage(images + 'BT /F1 12 Tf 72 720 Td (After the images) Tj ET'))), 'After the images');
+  quick(() => assert.throws(() => pdfText(onePage(images + 'BT /F1 12 Tf 72 720 Td (After the images) Tj ET')), /scan_rendering/));
 });
 
 test('PDF: forms drawing forms, too many decoded bytes or huge font ranges fail as too complex within a second', () => {

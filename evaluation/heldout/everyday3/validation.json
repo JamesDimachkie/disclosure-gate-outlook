@@ -1,0 +1,108 @@
+{
+  "status": "PASS",
+  "mode": "final",
+  "cases": 360,
+  "pass": 300,
+  "stop": 60,
+  "prompt": 0,
+  "composition": {
+    "secrets": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "payment": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "government_id": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "personal": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "economics": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "negotiation": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "remark": {
+      "stop": 12,
+      "prompt": 0,
+      "pass": 0
+    },
+    "lookalike": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "exposed_list": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "file": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 0
+    },
+    "none": {
+      "stop": 0,
+      "prompt": 0,
+      "pass": 300
+    }
+  },
+  "ordinary_industries": 90,
+  "english_variants": {
+    "UK": 98,
+    "AU": 67,
+    "US": 73,
+    "NZ": 31,
+    "CA": 23,
+    "IE": 26,
+    "IN": 19,
+    "ZA": 15,
+    "SG": 8
+  },
+  "stop_placements": {
+    "body": 41,
+    "quoted": 13,
+    "subject": 6
+  },
+  "body_words": {
+    "min": 6,
+    "median": 30,
+    "max": 206,
+    "mean": 33.93,
+    "under_15": 23,
+    "at_least_100": 11
+  },
+  "sha256": "c67c8b5c89dd96fb3d6f86c023652f88f385847f4641324f8ee98f0274d4ae0e",
+  "checks": [
+    "schema",
+    "literal source equality",
+    "nine balanced 40-case batches",
+    "distinct deciding sentences",
+    "sequential IDs",
+    "composition quotas",
+    "normalized duplicate bodies",
+    "outside-only reserved domains",
+    "conservative domain dissimilarity",
+    "deciding-sentence occurrence and placement",
+    "verbatim rationale quotation",
+    "numeric screen",
+    "README composition agreement"
+  ],
+  "checker_run": false,
+  "model_run": false
+}

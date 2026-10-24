@@ -4,7 +4,7 @@
   'use strict';
   var READABLE=/\.(pdf|docx|xlsx|pptx|csv|txt)$/i, IMAGE=/\.(png|jpe?g|gif|bmp|tiff?|webp)$/i, MAX_BYTES=10*1024*1024;
   function image(a) { return a.type==='file' && (IMAGE.test(a.name) || /^image\//i.test(a.contentType)); }
-  function ocrFile(a) { return a.type==='file' && (image(a) || /\.pdf$/i.test(a.name)); }
+  function ocrFile(a) { return a.type==='file' && (image(a) || /\.(pdf|docx|pptx|xlsx)$/i.test(a.name)); }
   function call(target,method,args) {
     return new Promise(function(resolve,reject) {
       target[method].apply(target,(args || []).concat(function(r) {
@@ -93,11 +93,14 @@
         var reads=Promise.resolve();
         draft.attachments.forEach(function(a) {
           reads=reads.then(function() {
-            if(a.type!=='file' || (!withContent && !ocrFile(a)) || !READABLE.test(a.name) && !image(a) || !Number.isSafeInteger(a.size) || a.size<0 || a.size>MAX_BYTES || typeof item.getAttachmentContentAsync!=='function') return;
+            // Both reads take every readable file's bytes: the release fingerprint binds each file's hash, so
+            // a file replaced under the same id, name and size between the check and Send is caught. A
+            // failed second read leaves no hash, which fails the comparison and asks again.
+            if(a.type!=='file' || !READABLE.test(a.name) && !image(a) || !Number.isSafeInteger(a.size) || a.size<0 || a.size>MAX_BYTES || typeof item.getAttachmentContentAsync!=='function') return;
             return call(item,'getAttachmentContentAsync',[a.id]).then(function(c) {
               if(c && String(c.format).toLowerCase()==='base64' && typeof c.content==='string' && c.content.length<=Math.ceil(MAX_BYTES/3)*4+4) {
                 if(withContent) a.content=c.content;
-                if(ocrFile(a)) { try { a.contentHash=core.attachmentHash(c.content); } catch(e) {} }
+                try { a.contentHash=core.attachmentHash(c.content); } catch(e) {}
               }
             },function(){ /* The local check presents an unread-file finding. */ });
           });
@@ -108,7 +111,8 @@
           if(service) return service.prepare(office,draft.attachments).then(function(){
             return service.wait(office,options && options.deadline ? options.deadline-175 : Date.now());
           }).then(function(){service.apply(office,draft.attachments);return draft;});
-          return readOcrCache(item).then(function(ocr){applyOcrCache(draft.attachments,ocr);return draft;});
+          // Without the service, leave OCR absent: core presents the unread-picture/failure choice.
+          return draft;
         });
       });
     });
@@ -118,18 +122,5 @@
       draft.attachments.map(function(a){return [a.id,a.name,a.size,a.isInline,a.type,a.contentType,a.contentHash || null];})]);
     return root.DisclosureGateCore.sha256(value);
   }
-  // OCR producer shares exact-identity ready/pending/failed/unsupported entries on this key.
-  function readOcrCache(item) {
-    if(!item.sessionData || typeof item.sessionData.getAsync!=='function') return Promise.resolve(null);
-    return call(item.sessionData,'getAsync',['dg-ocr-v1']).then(function(s){try{return JSON.parse(s);}catch(e){return null;}},function(){return null;});
-  }
-  function applyOcrCache(attachments,cache) {
-    if(!cache || cache.version!==1 || !cache.attachments) return;
-    attachments.forEach(function(a) {
-      var c=cache.attachments[a.id];
-      if(ocrFile(a) && c && c.name===a.name && c.size===a.size && c.status==='ready' && typeof c.text==='string' && c.text.length<=200000 && /^[a-f0-9]{64}$/.test(c.hash || '') && c.hash===a.contentHash) a.ocr={status:'ready',text:c.text,hash:c.hash};
-      else if(ocrFile(a) && c && c.name===a.name && c.size===a.size && c.status==='failed' && c.reason==='ocr_low_confidence' && typeof c.hint==='string' && c.hint.length<=200000 && /^[a-f0-9]{64}$/.test(c.hash || '') && c.hash===a.contentHash) a.ocr={status:'failed',reason:'ocr_low_confidence',hint:c.hint,hash:c.hash};
-    });
-  }
-  root.DisclosureGateDraft={readDraft:readDraft,readBody:readBody,readEnvelope:readEnvelope,itemType:itemType,composeItem:composeItem,locationText:locationText,inThrees:inThrees,fingerprint:fingerprint,call:call,applyOcrCache:applyOcrCache,OCR_KEY:'dg-ocr-v1'};
+  root.DisclosureGateDraft={readDraft:readDraft,readBody:readBody,readEnvelope:readEnvelope,itemType:itemType,composeItem:composeItem,locationText:locationText,inThrees:inThrees,fingerprint:fingerprint,call:call};
 })(typeof globalThis!=='undefined'?globalThis:this);

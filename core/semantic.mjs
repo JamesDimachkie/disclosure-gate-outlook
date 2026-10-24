@@ -1,7 +1,7 @@
 // Optional, local-only enrichment. A skipped model never changes the rules' decision.
 import { splitSentences, occurrences } from './sentences.mjs';
 
-export const SEMANTIC_BUDGET_MS = 1500;
+export const SEMANTIC_BUDGET_MS = 2500;
 // Skip the whole semantic pass above this cap, rather than claiming partial coverage as 'used'.
 export const SEMANTIC_MAX_SENTENCES = 400;
 const SUBKINDS = Object.freeze({ access: 'security', personal: 'other', economics: 'other', negotiation: 'position', remark: 'insult' });
@@ -42,7 +42,10 @@ export async function semanticFindings(parts, rules, semantic, budgetMs = SEMANT
       try { semantic.cancel?.(); } catch { /* Cancellation must never fail the rule check. */ }
       return skip('timeout');
     }
-    if (!Array.isArray(result) || result.length !== units.length || result.some(r => !r ||
+    // A partial result (time ran out after some chunks) covers the first sentences in order; it must say
+    // so. Anything else of the wrong length is invalid.
+    const partial = Array.isArray(result) && result.partial === true && result.length > 0 && result.length < units.length;
+    if (!Array.isArray(result) || (result.length !== units.length && !partial) || result.some(r => !r ||
       (r.label !== 'none' && !Object.prototype.hasOwnProperty.call(SUBKINDS, r.label)) || !Number.isFinite(r.score) || r.score < 0 || r.score > 1)) return skip('invalid');
     const occupied = new Set(rules.map(sentenceKey)), findings = [];
     // The model reads each sentence with the one before it, so a disclosure can spill onto the next
@@ -69,7 +72,7 @@ export async function semanticFindings(parts, rules, semantic, budgetMs = SEMANT
       findings.push({ ...unit, category: r.label, subkind: SUBKINDS[r.label], severity: 'stop',
         marks: [{ start: 0, end: unit.sentence.text.length }], found_by: 'model' });
     });
-    return { findings, state: 'used' };
+    return { findings, state: partial ? 'partial' : 'used' };
   } catch (error) {
     // Never copy model exceptions into diagnostics: they may contain an input sentence.
     return skip(REASONS.has(error?.semanticReason) ? error.semanticReason : 'error');

@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 import { docxText, xlsxText, pptxText } from '../core/extract/office.mjs';
 import { attachmentText } from '../core/attachments.mjs';
 import { checkDraft } from '../core/gate.mjs';
-import { CONFIG, DAN, CLEAN_BODY, draft } from './helpers.mjs';
+import { CONFIG, DAN, CLEAN_BODY, draft, PNG_B64 } from './helpers.mjs';
 import { officeZip, NS, wdoc, wpart, para, slide, shape, sheet, relsXml, COMMON } from './office-fixture.mjs';
 
 const SECRET = 'The password is Tr4ctor!22.';
@@ -206,7 +206,7 @@ test('PPTX: OLE objects, ActiveX controls, unknown parts and missing slides can\
 
 // ---- ordinary files ------------------------------------------------------------------------------
 const THEME = `<a:theme ${NS.a} name="Office Theme"><a:themeElements><a:clrScheme name="Office"><a:dk1><a:sysClr val="windowText" lastClr="000000"/></a:dk1></a:clrScheme><a:fontScheme name="Office"><a:majorFont><a:latin typeface="Calibri Light"/></a:majorFont></a:fontScheme></a:themeElements></a:theme>`;
-const PNG = Buffer.from('89504e470d0a1a0a0000000d49484452', 'hex');
+const PNG = Buffer.from(PNG_B64, 'base64');
 test('ordinary DOCX, XLSX and PPTX files with the usual parts are read and go through clear', async () => {
   const docx = officeZip('docx', {
     'word/document.xml': wdoc(para('Kate, here is the schedule for the North Hall pour.') + para('The crane arrives on Tuesday at 7 a.m.') + '<w:p><w:r><w:drawing><wp:inline><wp:docPr id="1" name="Picture 1"/><a:graphic><a:graphicData uri="x"/></a:graphic></wp:inline></w:drawing></w:r></w:p>'),

@@ -44,6 +44,57 @@ the same mailbox-domain-only, settings-unknown runtime fallback as an unreadable
 - Pane previews: /taskpane.html?preview=held&theme=light. Other preview states are idle, checking,
   attachment, clear and unavailable. These use fictional data and do not prove Outlook behavior.
 
+### Public attachment corpus check
+
+Keep downloaded public data outside repositories (here, a sibling folder `../dg-email-corpus/`).
+The 24 October corpus is Mozilla pdf.js `test/pdfs` tree
+`aaf1f935676dee10a85871671af8c4609dcbcc10` (repository commit
+`7f23cbbd17a7b991423d70cb089cd1dff5080277`) and Apache POI `test-data/document`,
+`test-data/spreadsheet`, `test-data/slideshow` at
+`b014b071ab8ffe9ec025ae750c52ffdc02eeff27`. Only PDF/DOCX/XLSX/PPTX files are inputs;
+`DOWNLOAD.json` records each Git blob hash. Treat every file as untrusted; never execute corpus
+content. Scripts run from this repository.
+
+```powershell
+node tools/corpus-check.mjs ../dg-email-corpus ../corpus-baseline.json --source ../dg-baseline
+node tools/corpus-check.mjs ../dg-email-corpus ../corpus-current.json --compare ../corpus-baseline.json
+```
+
+Run the baseline first, then use `--compare` to include per-file transitions in the current JSON.
+`--source` selects a trusted code snapshot containing `core/`; use `git archive <revision> core`
+and extract it to a disposable directory rather than changing another checkout. The baseline for
+this lane is `c80811249f5dfae328a3bfed86aa9fefd941a726`. The runner executes every input in a
+fresh Node child (`--max-old-space-size=400`, sequentially), with a 10-second wall-clock kill
+(`--timeout-ms` can select 100–60,000 ms). It calls `attachmentText` and the same bounded native
+coverage/image-selection APIs used before OCR. No OCR inference or model is run. Counts distinguish
+`ok`, `needs_ocr`, `cant_check`, `timeout` and `crash`; reasons, native extraction outcomes, timings,
+slowest files and download provenance are retained in JSON. Any crash/timeout makes the command
+exit nonzero. This is parser and OCR-selection evidence, not OCR accuracy or live Outlook timing.
+
+24 October 2026 results (same 1,586 inputs; no crashes, timeouts or skipped files):
+
+| Format | Baseline native OK | Baseline needs OCR | Baseline can't-check | Revised native OK | Revised needs OCR | Revised can't-check |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| PDF | 457 | 3 | 548 | 369 | 3 | 636 |
+| DOCX | 107 | 0 | 23 | 90 | 15 | 25 |
+| PPTX | 71 | 0 | 24 | 36 | 26 | 33 |
+| XLSX | 309 | 0 | 44 | 291 | 14 | 48 |
+
+Of the 88 PDFs newly can't-check, the primary reasons are `unmapped_font` 27 (including Type3),
+`scan_rendering` 19, `pattern` 17, `scan_annotations` 13, `scan_encoding` 5,
+`annotation_unreadable` 2, and one each of `form_depth`, `scan_size`, `bad_flate`, `scan_pages`
+and `unsupported_filter`. No unproven unmapped-symbol exception was added. The 15 Office files
+newly can't-check comprise `image_size` 11, and one each of `scan_rendering`, `no_text`,
+`ocr_unsupported` and `too_complex`. Unreadable Office pictures in that count ask; document
+failures follow the failures setting. The separate 55 Office files need OCR before a decision.
+PDFs with image pages that the bounded scan extractor cannot represent remain can't-check;
+the runner does not count them as successful OCR candidates.
+
+Total subprocess wall time was 175.54 s baseline and 172.97 s revised. Summed per-file checking
+time (file read/imports, native extraction and OCR selection) was 57.63 s and 51.48 s; the slowest
+checks were 485.57 ms and 644.28 ms. These are separate runs on this laptop, not a controlled
+benchmark or a Send latency claim. Every file's outcome/reason/timing is in the generated JSON.
+
 The dev server reuses the existing localhost certificate from the Office add-in development
 certificate folder. It does not install or change trust. If that certificate is missing, untrusted
 or expired, set one up with Microsoft's office-addin-dev-certs tool first. It serves only built static files,
@@ -61,18 +112,21 @@ Otherwise it reads all outgoing text, including quoted history, and supported at
 Core uses portable typed arrays, synchronous SHA-256, base64 decoding, CRC32, and a bounded pure-JS
 raw/zlib inflater. Supported text formats are PDF with a text layer, DOCX, XLSX, PPTX, CSV and TXT, up
 to 10 MiB each. ZIP entries are bounded at 10 MiB and declared expansion at 20 MiB across a file and
-every Office file embedded in it. Unsupported, encrypted, scanned or unreadable files produce a file
-finding. Pictures follow SPEC §5.9 (see "Images and scans" below).
+every Office file embedded in it. Unsupported, encrypted or incomplete reads produce a file
+finding; supported scans go through OCR. Pictures follow SPEC §5.9 (see "Images and scans" below).
 
 Office files are read part by part (`core/extract/office.mjs`, over the scanner in `xml.mjs`). Every
-part in the package is classified by its content type in `[Content_Types].xml`: read, known to hold
-no text a recipient reads (styles, themes, images, ids, caches whose values the cells or slides also
-show), or the whole file can't be checked. Sheets and slides come from the workbook's and the
+part in the package is classified by its content type and picture relationships: read, collected
+for OCR, known to hold no extra readable text (styles, themes, ids, duplicate caches), or the whole
+file can't be checked. Sheets and slides come from the workbook's and the
 presentation's relationships, in their order. Embedded DOCX/XLSX/PPTX files are read (three levels at
 most). Unknown parts, macros, ActiveX, OLE objects, dialog sheets, shared-workbook revisions, Power
 Pivot data, OLAP pivot caches, malformed XML, a DOCTYPE, and words in an element a reader doesn't read
-(`unread_text:<element>`) make the file "can't check". Images inside Office files are not read, as
-with inline images in the body. PDFs add form field values, annotation text and annotation
+(`unread_text:<element>`) make the file "can't check". Office pictures are collected by
+`officeCoverage` for OCR; direct text-only readers refuse pictures that need recognition.
+Only micro-images up to 8×8 pixels and 256 bytes and unreferenced cached thumbnails are ignored.
+SVG text is read natively; SVG image/use/foreignObject content asks as an unsupported picture.
+PDFs add form field values, annotation text and annotation
 appearances; XFA forms and files attached to a PDF can't be checked.
 
 The handler has a 4.5-second timer and wall-clock checks, completes each event once, and re-reads
@@ -121,19 +175,26 @@ Send-anyway prompt. Any other picture outcome follows the failures setting. A me
 only inline file images at most 8 by 8 px and 256 bytes. Other inline files take the normal path.
 Animated/multi-page containers and images over 12 megapixels are genuine reading failures (above).
 
-PDFs always undergo native text extraction first. For a PDF returning `no_text`, the local scan
-extractor can OCR displayed JPEG XObjects or simple raw/Flate RGB/gray images, including across
-multiple pages/forms. Every page/image must be accounted for; masks, annotations, clipping/painting,
+PDFs always undergo native text extraction first. `pdfCoverage` records every image-bearing page,
+including image-only pages and images beside native text. The local scan extractor can OCR
+displayed JPEG XObjects or simple raw/Flate RGB/gray images across the selected pages/forms.
+Native and OCR text are combined; native notes/fields never substitute for page coverage.
+Scanned PDFs inside Office packages retain the PDF failures policy; wrapping them does not turn
+an unread scan into the Office picture exception.
+Every selected page/image must be accounted for; masks, annotations on scan pages, clipping/painting,
 unsupported colorspaces/filters, missing images and more than 12 images/pages stay can't check.
 No full PDF renderer is shipped. OCR is English only. The synthetic calibration method, measured
 thresholds and substantial remaining photo over-holds are in
 [evaluation/ocr-calibration/README.md](evaluation/ocr-calibration/README.md).
 
 The OCR seam is item.sessionData["dg-ocr-v1"]:
-{version:1, attachments:{[id]:{name,size,hash,status,text,reason,at,token}}}.
+{version:1, attachments:{[id]:{name,size,hash,status,text,hint,reason,at,token}}}.
 Ready entries require a SHA-256 hash of the attachment bytes, fresh matching bytes on Send, exact
-id/name/size and an eligible image or a PDF whose native extraction returned no_text. OCR entries
-cannot bypass DOCX or other extraction. Removal/replacement invalidates entries and stale jobs;
+id/name/size and an eligible picture, PDF scan or Office picture set. OCR entries cannot bypass
+native document extraction. Office results bind to the whole file, including embedded files.
+Failed multi-picture reads retain confident text separately from uncertain hints; pending/hash
+failures stop, while unreadable embedded Office pictures use the attached-picture prompt.
+Removal/replacement invalidates entries and stale jobs;
 an explicit Added event also invalidates a reused identical tuple. Pending/failed/unsupported states
 never clear automatically; an Ask outcome needs human confirmation. The serialized OCR cache is bounded at 12,000 characters; oversized text is not
 truncated into a ready result. Tesseract's persistent data cache is disabled and its worker is

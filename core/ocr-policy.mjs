@@ -7,7 +7,7 @@ export const OCR_KEY = 'dg-ocr-v1';
 export const imageName = name => /\.(png|jpe?g|gif|bmp|tiff?|webp)$/i.test(String(name || ''));
 // SVG is text (XML), not a picture: it never takes the picture path.
 export const imageAttachment = a => a && a.type === 'file' && (imageName(a.name) || /^image\/(?!svg)/i.test(String(a.contentType || '')));
-export const ocrCandidate = a => a && a.type === 'file' && (imageAttachment(a) || /\.pdf$/i.test(a.name));
+export const ocrCandidate = a => a && a.type === 'file' && (imageAttachment(a) || /\.(pdf|docx|pptx|xlsx)$/i.test(a.name));
 export const sameAttachment = (a, b) => !!a && !!b && a.name === b.name && a.size === b.size;
 export const compactOcr = text => String(text || '').replace(/\s+/g, '');
 export function ocrStats(data) {
