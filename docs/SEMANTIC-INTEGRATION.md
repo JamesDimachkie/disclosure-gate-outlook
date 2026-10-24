@@ -1,31 +1,19 @@
 # Optional on-device sentence model
 
-Updated 23 October 2026 on `lane/model-setting`, starting from `5115e72a` (including calibrated
-model integration `565286c5` and semantic integration `c9dd0d59`). Rules remain mandatory. An absent,
+Current contract: 24 October 2026. Rules remain mandatory. An absent,
 unsupported, cold, corrupt, busy, over-limit, failed or timed-out model returns rules only; it
 never creates a can't-check outcome. IT's `model=off` skips both preload and classification.
 
-## Review changes
-
-| Finding | Resolution |
-| --- | --- |
-| 1. Budget clamp | Explicit evaluator budgets pass through; gate default and Send handler retain 1,500 ms. Regression tested. |
-| 2. Coverage claims | Model README, security notes, model notice, landing copy and this report name only personal/economics/remarks; access/negotiation stay rules-only. |
-| 3. Text-only claims | Remaining stale claim replaced with the shipped `context_text` contract. |
-| 4. Old hash | This report now points to `model/PROVENANCE.json`, without a duplicated hash. |
-| 5. Measurement placeholders | Removed; model README and security notes point to README's measured results. |
-| 6. Stale caches | Successful preload prunes other semantic revisions; failure preserves them, unrelated caches survive. Tested. |
-| 7. Tokenizer template | Guard imports the inference formatter; exact-token-boundary parity is tested in both input modes. |
-| 8. ORT licence provenance | Notice records `v1.30.0` upstream URLs; fetched text matches modulo CRLF. |
-| 9. Mixed clocks | Gate semantic deadline now uses injected `now()`; tested with non-wall-clock values and spent rule time. |
+The current implementation is in [core/semantic.mjs](../core/semantic.mjs) and
+[outlook/model-service.mjs](../outlook/model-service.mjs); the shipped categories and input mode
+are in [model/out/labels.json](../model/out/labels.json). Historical measurements and release
+decisions below describe their stated versions, not the current defaults or timing budget.
 
 ## Coverage and input contract
 
-The shipped model is v2.3 (lane/model f86918b2: `model/train23/runs/17m-mixed` weights with the
-thresholds in `model/train23/candidates/v23/labels.json`): it covers access, personal
+The shipped model is v2.3 (source revision `f86918b2`): it covers access, personal
 details, internal costs/economics, negotiation and remarks. It is on by default (24 October 2026).
-Measured accuracy is in [README: How well it works](../README.md#how-well-it-works); no accuracy
-evaluation was rerun for this timing/fix lane.
+Measured accuracy is in [README: How well it works](../README.md#how-well-it-works).
 
 `checkDraft(draft, { semantic })` supplies the existing sentence splitter's units. The shipped
 metadata selects `context_text`: previous sentence plus current sentence, formatted by
@@ -37,10 +25,9 @@ also skips the whole pass. Low-confidence OCR hints remain limited to existing s
 
 Predictions add `found_by:'model'`, exact sentence offsets/index/occurrence and whole-sentence marks.
 Rules win whenever that source/file/sentence already has a finding. Personal and economics use
-existing `other` copy; remarks use `insult`. The generic core seam still accepts the five category
-labels for alternative classifiers, but this export cannot flag access or negotiation. Severity,
+existing `other` copy; access uses `security`, negotiation uses `position`, and remarks use `insult`. Severity,
 dialogs, Review and removal use the existing presentation code. The diagnostic is
-`result.checked.semantic`: `used` or a fixed `skipped:<reason>` code, without input, scores or exceptions.
+`result.checked.semantic`: `used`, `partial` or a fixed `skipped:<reason>` code, without input, scores or exceptions.
 
 ## Runtime, assets and lifecycle
 
@@ -76,32 +63,34 @@ dialogs, Review and removal use the existing presentation code. The diagnostic i
 
 Keeping a live ORT session trades retained runtime memory for lower repeat latency. It does not
 shrink the model or establish a native memory ceiling. OCR preempts the session before recognition;
-separate Outlook activations may still overlap. The lifecycle decision follows the model lane's
-`model/research/FEASIBILITY.md`; it does not assume a shared or persistent Outlook runtime.
+separate Outlook activations may still overlap. The implementation does not assume a shared or
+persistent Outlook runtime.
 
 ## Budget
 
-Retain **1,500 ms**, including sentence preparation, cache restoration/verification, worker/session
-startup and classification. The production gate default and Send handler explicitly keep this cap.
+The model has at most **2,500 ms**, including sentence preparation, cache restoration/verification,
+worker/session startup and classification. The production gate default and Send handler use this cap.
 After mandatory rules finish, the core takes
 `min(semanticBudgetMs, semanticDeadline - now())`, using the injected gate clock consistently.
 Send's overall timer remains **4,500 ms**, with **500 ms reserved** for unchanged-draft reread/result
-persistence. A timeout terminates the worker and returns the rules result, not a failed check.
+persistence. Sentences are classified in chunks of **16**, in email order. Completed chunks can be
+kept as a `partial` result when time runs out; rules still cover the whole text. A timeout terminates
+the worker and never creates a failed check.
 
 Explicit core callers may lift `semanticBudgetMs` (the held-out runner's 60-second budget is no
 longer silently clamped). The browser service also permits an explicit direct `classify` budget;
-`forSend` keeps the production cap. The measurements below give no reason to increase it. Reducing
-it to 1,000 ms would skip some measured 60-sentence fresh-runtime passes; raising it would allow
-longer waits without demonstrated benefit. A 1,500 ms model allowance leaves roughly 500 ms for
-other work under the typical two-second target, but real Office callback/startup delays remain
-unmeasured. The 4,500 ms deadline is the final bound, not a guarantee of a two-second native Send.
+`forSend` keeps the production cap. The 4,500 ms deadline bounds the handler's work, not Outlook's
+startup or callback time, and does not guarantee a two-second native Send.
 
 ## Browser Send timing
 
+These measurements predate the 2,500 ms budget and partial-result support. The original run used
+the 1,500 ms budget; the measured values below are preserved.
+
 Measured 23 October 2026 with **Playwright / headless Chromium 149.0.7827.55**, Windows 11,
-Intel Core Ultra 9 185H, 16 GB RAM. Baseline: `5115e72a`; after: this lane's reuse/transfer changes.
-One browser ran at a time; no training or other heavy job was started by this lane. No packages
-were installed; `node_modules` remains the junction to `dg-email-runtime/node_modules`.
+Intel Core Ultra 9 185H, 16 GB RAM. Baseline: `5115e72a`; after: the session-reuse and buffer-transfer changes.
+One browser ran at a time; no training or other heavy job ran during the measurement.
+No packages were installed for that measurement.
 
 The flow is the built browser Send handler -> synthetic synchronous Office draft callbacks ->
 mandatory rules -> Cache API read -> SHA-256 verification -> real Blob worker -> real ORT WASM
@@ -155,7 +144,7 @@ The probe starts and closes its own loopback HTTP server and Chromium, records t
 only, and never contacts Outlook or a hosted model. Browser automation was explicitly requested.
 Its Office callbacks are synchronous fixtures; the model, cache, hashing and inference are real.
 
-## Export, licences and verification
+## Historical export and verification receipt (23 October 2026)
 
 The real export, source hashes, base revision, input mode and integration threshold change are
 recorded in [model/PROVENANCE.json](../model/PROVENANCE.json). That is the source of truth; this
@@ -189,7 +178,12 @@ and exactly one timely completion. Classic 2206/pre-2403 must retain rules-only 
 measurements and Node/VM/build checks do not qualify those native behaviors. No held-out directory
 content was opened, listed or searched beyond the permitted `evaluation/heldout/run.mjs`.
 
-## Default: Off (23 October 2026)
+## Release history
+
+The following dated decisions are historical. The current model is v2.3, on by default; see the
+current contract above. The recorded scores and decision bars are unchanged.
+
+### Default: Off (23 October 2026)
 
 The release bar for shipping the model on by default was at most 2 needless questions on the
 200-email `everyday` held-out tier (outside mail with no disclosure). Measured once on main: the rules
@@ -198,7 +192,7 @@ one remark). The model therefore ships off (`model` defaults to `off`; `model=on
 a default install never preloads or calls it. Improving its precision on everyday mail is the main
 work for the next release; the `everyday` tier must not be used to tune it.
 
-## v2.1 model (23 October 2026)
+### v2.1 model (23 October 2026)
 
 Retrained on whole emails written by two AI authors (GPT-6 Astra and Claude Opus 5.5, every sentence
 labelled as Send splits it), Ettin-17M, trainer's thresholds unchanged. Single held-out runs:
@@ -207,17 +201,17 @@ flagged. The everyday flags were read: all are model errors on harmless sentence
 "surgery" room, a pet's "booster", a tyre "puncture"), not label errors. The default stays Off; the
 bar remains at most 1% on both everyday-style sets. Neither set may be used for tuning.
 
-## v2.2 model and Default: On (24 October 2026)
+### v2.2 model and Default: On (24 October 2026)
 
 Retired to development after their first use: `everyday`, `everyday2`, `realistic`, `realistic2`.
 The v2.1 failures were shortcut cues ("surgery", "booster", "camera", "room for") learned from 25 to 60
 disclosing sentences per category, and thresholds fitted on only 72 ordinary emails.
 
-- Data: two new author lanes (Claude Opus 5.5, GPT-6.1 Sol) each wrote 300 whole labelled outside
+- Data: two independent authors (Claude Opus 5.5, GPT-6.1 Sol) each wrote 300 whole labelled outside
   emails across 90 to 150 settings and 500 contrastive pairs (a disclosing sentence and a same-topic
   twin that is not). With pairs, the 17M model caught 80 of 96 reserved disclosure emails at zero
   needless questions on 392 reserved ordinary ones; whole emails alone caught 57.
-- Gate 1 (plan lane/model b8941df4) failed both candidates on the blind `everyday2` (Fable 5.1): v2.2
+- Gate 1 (plan revision b8941df4) failed both candidates on the blind `everyday2` (Fable 5.1): v2.2
   stopped 4/300 ordinary (bar 3). Two of the four were phrase rules ("Weekdays are a nightmare",
   "make sure the side gate is unlocked for the van"), fixed in 29fe8e5d.
 - Candidate C (same weights; thresholds with zero flags over 872 outside ordinary emails from the
@@ -228,17 +222,17 @@ disclosing sentences per category, and thresholds fitted on only 72 ordinary ema
 - Limits: one model family wrote each set; labels are single-author judgments; the gate measures
   synthetic mail. Retired sets must not be used to tune again without a new blind set.
 
-## Recall-first thresholds (24 October 2026, afternoon)
+### Recall-first thresholds (24 October 2026, afternoon)
 
 James: catching anything potentially risky or damaging matters more than an extra "are you sure?" the
 sender can click through. Candidate D (same v2.2 weights; thresholds chosen on all development ordinary
-mail for about 5% questioned) was pre-registered (lane/model afb48657) before anyone deciding saw the blind `everyday4`
+mail for about 5% questioned) was pre-registered (source revision afb48657) before anyone deciding saw the blind `everyday4`
 (claude-sonnet-5-5). One run: 50/60 disclosures stopped, 12/300 ordinary questioned (4%); bar
 at most 5% questioned and at least 75% caught, so D ships. Same set, for comparison only: previous
 thresholds 42/60 and 2/300; rules alone 14/60 and 1/300. The one rules-only question was a vet's "care
 instructions for Milo after his surgery" (a pet read as a person).
 
-## Budget 2.5 s, partial results (24 October 2026)
+### Budget 2.5 s, partial results (24 October 2026)
 
 Measured with `tools/measure-semantic-send.mjs` (headless Chromium, this laptop): a fresh runtime pays
 about 0.45 to 0.55 s to restore and start the model, then about 0.1 s per 10 sentences; a 60-sentence
@@ -251,9 +245,9 @@ The benchmark also found that the built scripts carried raw non-ASCII characters
 expressions: a host serving .js without a charset would make the whole add-in fail to load. The build
 now writes pure ASCII (`asciiOnly` in tools/build.mjs) and a test enforces it.
 
-## v2.3 model (24 October 2026)
+### v2.3 model (24 October 2026)
 
-Gate 4 (plan lane/model 60d9ebad, committed before the `everyday5` author started; candidate fixed at
+Gate 4 (plan revision 60d9ebad, committed before the `everyday5` author started; candidate fixed at
 f86918b2 before scoring). A third data round targeted what v2.2 missed or questioned on the retired
 `everyday4`. Selection on the calibration split chose the `mixed` recipe (91 of 116 calibration
 disclosures at zero questions); thresholds came from the D procedure on 1,752 development ordinary

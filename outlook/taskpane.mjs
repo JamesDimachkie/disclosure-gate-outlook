@@ -1,5 +1,5 @@
 import { classifyDraft, checkDraft } from '../core/gate.mjs';
-import { runtimeConfig } from './config.mjs';
+import { runtimeConfig, parseConfigUrl, validateConfig } from './config.mjs';
 import { recipientCardLive, checkAgain } from './pane-logic.mjs';
 // The review pane shows the last Send result and pre-reads images for a later Send. It shows
 // what the last Send found. Before the first Send it says only that it checks the email when you
@@ -131,7 +131,7 @@ function render() {
   const view = state.view;
   $('pane').dataset.state = view;
   $('name').textContent = STRINGS.name;
-  // The pill: Held (B and D) or Clear (E); none before a Send or while one is checked.
+  // The pill: Review or Held for findings/failures, Clear after a pass; none before or during a check.
   const pill = view === 'held' || view === 'unavailable' ? 'held' : view === 'clear' ? 'clear' : null;
   const landed = pill && pill !== state.lastPill ? ' chip--landed' : '';
   $('pill').replaceChildren(pill === 'held' ? el('span', { class: 'chip chip--held' + landed }, icon('i-pause'), state.result?.outcome === 'ask' ? STRINGS.pill.ask : STRINGS.pill.held)
@@ -150,7 +150,7 @@ function render() {
   // Recipient problems first, as in the Send dialog: a wrong recipient is why everything else leaks.
   const findings = [...kept.filter((f) => f.source === 'recipient'), ...kept.filter((f) => f.source !== 'recipient')];
   const resolved = view === 'held' && !findings.length && !!state.result?.findings?.length;
-  // State D.
+  // Explain the current finding or failure above the review controls.
   const notice = $('notice');
   notice.hidden = !['held', 'unavailable'].includes(view);
   const canSend = state.result?.outcome === 'ask';
@@ -168,7 +168,7 @@ function render() {
   const retry = $('check-again');
   retry.textContent = STRINGS.pane.checkAgain;
   retry.hidden = tooLargeToRetry(state.result) || !state.changedSinceCheck && !resolved && (!state.result?.hasFailures || !['held', 'unavailable', 'checking'].includes(view));
-  retry.disabled = !!state.rechecking || !state.item;
+  retry.disabled = !!state.rechecking || (!state.item && !demo);
   // Who will see this.
   const people = view === 'checking' ? state.recipients : state.result?.recipients || [];
   $('recipients-title').textContent = STRINGS.sections.recipients;
@@ -203,7 +203,7 @@ function show(result) {
   if (!result || typeof result.state !== 'string') return;
   if (['held', 'unavailable', 'too_large'].includes(result.state)) {
     let config, canOverride = true;
-    try { config = runtimeConfig(globalThis.Office || {}, globalThis); canOverride = !state.item || Office.context.requirements.isSetSupported('Mailbox', '1.14'); }
+    try { config = demo ? demo.config : runtimeConfig(globalThis.Office || {}, globalThis); canOverride = !state.item || Office.context.requirements.isSetSupported('Mailbox', '1.14'); }
     catch { config = { findings: 'hold', failures: 'hold' }; canOverride = false; }
     result = describeResult(result, config, { canOverride, reviewButton: false, itemType: state.item ? Draft().itemType(state.item) : result.itemType });
   }
@@ -300,6 +300,7 @@ async function watchPhase() {
 }
 
 async function recheck() {
+  if (demo) { state.errors.clear(); state.expanded.clear(); show({ ...(await demoCheck()), paneCheck: true }); return; }
   if (state.rechecking || !state.item) return;
   state.rechecking = true; state.view = 'checking'; render();
   try {
@@ -315,6 +316,7 @@ async function recheck() {
 }
 
 async function removeFinding(f) {
+  if (demo) { removeFromDemo(f); return; }
   const call = Draft().call, item = state.item;
   state.busy.add(f.id);
   state.errors.delete(f.id);
@@ -354,20 +356,35 @@ function applyTheme(requested) {
   } catch { /* follow the system */ }
 }
 
-// ---- the film's fictional run, for looking at the pane outside Outlook --------------------------
+// ---- fictional preview, for looking at the pane outside Outlook --------------------------------
+// Uses the release defaults (Ask/Ask) unless the URL carries dg=2 settings. Remove and Check again
+// work on the fictional draft, so the whole review loop can be tried without Outlook.
 const DEMO = { from: { name: 'John Reyes', address: 'john@northline.example' }, to: [{ name: 'Kate Morgan', address: 'kate@northline.example', kind: 'person' }], cc: [{ name: 'Dan Whitfield', address: 'dan@whitfielddev.example', kind: 'person' }], bcc: [], subject: 'North Hall: CO 12' };
 const HELD_BODY = "Kate — North Hall's tracking triple the margin we bid. If Dan pushes on CO 12, we've got room.";
 const CLEAN_BODY = "Kate — let's walk CO 12 together before Dan's call on Friday.";
+let demo = null;
+function demoCheck() {
+  const attachments = demo.kind === 'attachment' ? [{ id: 'p1', name: 'site-photos.zip', size: 48213, isInline: false, type: 'file' }] : [];
+  state.files = attachments.map((a) => a.name);
+  return checkDraft({ ...DEMO, body: { format: 'html', text: state.seen.body }, attachments }, { config: demo.config }).catch(() => ({ state: 'unavailable', findings: [], recipients: state.recipients }));
+}
+function removeFromDemo(f) {
+  const out = f.source === 'body' || f.source === 'subject' ? removeSentenceFromText(state.seen[f.source], f.sentence.text, f.sentence.occurrence) : { ok: false };
+  state.expanded.delete(f.id);
+  if (out.ok) state.seen = { ...state.seen, [f.source]: out.text };
+  else state.errors.set(f.id, STRINGS.pane.removeFailed);
+  render();
+}
 async function preview(kind) {
-  const body = kind === 'held' ? HELD_BODY : CLEAN_BODY;
-  state.seen = { subject: DEMO.subject, body };
+  let config;
+  try { config = parseConfigUrl(location.href); } catch { /* fall back to the defaults */ }
+  demo = { kind, config: config || validateConfig({ findings: 'ask', failures: 'ask' }) };
+  state.seen = { subject: DEMO.subject, body: kind === 'held' ? HELD_BODY : CLEAN_BODY };
   const people = classifyDraft(DEMO);
   state.recipients = people?.recipients || [];
   if (kind === 'idle' || kind === 'checking') { state.view = kind; render(); return; }
   if (kind === 'clear' || kind === 'unavailable') { show({ state: kind, findings: [], recipients: state.recipients }); return; }
-  const attachments = kind === 'attachment' ? [{ id: 'p1', name: 'site-photos.zip', size: 48213, isInline: false, type: 'file' }] : [];
-  state.files = attachments.map((a) => a.name);
-  show(await checkDraft({ ...DEMO, body: { format: 'html', text: body }, attachments }).catch(() => ({ state: 'unavailable', findings: [], recipients: state.recipients })));
+  show(await demoCheck());
 }
 
 async function start() {

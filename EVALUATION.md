@@ -38,7 +38,7 @@ product contract) and the case format, with written rules:
 | everyday4 | claude-sonnet-5-5 | 300 | 60 | Gate 3 (retired) |
 | everyday5 | gpt-6-luna | 300 | 60 | Gate 4 (retired) |
 
-The training data for the sentence model came from different authors and lanes again: two rounds of
+The training data for the sentence model came from separate authors: two rounds of
 whole labelled emails by Claude Opus 5.5 and GPT-6.1 Sol (1,320 emails), plus 1,000 contrastive pairs
 (a disclosing sentence and a near-identical one that is not).
 
@@ -91,16 +91,19 @@ is the development sets (342 of 350 against 318), which shaped it and so flatter
 | everyday5 | v2.3, recall-first thresholds | 60/60 | 2/300 | ≤ 5%, ≥ 75%, ≥ v2.2 | **Pass (current)** |
 | everyday5 | v2.2, recall-first thresholds (comparison) | 60/60 | 1/300 | | |
 
-Pre-registrations are in `docs/gates/`, copied from the model lane. Each was committed before anyone
+Pre-registrations are in `docs/gates/`, preserved from the original model-development history. Each was committed before anyone
 deciding had seen its set; for gates 2 and 3 the set's author had already started, for gate 4 not.
 Results are committed under `evaluation/heldout/*/gate*.json`.
+
+The gate plans and dataset READMEs are original custody records. Their branch names and
+authoring-only paths are historical provenance, not setup requirements for the public snapshot.
 
 ## Real incidents, replayed
 
 A separate research pass catalogued 51 documented incidents of emails or attachments that caused harm
 (regulator notices, court records, major reporting), and rebuilt 49 of them as test emails with invented
 names and the same kind of content, 12 with real XLSX or PDF attachments. On the current build the
-add-in asks about 35 of the 49. Six of the 49 were sent inside the organisation, which the add-in does
+add-in asks about 35 of the 49. Six of the 49 were sent inside the organization, which the add-in does
 not check by design. Most of the rest are wrong-recipient mistakes with ordinary content, which no
 content check can see, or file contents the research could not reconstruct. This replay guided the
 records, greeting and internal-marking checks, so it is development evidence, not a blind result, and
@@ -127,7 +130,7 @@ can't-check, which asks. Neither check measures how often a real attachment is a
   in difficulty: the same v2.2 caught 50 of 60 on `everyday4` and 60 of 60 on `everyday5`.
 - The model runs only in Outlook on the web, the new Outlook and Outlook for Mac. Classic Outlook for
   Windows uses the rules alone.
-- Live behaviour in Outlook was tested by hand in Outlook on the web; see
+- Live behavior in Outlook was tested by hand in Outlook on the web; see
   `outlook/RUNTIME-V2-NOTES.md`.
 
 ## Reproducing

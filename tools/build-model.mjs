@@ -10,7 +10,7 @@ export async function buildModel(root) {
   const dir = resolve(root, 'dist/model');
   await mkdir(dir, { recursive: true });
   const classifier = await exists(resolve(root, 'model/classifier.mjs'));
-  // Until the model lane supplies its actual source, build an explicitly unavailable engine.
+  // If classifier source is absent, build an explicitly unavailable engine.
   // This is a throwing build stub, never a fake prediction or a production 'none' result.
   const pending = { name: 'pending-classifier', setup(b) {
     b.onResolve({ filter: /\.\.\/model\/classifier\.mjs$/ }, () => ({ path: 'pending-classifier', namespace: 'pending' }));

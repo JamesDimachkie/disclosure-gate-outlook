@@ -1,7 +1,7 @@
 # Disclosure Gate for Outlook: product spec v2
 
 23 October 2026. Ask-first replaces hold-first behavior. Supersedes v1 where they differ. This is the
-contract for every build lane and the only document an evaluation-set author reads.
+implementation contract and the only document an evaluation-set author reads.
 
 ## 1. The promise
 

@@ -13,7 +13,7 @@ export const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;
 export const MAX_TEXT_CHARS = 200000;
 export const attachmentHash = content => sha256(fromBase64(content));
 
-// 'pdf' | 'docx' | 'xlsx' | 'csv' | 'txt' for a file attachment whose text this build reads, else null.
+// A member of READABLE for a file attachment whose text this build reads, else null.
 export function readableKind(attachment) {
   if (!attachment || (attachment.type && attachment.type !== 'file')) return null;
   const ext = /\.([a-z0-9]+)$/i.exec(String(attachment.name || ''))?.[1]?.toLowerCase();

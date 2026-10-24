@@ -1,4 +1,15 @@
 {
+  "name": "disclosure-gate-outlook",
+  "description": "Local checks for sensitive disclosures in Outlook.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JamesDimachkie/disclosure-gate-outlook.git"
+  },
+  "homepage": "https://jamesdimachkie.github.io/disclosure-gate-outlook/",
+  "engines": {
+    "node": "24.x"
+  },
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,7 +1,7 @@
 # Disclosure Gate for Outlook
 
 **An Outlook add-in that asks "are you sure?" before an email takes something sensitive outside your
-organisation.** Press Send and, if the email carries a password, a card number, a spreadsheet of
+organization.** Press Send and, if the email carries a password, a card number, a spreadsheet of
 people's details, your margin or a remark about a client, or looks like it is going to the wrong
 person, Outlook shows what it found and where. The sender chooses Send Anyway, Review or Don't Send.
 
@@ -32,10 +32,10 @@ and the Review pane it opens (right).*
 | What it means, not just what it says | Personal details about someone, your own costs and margins, your negotiating position, insults, and physical security (a hidden key, an alarm left off), however they are worded, read by an on-device model |
 | Wrong recipient | A greeting to someone who isn't on the recipient lines ("Hi Alex," sent only to Morgan Vale), and addresses that look like yours but aren't (`north1ine.com`) |
 | Marked internal | "Internal only", "not for external distribution", "don't forward this to the client" in an email going outside |
-| Exposed recipient lists | Eight or more outside addresses from three or more organisations in To and Cc |
+| Exposed recipient lists | Eight or more outside addresses from three or more organizations in To and Cc |
 | Attachments and pictures | Word, Excel, PowerPoint, PDF, CSV and text files use local parsers; supported PDF image pages and embedded Office pictures also receive on-device OCR. Incomplete coverage asks or holds; unreadable pictures ask. Micro-images and scan limits are described below |
 
-Email that stays inside your organisation is never held. Meeting invitations are checked the same way.
+Email that stays inside your organization is never held. Meeting invitations are checked the same way.
 
 ## How well it works
 
@@ -62,8 +62,9 @@ in full with every amount, name and accented or non-Latin phrase intact
 POI Office files, regression collections built to break parsers, each file runs in its own bounded
 process: no crashes or timeouts, and the slowest check took 644 ms (OCR inference excluded). A file
 that can't be read completely is reported as can't-check and asks, instead of passing on what was
-read; that rule puts 88 of those PDFs and 15 of the Office files in can't-check and sends 55 Office
-files to OCR for their embedded pictures. Neither collection measures accuracy on ordinary mail.
+read; in all, 636 of the PDFs and 106 of the Office files come back can't-check (88 and 15 more
+than an earlier reader that passed partial reads), and 55 Office files go to OCR for their embedded
+pictures. Neither collection measures accuracy on ordinary mail.
 Outcomes, provenance and the command are in [DEVELOPMENT.md](docs/DEVELOPMENT.md#public-attachment-corpus-check).
 
 PDF image-only pages and images beside native text require OCR, which is combined with native page,
@@ -125,7 +126,7 @@ add-in runs. For holding to cover them, also set:
 | Outlook for Mac | `OnSendAddinsWaitForLoad` = true in the `com.microsoft.outlook` domain (through your Mac management tool) | Mail can be sent before the add-in has loaded |
 | Classic Outlook for Windows | Group Policy *Running Outlook for Simple MAPI Mail Sending* = Enabled | Word's "Attach a copy", "Send to mail recipient" and similar can send while Outlook is closed, unchecked |
 
-Microsoft's reference: [Smart Alerts behaviour](https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/onmessagesend-onappointmentsend-events).
+Microsoft's reference: [Smart Alerts behavior](https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/onmessagesend-onappointmentsend-events).
 
 ### What it doesn't see
 

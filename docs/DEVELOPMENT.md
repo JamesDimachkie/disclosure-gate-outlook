@@ -35,6 +35,13 @@ the same mailbox-domain-only, settings-unknown runtime fallback as an unreadable
 
 ## Development
 
+Use Node 24 and PowerShell 7 (or a shell that supports `&&`). Run these commands from the
+repository root. Before starting the HTTPS server, use an existing trusted localhost certificate
+in the Office add-in development certificate folder. The server does not install certificates or
+change trust; see Microsoft's [office-addin-dev-certs instructions](https://github.com/OfficeDev/Office-Addin-Scripts/tree/master/packages/office-addin-dev-certs).
+Port 3443 must be free. If startup reports `EADDRINUSE`, stop only your own previous development
+server or ask its owner to free the port.
+
 - npm ci installs build/test dependencies only.
 - npm test builds first, then runs the offline suite sequentially.
 - npm run build writes dist and validates both generated manifests offline.
@@ -43,6 +50,9 @@ the same mailbox-domain-only, settings-unknown runtime fallback as an unreadable
 - Rebuild and reload after editing; this deliberately has no hot-reload client in the event runtime.
 - Pane previews: /taskpane.html?preview=held&theme=light. Other preview states are idle, checking,
   attachment, clear and unavailable. These use fictional data and do not prove Outlook behavior.
+
+`npm ci` can print npm's install-script approval warning for build dependencies. Record the warning
+and check the build result; installing dependencies does not establish that the add-in works in Outlook.
 
 ### Public attachment corpus check
 
@@ -53,7 +63,58 @@ The 24 October corpus is Mozilla pdf.js `test/pdfs` tree
 `test-data/spreadsheet`, `test-data/slideshow` at
 `b014b071ab8ffe9ec025ae750c52ffdc02eeff27`. Only PDF/DOCX/XLSX/PPTX files are inputs;
 `DOWNLOAD.json` records each Git blob hash. Treat every file as untrusted; never execute corpus
-content. Scripts run from this repository.
+content. Scripts run from this repository. The corpus is not bundled with the source.
+
+#### Download and check the current build
+
+From the repository root, run this PowerShell 7 block. It downloads only the supported file types
+from the pinned public GitHub trees into a new sibling folder and verifies each Git blob hash.
+No Git clone, sign-in or extra package is needed. Allow time and disk space for the public files.
+Do not open these deliberately difficult documents in Office or execute their contents.
+
+```powershell
+$ErrorActionPreference = 'Stop'
+$corpus = [IO.Path]::GetFullPath((Join-Path (Get-Location) '../dg-email-corpus'))
+if (Test-Path -LiteralPath $corpus) { throw 'Choose a fresh corpus folder; do not overwrite an existing download.' }
+New-Item -ItemType Directory -Path $corpus | Out-Null
+$pdfCommit = '7f23cbbd17a7b991423d70cb089cd1dff5080277'
+$poiCommit = 'b014b071ab8ffe9ec025ae750c52ffdc02eeff27'
+$sources = @(
+    @{ Repo = 'mozilla/pdf.js'; Commit = $pdfCommit; Prefix = 'pdfjs'; Pattern = '^test/pdfs/.*\.pdf$' },
+    @{ Repo = 'apache/poi'; Commit = $poiCommit; Prefix = 'poi'; Pattern = '^test-data/(document|spreadsheet|slideshow)/.*\.(docx|xlsx|pptx)$' }
+)
+$files = @()
+$pdfTree = $null
+foreach ($source in $sources) {
+    $tree = Invoke-RestMethod "https://api.github.com/repos/$($source.Repo)/git/trees/$($source.Commit)?recursive=1"
+    if ($tree.truncated) { throw 'Incomplete source tree; stop without running the check.' }
+    if ($source.Prefix -eq 'pdfjs') { $pdfTree = ($tree.tree | Where-Object path -eq 'test/pdfs').sha }
+    foreach ($file in ($tree.tree | Where-Object { $_.type -eq 'blob' -and $_.path -match $source.Pattern })) {
+        $relative = "$($source.Prefix)/$($file.path)"
+        $target = Join-Path $corpus $relative
+        New-Item -ItemType Directory -Force -Path (Split-Path $target -Parent) | Out-Null
+        $escaped = ($file.path.Split('/') | ForEach-Object { [uri]::EscapeDataString($_) }) -join '/'
+        Invoke-WebRequest "https://raw.githubusercontent.com/$($source.Repo)/$($source.Commit)/$escaped" -OutFile $target -MaximumRetryCount 2 -RetryIntervalSec 1
+        $hash = git hash-object --no-filters -- $target
+        if ($LASTEXITCODE -ne 0 -or $hash -ne $file.sha) { throw "Blob hash mismatch: $relative" }
+        $files += @{ path = $relative; sha = $hash; bytes = $file.size }
+    }
+}
+@{ pdfTree = $pdfTree; pdfCommit = $pdfCommit; poiCommit = $poiCommit; files = $files; failures = @() } |
+    ConvertTo-Json -Depth 5 | Set-Content -Encoding utf8 (Join-Path $corpus 'DOWNLOAD.json')
+node tools/corpus-check.mjs ../dg-email-corpus ../corpus-current.json
+```
+
+GitHub's unauthenticated API has rate limits; if a request fails, retain the partial folder for
+diagnosis and retry in a fresh folder once access is restored. The runner accepts any folder of
+PDF/DOCX/XLSX/PPTX files, so a smaller local corpus can also be checked; its results are not the
+1,586-file measurement below.
+
+#### Optional comparison with another code snapshot
+
+This requires a separate, trusted code snapshot containing `core/` at `../dg-baseline` and an
+identical downloaded corpus. Export a revision you actually have with `git archive <revision> core`
+and extract it into that empty directory; do not switch or change another checkout.
 
 ```powershell
 node tools/corpus-check.mjs ../dg-email-corpus ../corpus-baseline.json --source ../dg-baseline
@@ -61,9 +122,10 @@ node tools/corpus-check.mjs ../dg-email-corpus ../corpus-current.json --compare 
 ```
 
 Run the baseline first, then use `--compare` to include per-file transitions in the current JSON.
-`--source` selects a trusted code snapshot containing `core/`; use `git archive <revision> core`
-and extract it to a disposable directory rather than changing another checkout. The baseline for
-this lane is `c80811249f5dfae328a3bfed86aa9fefd941a726`. The runner executes every input in a
+`--source` selects that trusted snapshot. The historical baseline below was
+`c80811249f5dfae328a3bfed86aa9fefd941a726`; it belongs to the original development history and is
+not available in the public repository's fresh history. A current-build check needs no baseline.
+The runner executes every input in a
 fresh Node child (`--max-old-space-size=400`, sequentially), with a 10-second wall-clock kill
 (`--timeout-ms` can select 100–60,000 ms). It calls `attachmentText` and the same bounded native
 coverage/image-selection APIs used before OCR. No OCR inference or model is run. Counts distinguish
@@ -185,7 +247,7 @@ Every selected page/image must be accounted for; masks, annotations on scan page
 unsupported colorspaces/filters, missing images and more than 12 images/pages stay can't check.
 No full PDF renderer is shipped. OCR is English only. The synthetic calibration method, measured
 thresholds and substantial remaining photo over-holds are in
-[evaluation/ocr-calibration/README.md](evaluation/ocr-calibration/README.md).
+[evaluation/ocr-calibration/README.md](../evaluation/ocr-calibration/README.md).
 
 The OCR seam is item.sessionData["dg-ocr-v1"]:
 {version:1, attachments:{[id]:{name,size,hash,status,text,hint,reason,at,token}}}.

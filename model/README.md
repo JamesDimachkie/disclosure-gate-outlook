@@ -1,11 +1,12 @@
 # Sentence classifier export
 
-Exact source and real int8 export copied from `../dg-email-model/model` on `lane/model`.
-`PROVENANCE.json` records byte sizes, SHA-256 hashes and the source checkout HEAD. No evaluation
-data was copied or inspected. Measured accuracy is in [README: How well it works](../README.md#how-well-it-works).
+The shipped int8 export and inference source are included here.
+[PROVENANCE.json](PROVENANCE.json) records byte sizes, SHA-256 hashes and the source revision.
+Measured accuracy is in [README: How well it works](../README.md#how-well-it-works).
 
-`classifier.mjs` and `tokenize.mjs` are supplied by the model lane. Their source is unchanged.
-`out/` is v2.3 (lane/model f86918b2: `train23/runs/17m-mixed` weights, `train23/candidates/v23` thresholds); it covers all five categories.
+`classifier.mjs` and `tokenize.mjs` are the inference implementation.
+`out/` is v2.3 (source revision `f86918b2`); it covers physical access, personal details,
+internal economics, negotiation and remarks.
 The current metadata selects `context_text`: previous sentence plus
 current sentence, within a combined 128-token window. The browser worker
 skips a whole semantic pass when its untruncated tokenizer input exceeds that window. Rules still

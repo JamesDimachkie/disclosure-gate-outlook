@@ -1,4 +1,4 @@
-// "Remove this sentence" (spec §6.C): delete exactly that sentence from the draft, and nothing else.
+// "Remove this sentence" (SPEC.md §7): delete exactly that sentence from the draft, and nothing else.
 // The sentence is found by its text and its occurrence among equal sentences, in the same split the
 // check used. In HTML only the sentence's characters (and the space that separated it from its
 // neighbour) are cut out of the text runs; every tag, attribute, style, the signature and the quoted

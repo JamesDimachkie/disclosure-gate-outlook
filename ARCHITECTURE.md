@@ -3,7 +3,7 @@
 Disclosure Gate for Outlook is a folder of static files. There is no server, no account and no hosted
 model: every check runs inside Outlook on the sender's computer, and nothing in an email is sent anywhere
 to be checked. This document explains how a Send flows through it and why it is built this way.
-`SPEC.md` is the behavioural contract; this file is the map.
+`SPEC.md` is the behavioral contract; this file is the map.
 
 ## A Send, end to end
 
@@ -40,7 +40,7 @@ loads the sentence model from the browser's cache. Send then only has to check.
 | Core | `core/*.mjs` | Every decision. Pure functions over a draft snapshot: no Office, DOM or network APIs, so the same code runs in Node tests, the browser and the classic Outlook engine. |
 | Extractors | `core/extract/*.mjs` | Own bounded readers for ZIP, inflate, XML, Office documents and PDF. Linear time, hard size limits, fail closed: a file it can't read is a finding, never a silent pass. |
 | Outlook adapters | `outlook/handler.js`, `outlook/draft.js` | The Send event, Office API calls (at most three in flight), deadlines, result storage for the pane. Plain ES2016 so classic Outlook can run them. |
-| Local services | `outlook/model-service.mjs`, `outlook/ocr-service.mjs` | The model and OCR workers: verified asset loading, budgets, cancellation, chunked classification. Optional by design: if either is missing or late, rules still decide. |
+| Local services | `outlook/model-service.mjs`, `outlook/ocr-service.mjs` | The model and OCR workers: verified asset loading, budgets, cancellation, chunked classification. The model is optional: if it is missing or late, the rules still decide. OCR has its own policy: an attached picture it can't read asks, and a scan still being read at Send follows the failures setting (SPEC §5.9). |
 | Task pane | `outlook/taskpane.mjs`, `outlook/pane-logic.mjs` | Review UI: findings in context, sentence removal that edits only that sentence's characters, re-check. |
 | Setup | `outlook/setup.mjs`, `outlook/manifest*.mjs` | A client-side page that generates the admin's manifest. Settings live only in the manifest's URLs. |
 
@@ -89,4 +89,5 @@ see [EVALUATION.md](EVALUATION.md).
 ## What is deliberately not here
 
 No hosted inference, no telemetry, no logging of content, no account, no settings a user can write that
-widen what counts as inside, and no network access from the add-in beyond loading its own static files.
+widen what counts as inside, and no network access from the add-in beyond loading its own static files and Microsoft's Office.js,
+which every add-in loads from Microsoft (see [SECURITY.md](SECURITY.md)).

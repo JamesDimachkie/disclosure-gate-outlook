@@ -1,12 +1,14 @@
-# Runtime v2 evidence and handoff
+# Runtime v2 verification notes
 
-22 October 2026. Lane/runtime. All examples and tests are synthetic. No Outlook tenant deployment,
-live Send or publication was performed. The September v1 evidence remains in RUNTIME-STATUS.md.
+Started 22 October 2026. All examples and tests are synthetic. The local verification receipts
+below describe their stated versions. The later [live evidence](#live-evidence-outlook-on-the-web-24-october-2026)
+section records Outlook on the web testing; other clients still need verification.
+September v1 test-tenant evidence is not part of the public source snapshot.
 
-## Ask-first lane: current contract (23 October 2026)
+## Ask-first contract (23 October 2026)
 
 This section supersedes the earlier Warn/Enforce copy and live-test expectations below. Earlier
-verification receipts are historical evidence for their stated commits, not acceptance of this lane.
+verification receipts are historical evidence for their stated commits, not current release acceptance.
 
 Admin choices are findings=ask|hold and failures=ask|hold, both default ask. Both Ask generates
 PromptUser for both Send events. Hold/Ask generates SoftBlock; either failures=Hold pair generates
@@ -51,7 +53,7 @@ Setup explains Ask/Hold in plain words, warns explicitly about Hold/Ask's confir
 path, names the two prompt exceptions, and puts SendMode/API details in a collapsed details element.
 SPEC §7 records size actions, recipient bullet shapes, unknown-reason and settings-unknown copy.
 
-Live verification required for this lane:
+Live verification required for this implementation:
 
 1. On web, new Windows, classic 2412+ and Mac 16.105+, inspect the three-button findings dialog:
    Send Anyway only for ask, Don't Send cancels, Review is the Take Action label, and Review opens
@@ -74,9 +76,9 @@ Live verification required for this lane:
    checklists. Local VMs/browser adapters cannot prove host buttons, sandbox support or latency.
 
 Weakest point: actual Outlook dialog and override behavior, especially Mac preview and older
-classic clients. No native-client Send or tenant install is performed by this lane.
+classic clients. The local receipts below do not establish native-client Send or tenant installation.
 
-Round 2 local receipt (lane/ask-first2, 22 October 2026): Node v24.20.0,
+Round 2 local receipt (22 October 2026): Node v24.20.0,
 `npm ci --ignore-scripts` completed with zero reported vulnerabilities; `npm test` passed
 **291 tests, zero failed/skipped/cancelled**. The built-runtime matrix still covers all four
 settings pairs, messages/meetings and 1.12/1.14/1.15. New regressions cover SoftBlock generation and
@@ -129,9 +131,9 @@ saved settings do not change its send mode. Domain parameters contain organizati
 never outgoing addresses or text. Settings reload and deployment behavior on a particular tenant are
 still assumptions until tested there.
 
-## Local verification
+## Historical local verification (22 October 2026)
 
-Historical runtime-lane run before detector/OCR integration: Node v24.20.0, npm test,
+Historical runtime run before detector/OCR integration: Node v24.20.0, npm test,
 94 tests passed, 0 failed/skipped/cancelled. Current OCR evidence is recorded below.
 The pretest build produced dist and passed both development/release manifest checks.
 No online validation was run.
@@ -250,7 +252,7 @@ design allows but which lowers what the model catches in practice.
    reaches each tested client and that dgOpenPane opens the real pane.
 2. Web/new Windows/Mac: check page settings and the preserved Office.onReady handshake.
 3. Classic Windows: test one pre-2403 client (ideally the stated 2206 minimum) and one Mailbox 1.14+
-   client. Confirm script override loading, query recovery, the older roaming fallback after reopening,
+   client. Confirm script override loading, query recovery, the mailbox-domain-only fallback when settings cannot be read,
    and that the ES2016 adapter behaves in the actual engine.
 4. Synthetic sends under all four settings combinations: internal-only, clean external, sensitive external, unreadable file,
    PPTX notes, inline image, changed draft, and unavailable/slow runtime.
@@ -265,11 +267,11 @@ design allows but which lowers what the model catches in practice.
    could send despite Block, whereas a refused connection held. This is unresolved live evidence,
    not a behavior this static migration can guarantee.
 
-The weakest point is native classic Outlook acceptance, especially the older runtime and per-user
+The weakest point is native classic Outlook acceptance, especially the older runtime and settings-unavailable
 configuration fallback. Outlook on the web has v2 Send evidence (above); new Outlook, classic and Mac
 have none yet, and v2's own manifest (compose and attachment events, meetings, PromptUser) is untested live.
 
-## OCR lane: documented support versus implementation inference
+## OCR: documented support versus implementation inference
 
 Microsoft's [event activation table](https://learn.microsoft.com/en-us/office/dev/add-ins/develop/event-based-activation)
 documents OnMessageAttachmentsChanged in Mailbox 1.11 for web, new/classic Windows and the new Mac
@@ -332,7 +334,7 @@ The test harness did not call real Outlook, read real email or send anything. Fi
 the product HTML after temporary synthetic test controls.
 
 Uncompressed distribution size: a fresh f89ee17b baseline built in an isolated `.qa` directory
-is 827,631 bytes; this lane is 6,968,027 bytes, an increase of **6,140,396 bytes (5.856 MiB)**.
+is 827,631 bytes; this implementation is 6,968,027 bytes, an increase of **6,140,396 bytes (5.856 MiB)**.
 `dist/ocr` contributes **6,086,053 bytes (5.804 MiB)** including engine, worker, WASM, English model
 and licences. The remaining 54,343 bytes are runtime/pane/setup/manifest changes. These are file
 sizes, not network-compressed transfers or runtime memory measurements.
@@ -356,9 +358,9 @@ Live Outlook verification still required:
 The weakest OCR point is generalization of the empty-image classifier and the substantial remaining
 photo/low-quality over-holds. Native event-runtime support, memory and timing remain unverified.
 
-## Meetings lane: Microsoft documentation versus implementation decisions
+## Meetings: Microsoft documentation versus implementation decisions
 
-22 October 2026. `lane/meetings`, based on main b64139ee. All meeting fixtures are synthetic.
+22 October 2026. Based on source revision `b64139ee`. All meeting fixtures are synthetic.
 
 Microsoft documents the following:
 
@@ -367,7 +369,7 @@ Microsoft documents the following:
 | Both Send events start at Mailbox 1.12. Exchange Online clients: modern web, new Windows, classic Windows 2206 / build 15330.20196+, Mac 16.65 / build 22082700+. Mobile is unsupported. | [Smart Alerts support](https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/onmessagesend-onappointmentsend-events#supported-clients-and-platforms) |
 | Only one of each Send event may be declared per add-in. On web/new Windows, appointment Send requires a separate window; embedded meeting forms and forwards don't raise it. | [Smart Alerts limitations](https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/onmessagesend-onappointmentsend-events#limitations) |
 | Multiple LaunchEvents reference one runtime SourceLocation. Each send event has its own SendMode attribute; both may use the same mode. | [LaunchEvent](https://learn.microsoft.com/en-us/javascript/api/manifest/launchevent), [ExtensionPoint](https://learn.microsoft.com/en-us/javascript/api/manifest/extensionpoint#launchevent) |
-| Organizer ribbon commands belong on AppointmentOrganizerCommandSurface. Dialog commandId must match a manifest Control id. Review customization and send-mode overrides require Mailbox 1.14. | [Organizer surface](https://learn.microsoft.com/en-us/javascript/api/manifest/extensionpoint#appointmentorganizercommandsurface), [Smart Alerts walkthrough](https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/smart-alerts-onmessagesend-walkthrough#customize-a-dialog-button-to-open-the-task-pane-or-run-a-function-optional) |
+| Organizer ribbon commands belong on AppointmentOrganizerCommandSurface. Dialog commandId must match a manifest Control id. Review customization and send-mode overrides require Mailbox 1.14. | [Organizer surface](https://learn.microsoft.com/en-us/javascript/api/manifest/extensionpoint#appointmentorganizercommandsurface), [Smart Alerts walkthrough](https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/smart-alerts-onmessagesend-walkthrough#customize-the-text-and-functionality-of-a-button-in-the-dialog-optional) |
 | AppointmentCompose exposes requiredAttendees/optionalAttendees (Recipients), subject, body, location (Mailbox 1.1), getAttachmentsAsync/getAttachmentContentAsync (1.8) and sessionData (1.11). It has no resources getter; AppointmentForm.resources is an input for creating a form, not a compose reader. | [AppointmentCompose](https://learn.microsoft.com/en-us/javascript/api/outlook/office.appointmentcompose?view=outlook-js-preview), [AppointmentForm](https://learn.microsoft.com/en-us/javascript/api/outlook/office.appointmentform?view=outlook-js-preview), [Compose attachments](https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/add-and-remove-attachments-to-an-item-in-a-compose-form#get-attachments) |
 | RecipientType includes distributionList, user, externalUser and other. Its type doesn't establish whether an address is inside; even a saved internal contact can be ExternalUser. Recipients.getAsync has client-specific return caps (500 or 1,000 on Windows; new Mac has no cap). | [RecipientType](https://learn.microsoft.com/en-us/javascript/api/outlook/office.mailboxenums.recipienttype?view=outlook-js-preview), [Recipients.getAsync](https://learn.microsoft.com/en-us/javascript/api/outlook/office.recipients?view=outlook-js-preview#outlook-office-recipients-getasync-member(1)) |
 | EnhancedLocation is Mailbox 1.8. Room locations expose an SMTP address; custom locations don't. Personal contact groups used as locations aren't returned. | [LocationDetails](https://learn.microsoft.com/en-us/javascript/api/outlook/office.locationdetails?view=outlook-js-preview), [Location guide](https://learn.microsoft.com/en-us/office/dev/add-ins/outlook/get-or-set-the-location-of-an-appointment) |
@@ -438,5 +440,5 @@ handler result, but screenshots timed out twice with `Preview automation snapsho
 15000ms.`; the Chrome extension supplied the visual check. Temporary QA controls aren't distributed.
 
 The weakest meeting point is native Outlook event activation and room/resource representation,
-especially organizer updates, series updates and older classic clients. No meeting has been sent
-through a live tenant in this lane, and no publication or push has occurred.
+especially organizer updates, series updates and older classic clients. At the time of this
+meeting receipt, no meeting had been sent through a live tenant and no publication or push had occurred.

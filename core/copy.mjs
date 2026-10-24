@@ -64,7 +64,7 @@ export const STRINGS = Object.freeze({
     paneReading: 'Reading images on this device…',
     picture: "Disclosure Gate couldn't read the text in this picture. Check it shows nothing that should stay inside before you send it.",
   }),
-  // State E: the pane's footer when a Send clears (as the film shows it). Outlook gives an add-in no way
+  // The pane's footer when a Send clears. Outlook gives an add-in no way
   // to put a line on the sent item or on its own "sent" notice, so the pane is the only place it appears.
   checkedNotice: 'Checked by Disclosure Gate before sending.',
   dialog: Object.freeze({
@@ -114,7 +114,7 @@ export const STRINGS = Object.freeze({
   // The compose ribbon button that opens the pane; the dialog's fallback sentence names it.
   ribbon: Object.freeze({ label: 'Disclosure Gate', tip: 'See who will receive this email and what Disclosure Gate found.' }),
   pane: Object.freeze({
-    // Before the first Send (the film's opening pane).
+    // Before the first Send.
     idle: 'Checks this email when you press Send.',
     empty: 'Open a message you are writing or a meeting you are organizing to see what Disclosure Gate checks.',
     removeFailed: "That sentence couldn't be found in the draft any more. It may already be gone.",
@@ -162,7 +162,7 @@ export function mentionFor(finding) {
   return entry[finding.subkind] || entry.other;
 }
 
-// State B's message. `reach` is 'outside' when a recipient is outside the company and 'unknown' when
+// The Send dialog's message. `reach` is 'outside' when a recipient is outside the company and 'unknown' when
 // the only reason is a recipient that can't be checked. Without the Review button (Mailbox 1.14 is
 // missing) the message ends with the ribbon sentence. The dialog caps a message at 500 characters.
 export function heldMessage(findings, options = {}) {
