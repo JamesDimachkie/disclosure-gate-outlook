@@ -24,9 +24,9 @@
       "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
     },
     "labels.json": {
-      "bytes": 1761,
-      "sha256": "f6e2fcc49e33dc3dc5a4fc0df7f8f8ef58b24a7104b6a17914977d53f76f62f4"
+      "bytes": 1660,
+      "sha256": "323398c7c1986219ff0050c69fc6e348d1b17f3efa2412ade66860ab7858cda1"
     }
   },
-  "revision": "923929cefc081b8ac51693d5ef35c3ef6010dc080c88a9cee7bf11ed5014a191"
+  "revision": "3075809e59fc45c97f8235963a59d351688f185e911b9966646c2110990dd13b"
 }
