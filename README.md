@@ -39,19 +39,22 @@ Email that stays inside your organisation is never held. Meeting invitations are
 
 ## How well it works
 
-On a blind test set of 360 everyday outside emails, written by an AI model that wrote none of the
-training data and scored once against a bar fixed before anyone deciding had seen the set:
+On the newest blind test set of 360 everyday outside emails, written by an AI model that wrote none of
+the training data and scored once against a bar fixed before anyone deciding had seen the set:
 
 | | Disclosures caught | Ordinary emails asked about |
 | --- | --- | --- |
-| Rules, recipients and the on-device model (default) | **50 of 60** | **12 of 300** (4%) |
-| Rules and recipient checks only (model off) | 14 of 60 | 1 of 300 |
+| Rules, recipients and the on-device model v2.3 (default) | **60 of 60** | **2 of 300** (0.7%) |
+| Rules and recipient checks only (model off) | 29 of 60 | 0 of 300 |
+
+Don't read 60 of 60 as "catches everything". That set was easier than the one before it: the previous
+model also caught all 60 here, but 50 of 60 on the previous blind set. Expect some misses on real mail.
 
 It is tuned to catch rather than miss: a question on an ordinary email costs one click; a missed
 disclosure can cost a client, a fine or a career. On 49 real, documented email incidents rebuilt with
-invented names, it asks about 33. [EVALUATION.md](EVALUATION.md) has the method, every gate including
-the ones that failed, and the limits: all test mail is synthetic, and 60 disclosures leave a margin of
-roughly ±10 points.
+invented names, it asks about 35. [EVALUATION.md](EVALUATION.md) has the method, every gate including
+the ones that failed, and the limits: all test mail is synthetic, and each gate has only 60
+disclosures.
 
 Attachments: 36 everyday documents saved by Chromium and Microsoft Word, as PDF and `.docx`, all read
 in full with every amount, name and accented or non-Latin phrase intact

@@ -91,12 +91,13 @@ These apply only when at least one recipient is outside or can't be checked. Tex
 subject, the body including any quoted earlier messages, and the text of readable attachments
 (section 6). Each finding points to one sentence, file or recipient.
 
-Unless IT turns it off, in clients that support it, a small on-device sentence model (v2.2) also flags
+Unless IT turns it off, in clients that support it, a small on-device sentence model (v2.3) also flags
 physical access (§5.1, last two bullets), personal details (§5.4), internal economics (§5.5),
 negotiation position (§5.6) and remarks (§5.7). It adds findings using the same sender-facing copy; a
 rule finding on that sentence takes precedence. Its thresholds favour catching over quiet (James, 24
-October 2026). On a blind held-out set (everyday4), rules plus the model stopped 50 of 60 such
-disclosures (rules alone: 14) and asked about 12 of 300 ordinary outside emails (4%).
+October 2026). On the latest blind held-out set (everyday5), rules plus the model stopped 60 of 60
+such disclosures (rules alone: 29) and asked about 2 of 300 ordinary outside emails; on the set
+before it (everyday4) the previous model stopped 50 of 60.
 
 For meeting invitations and updates, required attendees map to To and optional attendees to Cc.
 Room addresses returned by Outlook's enhanced location API also count as recipients, under the same

@@ -21,8 +21,8 @@ never creates a can't-check outcome. IT's `model=off` skips both preload and cla
 
 ## Coverage and input contract
 
-The shipped model is v2.2 (lane/model 8b402d6b: `model/train22/runs/17m-pairs` weights with the
-candidate C thresholds in `model/train22/candidates/c/labels.json`): it covers access, personal
+The shipped model is v2.3 (lane/model f86918b2: `model/train23/runs/17m-mixed` weights with the
+thresholds in `model/train23/candidates/v23/labels.json`): it covers access, personal
 details, internal costs/economics, negotiation and remarks. It is on by default (24 October 2026).
 Measured accuracy is in [README: How well it works](../README.md#how-well-it-works); no accuracy
 evaluation was rerun for this timing/fix lane.
@@ -250,3 +250,14 @@ chunks still count (state `partial`). The handler's 4.5 s deadline is unchanged.
 The benchmark also found that the built scripts carried raw non-ASCII characters inside regular
 expressions: a host serving .js without a charset would make the whole add-in fail to load. The build
 now writes pure ASCII (`asciiOnly` in tools/build.mjs) and a test enforces it.
+
+## v2.3 model (24 October 2026)
+
+Gate 4 (plan lane/model 60d9ebad, committed before the `everyday5` author started; candidate fixed at
+f86918b2 before scoring). A third data round targeted what v2.2 missed or questioned on the retired
+`everyday4`. Selection on the calibration split chose the `mixed` recipe (91 of 116 calibration
+disclosures at zero questions); thresholds came from the D procedure on 1,752 development ordinary
+emails (4.51% fitted). One run on `everyday5` (gpt-6-luna): 60/60 stopped, 2/300 questioned; v2.2 with
+D on the same set 60/60 and 1/300; rules alone 29/60 and 0/300. All three bars passed, so v2.3 ships.
+The set did not separate the two models; v2.3's margin over v2.2 is on the development sets (342/350
+against 318/350), which shaped it.

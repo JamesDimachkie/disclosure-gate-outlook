@@ -16,8 +16,9 @@ export function validateConfig(value = {}) {
   if (!Array.isArray(trusted)) throw new Error('Enter domain names separated by commas or spaces.');
   if (trusted.length > 40) throw new Error('Use at most 40 trusted outside domains.');
   // The on-device model (personal details, internal costs, negotiating position, remarks, physical
-  // access) is on unless IT turns it off. Tuned to catch rather than miss; on a blind set (24 October
-  // 2026) it stopped 50 of 60 disclosures (rules alone: 14) and asked about 12 of 300 ordinary emails.
+  // access) is on unless IT turns it off. Tuned to catch rather than miss; on the latest blind set (24
+  // October 2026) it stopped 60 of 60 disclosures (rules alone: 29) and asked about 2 of 300 ordinary
+  // emails. The set before it was harder: the previous model stopped 50 of 60 there.
   const model = value.model ?? 'on';
   if (!['on', 'off'].includes(model)) throw new Error('Choose On or Off for the on-device model.');
   return { ...settings, model, internalDomains: list.length ? [...normalizeDomains(list)] : [], trustedDomains: trusted.length ? [...normalizeDomains(trusted)] : [] };

@@ -1,12 +1,12 @@
 {
   "source": "../dg-email-model/model",
-  "sourceCheckoutHead": "afb48657",
-  "note": "v2.2 weights (lane/model train22/runs/17m-pairs) with candidate D thresholds (train22/candidates/d/labels.json): recall-first, chosen on development mail for about 5% of ordinary emails questioned (James, 24 Oct: catching anything risky matters more than an extra are-you-sure).",
+  "sourceCheckoutHead": "f86918b2",
+  "note": "v2.3 weights (lane/model train23/runs/17m-mixed: data4 round on the everyday4 failure families) with thresholds from the D procedure (train23/candidates/v23/labels.json): chosen on 1,752 development ordinary emails for about 5% questioned (4.51% fitted).",
   "baseModel": "jhu-clsp/ettin-encoder-17m",
   "baseRevision": "987607455c61e7a5bbc85f7758e0512ea6d0ae4c",
   "input": "context_text",
   "maxLength": 128,
-  "accuracy": "Blind gate 3, single run on 24 Oct 2026 (plan lane/model afb48657): everyday4 (claude-sonnet-5-5) 50/60 disclosures stopped, 12/300 ordinary questioned (4%). For comparison on the same set: previous thresholds 42/60 and 2/300; rules alone 14/60 and 1/300.",
+  "accuracy": "Blind gate 4, single run on 24 Oct 2026 (plan lane/model 60d9ebad, candidate f86918b2): everyday5 (gpt-6-luna) 60/60 disclosures stopped, 2/300 ordinary questioned. Same set: shipped v2.2 with D 60/60 and 1/300; rules alone 29/60 and 0/300. The set did not separate the two models; on the previous blind set (everyday4) v2.2 stopped 50/60.",
   "files": {
     "classifier.mjs": {
       "bytes": 4154,
@@ -18,15 +18,15 @@
     },
     "out/model.onnx": {
       "bytes": 17309676,
-      "sha256": "4048f8dabfc3bfc0a3bc0f8b249ab70e1a41753c3e73d838373ee7ca32ff83f6"
+      "sha256": "7cdd30e8e6670998e3274ff4f8ce715069b02199ba5ee851127f45d36785a134"
     },
     "out/tokenizer.json": {
       "bytes": 2132967,
       "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
     },
     "out/labels.json": {
-      "bytes": 1660,
-      "sha256": "323398c7c1986219ff0050c69fc6e348d1b17f3efa2412ade66860ab7858cda1"
+      "bytes": 1839,
+      "sha256": "1e8423f3019ae146acbb917a192249ae5580731038b197ff2038fd86ab4810e0"
     }
   },
   "upstreamLicense": "https://raw.githubusercontent.com/jhu-clsp/ettin-encoder-vs-decoder/main/LICENSE"

@@ -5,7 +5,7 @@ Exact source and real int8 export copied from `../dg-email-model/model` on `lane
 data was copied or inspected. Measured accuracy is in [README: How well it works](../README.md#how-well-it-works).
 
 `classifier.mjs` and `tokenize.mjs` are supplied by the model lane. Their source is unchanged.
-`out/` is v2.2 (lane/model 8b402d6b: `train22/runs/17m-pairs` weights, `train22/candidates/c` thresholds); it covers all five categories.
+`out/` is v2.3 (lane/model f86918b2: `train23/runs/17m-mixed` weights, `train23/candidates/v23` thresholds); it covers all five categories.
 The current metadata selects `context_text`: previous sentence plus
 current sentence, within a combined 128-token window. The browser worker
 skips a whole semantic pass when its untruncated tokenizer input exceeds that window. Rules still
