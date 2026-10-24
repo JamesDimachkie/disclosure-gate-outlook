@@ -90,6 +90,8 @@ body {
 .person__text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .person__name, .person__address { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .person__name { font-weight: var(--weight-semibold); }
+/* An address with no name wraps rather than losing its domain to an ellipsis. */
+.person__name--address { white-space: normal; overflow-wrap: break-word; }
 .person__address { color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--leading-xs); }
 .person > .chip { flex: none; }
 
