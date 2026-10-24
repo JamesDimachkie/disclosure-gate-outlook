@@ -307,12 +307,21 @@ test('built browser event script retains mandatory Send in unsupported browser h
   for (const name of ['onMessageComposeHandler', 'onMessageAttachmentsChangedHandler']) { let count = 0; await l.handlers[name]({ completed: () => count++ }); assert.equal(count, 1); }
 });
 
-test('a default install (model not turned on) never preloads or calls the model', async () => {
+test('an install with the model turned off never preloads or calls it', async () => {
   let preloads = 0, sends = 0;
-  const l = load({ state: demo({ body: CLEAN_BODY }), globals: { DisclosureGateSemantic: { preload: async () => { preloads++; }, forSend: () => { sends++; return { classify: async items => items.map(() => ({ label: 'personal', score: 0.99, scores: {} })) }; } } } });
+  const l = load({ url: 'https://static.example/sub/runtime.js?dg=2&mode=enforce&domains=&model=off', state: demo({ body: CLEAN_BODY }), globals: { DisclosureGateSemantic: { preload: async () => { preloads++; }, forSend: () => { sends++; return { classify: async items => items.map(() => ({ label: 'personal', score: 0.99, scores: {} })) }; } } } });
   let completed = 0; await l.handlers.onMessageComposeHandler({ completed: () => { completed++; } });
   assert.equal(completed, 1); assert.equal(preloads, 0);
   const decision = await l.send();
   assert.equal(sends, 0); assert.equal(decision.allowEvent, true);
   assert.equal(JSON.parse(l.values['dg-result']).result.checked.semantic, 'skipped:off');
+});
+
+test('a default install (no model setting) preloads on compose and asks the model on Send', async () => {
+  let preloads = 0, sends = 0;
+  const l = load({ state: demo({ body: CLEAN_BODY }), globals: { DisclosureGateSemantic: { preload: async () => { preloads++; }, forSend: () => { sends++; return { classify: async items => items.map(() => ({ label: 'none', score: 0.99, scores: {} })) }; } } } });
+  await l.handlers.onMessageComposeHandler({ completed: () => {} });
+  assert.equal(preloads, 1);
+  await l.send();
+  assert.equal(sends, 1);
 });

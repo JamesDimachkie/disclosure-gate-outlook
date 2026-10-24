@@ -20,7 +20,7 @@
 <li><strong>Files it can't read.</strong> An attachment whose text it can't check, such as a ZIP file or an attached email, going outside.</li>
 <li><strong>Text in pictures and scans.</strong> Screenshots, scanned PDFs and pictures are read on the device and their text is checked like the rest. A photo or logo it can't read doesn't stop the email: an attached one asks the sender to take a look, and they can send it anyway.</li>
 </ul>
-<p class="narrow"><strong>Also, more narrowly:</strong> your own margins and costs, your negotiating position, personal details about someone (health, family, legal, HR) and insults. Rules match common phrasings and miss others. An experimental on-device model, off unless IT turns it on, also reads each sentence for these however they're worded: on 300 fresh test emails it caught 48 of 60 such disclosures (rules alone: 4), but on 200 everyday outside emails by another author it asked about 20 (rules alone: none). Treat the check as a second pair of eyes, not a guarantee.</p>
+<p class="narrow"><strong>Also, more narrowly:</strong> your own margins and costs, your negotiating position, personal details about someone (health, family, legal, HR) and insults. Rules match common phrasings and miss others, so a small on-device model also reads each sentence for these however they're worded. On two test sets it had never seen, it caught 80 of 120 such disclosures (rules alone: 11) and asked about none of 540 everyday outside emails. IT can switch the model off. Treat the check as a second pair of eyes, not a guarantee.</p>
 <p class="narrow">Email that stays inside your organization is never held. Ordinary business email, including prices and quotes you give customers, invoice and order numbers, and password-reset talk, goes straight through.</p></section>
 
 <section class="setup-card" aria-labelledby="private"><h2 id="private">Nothing leaves Outlook to be checked</h2>
@@ -28,7 +28,7 @@
 <p>The code is open source under the Apache 2.0 licence, so your security team can read exactly what runs, or host the files themselves.</p></section>
 
 <section class="setup-card" aria-labelledby="results"><h2 id="results">How well it works</h2>
-<p>The rules were measured on two synthetic test sets written from the product spec by AI models that never saw the rules, from a different model family than the rules' author. On a further 200 everyday outside emails the rules flagged none. For the experimental model's results, see <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook#how-well-it-works">README: How well it works</a>.</p>
+<p>The rules were measured on two synthetic test sets written from the product spec by AI models that never saw the rules, from a different model family than the rules' author. On a further 200 everyday outside emails the rules flagged none. For the on-device model's results, see <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook#how-well-it-works">README: How well it works</a>.</p>
 <table class="results"><thead><tr><th>Test set</th><th>Ordinary emails flagged by mistake</th><th>Flagged as it should</th></tr></thead><tbody>
 <tr><td>150 realistic emails (long threads, signatures, quoted replies, attachments)</td><td>0 of 100</td><td>32 of 40</td></tr>
 <tr><td>440 short emails, one tricky sentence each</td><td>0 of 264</td><td>113 of 164</td></tr>

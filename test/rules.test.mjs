@@ -55,6 +55,7 @@ test('personal detail, access and security, and remarks', () => {
     ['The alarm is off until Monday.', 'access'], ['The cameras on the east side are down.', 'access'], ['The back gate is unlocked at night.', 'access'],
     ['The password is Summer2026!', 'access'], ['The password is Harbor-2026.', 'access'], ['The code for the lockbox is 2231.', 'access'], ['The spare key is under the mat.', 'access'],
     ['Those clowns at Whitfield lost the drawings.', 'remark'], ['Whitfield is a nightmare to work with.', 'remark'], ["He's useless.", 'remark'],
+    ['Please note the side gate is unlocked all weekend.', 'access'], ['Dave is a nightmare.', 'remark'],
   ];
   for (const [text, category] of cases) assert.deepEqual(found(text).map((x) => x[0]), category ? [category] : [], text);
   const code = screenText("Gate code's still 4417.")[0];
@@ -70,7 +71,10 @@ test('ordinary business email stays clear', () => {
     'His diagnosis of the leak was right.', 'The password is the same as before.', 'The client will counter-sign the order.', 'We made 3 site visits this week.',
     'Our margin notes are in the PDF.', 'Half the crew is out Friday.', 'The cameras on the east side are new.', "He's a great foreman.",
     'After paying the crew, almost all of the fee remains with us.', 'The project will begin on Tuesday.', 'Contact person@outside.example for details.',
-    'Can we walk the site on Thursday at 7?', 'Attached is the revised schedule for North Hall.', 'Thanks, John']) {
+    'Can we walk the site on Thursday at 7?', 'Attached is the revised schedule for North Hall.', 'Thanks, John',
+    // Retired gate tier everyday2, 24 Oct: things that are a nightmare, and a gate asked to be unlocked.
+    'Weekdays are a nightmare at the moment.', 'Mondays are useless for deliveries.',
+    'Could you make sure the lawn is mown and the side gate is unlocked for the van?', 'Please make sure the gate is unlocked by 8.']) {
     assert.deepEqual(found(text), [], text);
   }
 });

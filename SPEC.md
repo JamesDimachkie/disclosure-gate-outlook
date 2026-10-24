@@ -37,8 +37,8 @@ apps > Upload custom apps) with a manifest made on the setup page. The admin cho
   or unsupported files (including ZIPs and attached emails), too much content, pending OCR,
   changed drafts and draft-read failures. Ask lets the sender confirm the contents or cancel and
   retry. Hold keeps the item unsent until a successful retry/edit or help from IT.
-- **On-device model (experimental):** `model=on|off`, default **Off**. Off leaves the rules deciding
-  alone (§5). On adds the sentence model's findings, with many more questions on ordinary mail (§5).
+- **On-device model:** `model=on|off`, default **On**. On adds the sentence model's findings (§5). Off
+  leaves the rules deciding alone.
 - Prompt-severity findings always ask: an attached picture it couldn't read (§5.9) and an exposed
   recipient list (§5.8), subject to client support below.
 - **Internal domains** (optional). The mailbox's own domain is always inside. The admin may add the
@@ -91,13 +91,11 @@ These apply only when at least one recipient is outside or can't be checked. Tex
 subject, the body including any quoted earlier messages, and the text of readable attachments
 (section 6). Each finding points to one sentence, file or recipient.
 
-When IT turns it on, in clients that support it, a small on-device sentence model (v2.1) also flags
+Unless IT turns it off, in clients that support it, a small on-device sentence model (v2.2) also flags
 physical access (§5.1, last two bullets), personal details (§5.4), internal economics (§5.5),
 negotiation position (§5.6) and remarks (§5.7). It adds findings using the same sender-facing copy; a
-rule finding on that sentence takes precedence. On a held-out set of 300 realistic emails, rules plus
-the model caught 48 of 60 such disclosures (rules alone: 4) and flagged 1 of 240 ordinary emails
-(rules alone: 0); on a held-out set of 200 everyday outside emails by another author it flagged 20
-(rules alone: 0). It therefore ships off; IT can turn it on at setup (§3).
+rule finding on that sentence takes precedence. On two blind held-out sets (24 October 2026), rules plus
+the model stopped 80 of 120 such disclosures (rules alone: 11) and none of 540 ordinary outside emails.
 
 For meeting invitations and updates, required attendees map to To and optional attendees to Cc.
 Room addresses returned by Outlook's enhanced location API also count as recipients, under the same
@@ -161,7 +159,9 @@ divorce, custody), legal trouble (arrest, charges, court case), or HR matters (b
 up, put on a performance plan, their pay, salary or bonus).
 
 Does not flag: an absence or schedule change without a stated cause (`Dan is out Friday`), names,
-job titles, roles, a company's own legal matters stated as business (`our contract with them`).
+job titles, roles, a company's own legal matters stated as business (`our contract with them`), and
+a person's own details written to that person, or to the parent, guardian or pet owner they concern
+(`Your test results are back`, `Biscuit's booster is due this month`).
 
 ### 5.5 Internal economics
 

@@ -15,9 +15,10 @@ export function validateConfig(value = {}) {
   const trusted = value.trustedDomains ?? [];
   if (!Array.isArray(trusted)) throw new Error('Enter domain names separated by commas or spaces.');
   if (trusted.length > 40) throw new Error('Use at most 40 trusted outside domains.');
-  // The experimental on-device model (personal details, internal costs, remarks) is off unless IT
-  // turns it on: on everyday outside mail it asked about about 1 in 4 emails (23 October 2026).
-  const model = value.model ?? 'off';
+  // The on-device model (personal details, internal costs, negotiating position, remarks, physical
+  // access) is on unless IT turns it off. v2.2 passed two blind sets on 24 October 2026: 80 of 120
+  // disclosures stopped (rules alone: 11), none of 540 everyday outside emails.
+  const model = value.model ?? 'on';
   if (!['on', 'off'].includes(model)) throw new Error('Choose On or Off for the on-device model.');
   return { ...settings, model, internalDomains: list.length ? [...normalizeDomains(list)] : [], trustedDomains: trusted.length ? [...normalizeDomains(trusted)] : [] };
 }
@@ -35,7 +36,7 @@ export function parseConfigUrl(url) {
 }
 export function configQuery(config) {
   const c=validateConfig(config);
-  return '?dg=2&findings='+c.findings+'&failures='+c.failures+'&domains='+encodeURIComponent(c.internalDomains.join(','))+(c.trustedDomains.length ? '&trusted='+encodeURIComponent(c.trustedDomains.join(',')) : '')+(c.model==='on' ? '&model=on' : '');
+  return '?dg=2&findings='+c.findings+'&failures='+c.failures+'&domains='+encodeURIComponent(c.internalDomains.join(','))+(c.trustedDomains.length ? '&trusted='+encodeURIComponent(c.trustedDomains.join(',')) : '')+(c.model==='off' ? '&model=off' : '');
 }
 // Admin settings come only from the manifest's URLs. Without them (classic Outlook before Mailbox
 // 1.14 can't read its script URL), only the sender's own domain is inside: mail between an

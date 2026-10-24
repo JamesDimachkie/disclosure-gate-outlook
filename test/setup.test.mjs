@@ -6,7 +6,7 @@ import {validateManifest} from '../tools/validate-manifest.mjs';
 import {RELEASE_BASE_URL} from '../outlook/config.mjs';
 test('setup bundle makes configured XML locally and reports invalid domains',async()=>{
   const nodes=new Map(),handlers={};let blob,clicked=0;
-  const node=id=>{if(!nodes.has(id))nodes.set(id,{value:['findings','failures'].includes(id)?'ask':id==='model'?'off':id==='version'?'2.0.0.0':'',hidden:true,textContent:'',addEventListener:(event,fn)=>handlers[id+':'+event]=fn});return nodes.get(id);};
+  const node=id=>{if(!nodes.has(id))nodes.set(id,{value:['findings','failures'].includes(id)?'ask':id==='model'?'on':id==='version'?'2.0.0.0':'',hidden:true,textContent:'',addEventListener:(event,fn)=>handlers[id+':'+event]=fn});return nodes.get(id);};
   const link={remove(){},click(){clicked++;}};
   const context={document:{getElementById:node,createElement:()=>link,body:{append(){}}},Blob,URL:class extends URL{static createObjectURL(b){blob=b;return 'blob:test';}static revokeObjectURL(){}},setTimeout:fn=>fn()};
   vm.runInNewContext(readFileSync(new URL('../dist/setup.js',import.meta.url),'utf8'),context);
@@ -27,9 +27,9 @@ test('setup bundle makes configured XML locally and reports invalid domains',asy
     if(findings==='hold') assert.match(node('findings-help').textContent,/cannot be overridden, except two that only ask: an exposed recipient list and an attached picture it couldn't read/);
     assert.ok(output.includes('findings='+findings+'&amp;failures='+failures));
   }
-  assert.match(node('model-help').textContent,/Off is the default/);assert.doesNotMatch(await blob.text(),/model=/);
-  node('model').value='on';handlers['model:change']();assert.match(node('model-help').textContent,/20 of 200/);
-  handlers['setup-form:submit']({preventDefault(){}});assert.match(await blob.text(),/&amp;model=on/);node('model').value='off';
+  assert.match(node('model-help').textContent,/On is the default/);assert.doesNotMatch(await blob.text(),/model=/);
+  node('model').value='off';handlers['model:change']();assert.match(node('model-help').textContent,/rules alone check/);
+  handlers['setup-form:submit']({preventDefault(){}});assert.match(await blob.text(),/&amp;model=off/);node('model').value='on';
   node('domains').value='*';handlers['setup-form:submit']({preventDefault(){}});assert.equal(clicked,6);assert.equal(node('setup-error').hidden,false);
 });
 

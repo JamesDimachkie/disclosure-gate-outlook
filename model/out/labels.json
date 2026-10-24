@@ -1,5 +1,5 @@
 {
-  "version": "2.1.0",
+  "version": "2.2.0",
   "base_model": "jhu-clsp/ettin-encoder-17m",
   "base_revision": "987607455c61e7a5bbc85f7758e0512ea6d0ae4c",
   "labels": [
@@ -11,34 +11,40 @@
     "remark"
   ],
   "thresholds": {
-    "access": 0.28959833060025375,
-    "personal": 0.1040300349551194,
-    "economics": 0.8801698331288689,
-    "negotiation": 0.7123683436504538,
-    "remark": 0.0507146929893588
+    "access": 0.6964868292176211,
+    "personal": 0.9250093962786364,
+    "economics": 0.9407447889446797,
+    "negotiation": 0.9606448965033897,
+    "remark": 0.880005268005102
   },
   "calibration": {
-    "temperature": 0.75,
-    "none_logit_bias": 0.0
+    "temperature": 1,
+    "none_logit_bias": 0
   },
   "input": "context_text",
   "max_length": 128,
   "input_template": "Previous sentence: {context}\nCurrent sentence: {text}",
   "quantization": "int8 weights and embeddings; fp32 encoder activations; per-sentence dynamic uint8 final projection",
   "training": {
-    "recipe": "mixed",
+    "recipe": "pairs",
     "seed": 42,
-    "selected_epoch": 4,
-    "author_data_commits": {
-      "gpt": "094051e0cad82b8677592b5b10011c6ddbce848c",
-      "claude": "9e2ad7dff4df41be67d5dd3c8de597a9de803336"
+    "selected_epoch": 11,
+    "sentence_input_sha256": "0f86296daff65671328d46709f231975ae6772bcda5f14e12a9c0e75ca0119b1",
+    "data_commits": {
+      "model/data2/gpt": "094051e0cad82b8677592b5b10011c6ddbce848c",
+      "model/data2/claude": "9e2ad7dff4df41be67d5dd3c8de597a9de803336",
+      "model/data3/gpt": "a7fa6c130cbacddbb6174a16dced76b2eb911791",
+      "model/data3/claude": "189f4f8c1628ab0a19bb47200e2ed81013bdc2c6"
     },
-    "v2_sentence_training_commit": "2a77177b3dd5175197287b81452c9b064681f347"
+    "v2_sentence_training_commit": null
   },
   "calibration_data": {
-    "sha256": "f4610b694c7c08b0e096492de2363860199880c4ff1e50d220ff469f3ecc169a",
+    "sha256": "91d879ad40722e7375388b5fb2bba842350ed03aff0f92ae1ab2dcb91de15ceb",
     "ordinary_margin": 0.001,
-    "method": "per-class max ordinary calibration score + margin; select temperature by disclosure-email catches",
+    "method": "per-class max ordinary calibration score + margin; select temperature by disclosure-email catches; re-fit on int8 scores with retired tiers everyday2+realistic2+realistic ordinary added (872 ordinary)",
+    "dev_ordinary": [
+      "evaluation/heldout/everyday/cases.jsonl"
+    ],
     "independent_test": false
   }
 }

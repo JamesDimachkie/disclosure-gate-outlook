@@ -5,7 +5,7 @@ import {generateManifest} from '../outlook/manifest.mjs';
 import {DEV_ID,RELEASE_ID,RELEASE_BASE_URL,runtimeConfig,parseConfigUrl} from '../outlook/config.mjs';
 
 test('malformed or duplicate runtime settings fall back to unknown settings without trusting page overrides',()=>{
-  const fallback={findings:'hold',failures:'hold',model:'off',internalDomains:[],trustedDomains:[],settingsKnown:false};
+  const fallback={findings:'hold',failures:'hold',model:'on',internalDomains:[],trustedDomains:[],settingsKnown:false};
   for(const query of ['findings=%','findings=ask&findings=hold','domains=other.example&domains=third.example','failures=no','domains=*']) {
     const office={context:{urls:{javascriptRuntimeUrl:'https://static.example/runtime.js?dg=2&'+query}}};
     assert.deepEqual(runtimeConfig(office,{location:{href:'https://static.example/?dg=2&findings=ask&domains=other.example'}}),fallback,query);
@@ -29,9 +29,9 @@ test('manifest generator rejects malformed or unsafe configuration; validator re
 test('configuration comes only from manifest URLs; roaming settings never widen inside',()=>{
   const url='https://static.example/runtime.js?dg=2&mode=warn&domains=Other.Example%2Canother.example&et=123';
   const office={context:{urls:{javascriptRuntimeUrl:url},roamingSettings:{get:()=>({internalDomains:['old.example']})}}};
-  assert.deepEqual(runtimeConfig(office,{}),{findings:'ask',failures:'ask',model:'off',internalDomains:['another.example','other.example'],trustedDomains:[]});
-  assert.deepEqual(parseConfigUrl('https://a.example/?dg=2&mode=enforce&domains='),{findings:'hold',failures:'hold',model:'off',internalDomains:[],trustedDomains:[]});
-  delete office.context.urls;assert.deepEqual(runtimeConfig(office,{}),{findings:'hold',failures:'hold',model:'off',internalDomains:[],trustedDomains:[],settingsKnown:false});
+  assert.deepEqual(runtimeConfig(office,{}),{findings:'ask',failures:'ask',model:'on',internalDomains:['another.example','other.example'],trustedDomains:[]});
+  assert.deepEqual(parseConfigUrl('https://a.example/?dg=2&mode=enforce&domains='),{findings:'hold',failures:'hold',model:'on',internalDomains:[],trustedDomains:[]});
+  delete office.context.urls;assert.deepEqual(runtimeConfig(office,{}),{findings:'hold',failures:'hold',model:'on',internalDomains:[],trustedDomains:[],settingsKnown:false});
   assert.throws(()=>parseConfigUrl('https://a.example/?dg=2&mode=warn&domains=*&mode=enforce'));
 });
 test('distribution includes .nojekyll; all local HTML/CSS assets are relative and present',()=>{

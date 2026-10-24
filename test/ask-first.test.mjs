@@ -46,16 +46,16 @@ for (const findings of ['ask', 'hold']) for (const failures of ['ask', 'hold']) 
 }
 
 test('new settings and legacy aliases parse strictly, serialize and choose both event SendModes', () => {
-  assert.deepEqual(validateConfig(), { findings: 'ask', failures: 'ask', model: 'off', internalDomains: [], trustedDomains: [] });
+  assert.deepEqual(validateConfig(), { findings: 'ask', failures: 'ask', model: 'on', internalDomains: [], trustedDomains: [] });
   for (const findings of ['ask', 'hold']) for (const failures of ['ask', 'hold']) {
     const config = { findings, failures }, xml = generateManifest(config);
     assert.equal(validateManifest(xml).mode, failures === 'hold' ? 'Block' : findings === 'hold' ? 'SoftBlock' : 'PromptUser');
-    assert.deepEqual(parseConfigUrl('https://a.example/' + configQuery(config)), { ...config, model: 'off', internalDomains: [], trustedDomains: [] });
+    assert.deepEqual(parseConfigUrl('https://a.example/' + configQuery(config)), { ...config, model: 'on', internalDomains: [], trustedDomains: [] });
   }
   assert.equal(parseConfigUrl('https://a.example/?dg=2&mode=warn').failures, 'ask');
   assert.equal(parseConfigUrl('https://a.example/' + configQuery({ model: 'on' })).model, 'on');
   assert.doesNotMatch(configQuery({}), /model=/, 'the default keeps existing manifest URLs unchanged');
-  assert.match(generateManifest({ model: 'on' }), /&amp;model=on/);
+  assert.match(generateManifest({ model: 'off' }), /&amp;model=off/);
   assert.equal(parseConfigUrl('https://a.example/?dg=2&mode=enforce').findings, 'hold');
   assert.equal(parseConfigUrl('https://a.example/?dg=2&mode=enforce&findings=ask').failures, 'hold');
   for (const query of ['findings=ASK', 'failures=', 'mode=', 'findings=ask&findings=hold', 'failures=ask&%66ailures=hold', 'dg=2&dg=2', 'domains=&domains=x.example', 'findings=%', 'model=yes', 'model=off&model=on', 'model']) assert.throws(() => parseConfigUrl('https://a.example/?dg=2&' + query), query);

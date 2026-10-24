@@ -27,21 +27,20 @@ own costs and margins, your negotiating position, and insults, but only in commo
 test emails written to vary their wording, the rules caught **7 of 60** of these. Treat it as a
 second pair of eyes for these, not a guarantee.
 
-**Experimental, off by default:** IT can turn on a small model that runs on each computer and reads
-every sentence for personal details, internal costs, negotiating position, insults and physical
-security (hidden keys, alarms off) however they're worded. On 300 fresh test emails it raised those
-catches from **4 of 60** (rules alone) to **48 of 60**, and asked about 1 of 240 ordinary ones. But on
-200 everyday outside emails written by a different AI author it asked about **20** (rules alone:
-none), reacting to words like "surgery" or "booster" in harmless sentences. That is too many questions
-for most teams, so it ships off while a better model is trained. It runs in Outlook on the web, the new
-Outlook and Outlook for Mac, never in classic Outlook for Windows, and needs no AI service or account.
+**On-device model, on by default:** a small model that runs on each computer reads every sentence for
+personal details, internal costs, negotiating position, insults and physical security (hidden keys,
+alarms off) however they're worded. On two test sets it had never seen, written by AI authors that
+wrote none of its training data, it raised those catches from **11 of 120** (rules alone) to
+**80 of 120**, and asked about **none of 540** everyday outside emails. It runs in Outlook on the web,
+the new Outlook and Outlook for Mac (classic Outlook for Windows uses the rules only), needs no AI
+service or account, and IT can switch it off at setup.
 
 Email that stays inside your organization is never held. The full contract is in [SPEC.md](SPEC.md).
 
 ## How well it works
 
 These measurements predate Ask/Ask. They count findings, not required holds under the current defaults.
-They measure the rules, which is what runs by default; the experimental model's figures are above.
+They measure the rules alone; the on-device model's figures are above.
 On a further 200 everyday outside emails (quotes, scheduling, support, recruiting, client letters),
 the rules flagged none.
 
@@ -117,7 +116,7 @@ Microsoft's reference: [Smart Alerts behaviour](https://learn.microsoft.com/en-u
 - **Changes after Send**: Exchange rules that forward, redirect or copy mail outside, or add server-side signatures, act after the check. An inside address that reaches outsiders (a Microsoft 365 group with guests) counts as inside.
 - **Phones, other apps and scripts**: Outlook on iOS and Android doesn't run Send checks; mail sent by other apps or services isn't checked.
 
-The experimental sentence model is off unless IT turns it on. Classic Outlook for Windows uses rules only. Other clients skip it
+The sentence model is on unless IT turns it off. Classic Outlook for Windows uses rules only. Other clients skip it
 if browser capabilities are missing, it is not ready in time, or there are more than 400 readable
 sentences. Model failure never fails the check: rules still run over the full text. The model has
 at most 1.5 seconds within Send's 4.5-second deadline. Public assets are cached; email is not.

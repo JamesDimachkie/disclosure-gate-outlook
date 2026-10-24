@@ -47,8 +47,8 @@ check without a sender choosing Send anyway are treated as the most serious clas
   fingerprint. Pane results are invalidated after draft edits; unbound failure reasons are labelled
   as the last Send. Size failures require an edit and hide Check again. Dialogs omit secret values;
   the pane intentionally shows the actual sentences.
-- Rules catch the formats and phrasings listed in SPEC.md and miss others. An experimental local sentence
-  model, off unless IT turns it on, adds physical access, personal details, internal costs/economics,
+- Rules catch the formats and phrasings listed in SPEC.md and miss others. A local sentence
+  model, on unless IT turns it off, adds physical access, personal details, internal costs/economics,
   negotiation and remarks on capable browser runtimes. It reads each sentence with the previous sentence as context.
   Classic Outlook for Windows uses rules only;
   absent, late, failed or over-limit model passes are skipped, never turned into failed checks.

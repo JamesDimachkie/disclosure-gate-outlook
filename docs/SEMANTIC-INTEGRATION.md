@@ -21,10 +21,9 @@ never creates a can't-check outcome. IT's `model=off` skips both preload and cla
 
 ## Coverage and input contract
 
-The shipped model is v2.1 (lane/model d61a1856, `model/out21-17m`): it covers access, personal
-details, internal costs/economics, negotiation and remarks, with the trainer's thresholds in
-`model/out/labels.json`. (v2 disabled access and negotiation; v2.1's calibration on whole emails
-from two authors supports all five.)
+The shipped model is v2.2 (lane/model 8b402d6b: `model/train22/runs/17m-pairs` weights with the
+candidate C thresholds in `model/train22/candidates/c/labels.json`): it covers access, personal
+details, internal costs/economics, negotiation and remarks. It is on by default (24 October 2026).
 Measured accuracy is in [README: How well it works](../README.md#how-well-it-works); no accuracy
 evaluation was rerun for this timing/fix lane.
 
@@ -207,3 +206,24 @@ labelled as Send splits it), Ettin-17M, trainer's thresholds unchanged. Single h
 flagged. The everyday flags were read: all are model errors on harmless sentences (a dental
 "surgery" room, a pet's "booster", a tyre "puncture"), not label errors. The default stays Off; the
 bar remains at most 1% on both everyday-style sets. Neither set may be used for tuning.
+
+## v2.2 model and Default: On (24 October 2026)
+
+Retired to development after their first use: `everyday`, `everyday2`, `realistic`, `realistic2`.
+The v2.1 failures were shortcut cues ("surgery", "booster", "camera", "room for") learned from 25 to 60
+disclosing sentences per category, and thresholds fitted on only 72 ordinary emails.
+
+- Data: two new author lanes (Claude Opus 5.5, GPT-6.1 Sol) each wrote 300 whole labelled outside
+  emails across 90 to 150 settings and 500 contrastive pairs (a disclosing sentence and a same-topic
+  twin that is not). With pairs, the 17M model caught 80 of 96 reserved disclosure emails at zero
+  needless questions on 392 reserved ordinary ones; whole emails alone caught 57.
+- Gate 1 (plan lane/model b8941df4) failed both candidates on the blind `everyday2` (Fable 5.1): v2.2
+  stopped 4/300 ordinary (bar 3). Two of the four were phrase rules ("Weekdays are a nightmare",
+  "make sure the side gate is unlocked for the van"), fixed in 29fe8e5d.
+- Candidate C (same weights; thresholds with zero flags over 872 outside ordinary emails from the
+  reserved and retired sets) was pre-registered (8b402d6b) before `everyday3` (gpt-6-astra) existed.
+- Gate 2, one run: `everyday3` 42/60 stopped, 0/300 ordinary stopped; `realistic3` 38/60, 0/240.
+  Rules alone: 7/60 and 4/60, 0 ordinary. It passes the bar (at most 1% ordinary, at least half the
+  disclosures, on each set), so `model` now defaults to `on`; `model=off` turns it off.
+- Limits: one model family wrote each set; labels are single-author judgments; the gate measures
+  synthetic mail. Retired sets must not be used to tune again without a new blind set.

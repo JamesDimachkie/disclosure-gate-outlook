@@ -208,7 +208,7 @@ export function createOcrService(root) {
     try {
       await prepare(office, null, event); await wait(office, deadline - 500); await stateOf(office.context.mailbox.item).write;
       // Only public asset preparation; no inference or email is retained across activations.
-      let modelOn = false; try { modelOn = root.DisclosureGateCore?.runtimeConfig?.(office, root)?.model === 'on'; } catch { /* Default off. */ }
+      let modelOn = false; try { modelOn = root.DisclosureGateCore?.runtimeConfig?.(office, root)?.model === 'on'; } catch { /* Unreadable settings: no preload. */ }
       if (!done && modelOn) await root.DisclosureGateSemantic?.preload({ deadline: deadline - 100 });
     }
     catch { /* The Send read independently fails closed. */ }

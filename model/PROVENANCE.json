@@ -1,12 +1,12 @@
 {
   "source": "../dg-email-model/model",
-  "sourceCheckoutHead": "d61a1856",
-  "note": "Exact copy of lane/model d61a1856 model/out21-17m (v2.1, trained on whole-email data by two authors), verified by SHA-256. Thresholds unchanged from the trainer.",
+  "sourceCheckoutHead": "8b402d6b",
+  "note": "v2.2: lane/model 8b402d6b model/train22/runs/17m-pairs (weights and tokenizer) with candidate C thresholds (model/train22/candidates/c/labels.json), verified by SHA-256. Trained on two authors x two rounds of whole labelled emails plus 1,000 contrastive sentence pairs; thresholds give zero flags over 872 ordinary outside emails.",
   "baseModel": "jhu-clsp/ettin-encoder-17m",
   "baseRevision": "987607455c61e7a5bbc85f7758e0512ea6d0ae4c",
   "input": "context_text",
   "maxLength": 128,
-  "accuracy": "Held-out, single runs on 23 Oct 2026: realistic3 48/60 caught, 1/240 ordinary flagged; everyday 20/200 ordinary flagged. See evaluation/heldout/*/gate-v21-17m.json",
+  "accuracy": "Blind gate, single run on 24 Oct 2026 (plan lane/model 8b402d6b): everyday3 (gpt-6-astra) 42/60 disclosures stopped, 0/300 ordinary stopped; realistic3 (gpt-6.1-sol) 38/60, 0/240. Rules alone: 7/60 and 4/60. See evaluation/heldout/*/gate2-C-v22.json",
   "files": {
     "classifier.mjs": {
       "bytes": 4154,
@@ -18,15 +18,15 @@
     },
     "out/model.onnx": {
       "bytes": 17309676,
-      "sha256": "c2f555a9c755a367555943898b5306fa759b51169036a368eeebae74a7935025"
+      "sha256": "4048f8dabfc3bfc0a3bc0f8b249ab70e1a41753c3e73d838373ee7ca32ff83f6"
     },
     "out/tokenizer.json": {
       "bytes": 2132967,
       "sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
     },
     "out/labels.json": {
-      "bytes": 1370,
-      "sha256": "ffa18e6e8a64fa2527f2ef77cd4fce3e3021fb963365708f1ac9ef4a6bb82155"
+      "bytes": 1761,
+      "sha256": "f6e2fcc49e33dc3dc5a4fc0df7f8f8ef58b24a7104b6a17914977d53f76f62f4"
     }
   },
   "upstreamLicense": "https://raw.githubusercontent.com/jhu-clsp/ettin-encoder-vs-decoder/main/LICENSE"
