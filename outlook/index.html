@@ -30,15 +30,15 @@
 
 <section class="setup-card" aria-labelledby="private"><h2 id="private">Nothing leaves Outlook to be checked</h2>
 <p>Every check runs inside Outlook on the sender's own device. The add-in is a folder of static files. There is no server, no account, no AI service, no telemetry and no log. It never edits, deletes or sends an email on its own.</p>
-<p>The code is open source under the Apache 2.0 licence, so your security team can read exactly what runs, or host the files themselves.</p></section>
+<p>The code is open source under the Apache 2.0 license, so your security team can read exactly what runs, or host the files themselves.</p></section>
 
 <section class="setup-card" aria-labelledby="results"><h2 id="results">How well it works</h2>
-<p>Measured on the newest blind test set of 360 everyday outside emails, written by an AI model that wrote none of the training data and scored once against a bar fixed before anyone deciding had seen the set.</p>
+<p>Measured on the newest and hardest blind test set: 518 outside emails written to be hard the way real mail is (disclosures implied, buried in long threads, given as bare numbers, in casual or regional English), by two AI models from different companies that wrote none of the training data, and scored once against a bar fixed before anyone deciding had seen the set.</p>
 <table class="results"><thead><tr><th>Setting</th><th>Disclosures caught</th><th>Ordinary emails asked about</th></tr></thead><tbody>
-<tr><td>Rules, recipient checks and the on-device model (default)</td><td>60 of 60</td><td>2 of 300 (0.7%)</td></tr>
-<tr><td>Rules and recipient checks only (model off)</td><td>29 of 60</td><td>0 of 300</td></tr>
+<tr><td>Rules, recipient checks and the on-device model (default)</td><td>101 of 120 (84%)</td><td>9 of 398 (2.3%)</td></tr>
+<tr><td>Rules and recipient checks only (model off)</td><td>15 of 120</td><td>0 of 398</td></tr>
 </tbody></table>
-<p class="narrow">Don't read 60 of 60 as "catches everything": the previous model also caught all 60 on this set, and 50 of 60 on the one before it.</p>
+<p class="narrow">It misses about one disclosure in six on this set, most often internal costs given as bare figures or a ratio. On an easier earlier set it caught 60 of 60.</p>
 <p class="narrow">It is tuned to catch rather than miss: a question on an ordinary email costs one click. On 49 real, documented email incidents rebuilt with invented names, it asks about 35. Attachments saved from Word and Chrome read in full: 36 of 36 everyday documents, with every amount, name and accented or non-Latin word intact. On 1,586 public test files built to break document readers (Mozilla's PDF and Apache's Office collections), nothing crashed or hung, and a file it can't read completely says so and asks rather than passing on the part it could read. None of these tests measure accuracy on your own mail. <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook/blob/main/EVALUATION.md">How it was tested, including the attempts that failed</a>.</p>
 </section>
 

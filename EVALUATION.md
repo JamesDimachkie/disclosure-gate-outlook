@@ -37,6 +37,8 @@ product contract) and the case format, with written rules:
 | everyday3 | gpt-6-astra | 300 | 60 | Gate 2 (retired) |
 | everyday4 | claude-sonnet-5-5 | 300 | 60 | Gate 3 (retired) |
 | everyday5 | gpt-6-luna | 300 | 60 | Gate 4 (retired) |
+| everyday6a | claude-fable-5-1 | 198 | 60 | Check 5, hard (retired) |
+| everyday6b | gpt-6-luna | 200 | 60 | Check 5, hard (retired) |
 
 The training data for the sentence model came from separate authors: two rounds of
 whole labelled emails by Claude Opus 5.5 and GPT-6.1 Sol (1,320 emails), plus 1,000 contrastive pairs
@@ -80,6 +82,33 @@ question; rules alone caught 29. It passed the bar (at most 5% questioned, at le
 at least as many caught as v2.2), so v2.3 shipped, but the evidence that it catches more than v2.2
 is the development sets (342 of 350 against 318), which shaped it and so flatter it.
 
+**v2.3, capability check 5 (passed).** Because `everyday5` could not tell the models apart, a harder
+set was written before the release was promoted: two halves by authors from different companies who
+wrote no training data (Claude Fable 5.1 and GPT-6 Luna), each with 60 disclosures (12 per category)
+and 200 ordinary outside emails, made hard from SPEC.md alone: disclosures implied rather than stated,
+buried in long emails or quoted history, given as numbers without labels, or in casual and regional
+English; half the ordinary mail sits just on the safe side of a line the spec draws. Before anything
+was scored, each half's labels were audited case by case by a model from the other company. The audit
+of the Luna half disputed none; the audit of the Fable half disputed two ordinary emails whose recipient
+domain copied the sender's under another ending, a lookalike the brief had excluded, and both were
+dropped. Scored once each:
+
+| | Caught (95% CI) | Questioned (95% CI) |
+| --- | --- | --- |
+| v2.3 (shipped) | **101/120, 84%** (77–90%) | **9/398, 2.3%** (1.2–4.2%) |
+| v2.2, same threshold procedure | 93/120, 78% (69–84%) | 12/398, 3.0% (1.7–5.2%) |
+| Rules and recipient checks alone | 15/120, 12.5% (8–20%) | 0/398 (0–1.0%) |
+
+Rules alone caught 12.5%, against 23% on `everyday4` and 48% on `everyday5`: this is the hardest set so
+far. By category v2.3 caught physical access 20 of 24, personal details 22, internal economics 16,
+negotiating position 22 and remarks 21; costs and margins given as bare figures or a ratio are its
+weakest spot. By author it caught 49 of 60 (questioned 7 of 198) on the Fable half and 52 of 60 (2 of
+200) on the Luna half. The pre-registered release bar (at least 75% caught, at most 5% questioned)
+passed, so the shipped model stands; v2.3 caught 8 more than v2.2, but the intervals overlap. The first
+scoring run printed its results but failed to save its reports (a wrong output path); the identical,
+deterministic commands were re-run two minutes later to save them, and every result the first run
+printed matches.
+
 | Gate | Candidate | Caught | Questioned | Bar | Result |
 | --- | --- | ---: | ---: | --- | --- |
 | realistic3 | v2.1 | 48/60 | 1/240 | | (everyday failed: 20/200) |
@@ -88,11 +117,14 @@ is the development sets (342 of 350 against 318), which shaped it and so flatter
 | everyday3 | v2.2, zero-question thresholds | 42/60 | 0/300 | ≤ 1%, ≥ 50% | Pass |
 | realistic3 | v2.2, zero-question thresholds | 38/60 | 0/240 | ≤ 1%, ≥ 50% | Pass |
 | everyday4 | v2.2, recall-first thresholds | 50/60 | 12/300 | ≤ 5%, ≥ 75% | Pass |
-| everyday5 | v2.3, recall-first thresholds | 60/60 | 2/300 | ≤ 5%, ≥ 75%, ≥ v2.2 | **Pass (current)** |
+| everyday5 | v2.3, recall-first thresholds | 60/60 | 2/300 | ≤ 5%, ≥ 75%, ≥ v2.2 | Pass |
 | everyday5 | v2.2, recall-first thresholds (comparison) | 60/60 | 1/300 | | |
+| everyday6 | v2.3, recall-first thresholds | 101/120 | 9/398 | ≤ 5%, ≥ 75% | **Pass (current)** |
+| everyday6 | v2.2, recall-first thresholds (comparison) | 93/120 | 12/398 | | |
 
 Pre-registrations are in `docs/gates/`, preserved from the original model-development history. Each was committed before anyone
-deciding had seen its set; for gates 2 and 3 the set's author had already started, for gate 4 not.
+deciding had seen its set; for gates 2 and 3 the set's author had already started, for gate 4 and
+check 5 not.
 Results are committed under `evaluation/heldout/*/gate*.json`.
 
 The gate plans and dataset READMEs are original custody records. Their branch names and
@@ -125,9 +157,10 @@ can't-check, which asks. Neither check measures how often a real attachment is a
 
 - Every test email was written by an AI. Real mail is messier, and each label is one author's reading
   of the spec, without human adjudication.
-- 60 disclosures per gate gives a wide margin: 50 of 60 is consistent with a true rate anywhere from
-  roughly 72% to 91%, and 60 of 60 with anything from 94% up (95% Wilson intervals). Sets also differ
-  in difficulty: the same v2.2 caught 50 of 60 on `everyday4` and 60 of 60 on `everyday5`.
+- 60 to 120 disclosures per set gives a wide margin: 101 of 120 is consistent with a true rate
+  anywhere from about 77% to 90%, and 60 of 60 with anything from 94% up (95% Wilson intervals). Sets
+  also differ in difficulty: the same v2.2 caught 50 of 60 on `everyday4`, 60 of 60 on `everyday5` and
+  93 of 120 on `everyday6`.
 - The model runs only in Outlook on the web, the new Outlook and Outlook for Mac. Classic Outlook for
   Windows uses the rules alone.
 - Live behavior in Outlook was tested by hand in Outlook on the web; see

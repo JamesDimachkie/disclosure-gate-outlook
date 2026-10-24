@@ -1,0 +1,350 @@
+{
+ "v23": {
+  "caught": [
+   101,
+   120
+  ],
+  "asked": [
+   9,
+   398
+  ],
+  "errors": 0,
+  "byCat": {
+   "secrets": [
+    20,
+    24
+   ],
+   "personal": [
+    22,
+    24
+   ],
+   "economics": [
+    16,
+    24
+   ],
+   "negotiation": [
+    22,
+    24
+   ],
+   "remark": [
+    21,
+    24
+   ]
+  },
+  "byAuthor": {
+   "a": {
+    "caught": [
+     49,
+     60
+    ],
+    "asked": [
+     7,
+     198
+    ]
+   },
+   "b": {
+    "caught": [
+     52,
+     60
+    ],
+    "asked": [
+     2,
+     200
+    ]
+   }
+  },
+  "missed": [
+   "everyday6a-006",
+   "everyday6a-012",
+   "everyday6a-013",
+   "everyday6a-025",
+   "everyday6a-026",
+   "everyday6a-028",
+   "everyday6a-036",
+   "everyday6a-047",
+   "everyday6a-050",
+   "everyday6a-055",
+   "everyday6a-058",
+   "everyday6b-005",
+   "everyday6b-009",
+   "everyday6b-013",
+   "everyday6b-025",
+   "everyday6b-026",
+   "everyday6b-029",
+   "everyday6b-032",
+   "everyday6b-036"
+  ],
+  "questioned": [
+   "everyday6a-063",
+   "everyday6a-070",
+   "everyday6a-096",
+   "everyday6a-131",
+   "everyday6a-133",
+   "everyday6a-159",
+   "everyday6a-240",
+   "everyday6b-112",
+   "everyday6b-180"
+  ]
+ },
+ "v22d": {
+  "caught": [
+   93,
+   120
+  ],
+  "asked": [
+   12,
+   398
+  ],
+  "errors": 0,
+  "byCat": {
+   "secrets": [
+    19,
+    24
+   ],
+   "personal": [
+    19,
+    24
+   ],
+   "economics": [
+    14,
+    24
+   ],
+   "negotiation": [
+    20,
+    24
+   ],
+   "remark": [
+    21,
+    24
+   ]
+  },
+  "byAuthor": {
+   "a": {
+    "caught": [
+     44,
+     60
+    ],
+    "asked": [
+     9,
+     198
+    ]
+   },
+   "b": {
+    "caught": [
+     49,
+     60
+    ],
+    "asked": [
+     3,
+     200
+    ]
+   }
+  },
+  "missed": [
+   "everyday6a-006",
+   "everyday6a-010",
+   "everyday6a-012",
+   "everyday6a-013",
+   "everyday6a-014",
+   "everyday6a-017",
+   "everyday6a-025",
+   "everyday6a-026",
+   "everyday6a-030",
+   "everyday6a-036",
+   "everyday6a-038",
+   "everyday6a-046",
+   "everyday6a-047",
+   "everyday6a-050",
+   "everyday6a-055",
+   "everyday6a-058",
+   "everyday6b-007",
+   "everyday6b-009",
+   "everyday6b-013",
+   "everyday6b-021",
+   "everyday6b-024",
+   "everyday6b-025",
+   "everyday6b-028",
+   "everyday6b-029",
+   "everyday6b-031",
+   "everyday6b-032",
+   "everyday6b-036"
+  ],
+  "questioned": [
+   "everyday6a-063",
+   "everyday6a-070",
+   "everyday6a-090",
+   "everyday6a-095",
+   "everyday6a-131",
+   "everyday6a-133",
+   "everyday6a-135",
+   "everyday6a-159",
+   "everyday6a-163",
+   "everyday6b-117",
+   "everyday6b-184",
+   "everyday6b-253"
+  ]
+ },
+ "rules": {
+  "caught": [
+   15,
+   120
+  ],
+  "asked": [
+   0,
+   398
+  ],
+  "errors": 0,
+  "byCat": {
+   "secrets": [
+    3,
+    24
+   ],
+   "personal": [
+    6,
+    24
+   ],
+   "economics": [
+    0,
+    24
+   ],
+   "negotiation": [
+    1,
+    24
+   ],
+   "remark": [
+    5,
+    24
+   ]
+  },
+  "byAuthor": {
+   "a": {
+    "caught": [
+     4,
+     60
+    ],
+    "asked": [
+     0,
+     198
+    ]
+   },
+   "b": {
+    "caught": [
+     11,
+     60
+    ],
+    "asked": [
+     0,
+     200
+    ]
+   }
+  },
+  "missed": [
+   "everyday6a-001",
+   "everyday6a-002",
+   "everyday6a-003",
+   "everyday6a-005",
+   "everyday6a-006",
+   "everyday6a-007",
+   "everyday6a-008",
+   "everyday6a-009",
+   "everyday6a-010",
+   "everyday6a-011",
+   "everyday6a-012",
+   "everyday6a-013",
+   "everyday6a-014",
+   "everyday6a-015",
+   "everyday6a-016",
+   "everyday6a-017",
+   "everyday6a-018",
+   "everyday6a-019",
+   "everyday6a-020",
+   "everyday6a-021",
+   "everyday6a-022",
+   "everyday6a-024",
+   "everyday6a-025",
+   "everyday6a-026",
+   "everyday6a-027",
+   "everyday6a-028",
+   "everyday6a-029",
+   "everyday6a-030",
+   "everyday6a-031",
+   "everyday6a-032",
+   "everyday6a-033",
+   "everyday6a-034",
+   "everyday6a-035",
+   "everyday6a-036",
+   "everyday6a-037",
+   "everyday6a-038",
+   "everyday6a-039",
+   "everyday6a-040",
+   "everyday6a-041",
+   "everyday6a-042",
+   "everyday6a-043",
+   "everyday6a-044",
+   "everyday6a-045",
+   "everyday6a-046",
+   "everyday6a-047",
+   "everyday6a-048",
+   "everyday6a-049",
+   "everyday6a-050",
+   "everyday6a-052",
+   "everyday6a-053",
+   "everyday6a-054",
+   "everyday6a-055",
+   "everyday6a-056",
+   "everyday6a-057",
+   "everyday6a-058",
+   "everyday6a-059",
+   "everyday6b-001",
+   "everyday6b-002",
+   "everyday6b-004",
+   "everyday6b-005",
+   "everyday6b-007",
+   "everyday6b-008",
+   "everyday6b-009",
+   "everyday6b-010",
+   "everyday6b-011",
+   "everyday6b-012",
+   "everyday6b-013",
+   "everyday6b-014",
+   "everyday6b-016",
+   "everyday6b-017",
+   "everyday6b-019",
+   "everyday6b-021",
+   "everyday6b-024",
+   "everyday6b-025",
+   "everyday6b-026",
+   "everyday6b-027",
+   "everyday6b-028",
+   "everyday6b-029",
+   "everyday6b-030",
+   "everyday6b-031",
+   "everyday6b-032",
+   "everyday6b-033",
+   "everyday6b-034",
+   "everyday6b-035",
+   "everyday6b-036",
+   "everyday6b-037",
+   "everyday6b-038",
+   "everyday6b-040",
+   "everyday6b-041",
+   "everyday6b-042",
+   "everyday6b-043",
+   "everyday6b-044",
+   "everyday6b-045",
+   "everyday6b-046",
+   "everyday6b-047",
+   "everyday6b-048",
+   "everyday6b-052",
+   "everyday6b-053",
+   "everyday6b-054",
+   "everyday6b-055",
+   "everyday6b-056",
+   "everyday6b-057",
+   "everyday6b-058",
+   "everyday6b-059",
+   "everyday6b-060"
+  ],
+  "questioned": []
+ }
+}
