@@ -49,7 +49,8 @@ test('semantic labels reuse the categories, severity and sender copy without inv
   assert.deepEqual(r.findings.map(f => [f.category, f.subkind, f.severity]), [
     ['access', 'security', 'stop'], ['personal', 'other', 'stop'], ['economics', 'other', 'stop'], ['negotiation', 'position', 'stop'], ['remark', 'insult', 'stop'],
   ]);
-  for (const f of r.findings) { assert.equal(f.label, STRINGS.labels[f.category]); assert.equal(f.why, STRINGS.why[f.category]); assert.equal(f.removable, true); }
+  const pick = (entry, f) => (typeof entry === 'string' ? entry : entry[f.subkind] ?? entry.other);
+  for (const f of r.findings) { assert.equal(f.label, pick(STRINGS.labels[f.category], f)); assert.equal(f.why, pick(STRINGS.why[f.category], f)); assert.equal(f.removable, true); }
   assert.equal(r.outcome, 'ask');
   assert.equal(r.hasFailures, false);
   assert.doesNotMatch(r.message, /Detail [0-9]/);

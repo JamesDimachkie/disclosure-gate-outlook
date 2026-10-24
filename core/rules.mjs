@@ -6,6 +6,7 @@
 // hosted check behind them for what they miss. The patterns are case-insensitive, so a rule that needs
 // a name checks the original casing itself.
 import { splitSentences, occurrences, labelValuePairs, tableRows } from './sentences.mjs';
+import { recordsHits } from './records.mjs';
 import { indexed } from './regex.mjs';
 import { detect, looksRandom, isPlaceholderPassword, DETECTORS, columnKind, columnLabel } from './detectors.mjs';
 
@@ -204,6 +205,9 @@ export const RULES = Object.freeze([
     check: (m) => !/\b(?:make\s+sure|ensure|check(?:\s+that)?|could\s+you|can\s+you|would\s+you|will\s+you|remember\s+to|please\s+(?:leave|keep))\b[^.?!\n]{0,30}$/i.test(m.input.slice(0, m.index)) },
   { id: 'access.no-cameras', category: 'access', subkind: 'security', re: rx(String.raw`\b(?<mark>no\s+(?:cameras?|cctv|alarm|security\s+lights?)\s+(?:on|at|covering|over|by)\s+[^.?!;]{1,30}|(?:cameras?|cctv)\s+(?:don${AP}t|doesn${AP}t|do\s+not|does\s+not|can${AP}t|cannot)\s+(?:cover|see)\s+[^.?!;]{1,30}|(?:the\s+)?(?:spare\s+)?keys?\s+(?:is|are|${AP}s)\s+(?:under|behind|in|above|inside)\s+the\s+(?:mat|doormat|pot|planter|rock|brick|meter\s+box|meter|flower\s*pot))`) },
 
+  // Marked for inside the company (§5.10): text that says it isn't for outside readers, in an email that
+  // is going outside. A plain "please don't forward this link" to a customer stays clear.
+  { id: 'internal.marker', category: 'internal', subkind: 'marker', re: rx(String.raw`\b(?<mark>(?:strictly\s+)?(?:for\s+)?internal\s+(?:use\s+)?only|for\s+internal\s+(?:use|eyes|circulation|discussion)|internal\s+(?:and|&)\s+confidential|not\s+for\s+(?:external|outside|public|client|customer)\s+(?:distribution|use|circulation|eyes|release)|not\s+to\s+be\s+(?:shared|forwarded|sent|circulated|distributed)\s+(?:externally|outside|with\s+(?:the\s+)?(?:client|customer|supplier|buyer|seller|other\s+side)s?)|(?:do\s+not|don${AP}t|please\s+don${AP}t|please\s+do\s+not)\s+(?:forward|share|send|show|pass)\s+(?:this|it|these|the\s+(?:numbers|figures|details|email))?\s*(?:on\s+)?(?:to|with)\s+(?:the\s+|our\s+|their\s+)?(?:client|customer|supplier|buyer|seller|tenant|landlord|other\s+side|contractor|vendor|them)s?|keep\s+(?:this|it|these)\s+(?:between\s+(?:us|ourselves)|in-?house|internal)|(?:this|it)\s+stays\s+(?:between\s+us|in-?house|internal))\b`) },
   // Remark about a person: an insult or disparaging remark about a person or a company.
   { id: 'remark.is-insult', category: 'remark', subkind: 'insult', re: rx(String.raw`\b(?:is|are|was|were|${AP}s|${AP}re|being|seems\s+like|sounds\s+like|what)\s+(?<mark>(?:(?:a|an|such\s+an?|a\s+total|a\s+complete|a\s+real|an\s+absolute|an\s+utter|a\s+bunch\s+of|a\s+pack\s+of|total|complete|absolute|utter)\s+)?(?:(?:useless|incompetent|clueless|lazy|stupid|dumb|bloody|fucking|damn|lying|thieving)\s+)?${INSULT}\b(?:\s+who(?:${AP}s|${AP}ve|\s+has|\s+have|\s+is|\s+are|\s+can${AP}t|\s+cannot|\s+couldn${AP}t|\s+never|\s+doesn${AP}t|\s+don${AP}t|\s+wouldn${AP}t|\s+won${AP}t)\b[^.?!,;]{1,60})?)`) },
   { id: 'remark.those-insults', category: 'remark', subkind: 'insult', re: rx(String.raw`\b(?<mark>(?:that|those|these|this|bunch\s+of|pack\s+of)\s+(?:(?:total|complete|absolute|useless|incompetent|clueless|lazy|stupid|bloody|fucking|damn)\s+)?${INSULT})\b`) },
@@ -327,6 +331,7 @@ export function screenText(text, { source = 'body', file = null } = {}) {
   const sentences = splitSentences(text);
   const paired = pairedHits(text, sentences);
   const table = tableHits(text, sentences, /\.csv$/i.test(file || ''));
+  const records = recordsHits(text, sentences, /\.csv$/i.test(file || ''));
   const findings = [];
   let occurrence = null; // worked out once, on the first finding
   sentences.forEach((s, index) => {
@@ -346,11 +351,14 @@ export function screenText(text, { source = 'body', file = null } = {}) {
     screenOne(s.text, { text, offset: s.start }, RULES, add);
     for (const h of paired.get(index) || []) add(h.id, h.category, h.subkind, h.start, h.end, h.codeKind);
     for (const h of table.hits.get(index) || []) add(h.id, h.category, h.subkind, h.start, h.end, h.codeKind);
+    for (const h of records.get(index) || []) add(h.id, h.category, h.subkind, h.start, h.end);
     if (hits.size && !occurrence) occurrence = occurrences(sentences);
     for (const hit of hits.values()) {
       findings.push({ ...hit, marks: tidy(hit.marks, s.text), source, file,
         sentence: { start: s.start, end: s.end, text: s.text, index, occurrence: occurrence[index] } });
     }
   });
+  // A list of people whose ID or bank numbers already ask needs no second finding.
+  if (findings.some((f) => f.category === 'identity' || f.category === 'financial')) return findings.filter((f) => f.subkind !== 'records');
   return findings;
 }

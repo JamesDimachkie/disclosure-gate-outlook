@@ -163,6 +163,14 @@ job titles, roles, a company's own legal matters stated as business (`our contra
 a person's own details written to that person, or to the parent, guardian or pet owner they concern
 (`Your test results are back`, `Biscuit's booster is due this month`).
 
+Also flags a list of people's personal details: a table or form that pairs a person (a column or
+label such as Name, Client, Patient, Employee, Claimant, Applicant, Tenant, Adopted child) with
+something sensitive about them (home address, date of birth, tax, Social Security, National Insurance
+or passport number, health, offence or sentence, pay, family members, social worker, loan or mortgage,
+claim details). Most large real email disclosures were such a file sent to the wrong place. Contact
+lists (name, role, email, phone), schedules, price lists and a single bank line on an invoice do not
+flag. When the same file already flags an ID or bank number, that finding is enough.
+
 ### 5.5 Internal economics
 
 Flags: the sender organization's own costs or cost build-up, margin, markup or profit, contingency,
@@ -187,6 +195,14 @@ the city`).
 Does not flag: blunt disagreement, firm requests, criticism of work, drawings or schedules.
 
 ### 5.8 Recipient problems
+
+- **Greeting to someone else.** The first line of the new text greets one person by name ("Hi Alex,",
+  "Dear Ms Patel") and nobody on the To, Cc or Bcc line has that name (first name, surname, a common
+  nickname or a matching initial, from the display name or the address). Asks with Send anyway,
+  naming who is greeted and who it goes to. It stays quiet when it can't tell: a recipient without a
+  first name (a role mailbox such as `Lettings` or `info@`, a business name, "Mrs Hooper"), a group, more
+  than four To recipients, a greeting to several people or to a group ("Hi all", "Dear Leaseholders"),
+  or a quoted greeting.
 
 - **Lookalike domain.** An outside address whose domain looks like an inside domain but isn't.
   Flags, naming the recipient. The check compares the *name* of each domain: the part before its
@@ -237,6 +253,15 @@ and where nothing was found (a photo, a stylised logo, an image too large to rea
 inline picture is ignored, and an attached one asks the sender to look at it, with Send anyway in
 settings (a SoftBlock or Block installation before Mailbox 1.14 holds it too). A picture still being read, or
 changed since it was read, is a failure under the failures setting.
+
+### 5.10 Marked for inside the company
+
+Flags: text that says it isn't for outside readers, in an email going outside: `internal only`, `for
+internal use`, `not for external distribution`, `don't forward this to the client`, `keep this between
+us`, `not to be shared externally`.
+
+Does not flag: confidentiality footers addressed to the recipient (`confidential and intended solely for
+the addressee`, `company confidential`), `please don't forward this link`, `our internal team`.
 
 ## 6. Attachments
 

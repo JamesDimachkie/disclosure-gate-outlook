@@ -5,6 +5,7 @@ import { STRINGS, CATEGORIES, describeResult, placeFor, labelFor, whyFor, copyFo
 import { settingsFor } from './settings.mjs';
 import { normalizeDomains, classifyRecipients, reachOf, checkableAddress } from './recipients.mjs';
 import { recipientFindings } from './recipient-checks.mjs';
+import { greetingFinding } from './greeting.mjs';
 import { screenText } from './rules.mjs';
 import { splitSentences, occurrenceOf } from './sentences.mjs';
 import { attachmentText, readableKind } from './attachments.mjs';
@@ -108,6 +109,9 @@ export async function checkDraft(draft, { config, now = () => Date.now(), semant
   // Lookalike addresses and an exposed outside list (spec §5.8), from the addresses alone.
   const trusted = Array.isArray(config?.trustedDomains) && config.trustedDomains.length ? normalizeDomains(config.trustedDomains) : [];
   const findings = recipientFindings(recipients, domains, { more: STRINGS.recipientList, trusted });
+  // A greeting that names nobody on the To line (a likely wrong address); messages only.
+  const greeting = itemType === 'message' ? greetingFinding(snap.bodyText, recipients) : null;
+  if (greeting) findings.push(greeting);
   const texts = [];
   snap.attachments.forEach((a, fileIndex) => {
     const read = attachmentText(a);

@@ -7,7 +7,7 @@
 // stays off email. Secrets and tokens (§5.1) are access findings with their own subkinds. Recipient
 // problems (§5.8) are one category whose subkind names the problem.
 import { isFailure, decisionFor } from './settings.mjs';
-export const CATEGORIES = Object.freeze(['economics', 'negotiation', 'personal', 'access', 'financial', 'identity', 'remark', 'attachment', 'recipient']);
+export const CATEGORIES = Object.freeze(['economics', 'negotiation', 'personal', 'access', 'financial', 'identity', 'remark', 'internal', 'attachment', 'recipient']);
 
 export const STRINGS = Object.freeze({
   name: 'Disclosure Gate',
@@ -19,26 +19,29 @@ export const STRINGS = Object.freeze({
   labels: Object.freeze({
     economics: 'Internal economics',
     negotiation: 'Negotiation position',
-    personal: 'Personal detail',
+    personal: Object.freeze({ other: 'Personal detail', records: "People's personal details" }),
     access: 'Access and security',
     remark: 'Remark about a person',
+    internal: 'Marked for inside the company',
     attachment: Object.freeze({ other: "Can't check this attachment", picture: "Picture it couldn't read" }),
     financial: 'Payment or bank details',
     identity: 'Government ID number',
-    recipient: Object.freeze({ lookalike: 'Lookalike address', exposed: 'Recipients can see each other' }),
+    recipient: Object.freeze({ lookalike: 'Lookalike address', exposed: 'Recipients can see each other', greeting: "Greeting doesn't match the recipient" }),
   }),
   why: Object.freeze({
     economics: 'Margins and costs stay inside the company.',
     negotiation: 'Your room to negotiate stays inside the company.',
-    personal: "Someone's personal details aren't everyone's business.",
+    personal: Object.freeze({ other: "Someone's personal details aren't everyone's business.", records: 'Lists of people and their details stay with the people who need them. Check this file is meant for this recipient.' }),
     access: 'Codes and security details stay off email.',
     remark: 'Remarks about people stay in the room.',
+    internal: "It says it's for inside the company, and this email is going outside. Check it's meant for these recipients.",
     attachment: "Disclosure Gate couldn't read this file. Check what it contains before sending.",
     financial: 'Card and bank numbers stay off email.',
     identity: 'Government ID numbers stay off email.',
     recipient: Object.freeze({
       lookalike: "This email goes to an address that looks like your company's but isn't.",
       exposed: "Everyone in To and Cc can see these outside addresses. Move outside recipients to Bcc.",
+      greeting: "It greets someone who isn't on the To line. Check it's going to the right person.",
     }),
   }),
   footer: Object.freeze([
@@ -81,6 +84,7 @@ export const STRINGS = Object.freeze({
     sizeAction: 'Shorten it or split it, then press Send.',
     more: 'and {n} more',
     exposed: 'In To and Cc: {n} outside addresses',
+    greeting: 'Greets {name}, sent to {to}',
     meetingExposed: 'In the attendee list: {n} outside attendees',
     timeout: 'It took too long.',
     read: "Outlook didn't let it read the draft.",
@@ -98,12 +102,13 @@ export const STRINGS = Object.freeze({
   mentions: Object.freeze({
     economics: Object.freeze({ margin: 'mentions your margin', markup: 'mentions your markup', profit: 'mentions your profit', cost: 'mentions your costs', contingency: 'mentions your contingency', budget: 'mentions your budget', floor: 'mentions your price floor', other: 'mentions your costs or margin' }),
     negotiation: 'mentions your negotiating position',
-    personal: "mentions someone's personal details",
+    personal: Object.freeze({ other: "mentions someone's personal details", records: "includes a list of people's personal details" }),
     access: Object.freeze({ code: 'mentions {article} {kind} code', password: 'mentions a password', security: 'mentions security details', secret: 'includes an API key or token', 'private-key': 'includes a private key', connection: 'includes a database password', other: 'mentions a code or security detail' }),
     financial: Object.freeze({ card: 'includes a card number', bank: 'includes a bank account number', other: 'includes payment details' }),
     identity: Object.freeze({ ssn: 'includes a Social Security number', ni: 'includes a National Insurance number', sin: 'includes a Social Insurance number', passport: 'includes a passport number', licence: "includes a driver's licence number", tax: 'includes a tax ID number', 'national-id': 'includes a national ID number', other: 'includes a government ID number' }),
-    recipient: Object.freeze({ lookalike: "includes an address that looks like your company's but isn't", exposed: 'includes outside addresses everyone on it can see', other: 'includes a recipient to check' }),
+    recipient: Object.freeze({ lookalike: "includes an address that looks like your company's but isn't", exposed: 'includes outside addresses everyone on it can see', greeting: "includes a greeting to someone who isn't on the To line", other: 'includes a recipient to check' }),
     remark: 'includes a remark about a person',
+    internal: 'includes text marked for inside the company',
     attachment: Object.freeze({ other: "includes a file that can't be checked", picture: "includes a picture it couldn't read" }),
   }),
   // The compose ribbon button that opens the pane; the dialog's fallback sentence names it.
@@ -204,6 +209,7 @@ export function dialogContent(result, { ask = true, reviewButton = true, setting
     if (isFailure(f)) return failureReason(f, limit);
     if (f.source === 'recipient') {
       if (f.subkind === 'exposed') return (itemType === 'appointment' ? d.meetingExposed : d.exposed).replace('{n}', String(f.recipients?.length || 0));
+      if (f.subkind === 'greeting') return d.greeting.replace('{name}', shortName(f.greeted || '', 24)).replace('{to}', shortName(f.recipients?.join(', ') || '', limit));
       return shortName(f.recipients?.join(', ') || f.address || f.recipient?.address, limit);
     }
     let label;
