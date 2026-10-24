@@ -18,6 +18,9 @@ there is no server, no account, no AI service, no telemetry and no log.
 | Card and bank details | Luhn-valid card numbers, valid IBANs, US routing numbers with an account number, UK sort codes with an account number |
 | Government ID numbers | US Social Security, UK National Insurance and Canadian SIN numbers; passport, licence and personal tax ID numbers |
 | Lookalike addresses | An address that looks like your organization's but isn't (`north1ine.com` for `northline.com`) |
+| Lists of people's details | A spreadsheet, table or form that pairs people with what is sensitive about them: home addresses, ID or tax numbers, health, offences, pay, family members, claims |
+| Wrong recipient | A greeting to someone who isn't on the recipient lines ("Hi Alex," sent only to Morgan Vale) |
+| Marked internal | "Internal only", "not for external distribution", "don't forward this to the client" in an email going outside |
 | Exposed recipient lists | Eight or more outside addresses from three or more organizations in To and Cc (the sender is asked to use Bcc and can still send) |
 | Files it can't read | A ZIP file, an attached email or another attachment whose text can't be checked |
 | Text in pictures and scans | Screenshots, scanned PDFs and pictures are read on the device (Tesseract OCR, English) and their text is checked like the rest; anything found counts even when the reading was uncertain. A photo or logo where it finds nothing doesn't stop the email: an attached one asks the sender to look, with Send anyway |
@@ -29,9 +32,10 @@ second pair of eyes for these, not a guarantee.
 
 **On-device model, on by default:** a small model that runs on each computer reads every sentence for
 personal details, internal costs, negotiating position, insults and physical security (hidden keys,
-alarms off) however they're worded. On two test sets it had never seen, written by AI authors that
-wrote none of its training data, it raised those catches from **11 of 120** (rules alone) to
-**80 of 120**, and asked about **none of 540** everyday outside emails. It runs in Outlook on the web,
+alarms off) however they're worded. It is set to catch rather than miss: on a test set it had never
+seen, written by an AI author that wrote none of its training data, it raised those catches from
+**14 of 60** (rules alone) to **50 of 60**, and asked about **12 of 300** (4%) everyday outside emails,
+each with Send Anyway. It runs in Outlook on the web,
 the new Outlook and Outlook for Mac (classic Outlook for Windows uses the rules only), needs no AI
 service or account, and IT can switch it off at setup.
 

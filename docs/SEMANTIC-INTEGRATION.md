@@ -227,3 +227,13 @@ disclosing sentences per category, and thresholds fitted on only 72 ordinary ema
   disclosures, on each set), so `model` now defaults to `on`; `model=off` turns it off.
 - Limits: one model family wrote each set; labels are single-author judgments; the gate measures
   synthetic mail. Retired sets must not be used to tune again without a new blind set.
+
+## Recall-first thresholds (24 October 2026, afternoon)
+
+James: catching anything potentially risky or damaging matters more than an extra "are you sure?" the
+sender can click through. Candidate D (same v2.2 weights; thresholds chosen on all development ordinary
+mail for about 5% questioned) was pre-registered (lane/model afb48657) before the blind `everyday4`
+(claude-sonnet-5-5) existed. One run: 50/60 disclosures stopped, 12/300 ordinary questioned (4%); bar
+at most 5% questioned and at least 75% caught, so D ships. Same set, for comparison only: previous
+thresholds 42/60 and 2/300; rules alone 14/60 and 1/300. The one rules-only question was a vet's "care
+instructions for Milo after his surgery" (a pet read as a person).

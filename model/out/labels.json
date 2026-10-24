@@ -11,11 +11,11 @@
     "remark"
   ],
   "thresholds": {
-    "access": 0.6964868292176211,
-    "personal": 0.9250093962786364,
-    "economics": 0.9407447889446797,
-    "negotiation": 0.9606448965033897,
-    "remark": 0.880005268005102
+    "access": 0.0714545459010606,
+    "personal": 0.07966959093831112,
+    "economics": 0.11505443042960721,
+    "negotiation": 0.278876793380239,
+    "remark": 0.09119132143734239
   },
   "calibration": {
     "temperature": 1,
@@ -41,7 +41,7 @@
   "calibration_data": {
     "sha256": "91d879ad40722e7375388b5fb2bba842350ed03aff0f92ae1ab2dcb91de15ceb",
     "ordinary_margin": 0.001,
-    "method": "per-class max ordinary calibration score + margin; select temperature by disclosure-email catches; re-fit on int8 scores with retired tiers everyday2+realistic2+realistic ordinary added (872 ordinary)",
+    "method": "per-class max ordinary calibration score + margin; select temperature by disclosure-email catches",
     "dev_ordinary": [
       "evaluation/heldout/everyday/cases.jsonl"
     ],

@@ -45,7 +45,17 @@ const fold = (s) => String(s || '').normalize('NFKD').replace(/[̀-ͯ]/g, '').to
 // (a role mailbox, a title and surname, an address shown as the name).
 function givenName(r) {
   let name = String(r.name || '').replace(/\(.*?\)|<.*?>|".*?"/g, ' ').trim();
-  if (!name || name.includes('@') || ROLE.test(name) || ROLE.test(fold(String(r.address || '').split('@')[0]))) return null;
+  const local = fold(String(r.address || '').split('@')[0]);
+  if (ROLE.test(local)) return null;
+  // Outlook shows an unknown outside address as its own name. An address shaped like a name
+  // (morgan.vale@, morgan_vale@) still gives a first name; anything else (dragonfly77@) can't tell.
+  if (!name || name.includes('@')) {
+    const parts = /^([a-z]{2,20})[._-]([a-z]{2,30})$/.exec(local);
+    // "mreed.home@" is a surname and a suffix, not a first name and a surname.
+    if (!parts || /^(?:home|work|personal|private|mail|email|uk|us|au|nz|ca|ie|office|jr|sr|online|net|family|biz|pro|me|official|main)$/.test(parts[2])) return null;
+    return parts[1];
+  }
+  if (ROLE.test(name)) return null;
   // "Rowan, Alex" lists the family name first.
   if (/^[^,]+,\s*[^,]+$/.test(name)) name = name.split(',').reverse().join(' ');
   const words = name.split(/\s+/).filter((w) => !TITLE.test(w));

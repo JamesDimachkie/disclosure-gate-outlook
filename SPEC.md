@@ -94,8 +94,9 @@ subject, the body including any quoted earlier messages, and the text of readabl
 Unless IT turns it off, in clients that support it, a small on-device sentence model (v2.2) also flags
 physical access (§5.1, last two bullets), personal details (§5.4), internal economics (§5.5),
 negotiation position (§5.6) and remarks (§5.7). It adds findings using the same sender-facing copy; a
-rule finding on that sentence takes precedence. On two blind held-out sets (24 October 2026), rules plus
-the model stopped 80 of 120 such disclosures (rules alone: 11) and none of 540 ordinary outside emails.
+rule finding on that sentence takes precedence. Its thresholds favour catching over quiet (James, 24
+October 2026). On a blind held-out set (everyday4), rules plus the model stopped 50 of 60 such
+disclosures (rules alone: 14) and asked about 12 of 300 ordinary outside emails (4%).
 
 For meeting invitations and updates, required attendees map to To and optional attendees to Cc.
 Room addresses returned by Outlook's enhanced location API also count as recipients, under the same

@@ -71,3 +71,11 @@ test('text marked for inside the company asks when it goes outside; confidential
     "Please don't forward this link to anyone else.", 'Our internal team will review it on Monday.', 'The internal walls are only plasterboard.',
     'Privileged and confidential: attorney-client communication.']) assert.equal(internal(t), 0, t);
 });
+
+test('an unknown outside address shown as its own name still gives a first name when it is shaped like one', () => {
+  const bare = (address) => ({ field: 'to', name: address, address, reach: 'outside' });
+  assert.equal(greetingFinding('Hi Alex,\nok', [bare('morgan.vale@cedar.example')])?.subkind, 'greeting');
+  assert.equal(greetingFinding('Hi Morgan,\nok', [bare('morgan.vale@cedar.example')]), null);
+  assert.equal(greetingFinding('Hi Alex,\nok', [bare('dragonfly77@mail.example')]), null);
+  assert.equal(greetingFinding('Hi Alex,\nok', [bare('sales.team@cedar.example')]), null);
+});
