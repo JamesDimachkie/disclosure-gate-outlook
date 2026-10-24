@@ -32,6 +32,16 @@ test('legacy regex adapter preserves exact groups and highlights',async()=>{
     assert.deepEqual(plain(r.findings.map(select)),expected.map(select));
   }
 });
+test('an Outlook on the web body is checked line by line, not as its run-together Text coercion',async()=>{
+  // Live, 24 October 2026: three typed lines are three <div>s, and body.getAsync('text') returned them with no breaks.
+  const html='<div style="font-size: 12pt">Hi Sam,</div><div style="font-size: 12pt">The portal password is Harbor-2026!</div><div style="font-size: 12pt">See you Tuesday.</div>';
+  const l=load({state:demo({format:'html',html,body:'Hi Sam,The portal password is Harbor-2026!See you Tuesday.'})});
+  assert.equal((await l.send()).allowEvent,false);
+  const [f]=JSON.parse(l.values['dg-result']).result.findings;
+  assert.equal(f.sentence.text,'The portal password is Harbor-2026!');
+  const cut=removeSentenceFromHtml(html,f.sentence.text,f.sentence.occurrence);
+  assert.ok(cut.ok);assert.equal(cut.html,html.replace('The portal password is Harbor-2026!',''));
+});
 test('without 1.14 the ribbon fallback never promises Send anyway',async()=>{
   const o=await load({supported:false}).send();assert.equal(o.commandId,undefined);assert.match(o.errorMessage,/Open Disclosure Gate from the ribbon/);assert.doesNotMatch(o.errorMessage,/send anyway/i);
 });

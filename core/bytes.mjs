@@ -85,3 +85,6 @@ export function crc32(bytes) {
   for (let i = 0; i < bytes.length; i++) c = c >>> 8 ^ CRC[(c ^ bytes[i]) & 255];
   return (c ^ -1) >>> 0;
 }
+// Outlook on the web's runtime replaces String.prototype.startsWith/endsWith with versions that
+// ignore the position argument, so core code never passes one: it compares a slice instead.
+export const startsAt = (text, prefix, at) => text.slice(at, at + prefix.length) === prefix;

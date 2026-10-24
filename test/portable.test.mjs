@@ -28,3 +28,20 @@ test('portable base64, Windows-1252, UTF16 and CRC32',()=>{
 });
 
 test('base64 accepts the full 10 MiB attachment limit without regex stack exhaustion',()=>{const data=Buffer.alloc(10*1024*1024,65);assert.equal(fromBase64(data.toString('base64')).length,data.length);});
+test('no runtime code passes a position to startsWith/endsWith (Outlook on the web replaces both and ignores it)',async()=>{
+  const {readdirSync,readFileSync}=await import('node:fs');
+  const files=d=>readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(d+'/'+e.name):/\.(m?js)$/.test(e.name)?[d+'/'+e.name]:[]);
+  const bad=['core','outlook'].flatMap(d=>files(new URL('../'+d,import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1'))).flatMap(f=>readFileSync(f,'utf8').split('\n').map((line,i)=>[f,i+1,line])).filter(([,,line])=>/\.(startsWith|endsWith)\((?:[^(),]|\([^()]*\))*,/.test(line));
+  assert.deepEqual(bad.map(([f,n])=>f.split(/[\/]/).slice(-2).join('/')+':'+n),[]);
+});
+test('PDF text and HTML text read the same with Outlook on the web\'s replaced string methods',async()=>{
+  const {onePage}=await import('./pdf-fixture.mjs');
+  const pdf=onePage('BT /F1 12 Tf 72 720 Td (Routing number: 021000021) Tj ET');
+  const native=String.prototype.startsWith,nativeEnds=String.prototype.endsWith;
+  String.prototype.startsWith=function(a){return this.substr(0,a.length)===a;};String.prototype.endsWith=function(a){return this.substr(this.length-a.length)===a;};
+  try {
+    const {pdfText}=await import('../core/extract/pdf.mjs'),{visibleText}=await import('../core/remove.mjs');
+    assert.match(pdfText(new Uint8Array(pdf)),/Routing number: 021000021/);
+    assert.equal(visibleText('<div>A</div><!-- note --><div>B</div>'),'\nA\n\nB\n');
+  } finally { String.prototype.startsWith=native;String.prototype.endsWith=nativeEnds; }
+});

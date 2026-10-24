@@ -32,8 +32,10 @@
 // Plain JavaScript only: this runs inside Outlook.
 
 // Two-part public suffixes common in business mail; anything else is treated as a one-label suffix.
+// onmicrosoft.com is here too: every Microsoft 365 tenant gets a free name under it, so another
+// tenant's name (contos0.onmicrosoft.com) is a different organization, not a sister subdomain.
 const TWO_PART_SUFFIXES = new Set([
-  'co.uk', 'org.uk', 'ac.uk', 'gov.uk', 'ltd.uk', 'plc.uk', 'me.uk', 'net.uk', 'sch.uk', 'nhs.uk',
+  'onmicrosoft.com', 'co.uk', 'org.uk', 'ac.uk', 'gov.uk', 'ltd.uk', 'plc.uk', 'me.uk', 'net.uk', 'sch.uk', 'nhs.uk',
   'com.au', 'net.au', 'org.au', 'edu.au', 'gov.au', 'co.nz', 'org.nz', 'net.nz', 'govt.nz',
   'co.za', 'org.za', 'com.br', 'net.br', 'org.br', 'co.jp', 'ne.jp', 'or.jp', 'com.mx', 'com.ar', 'com.co',
   'com.sg', 'com.hk', 'com.tr', 'co.in', 'co.il', 'co.kr', 'com.my', 'com.ph', 'co.id', 'com.pk', 'com.ng',

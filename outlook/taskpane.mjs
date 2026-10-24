@@ -139,6 +139,10 @@ function render() {
   else if (view === 'idle') line.replaceChildren(copy(state.changedSinceCheck ? STRINGS.pane.changed : STRINGS.pane.idle));
   else if (view === 'empty') line.replaceChildren(STRINGS.pane.empty);
   else line.replaceChildren();
+  // A held result whose every card is gone (removed or edited away) has nothing left to review:
+  // it says the draft changed and offers Check again, rather than an empty list.
+  const findings = view === 'held' ? live(state.result?.findings || []) : [];
+  const resolved = view === 'held' && !findings.length && !!state.result?.findings?.length;
   // State D.
   const notice = $('notice');
   notice.hidden = !['held', 'unavailable'].includes(view);
@@ -149,13 +153,14 @@ function render() {
     noticeParts.push(copy(STRINGS.unavailable), failureReason(state.result));
   }
   if (['held', 'unavailable'].includes(view)) {
-    if (!state.result?.lastSend) noticeParts.push(copy(canSend ? STRINGS.pane.ask : STRINGS.pane.hold));
+    if (resolved) noticeParts.push(copy(STRINGS.pane.changed));
+    else if (!state.result?.lastSend) noticeParts.push(copy(canSend ? STRINGS.pane.ask : STRINGS.pane.hold));
     if (tooLargeToRetry(state.result)) noticeParts.push(STRINGS.dialog.sizeAction);
   }
   notice.textContent = noticeParts.join(' ');
   const retry = $('check-again');
   retry.textContent = STRINGS.pane.checkAgain;
-  retry.hidden = tooLargeToRetry(state.result) || !state.changedSinceCheck && (!state.result?.hasFailures || !['held', 'unavailable', 'checking'].includes(view));
+  retry.hidden = tooLargeToRetry(state.result) || !state.changedSinceCheck && !resolved && (!state.result?.hasFailures || !['held', 'unavailable', 'checking'].includes(view));
   retry.disabled = !!state.rechecking || !state.item;
   // Who will see this.
   const people = view === 'checking' ? state.recipients : state.result?.recipients || [];
@@ -163,9 +168,8 @@ function render() {
   $('recipients').hidden = !people.length || view === 'idle' || view === 'empty';
   $('people').replaceChildren(...people.map(personRow));
   // What stopped it.
-  const findings = view === 'held' ? live(state.result?.findings || []) : [];
   $('findings-title').textContent = STRINGS.sections.findings;
-  $('findings').hidden = !['checking', 'held', 'clear'].includes(view);
+  $('findings').hidden = !['checking', 'held', 'clear'].includes(view) || resolved;
   $('cards').replaceChildren(...findings.map(card));
   // The footer.
   const foot = [];
@@ -225,10 +229,11 @@ async function latest() {
 async function refreshSeen() {
   const call = Draft().call, item = state.item;
   const envelope = await Draft().readEnvelope(item, Office.context.mailbox.userProfile || {});
-  const tasks = [() => call(item.subject, 'getAsync'), () => call(item.body, 'getAsync', ['text']), () => call(item, 'getAttachmentsAsync')];
+  // The same body text the check read, so its sentences (and their line breaks) line up.
+  const tasks = [() => call(item.subject, 'getAsync'), () => Draft().readBody(item), () => call(item, 'getAttachmentsAsync')];
   if (envelope.itemType === 'appointment') tasks.push(() => call(item.location, 'getAsync'));
   const [subject, body, attachments, location] = await Draft().inThrees(tasks);
-  state.seen = { subject, body, location: Draft().locationText(location, envelope.locations) };
+  state.seen = { subject, body: body.text, location: Draft().locationText(location, envelope.locations) };
   state.addresses = [...envelope.to, ...envelope.cc, ...envelope.bcc].map(r => r.address.toLowerCase());
   state.files = (attachments || []).map((a) => String(a.name || ''));
   // Also bind the pane's reads for inside-only drafts, whose Send reader stops at the envelope.

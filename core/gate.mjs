@@ -20,6 +20,7 @@ export { copyForItem } from './copy.mjs';
 export { describeResult, dialogContent } from './copy.mjs';
 export { decisionFor } from './settings.mjs';
 export { attachmentHash } from './attachments.mjs';
+export { visibleText } from './remove.mjs';
 
 export const GATE_VERSION = 'email-gate-2';
 // Over these limits a draft cannot be checked; the failure has a specific size reason.

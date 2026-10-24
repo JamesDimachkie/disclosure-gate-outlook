@@ -62,6 +62,15 @@
       return {itemType:'appointment',from:person(v[0]),to:to,cc:cc,bcc:[],locations:locations};
     });
   }
+  // Outlook on the web's Text coercion runs <div> lines together ("Hi Sam,The portal..."), so an
+  // HTML body is read as HTML and checked as the visible text, with the breaks the sender sees.
+  function readBody(item) {
+    return call(item.body,'getTypeAsync').then(function(format) {
+      var html=String(format).toLowerCase()==='html', core=root.DisclosureGateCore;
+      if(html && core && typeof core.visibleText==='function') return call(item.body,'getAsync',['html']).then(function(h){return {format:'html',text:core.visibleText(String(h || ''))};});
+      return call(item.body,'getAsync',['text']).then(function(t){return {format:html?'html':'text',text:String(t || '')};});
+    });
+  }
   function readDraft(office,withContent,cache,options) {
     var item=office.context.mailbox.item,profile=office.context.mailbox.userProfile || {};
     return readEnvelope(item,profile).then(function(envelope) {
@@ -73,12 +82,12 @@
         var classified=core.classifyDraft(draft,{config:core.runtimeConfig(office,root)});
         if(classified.reach==='inside') return draft;
       }
-      var tasks=[function(){return call(item.subject,'getAsync');},function(){return call(item.body,'getTypeAsync');},function(){return call(item.body,'getAsync',['text']);},function(){return call(item,'getAttachmentsAsync');}];
+      var tasks=[function(){return call(item.subject,'getAsync');},function(){return readBody(item);},function(){return call(item,'getAttachmentsAsync');}];
       if(draft.itemType==='appointment') tasks.push(function(){return call(item.location,'getAsync');});
       return inThrees(tasks).then(function(v) {
-        draft.subject=String(v[0] || '');draft.body={format:String(v[1]).toLowerCase()==='html'?'html':'text',text:String(v[2] || '')};
-        if(draft.itemType==='appointment') draft.location=locationText(v[4],draft.locations);
-        draft.attachments=(v[3] || []).map(function(a){return {id:String(a.id || ''),name:String(a.name || ''),size:a.size,isInline:a.isInline===true,type:type(a.attachmentType),contentType:String(a.contentType || '')};});
+        draft.subject=String(v[0] || '');draft.body=v[1];
+        if(draft.itemType==='appointment') draft.location=locationText(v[3],draft.locations);
+        draft.attachments=(v[2] || []).map(function(a){return {id:String(a.id || ''),name:String(a.name || ''),size:a.size,isInline:a.isInline===true,type:type(a.attachmentType),contentType:String(a.contentType || '')};});
         // Read bytes before trusting OCR, including on the release re-read. Inline is never a
         // reason to skip a DOCX, item or archive. Read sequentially to bound temporary memory.
         var reads=Promise.resolve();
@@ -122,5 +131,5 @@
       else if(ocrFile(a) && c && c.name===a.name && c.size===a.size && c.status==='failed' && c.reason==='ocr_low_confidence' && typeof c.hint==='string' && c.hint.length<=200000 && /^[a-f0-9]{64}$/.test(c.hash || '') && c.hash===a.contentHash) a.ocr={status:'failed',reason:'ocr_low_confidence',hint:c.hint,hash:c.hash};
     });
   }
-  root.DisclosureGateDraft={readDraft:readDraft,readEnvelope:readEnvelope,itemType:itemType,composeItem:composeItem,locationText:locationText,inThrees:inThrees,fingerprint:fingerprint,call:call,applyOcrCache:applyOcrCache,OCR_KEY:'dg-ocr-v1'};
+  root.DisclosureGateDraft={readDraft:readDraft,readBody:readBody,readEnvelope:readEnvelope,itemType:itemType,composeItem:composeItem,locationText:locationText,inThrees:inThrees,fingerprint:fingerprint,call:call,applyOcrCache:applyOcrCache,OCR_KEY:'dg-ocr-v1'};
 })(typeof globalThis!=='undefined'?globalThis:this);

@@ -5,7 +5,7 @@
 // text, which also counts as "can't check". Lines are joined with a space, and a larger vertical gap
 // becomes a line break, so sentences that wrap on the page stay whole.
 import { inflateZlib } from './inflate.mjs';
-import { latin1, fromHex, concatBytes, utf8, decodeBytes } from '../bytes.mjs';
+import { latin1, fromHex, concatBytes, utf8, decodeBytes, startsAt } from '../bytes.mjs';
 import { OCR_MAX_PIXELS, OCR_MAX_PAGES } from '../ocr-policy.mjs';
 
 const WS = new Set([0x00, 0x09, 0x0a, 0x0c, 0x0d, 0x20]);
@@ -157,12 +157,12 @@ function load(buf) {
     if (v === undefined) continue;
     lex.skip();
     let stream = null;
-    if (v && v.dict && text.startsWith('stream', lex.state.pos)) {
+    if (v && v.dict && startsAt(text, 'stream', lex.state.pos)) {
       let start = lex.state.pos + 6;
       if (buf[start] === 0x0d) start++;
       if (buf[start] === 0x0a) start++;
       const len = typeof v.dict.Length === 'number' ? v.dict.Length : -1;
-      let end = len >= 0 && text.startsWith('endstream', skipWs(buf, start + len)) ? start + len : start <= lastEnd ? text.indexOf('endstream', start) : -1;
+      let end = len >= 0 && startsAt(text, 'endstream', skipWs(buf, start + len)) ? start + len : start <= lastEnd ? text.indexOf('endstream', start) : -1;
       if (end < 0) continue;
       if (len < 0) { while (end > start && (buf[end - 1] === 0x0a || buf[end - 1] === 0x0d)) end--; }
       stream = buf.subarray(start, end);

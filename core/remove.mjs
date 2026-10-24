@@ -6,6 +6,7 @@
 // can't be found exactly once at that occurrence, nothing is changed. Runs in the task pane and in
 // Node (tests), so it uses no platform API.
 import { splitSentences, fold } from './sentences.mjs';
+import { startsAt } from './bytes.mjs';
 
 const ENTITIES = { nbsp: '\u00a0', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", mdash: '—', ndash: '–', hellip: '…', rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“', bull: '•', middot: '·', copy: '©', reg: '®', trade: '™', euro: '€', pound: '£', cent: '¢', deg: '°', times: '×', divide: '÷', laquo: '«', raquo: '»', shy: '­', zwj: '\u200d', zwnj: '\u200c', ensp: ' ', emsp: ' ', thinsp: ' ', sect: '§', para: '¶', frac12: '½', frac14: '¼', frac34: '¾', eacute: 'é', egrave: 'è', aacute: 'á', agrave: 'à', ouml: 'ö', uuml: 'ü', auml: 'ä', ccedil: 'ç', ntilde: 'ñ' };
 const BLOCK = new Set(['address', 'article', 'aside', 'blockquote', 'br', 'dd', 'div', 'dl', 'dt', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hr', 'li', 'main', 'nav', 'ol', 'p', 'pre', 'section', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul', 'body', 'html']);
@@ -23,8 +24,8 @@ export function htmlText(html) {
   while (i < html.length) {
     const c = html[i];
     if (c === '<') {
-      if (html.startsWith('<!--', i)) { const end = html.indexOf('-->', i + 4); i = end < 0 ? html.length : end + 3; continue; }
-      if (html.startsWith('<![CDATA[', i)) { const end = html.indexOf(']]>', i); i = end < 0 ? html.length : end + 3; continue; }
+      if (startsAt(html, '<!--', i)) { const end = html.indexOf('-->', i + 4); i = end < 0 ? html.length : end + 3; continue; }
+      if (startsAt(html, '<![CDATA[', i)) { const end = html.indexOf(']]>', i); i = end < 0 ? html.length : end + 3; continue; }
       if (/[!?]/.test(html[i + 1] || '')) { const end = html.indexOf('>', i); i = end < 0 ? html.length : end + 1; continue; }
       const m = /^<(\/?)([a-zA-Z][a-zA-Z0-9:-]*)/.exec(html.slice(i, i + 64));
       if (!m) { if (!hidden) push('<', i, i + 1); i++; continue; }
@@ -54,6 +55,12 @@ export function htmlText(html) {
     i += len;
   }
   return out;
+}
+
+// The text a reader sees, with a line break wherever the markup makes one. Outlook on the web's own
+// plain-text view of a body drops the breaks between its <div> lines, so the check reads this instead.
+export function visibleText(html) {
+  return htmlText(html).map((c) => (c.from < 0 ? '\n' : c.ch)).join('');
 }
 
 // The index range [start, end) of the occurrence-th sentence whose folded text equals the target.
@@ -98,7 +105,7 @@ export function removeSentenceFromText(text, sentence, occurrence = 0) {
 export function removeSentenceFromHtml(html, sentence, occurrence = 0) {
   if (typeof html !== 'string') return { ok: false, reason: 'invalid' };
   const chars = htmlText(html);
-  const visible = chars.map((c) => (c.from < 0 ? '\n' : c.ch)).join('');
+  const visible = visibleText(html);
   // Each visible character is one UTF-16 unit or one astral pair; map string offsets to entries.
   const unitToChar = [];
   chars.forEach((c, k) => { for (let u = 0; u < (c.from < 0 ? 1 : c.ch.length); u++) unitToChar.push(k); });

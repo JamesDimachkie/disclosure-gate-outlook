@@ -115,3 +115,10 @@ test('the examples in SPEC 5.8 behave as the spec says', () => {
   assert.equal(reason('acmee.com', ['acme.com']), 'typo');
   assert.equal(reason('acmeee.com', ['acme.com']), null);
 });
+test('another Microsoft 365 tenant name is a lookalike, not a sister subdomain', () => {
+  // Live, 24 October 2026: mail to a one-letter lookalike of the test tenant's onmicrosoft.com name went out unprompted.
+  const inside = ['northline.onmicrosoft.com'];
+  assert.equal(reason('north1ine.onmicrosoft.com', inside), 'homoglyph');
+  assert.equal(reason('northIine.onmicrosoft.com', inside), 'homoglyph');
+  for (const domain of ['northline.onmicrosoft.com', 'fabrikam.onmicrosoft.com', 'gmail.com']) assert.equal(reason(domain, inside), null, domain);
+});

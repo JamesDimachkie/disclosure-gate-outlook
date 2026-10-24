@@ -179,6 +179,71 @@ activation, administration, dialog behavior, Office callback timing or client pe
   latter is reconstructed locally only after matching the last Send fingerprint. This keeps Review
   usable within the older session-data allowance without content transport.
 
+## Live evidence: Outlook on the web, 24 October 2026
+
+Client: Outlook on the web in Chrome (Playwright), the private test tenant, outside
+recipient a personal Gmail. All content synthetic.
+
+**How v2 ran before Microsoft served the v2 manifest.** The v2 dev manifest was uploaded on 23 October;
+by 00:05 UTC on the 24th Outlook still served v1.1 (`OnMessageSend` only, `SendMode="Block"`, runtime URL
+with no settings). v1.1 loads its runtime from the same dev server, so a local test shim (not shipped)
+redirected `commands.html` to the v2 settings (`dg=2&findings=ask&failures=ask&domains=&model=on`) and,
+standing in for v2's `OnMessageCompose`, started the model preload when the runtime page loaded. Every
+Send therefore ran the current v2 code in Outlook's real runtime frame. What this cannot show: v2's
+compose and attachment-changed events, meetings (v1.1 has no `OnAppointmentSend`), and the PromptUser
+unavailable fallback (v1.1 is Block).
+
+| Runbook # | Result |
+|---|---|
+| 1 inside only, password | Sent, 0.7 s |
+| 2 outside, clean | Sent, 3.1 s |
+| 3 outside, password | Dialog: headline, bullet, Send anyway / Review / Don't send |
+| 4 Review | Pane: card on the sentence, Show me, Remove deleted only that line (after fixes 1–2 below) |
+| 5 Send anyway | Sent |
+| 6 handover-notes.docx | Dialog names the file; pane "In handover-notes.docx" |
+| 7 cost-review.xlsx | "your margin" in the file, 1.2 s |
+| 8 deposit-form.pdf | Bank account number in the file, 0.9 s (after fix 3) |
+| 9 site-photos.zip | Failure dialog, Send anyway / Don't send |
+| 10 deploy-settings.png attached | API key read by on-device OCR on the first Send, 4.5 s |
+| 11 deploy-settings.png pasted inline | API key found, 3.1 s |
+| 12 site-photo.jpg attached | Picture prompt with Send anyway |
+| 13 site-photo.jpg pasted inline | Sent (ignored) |
+| 14 clean-agenda.docx | Sent |
+| 15 one-letter lookalike of the tenant's onmicrosoft.com name | Lookalike dialog (after fix 4) |
+| 16 8 outside addresses, 3 domains | "8 outside addresses" dialog |
+| 17 type during the check | The typed password was caught; nothing sent unchecked (the edit landed before the read, so the mid-check race itself was not exercised) |
+| 18 dev server stopped | "taking longer", then "Disclosure Gate is unavailable… Try later" (v1.1 Block; PromptUser still to test on v2) |
+| 19 Schedule send | Dialog before scheduling |
+| 20–22 model sentences | personal / economics / remark, found by the model, 1.2 s Send-to-dialog; #20 on the chemo line only, not "Thanks," |
+| 23 flu jabs | Sent; model ran (`used`) and stayed quiet |
+| 24 first Send after reloading Outlook | Model loaded from cache in 1.3–1.4 s, check 1.1–1.2 s, finding shown; repeated in a new compose. One earlier first Send, before the model files were cached, went out on rules only |
+| findings=hold | #3: Review / Don't send only |
+| failures=hold | #9: Don't send only |
+| model=off | #20 sent (rules only) |
+| Pane | Remove, then "This draft changed since the check" + Check again, then Clear, then edit, then "changed" again (after fix 5) |
+
+Seen live for the first time: the finding dialog's Send anyway (the `promptUser` override) works even
+under a `SendMode="Block"` manifest in Outlook on the web.
+
+**Bugs found live and fixed (branch `fix/owa-html-body-lines`):**
+
+1. Outlook on the web's `body.getAsync('text')` runs `<div>` lines together ("Hi Sam,The portal password
+   is Harbor-2026!See you Tuesday."). One sentence per email: wrong highlights, wrong model context, and
+   Remove could not find the sentence. HTML bodies are now read as HTML and checked as visible text.
+2. The pane used its own Text read to decide which cards were still live, so it then showed none. Both
+   now share `readBody`.
+3. Outlook's runtime frame replaces `String.prototype.startsWith/endsWith` with versions that ignore the
+   position argument. The PDF reader never found its streams (every text PDF was "couldn't be read") and
+   the HTML reader never skipped comments. Core code now compares slices; the runtime tests run under the
+   same replacements; a test rejects positional `startsWith`/`endsWith`.
+4. `*.onmicrosoft.com` tenant names counted as sister subdomains, so a lookalike tenant was never flagged.
+   `onmicrosoft.com` is now a public suffix.
+5. Removing the last flagged sentence left the pane on Held with an empty list and no Check again.
+
+Timing: the model's 1.5 s share of Send left about 0.3 s spare on this laptop in a fresh runtime (load
+1.3 s from cache plus classify). A slower machine will more often fall back to rules only, which the
+design allows but which lowers what the model catches in practice.
+
 ## Live Outlook acceptance still needed
 
 1. Upload the dev manifest as an update to the existing test installation. Confirm v2 actually
@@ -201,7 +266,8 @@ activation, administration, dialog behavior, Office callback timing or client pe
    not a behavior this static migration can guarantee.
 
 The weakest point is native classic Outlook acceptance, especially the older runtime and per-user
-configuration fallback. No v2 live-client evidence exists yet; the planned Pages host is not deployed.
+configuration fallback. Outlook on the web has v2 Send evidence (above); new Outlook, classic and Mac
+have none yet, and v2's own manifest (compose and attachment events, meetings, PromptUser) is untested live.
 
 ## OCR lane: documented support versus implementation inference
 
