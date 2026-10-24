@@ -17,7 +17,7 @@
 <p id="setup-error" role="alert" hidden></p><button class="btn primary" type="submit">Download manifest.xml</button><p id="download-status" role="status"></p>
 </form></section>
 <section class="setup-card install" aria-labelledby="install-title"><h2 id="install-title">Install for your organization</h2><ol>
-<li><strong>Host the files.</strong> Put the built static folder on the HTTPS host above. The planned public release host must be deployed before its manifest can work.</li>
+<li><strong>Choose your host.</strong> Use the public release address above, or host the built <code>dist/</code> folder yourself over HTTPS. For your own host, publish the files before using its manifest.</li>
 <li><strong>Upload the manifest.</strong> In the Microsoft 365 admin center, go to Settings &gt; Integrated apps &gt; Upload custom apps. Choose the add-in manifest and select manifest.xml.</li>
 <li><strong>Assign and test.</strong> Assign users or groups, finish deployment, then test a synthetic email and meeting invitation in Outlook. Start with both settings on Ask and allow time for Microsoft 365 to apply the installation.</li>
 <li><strong>If either setting is Hold, set three Outlook policies.</strong> <code>OnSendAddinsEnabled</code> for web and new Outlook, <code>OnSendAddinsWaitForLoad</code> on Mac, and the classic Outlook Group Policy <em>Running Outlook for Simple MAPI Mail Sending</em>. Without them, some sends skip the check. These are relevant to holding; when failures are set to Ask, Outlook still offers Send Anyway if the add-in cannot load. Details are in the <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook#make-hold-settings-work-everywhere">README</a>.</li>

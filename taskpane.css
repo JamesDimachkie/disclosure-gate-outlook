@@ -1,7 +1,5 @@
-/* The Disclosure Gate review pane (spec §6.C), drawn to the product film (v3, 0:20 to 0:44): quiet
-   until Send, an amber edge while checking or held and a green one when clear. 320 to 360 px wide.
-   Colours, type, spacing and motion come from the v4 tokens (voice/web/design/tokens.css): zinc
-   neutrals, amber for held and checking, green for clear; light and dark from one set of pairs. */
+/* Review pane presentation (SPEC.md §7): quiet until Send, an amber edge while checking or held
+   and a green one when clear. Colors, type, spacing and motion use outlook/tokens.css. */
 .sprite { display: none; }
 html { -webkit-text-size-adjust: 100%; }
 body {
@@ -25,7 +23,7 @@ body {
   min-height: 100vh;
   padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 2px);
 }
-/* The edge the film draws between the email and the pane. */
+/* The status edge between the email and the pane. */
 .pane::before {
   content: "";
   position: fixed;
@@ -130,7 +128,7 @@ body {
 .btn--text:hover { background: transparent; color: var(--fg); }
 .btn--text[aria-expanded="true"] { color: var(--fg); }
 
-/* State D. */
+/* Advisory notice above the recipients and findings. */
 .notice { margin: 0; padding: var(--space-3); border: 1px solid color-mix(in srgb, var(--advisory-mark) 45%, transparent); border-radius: var(--radius-lg); background: var(--advisory-bg); color: var(--fg); }
 
 .foot { display: grid; gap: var(--space-1-5); margin-top: auto; }
