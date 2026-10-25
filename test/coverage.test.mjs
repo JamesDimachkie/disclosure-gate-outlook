@@ -162,7 +162,7 @@ test('OCR service recognizes mixed PDF and embedded Office media, hashing the wh
     const values = {}, ok = value => ({ status: 'succeeded', value });
     const item = { getAttachmentsAsync: cb => cb(ok([a])), sessionData: { getAsync: (k, cb) => cb(ok(values[k])), setAsync: (k, v, cb) => { values[k] = v; cb(ok()); } } };
     const office = { context: { mailbox: { item } } };
-    const service = createOcrService({ document: {}, Worker: function() {}, WebAssembly, BigInt, DisclosureGateOcrEngine: { recognize: async bytes => { calls++; assert.ok(bytes.length); return { status: 'ready', text: secret }; }, close: async () => {} } });
+    const service = createOcrService({ document: {}, Worker: function() {}, WebAssembly, BigInt, GuardcellOcrEngine: { recognize: async bytes => { calls++; assert.ok(bytes.length); return { status: 'ready', text: secret }; }, close: async () => {} } });
     await service.prepare(office, [a]);
     await service.wait(office, Date.now() + 2000);
     const checked = { ...a }; service.apply(office, [checked]);
@@ -189,7 +189,7 @@ test('native and both ES2016 bundles agree on every review fixture and clear con
 test('both built Send paths read and check Office OCR with fresh attachment bytes', async () => {
   for (const bundle of ['runtime.js', 'runtime-browser.js']) for (const text of [secret, 'See you Tuesday.']) {
     const a = { ...embedded, attachmentType: 'file' };
-    const l = load({ source: readFileSync(new URL('../dist/' + bundle, import.meta.url), 'utf8'), state: demo({ subject: 'Update', body: CLEAN_BODY, attachments: [a], contents: { f: a.content } }), globals: { document: {}, Worker: function() {}, DisclosureGateOcrEngine: { recognize: async () => ({ status: 'ready', text }), close: async () => {} } } });
+    const l = load({ source: readFileSync(new URL('../dist/' + bundle, import.meta.url), 'utf8'), state: demo({ subject: 'Update', body: CLEAN_BODY, attachments: [a], contents: { f: a.content } }), globals: { document: {}, Worker: function() {}, GuardcellOcrEngine: { recognize: async () => ({ status: 'ready', text }), close: async () => {} } } });
     assert.equal((await l.send()).allowEvent, text !== secret);
     if (text === secret) assert.ok(JSON.parse(l.values['dg-result']).result.findings.some(f => f.subkind === 'password'));
     else assert.ok(l.reads.content.filter(id => id === 'f').length >= 2);

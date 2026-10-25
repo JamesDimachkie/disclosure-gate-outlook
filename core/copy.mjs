@@ -10,7 +10,7 @@ import { isFailure, decisionFor } from './settings.mjs';
 export const CATEGORIES = Object.freeze(['economics', 'negotiation', 'personal', 'access', 'financial', 'identity', 'remark', 'internal', 'attachment', 'recipient']);
 
 export const STRINGS = Object.freeze({
-  name: 'Disclosure Gate',
+  name: 'Guardcell',
   pill: Object.freeze({ held: 'Held', ask: 'Review', clear: 'Clear' }),
   checking: 'Checking before it leaves…',
   sections: Object.freeze({ recipients: 'Who will see this', findings: 'What needs review' }),
@@ -35,7 +35,7 @@ export const STRINGS = Object.freeze({
     access: 'Codes and security details stay off email.',
     remark: 'Remarks about people stay in the room.',
     internal: "It says it's for inside the company, and this email is going outside. Check it's meant for these recipients.",
-    attachment: "Disclosure Gate couldn't read this file. Check what it contains before sending.",
+    attachment: "Guardcell couldn't read this file. Check what it contains before sending.",
     financial: 'Card and bank numbers stay off email.',
     identity: 'Government ID numbers stay off email.',
     recipient: Object.freeze({
@@ -53,20 +53,20 @@ export const STRINGS = Object.freeze({
   meeting: Object.freeze({ exposed: 'Everyone invited can see these outside addresses. Check the attendee list before sending.' }),
   // A recipient finding shows its addresses where other findings show a sentence.
   recipientList: '{list} and {n} more',
-  unavailable: "Disclosure Gate couldn't check this email.",
+  unavailable: "Guardcell couldn't check this email.",
   tooLarge: "It's too large to check.",
   ocr: Object.freeze({
     pending: 'An image is still being read.',
-    unsupported: "This Outlook runtime can't read images on this device. Open Disclosure Gate from the ribbon to try reading this file in the pane.",
+    unsupported: "This Outlook runtime can't read images on this device. Open Guardcell from the ribbon to try reading this file in the pane.",
     lowConfidence: "The text in this image couldn't be read confidently. Replace it with a clearer image or a text file, then click Send again.",
     failed: "This image couldn't be read on this device. Replace it with a clearer image or a text file, then click Send again.",
     cacheSize: "This image has too much text to save for Send. Replace it with a text file, then click Send again.",
     paneReading: 'Reading images on this device…',
-    picture: "Disclosure Gate couldn't read the text in this picture. Check it shows nothing that should stay inside before you send it.",
+    picture: "Guardcell couldn't read the text in this picture. Check it shows nothing that should stay inside before you send it.",
   }),
   // The pane's footer when a Send clears. Outlook gives an add-in no way
   // to put a line on the sent item or on its own "sent" notice, so the pane is the only place it appears.
-  checkedNotice: 'Checked by Disclosure Gate before sending.',
+  checkedNotice: 'Checked by Guardcell before sending.',
   dialog: Object.freeze({
     outside: 'This email goes outside your company',
     mayGoOutside: 'This email may go outside your company',
@@ -94,7 +94,7 @@ export const STRINGS = Object.freeze({
     fileTooLarge: '{name} is too large to check',
     filePending: '{name} is still being read',
     separator: 'and',
-    noReviewButton: 'Open Disclosure Gate from the ribbon to see why.',
+    noReviewButton: 'Open Guardcell from the ribbon to see why.',
     review: 'Review',
   }),
   // The phrase that names the first finding in the dialog. The spec fixes "mentions your margin";
@@ -112,11 +112,11 @@ export const STRINGS = Object.freeze({
     attachment: Object.freeze({ other: "includes a file that can't be checked", picture: "includes a picture it couldn't read" }),
   }),
   // The compose ribbon button that opens the pane; the dialog's fallback sentence names it.
-  ribbon: Object.freeze({ label: 'Disclosure Gate', tip: 'See who will receive this email and what Disclosure Gate found.' }),
+  ribbon: Object.freeze({ label: 'Guardcell', tip: 'See who will receive this email and what Guardcell found.' }),
   pane: Object.freeze({
     // Before the first Send.
     idle: 'Checks this email when you press Send.',
-    empty: 'Open a message you are writing or a meeting you are organizing to see what Disclosure Gate checks.',
+    empty: 'Open a message you are writing or a meeting you are organizing to see what Guardcell checks.',
     removeFailed: "That sentence couldn't be found in the draft any more. It may already be gone.",
     fileNote: 'You can review, remove or replace this file before sending.',
     ask: 'You can still send it: press Send and choose Send Anyway.',

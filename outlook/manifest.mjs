@@ -1,7 +1,7 @@
 import { TEMPLATE } from './manifest-template.mjs';
 import { RELEASE_BASE_URL, RELEASE_ID, configQuery, validateConfig } from './config.mjs';
 const escapeXml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
-export function manifestOptions({baseUrl=RELEASE_BASE_URL,mode,findings,failures,model,internalDomains=[],trustedDomains=[],version='2.0.0.0',id=RELEASE_ID}={}) {
+export function manifestOptions({baseUrl=RELEASE_BASE_URL,mode,findings,failures,model,internalDomains=[],trustedDomains=[],version='2.1.0.0',id=RELEASE_ID}={}) {
   const url=new URL(baseUrl);
   if(url.protocol!=='https:' || url.username || url.password || url.search || url.hash) throw new Error('Use an HTTPS base URL without a query or fragment.');
   // The base is the folder the files are in. A page address (…/setup.html) would make every asset URL wrong.

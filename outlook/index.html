@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en" data-theme="auto"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Disclosure Gate for Outlook</title>
-<meta name="description" content="Disclosure Gate asks before an email or meeting invitation takes something outside your company that should stay inside. Every check runs on your device. Your IT team can require a hold.">
+<title>Guardcell for Outlook</title>
+<meta name="description" content="Guardcell asks before an email or meeting invitation takes something outside your company that should stay inside. Every check runs on your device. Your IT team can require a hold.">
 <link rel="icon" href="assets/icon-32.png"><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="taskpane.css"><link rel="stylesheet" href="setup.css"><link rel="stylesheet" href="landing.css"></head>
 <body><main class="setup landing">
-<header><img src="assets/icon-64.png" width="40" height="40" alt=""><p class="eyebrow">Disclosure Gate for Outlook</p>
+<header><img src="assets/icon-64.png" width="40" height="40" alt=""><p class="eyebrow">Guardcell for Outlook</p>
 <h1>Asks before it leaves.</h1>
-<p class="lede">When you press Send, Disclosure Gate checks your email or meeting invitation on your device. If it goes outside your company with something that should stay inside, it explains the concern and asks if you're sure. Choose Send Anyway, Review, or Don't Send. You don't have to reword an intentional disclosure.</p>
+<p class="lede">When you press Send, Guardcell checks your email or meeting invitation on your device. If it goes outside your company with something that should stay inside, it explains the concern and asks if you're sure. Choose Send Anyway, Review, or Don't Send. You don't have to reword an intentional disclosure.</p>
 <p>Your IT team can require a hold, separately for findings and for checks that fail. Both settings start on Ask.</p>
-<p class="cta"><a class="btn primary" href="setup.html">Set it up for your organization</a><a class="btn" href="https://github.com/JamesDimachkie/disclosure-gate-outlook">Source on GitHub</a></p>
-<figure class="shot"><img src="assets/send-dialog.png" width="525" height="337" alt="Outlook's Send dialog from Disclosure Gate: This email goes outside your company and includes your margin and your negotiating position. Greets Kate, sent to dan@whitfielddev.example. In the body: your margin. In the body: your negotiating position. And 1 more. Buttons: Send anyway, Review, Don't send."><figcaption>A fictional email written to Kate but addressed to the client, on Send in Outlook on the web.</figcaption></figure></header>
+<p class="cta"><a class="btn primary" href="setup.html">Set it up for your organization</a><a class="btn" href="https://github.com/JamesDimachkie/guardcell-outlook">Source on GitHub</a></p>
+<figure class="shot"><img src="assets/send-dialog.png" width="525" height="337" alt="Outlook's Send dialog from Guardcell: This email goes outside your company and includes your margin and your negotiating position. Greets Kate, sent to dan@whitfielddev.example. In the body: your margin. In the body: your negotiating position. And 1 more. Buttons: Send anyway, Review, Don't send."><figcaption>A fictional email written to Kate but addressed to the client, on Send in Outlook on the web.</figcaption></figure></header>
 
 <section class="setup-card" aria-labelledby="stops"><h2 id="stops">What it looks for</h2>
 <ul class="checks">
@@ -39,7 +39,7 @@
 <tr><td>Rules and recipient checks only (model off)</td><td>19</td><td>53 of 2,000 (2.7%)</td></tr>
 </tbody></table>
 <p class="narrow">About 96 of the 2,000 carried a serious disclosure (62 found among the emails any system asked about, about 34 more estimated from a random sample of the rest), so the default catches roughly two in three, asking about one email in three. Enron’s mail is heavy with personal chatter; business mail is likely asked about less, but that is not measured. On the newest blind synthetic set it caught 108 of 120 disclosures.</p>
-<p class="narrow">It is tuned to catch rather than miss: a question on an ordinary email costs one click. On 49 real, documented email incidents rebuilt with invented names, it asks about 35. Attachments saved from Word and Chrome read in full: 36 of 36 everyday documents, with every amount, name and accented or non-Latin word intact. On 1,586 public test files built to break document readers (Mozilla's PDF and Apache's Office collections), nothing crashed or hung, and a file it can't read completely says so and asks rather than passing on the part it could read. None of these tests measure accuracy on your own mail. <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook/blob/main/EVALUATION.md">How it was tested, including the attempts that failed</a>.</p>
+<p class="narrow">It is tuned to catch rather than miss: a question on an ordinary email costs one click. On 49 real, documented email incidents rebuilt with invented names, it asks about 35. Attachments saved from Word and Chrome read in full: 36 of 36 everyday documents, with every amount, name and accented or non-Latin word intact. On 1,586 public test files built to break document readers (Mozilla's PDF and Apache's Office collections), nothing crashed or hung, and a file it can't read completely says so and asks rather than passing on the part it could read. None of these tests measure accuracy on your own mail. <a href="https://github.com/JamesDimachkie/guardcell-outlook/blob/main/EVALUATION.md">How it was tested, including the attempts that failed</a>.</p>
 </section>
 
 <section class="setup-card" aria-labelledby="install"><h2 id="install">Install in about five minutes</h2>
@@ -47,12 +47,12 @@
 <ol><li><strong>Make your manifest.</strong> On the <a href="setup.html">setup page</a>, choose Ask or Hold for findings and for failed checks. Both default to Ask. Add your other internal domains; your own domain is always inside.</li>
 <li><strong>Upload it.</strong> In the Microsoft 365 admin center, go to Settings &gt; Integrated apps &gt; Upload custom apps and choose the manifest.</li>
 <li><strong>Assign it.</strong> Pick the users or groups. Microsoft can take up to a day to deliver it to Outlook.</li>
-<li><strong>If either setting is Hold, set three Outlook policies</strong> for offline/load/Simple MAPI cases. The <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook#make-hold-settings-work-everywhere">README</a> lists them.</li></ol>
+<li><strong>If either setting is Hold, set three Outlook policies</strong> for offline/load/Simple MAPI cases. The <a href="https://github.com/JamesDimachkie/guardcell-outlook#make-hold-settings-work-everywhere">README</a> lists them.</li></ol>
 <p class="help"><strong>Ask</strong> suits most teams: the sender sees the concern and decides. <strong>Hold</strong> is for teams whose policy requires a change before sending. With both settings on Ask, even if the add-in can't load, Outlook still lets people send. Older Outlook versions can't ask, so with a Hold setting they hold everything that would otherwise ask.</p></section>
 
 <section class="setup-card" aria-labelledby="where"><h2 id="where">Where it works</h2>
 <p>Outlook on the web, the new Outlook for Windows, classic Outlook for Windows (version 2206 or later) and Outlook for Mac (16.65 or later), with Exchange Online.</p>
-<p class="narrow">Meeting invitations are checked when sent from their own window; on the web and in the new Outlook, invitations sent from the small built-in form, forwarded meetings and attendee replies aren't. It also doesn't see items protected so that add-ins can't read them, mail sent from phones, other apps or scripts, or anything Exchange changes after Send. Hold settings also need the Outlook policies in the <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook#make-hold-settings-work-everywhere">README</a>.</p></section>
+<p class="narrow">Meeting invitations are checked when sent from their own window; on the web and in the new Outlook, invitations sent from the small built-in form, forwarded meetings and attendee replies aren't. It also doesn't see items protected so that add-ins can't read them, mail sent from phones, other apps or scripts, or anything Exchange changes after Send. Hold settings also need the Outlook policies in the <a href="https://github.com/JamesDimachkie/guardcell-outlook#make-hold-settings-work-everywhere">README</a>.</p></section>
 
-<footer class="help">Disclosure Gate for Outlook is open source (Apache 2.0). Report a security issue through <a href="https://github.com/JamesDimachkie/disclosure-gate-outlook/security">GitHub</a>.</footer>
+<footer class="help">Guardcell for Outlook is open source (Apache 2.0). Report a security issue through <a href="https://github.com/JamesDimachkie/guardcell-outlook/security">GitHub</a>.</footer>
 </main></body></html>

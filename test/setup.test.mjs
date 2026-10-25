@@ -6,7 +6,7 @@ import {validateManifest} from '../tools/validate-manifest.mjs';
 import {RELEASE_BASE_URL} from '../outlook/config.mjs';
 test('setup bundle makes configured XML locally and reports invalid domains',async()=>{
   const nodes=new Map(),handlers={};let blob,clicked=0;
-  const node=id=>{if(!nodes.has(id))nodes.set(id,{value:['findings','failures'].includes(id)?'ask':id==='model'?'on':id==='version'?'2.0.0.0':'',hidden:true,textContent:'',addEventListener:(event,fn)=>handlers[id+':'+event]=fn});return nodes.get(id);};
+  const node=id=>{if(!nodes.has(id))nodes.set(id,{value:['findings','failures'].includes(id)?'ask':id==='model'?'on':id==='version'?'2.1.0.0':'',hidden:true,textContent:'',addEventListener:(event,fn)=>handlers[id+':'+event]=fn});return nodes.get(id);};
   const link={remove(){},click(){clicked++;}};
   const context={document:{getElementById:node,createElement:()=>link,body:{append(){}}},Blob,URL:class extends URL{static createObjectURL(b){blob=b;return 'blob:test';}static revokeObjectURL(){}},setTimeout:fn=>fn()};
   vm.runInNewContext(readFileSync(new URL('../dist/setup.js',import.meta.url),'utf8'),context);
@@ -16,7 +16,7 @@ test('setup bundle makes configured XML locally and reports invalid domains',asy
   node('failures').value='hold';handlers['failures:change']();assert.match(node('technical-help').textContent,/Block/);assert.match(node('mode-help').textContent,/Outlook holds/);assert.match(node('failures-help').textContent,/unsent/);
   node('domains').value='Other.Example, third.example';handlers['setup-form:submit']({preventDefault(){}});
   assert.equal(clicked,1);assert.equal(link.download,'manifest.xml');assert.equal(blob.type,'text/xml');
-  const xml=await blob.text();assert.equal(validateManifest(xml).mode,'Block');assert.match(xml,/domains=other.example%2Cthird.example/);assert.match(xml,/disclosure-gate-outlook\/runtime.js/);
+  const xml=await blob.text();assert.equal(validateManifest(xml).mode,'Block');assert.match(xml,/domains=other.example%2Cthird.example/);assert.match(xml,/guardcell-outlook\/runtime.js/);
   for(const findings of ['ask','hold']) for(const failures of ['ask','hold']) {
     node('findings').value=findings;node('failures').value=failures;handlers['findings:change']();handlers['failures:change']();
     handlers['setup-form:submit']({preventDefault(){}});

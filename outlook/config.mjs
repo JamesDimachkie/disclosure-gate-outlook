@@ -1,7 +1,7 @@
 // URL settings are public configuration, never email content. The only release-host constant.
 import { normalizeDomains } from '../core/recipients.mjs';
 import { settingsFor } from '../core/settings.mjs';
-export const RELEASE_BASE_URL = 'https://jamesdimachkie.github.io/disclosure-gate-outlook/';
+export const RELEASE_BASE_URL = 'https://jamesdimachkie.github.io/guardcell-outlook/';
 export const DEV_ID = 'cf4aa3ad-2656-4bc5-a8c1-ae4734bf4b32';
 export const RELEASE_ID = '15f4b69e-59f2-4f5a-ad8b-697db42b1d81';
 export function validateConfig(value = {}) {

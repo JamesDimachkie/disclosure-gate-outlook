@@ -168,7 +168,7 @@ def main(args):
         f'Ettin encoder 17m\nBase: https://huggingface.co/{common.BASE_ID}\nRevision: {common.BASE_REVISION}\n'
         'License: MIT; see LICENSE.\nUpstream license source: '
         'https://raw.githubusercontent.com/jhu-clsp/ettin-encoder-vs-decoder/main/LICENSE\n\n'
-        'Modified for Disclosure Gate: six-class sequence classifier, fine-tuned by the deploying organization;\n'
+        'Modified for Guardcell: six-class sequence classifier, fine-tuned by the deploying organization;\n'
         'quantization-aware int8 weights/embeddings, fp32 encoder activations, per-sentence dynamic uint8 final projection.\n'
         'No upstream endorsement is implied.\n', encoding='utf-8', newline='\n')
     reference = {'probes_sha256': common.sha256(args.probes), 'model_sha256': common.sha256(out / 'model.onnx'),

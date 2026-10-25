@@ -213,7 +213,7 @@ test('OCR preempts model work and a busy OCR runtime skips semantic initializati
   await delay(5); assert.equal(h.workers.length, 1);
   h.service.stopForOcr();
   assert.equal((await pending).checked.semantic, 'skipped:ocr_busy'); assert.equal(h.workers[0].terminated, true);
-  h.root.DisclosureGateOcr = { busy: () => true };
+  h.root.GuardcellOcr = { busy: () => true };
   assert.equal((await checkDraft(external(), { semantic: h.service })).checked.semantic, 'skipped:ocr_busy');
   assert.equal(h.workers.length, 1);
 });
@@ -223,8 +223,8 @@ test('OCR coordinator cancels model work before its recognizer starts', async ()
   const a = { id: 'p', name: 'image.png', size: PNG_SIZE, type: 'file', content: PNG_B64 };
   const item = { getAttachmentsAsync: cb => cb(ok([a])) };
   const root = { document: {}, Worker: function() {}, WebAssembly, BigInt,
-    DisclosureGateSemantic: { stopForOcr: () => order.push('stop') },
-    DisclosureGateOcrEngine: { recognize: async () => { order.push('recognize'); return { status: 'ready', text: '' }; }, close: async () => {} } };
+    GuardcellSemantic: { stopForOcr: () => order.push('stop') },
+    GuardcellOcrEngine: { recognize: async () => { order.push('recognize'); return { status: 'ready', text: '' }; }, close: async () => {} } };
   const ocr = createOcrService(root), office = { context: { mailbox: { item } } };
   await ocr.prepare(office, [a]); await ocr.wait(office, Date.now() + 1000);
   assert.deepEqual(order, ['stop', 'recognize']);
@@ -232,7 +232,7 @@ test('OCR coordinator cancels model work before its recognizer starts', async ()
 
 test('compose and attachment-change events await bounded asset preparation and complete once', async () => {
   const calls = []; let prepared = false;
-  const l = load({ url: 'https://static.example/sub/runtime.js?dg=2&mode=enforce&domains=&model=on', state: demo({ body: CLEAN_BODY }), globals: { DisclosureGateSemantic: { preload: async options => { calls.push(options.deadline); await delay(5); prepared = true; } } } });
+  const l = load({ url: 'https://static.example/sub/runtime.js?dg=2&mode=enforce&domains=&model=on', state: demo({ body: CLEAN_BODY }), globals: { GuardcellSemantic: { preload: async options => { calls.push(options.deadline); await delay(5); prepared = true; } } } });
   for (const name of ['onMessageComposeHandler', 'onMessageAttachmentsChangedHandler']) {
     prepared = false;
     let completed = 0; await l.handlers[name]({ completed: () => { completed++; assert.equal(prepared, true); } });
@@ -245,7 +245,7 @@ test('real Send bridge passes the remaining deadline and persists model findings
   let deadline, budget;
   const l = load({ url: 'https://static.example/sub/runtime.js?dg=2&mode=enforce&domains=&model=on', state: demo({ subject: '', body: 'Ordinary detail.' }),
     check: (d, options, original) => { budget = options.semanticBudgetMs; return original(d, options); },
-    globals: { DisclosureGateSemantic: { forSend: d => { deadline = d; return { classify: async items => result(items) }; } } } });
+    globals: { GuardcellSemantic: { forSend: d => { deadline = d; return { classify: async items => result(items) }; } } } });
   const started = Date.now(), decision = await l.send();
   assert.equal(decision.allowEvent, false); assert.equal(decision.commandId, 'dgOpenPane');
   assert.ok(deadline >= started + 3900 && deadline <= started + 4100);
@@ -313,7 +313,7 @@ test('built browser event script retains mandatory Send in unsupported browser h
 
 test('an install with the model turned off never preloads or calls it', async () => {
   let preloads = 0, sends = 0;
-  const l = load({ url: 'https://static.example/sub/runtime.js?dg=2&mode=enforce&domains=&model=off', state: demo({ body: CLEAN_BODY }), globals: { DisclosureGateSemantic: { preload: async () => { preloads++; }, forSend: () => { sends++; return { classify: async items => items.map(() => ({ label: 'personal', score: 0.99, scores: {} })) }; } } } });
+  const l = load({ url: 'https://static.example/sub/runtime.js?dg=2&mode=enforce&domains=&model=off', state: demo({ body: CLEAN_BODY }), globals: { GuardcellSemantic: { preload: async () => { preloads++; }, forSend: () => { sends++; return { classify: async items => items.map(() => ({ label: 'personal', score: 0.99, scores: {} })) }; } } } });
   let completed = 0; await l.handlers.onMessageComposeHandler({ completed: () => { completed++; } });
   assert.equal(completed, 1); assert.equal(preloads, 0);
   const decision = await l.send();
@@ -323,7 +323,7 @@ test('an install with the model turned off never preloads or calls it', async ()
 
 test('a default install (no model setting) preloads on compose and asks the model on Send', async () => {
   let preloads = 0, sends = 0;
-  const l = load({ state: demo({ body: CLEAN_BODY }), globals: { DisclosureGateSemantic: { preload: async () => { preloads++; }, forSend: () => { sends++; return { classify: async items => items.map(() => ({ label: 'none', score: 0.99, scores: {} })) }; } } } });
+  const l = load({ state: demo({ body: CLEAN_BODY }), globals: { GuardcellSemantic: { preload: async () => { preloads++; }, forSend: () => { sends++; return { classify: async items => items.map(() => ({ label: 'none', score: 0.99, scores: {} })) }; } } } });
   await l.handlers.onMessageComposeHandler({ completed: () => {} });
   assert.equal(preloads, 1);
   await l.send();

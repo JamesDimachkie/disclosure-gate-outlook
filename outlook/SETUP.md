@@ -5,7 +5,7 @@ The v2 add-in is a static site. It does not need a check service or provider cre
 1. From the repository root, run `npm ci`, then `npm run dev`. The existing Office localhost certificate
    must already be installed and trusted. This command does not change certificate trust.
 2. Open https://localhost:3443/setup.html, or use outlook/manifest.xml for the existing test
-   installation (same Id, version 2.0.0.0, Ask/Ask, PromptUser, localhost). Stop the dev server with Ctrl+C.
+   installation (same Id, version 2.1.0.0, Ask/Ask, PromptUser, localhost). Stop the dev server with Ctrl+C.
 3. For an organization, host dist over HTTPS, then use that host's setup.html to download a
    manifest. If you host it yourself, publish the built `dist/` folder at that HTTPS address before
    using its manifest. For the public host, use the setup link in the [README](../README.md#install).

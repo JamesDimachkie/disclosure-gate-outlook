@@ -1,6 +1,6 @@
 # Security
 
-Disclosure Gate for Outlook runs entirely inside Outlook. It makes no network requests except loading
+Guardcell for Outlook runs entirely inside Outlook. It makes no network requests except loading
 its own static files and Microsoft's Office.js. The result of a check lives in the item's session
 data for the compose session only. The optional sentence model caches its public model/runtime
 assets separately. Email text, tokens and model predictions never enter that persistent asset cache.
@@ -8,7 +8,7 @@ assets separately. Email text, tokens and model predictions never enter that per
 ## Reporting a vulnerability
 
 Please report security issues privately through GitHub:
-https://github.com/JamesDimachkie/disclosure-gate-outlook/security/advisories/new
+https://github.com/JamesDimachkie/guardcell-outlook/security/advisories/new
 
 Include the Outlook client and version, both settings (Ask or Hold), and the smallest synthetic email
 that shows the problem. Please don't include real mail or real secrets. Ways to get an email past the

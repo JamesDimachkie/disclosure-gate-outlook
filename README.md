@@ -1,4 +1,4 @@
-# Disclosure Gate for Outlook
+# Guardcell for Outlook
 
 **An Outlook add-in that asks "are you sure?" before an email takes something sensitive outside your
 organization.** Press Send and, if the email carries a password, a card number, a spreadsheet of
@@ -9,11 +9,11 @@ Everything runs inside Outlook on the sender's own computer: rules, attachment r
 and a small on-device language model. There is no server, no account, no AI service, no telemetry and
 no log. Nothing in an email is sent anywhere to be checked.
 
-**Set it up:** https://jamesdimachkie.github.io/disclosure-gate-outlook/ ·
+**Set it up:** https://jamesdimachkie.github.io/guardcell-outlook/ ·
 [How it works](ARCHITECTURE.md) · [How it was tested](EVALUATION.md) · [Spec](SPEC.md)
 
 <p>
-<img src="docs/images/send-dialog.png" width="480" alt="Outlook's Send dialog from Disclosure Gate: This email goes outside your company and includes your margin and your negotiating position. Greets Kate, sent to dan@whitfielddev.example. In the body: your margin. In the body: your negotiating position. And 1 more. Buttons: Send anyway, Review, Don't send.">
+<img src="docs/images/send-dialog.png" width="480" alt="Outlook's Send dialog from Guardcell: This email goes outside your company and includes your margin and your negotiating position. Greets Kate, sent to dan@whitfielddev.example. In the body: your margin. In the body: your negotiating position. And 1 more. Buttons: Send anyway, Review, Don't send.">
 &nbsp;
 <img src="docs/images/review-pane.png" width="230" alt="The Review pane for the same email: one outside recipient, then cards for the greeting that doesn't match the recipient, internal economics, negotiation position and a gate code, each sentence highlighted with Remove this sentence and Show me.">
 </p>
@@ -105,7 +105,7 @@ mail ([docs/ADAPTING.md](docs/ADAPTING.md)).
 
 A Microsoft 365 admin installs it once; users do nothing.
 
-1. Open the [setup page](https://jamesdimachkie.github.io/disclosure-gate-outlook/setup.html),
+1. Open the [setup page](https://jamesdimachkie.github.io/guardcell-outlook/setup.html),
    choose **When it finds something: Ask or Hold** and **When it can't check: Ask or Hold**.
    Both default to **Ask**, recommended for most teams. Hold is for teams whose policy requires it.
    Add your other internal domains and download `manifest.xml`.
@@ -181,3 +181,9 @@ For model work: [adaptation guide](docs/ADAPTING.md), [training pipeline](model/
 ## Security
 
 See [SECURITY.md](SECURITY.md). Licensed under [Apache 2.0](LICENSE).
+
+## Name
+
+Guard cells are the pairs of cells around each pore on a leaf. Osmosis opens them for ordinary
+exchange and closes them to keep in what the plant needs. Guardcell was called Disclosure Gate until
+25 October 2026; dated records (gate plans, held-out set notes, live-run notes) keep that name.

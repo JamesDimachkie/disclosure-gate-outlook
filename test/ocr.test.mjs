@@ -20,7 +20,7 @@ const header = (width = 640, height = 360) => { const b = Buffer.alloc(33); b.se
 const png = header().toString('base64');
 const file = (extra = {}) => ({ id: 'i', name: 'photo.png', size: 33, type: 'file', attachmentType: 'file', ...extra });
 const cached = (a, extra) => JSON.stringify({ version: 1, attachments: { [a.id]: { name: a.name, size: a.size, hash: sha256(header()), ...extra } } });
-const browserGlobals = recognize => ({ document: {}, Worker: function() {}, DisclosureGateOcrEngine: { recognize, close: async () => {} } });
+const browserGlobals = recognize => ({ document: {}, Worker: function() {}, GuardcellOcrEngine: { recognize, close: async () => {} } });
 function harness(recognize = async () => ({ status: 'ready', text: '' })) {
   let attachments = [file()], reads = 0; const values = {};
   const item = { getAttachmentsAsync: cb => cb(ok(attachments)), getAttachmentContentAsync: (_id, cb) => { reads++; cb(ok({ format: 'base64', content: png })); }, sessionData: { getAsync: (key, cb) => cb(ok(values[key])), setAsync: (key, value, cb) => { values[key] = value; cb(ok()); } } };
@@ -141,7 +141,7 @@ test('pending OCR at the Send budget holds once with retry copy; later ready OCR
   const a = file(), l = load({ state: demo({ body: CLEAN_BODY, attachments: [a], contents: { i: png } }), initialValues: { 'dg-ocr-v1': cached(a, { status: 'pending', at: Date.now() }) } }), outcomes = [];
   await l.api.run({ completed: o => outcomes.push(plain(o)) }, {
     read: (content, options) => l.draftApi.readDraft(l.office, content, null, options),
-    check: draft => l.core.checkDraft(draft), pending: () => l.context.DisclosureGateOcr.pending(l.office), phase: () => {}, reviewButton: () => true, deadlineMs: 220,
+    check: draft => l.core.checkDraft(draft), pending: () => l.context.GuardcellOcr.pending(l.office), phase: () => {}, reviewButton: () => true, deadlineMs: 220,
   });
   assert.equal(outcomes.length, 1); assert.equal(outcomes[0].allowEvent, false); assert.match(outcomes[0].errorMessage, /photo.png is still being read/);assert.match(outcomes[0].errorMessage,/Press Send again to check it again/);
   l.values['dg-ocr-v1'] = cached(a, { status: 'ready', text: '' }); await delay(20); assert.equal(outcomes.length, 1);
@@ -150,7 +150,7 @@ test('pending OCR at the Send budget holds once with retry copy; later ready OCR
 test('an OCR-completed clear still holds when attachment metadata changes during the local check', async () => {
   const a = file(), state = demo({ body: CLEAN_BODY, attachments: [a], contents: { i: png } });
   const l = load({ state, initialValues: { 'dg-ocr-v1': cached(a, { status: 'ready', text: '' }) }, check: async (d, o, original) => { const r = await original(d, o); state.attachments = [file({ size: 34 })]; return r; } });
-  assert.deepEqual(await l.send(), { allowEvent: false, errorMessage: "Disclosure Gate couldn't check this email. The draft changed during the check. It hasn't been sent. Press Send again to check it again, or ask your IT team." });
+  assert.deepEqual(await l.send(), { allowEvent: false, errorMessage: "Guardcell couldn't check this email. The draft changed during the check. It hasn't been sent. Press Send again to check it again, or ask your IT team." });
 });
 test('attachment-change and compose events complete exactly once and keep unavailable classic images held', async () => {
   const l = load({ state: demo({ body: CLEAN_BODY, attachments: [file()] }) });
@@ -190,7 +190,7 @@ test('built runtime requires matching image bytes, including same-id/name/size r
     assert.equal((await l.send()).allowEvent, false); assert.deepEqual(l.reads.content, ['i']);
   }
   const l = load({ state, initialValues: { 'dg-ocr-v1': cached(a, { status: 'ready', text: '' }) }, check: async (d,o,original) => { const r = await original(d,o); state.contents.i = header(641,360).toString('base64'); return r; } });
-  assert.deepEqual(await l.send(), { allowEvent: false, errorMessage: "Disclosure Gate couldn't check this email. The draft changed during the check. It hasn't been sent. Press Send again to check it again, or ask your IT team." }); assert.deepEqual(l.reads.content, ['i','i']);
+  assert.deepEqual(await l.send(), { allowEvent: false, errorMessage: "Guardcell couldn't check this email. The draft changed during the check. It hasn't been sent. Press Send again to check it again, or ask your IT team." }); assert.deepEqual(l.reads.content, ['i','i']);
 });
 test('built runtime accepts PDF OCR only after no_text; malformed and text-layer PDFs cannot bypass extraction', async () => {
   const textPdf = readFileSync(new URL('./fixtures/cost-summary.pdf', import.meta.url));

@@ -75,7 +75,7 @@ export function createModelService(root, manifest) {
     ready = (async () => {
       const data = await readAssets(network, signal, ownGeneration);
       if (ownGeneration !== generation || signal?.aborted) throw skipped('timeout');
-      if (root.DisclosureGateOcr?.busy?.()) throw skipped('ocr_busy');
+      if (root.GuardcellOcr?.busy?.()) throw skipped('ocr_busy');
       const urls = paths();
       // Execute exact hash-verified bytes. A CSP that refuses Blob workers uses rules only.
       const scriptUrl = bytes => {
@@ -132,7 +132,7 @@ export function createModelService(root, manifest) {
     if (!capable()) throw skipped('unsupported');
     if (!available()) throw skipped('unavailable');
     if (active) throw skipped('busy');
-    if (root.DisclosureGateOcr?.busy?.()) throw skipped('ocr_busy');
+    if (root.GuardcellOcr?.busy?.()) throw skipped('ocr_busy');
     if (Date.now() >= deadline) throw skipped('timeout');
     active = true;
     const ownGeneration = generation;
@@ -149,7 +149,7 @@ export function createModelService(root, manifest) {
           if (ownGeneration !== generation) throw skipped('timeout');
           if (at > 0 && Date.now() >= deadline - CHUNK_MARGIN_MS) return partial();
           if (Date.now() >= deadline) throw skipped('timeout');
-          if (root.DisclosureGateOcr?.busy?.()) throw skipped('ocr_busy');
+          if (root.GuardcellOcr?.busy?.()) throw skipped('ocr_busy');
           const part = await new Promise((resolve, reject) => {
             pending = { resolve, reject };
             worker.postMessage({ type: 'classify', items: items.slice(at, at + CLASSIFY_CHUNK) });

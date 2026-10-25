@@ -8,7 +8,7 @@ import {removeSentenceFromHtml} from '../core/remove.mjs';
 import {officeZip,NS,slide,shape,sheet,wdoc} from './office-fixture.mjs';
 import {JOHN,DAN,DEMO_BODY,CLEAN_BODY,PNG_B64,PNG_SIZE} from './helpers.mjs';
 import {load,demo,person,plain,SOURCE} from './runtime-helper.mjs';
-const failureMessage = reason => "Disclosure Gate couldn't check this email. " + reason + " It hasn't been sent. Press Send again to check it again, or ask your IT team.";
+const failureMessage = reason => "Guardcell couldn't check this email. " + reason + " It hasn't been sent. Press Send again to check it again, or ask your IT team.";
 test('classic bundle parses as ES2016 and runs without Node, DOM, network or browser encoding globals',async()=>{
   parse(SOURCE,{ecmaVersion:2016});
   const l=load();
@@ -43,7 +43,7 @@ test('an Outlook on the web body is checked line by line, not as its run-togethe
   assert.ok(cut.ok);assert.equal(cut.html,html.replace('The portal password is Harbor-2026!',''));
 });
 test('without 1.14 the ribbon fallback never promises Send anyway',async()=>{
-  const o=await load({supported:false}).send();assert.equal(o.commandId,undefined);assert.match(o.errorMessage,/Open Disclosure Gate from the ribbon/);assert.doesNotMatch(o.errorMessage,/send anyway/i);
+  const o=await load({supported:false}).send();assert.equal(o.commandId,undefined);assert.match(o.errorMessage,/Open Guardcell from the ribbon/);assert.doesNotMatch(o.errorMessage,/send anyway/i);
 });
 test('refused Review retries a plain hold; refused release holds unavailable',async()=>{
   const held=await load().send(o=>'commandId' in o);assert.equal(held.allowEvent,false);assert.equal(held.commandId,undefined);
@@ -101,7 +101,7 @@ test('without the OCR service an image is unreadable and Send is held, even with
   const a={id:'one',name:'photo.png',size:PNG_SIZE,attachmentType:'file'};
   const cache={version:1,attachments:{one:{name:a.name,size:a.size,status:'ready',text:'',hash:'a'.repeat(64)}}};
   const l=load({state:demo({body:CLEAN_BODY,attachments:[a],contents:{one:PNG_B64}}),initialValues:{'dg-ocr-v1':JSON.stringify(cache)}});
-  vm.runInContext('globalThis.DisclosureGateOcr=undefined',l.context);
+  vm.runInContext('globalThis.GuardcellOcr=undefined',l.context);
   assert.equal((await l.send()).allowEvent,false);
   const finding=JSON.parse(l.values['dg-result']).result.findings[0];
   assert.deepEqual([finding.subkind,finding.detail],['picture','ocr_unsupported']);

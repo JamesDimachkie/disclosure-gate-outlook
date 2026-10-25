@@ -102,7 +102,7 @@ test('a refused override finishes with installed-mode plain copy, retaining the 
     const r = await l.send(o => 'sendModeOverride' in o);
     assert.equal(r.allowEvent, false);assert.equal(r.sendModeOverride, undefined);assert.equal(r.commandId, undefined);
     assert.equal(r.errorMessage.includes('Send Anyway'), failures === 'ask');
-    assert.match(r.errorMessage, /your margin/);assert.match(r.errorMessage, /Open Disclosure Gate from the ribbon/);
+    assert.match(r.errorMessage, /your margin/);assert.match(r.errorMessage, /Open Guardcell from the ribbon/);
   }
 });
 
@@ -199,7 +199,7 @@ test('built pane catches same-name replacements, edits during a check, and a los
   state.attachments = [{ ...zip, id: 'same-name-new-id' }];await tick(1500);
   assert.equal(node('pane').dataset.state, 'idle');
   state.attachments = [];
-  const reader = l.context.DisclosureGateDraft, original = reader.readDraft;
+  const reader = l.context.GuardcellDraft, original = reader.readDraft;
   reader.readDraft = async (...args) => { const d = await original(...args); if (args[1]) state.body += ' Edited during check.';return d; };
   await node('check-again').listeners.click();assert.equal(node('pane').dataset.state, 'idle');
   reader.readDraft = original;await node('check-again').listeners.click();assert.equal(node('pane').dataset.state, 'clear');

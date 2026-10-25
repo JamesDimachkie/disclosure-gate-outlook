@@ -25,8 +25,8 @@ export function load({state=demo(),supported=true,markdown=false,url='https://st
   if(!modernRegex) vm.runInContext("var NativeRegExp=RegExp; this.RegExp=function(s,f){if((f||'').indexOf('d')>=0||String(s).indexOf('(?<')>=0||String(s).indexOf('\\\\p{')>=0)throw new Error('modern regex');return new NativeRegExp(s,f);};this.RegExp.prototype=NativeRegExp.prototype;",context);
   vm.runInContext('delete Object.entries; delete Object.values; delete Object.fromEntries; delete String.prototype.matchAll; delete String.prototype.padStart; delete Array.prototype.flat; delete Array.prototype.flatMap; delete this.globalThis;',context);
   vm.runInContext(source,context);
-  const core=context.DisclosureGateCore,original=core.checkDraft,checks=[];
+  const core=context.GuardcellCore,original=core.checkDraft,checks=[];
   core.checkDraft=(d,o)=>{checks.push(plain(d));return check?check(d,o,original):original(d,o);};
   const send=refuse=>new Promise(resolve=>handlers[state.itemType==='appointment'?'onAppointmentSendHandler':'onMessageSendHandler']({completed:o=>{if(refuse?.(o))throw new Error('options refused');resolve(plain(o));}}));
-  return {send,item,values,reads,calls,checks,office,context,handlers,api:context.DisclosureGateHandler,draftApi:context.DisclosureGateDraft,core};
+  return {send,item,values,reads,calls,checks,office,context,handlers,api:context.GuardcellHandler,draftApi:context.GuardcellDraft,core};
 }

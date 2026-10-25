@@ -1,12 +1,12 @@
 {
-  "name": "disclosure-gate-outlook",
+  "name": "guardcell-outlook",
   "description": "Local checks for sensitive disclosures in Outlook.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JamesDimachkie/disclosure-gate-outlook.git"
+    "url": "https://github.com/JamesDimachkie/guardcell-outlook.git"
   },
-  "homepage": "https://jamesdimachkie.github.io/disclosure-gate-outlook/",
+  "homepage": "https://jamesdimachkie.github.io/guardcell-outlook/",
   "engines": {
     "node": "24.x"
   },

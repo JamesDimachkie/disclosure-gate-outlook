@@ -13,7 +13,7 @@ test('E1: the demo email to Kate with Dan in Cc is held with two findings in ord
   assert.deepEqual(r.findings.map((f) => [f.label, f.why]), [['Internal economics', 'Margins and costs stay inside the company.'], ['Negotiation position', 'Your room to negotiate stays inside the company.']]);
   assert.deepEqual(r.findings.map((f) => f.marks.map((m) => f.sentence.text.slice(m.start, m.end))), [['triple the margin we bid'], ["If Dan pushes on CO 12, we've got room"]]);
   assert.equal(r.message, SPEC_B_TWO);
-  assert.match(r.fallbackMessage, /choose Send Anyway\. Open Disclosure Gate from the ribbon to see why\.$/);
+  assert.match(r.fallbackMessage, /choose Send Anyway\. Open Guardcell from the ribbon to see why\.$/);
   assert.deepEqual(r.recipients.map((x) => [x.name, x.label]), [['Dan Whitfield', 'Outside'], ['Kate Morgan', 'Inside']]);
   assert.ok(r.findings.every((f) => f.removable && f.place === null));
 });
@@ -32,8 +32,8 @@ test('E2: the same body to Kate only is clear and nothing is sent anywhere', asy
 test('E4: a clean body to Dan with site-photos.zip is held on the attachment, without the hosted check', async () => {
   const r = await checkDraft(draft({ to: [DAN], cc: [], body: { text: CLEAN_BODY, format: 'html' }, attachments: [{ id: 'att1', name: 'site-photos.zip', size: 48213, isInline: false, type: 'file' }] }), { config: CONFIG });
   assert.equal(r.state, 'held');
-  assert.deepEqual(r.findings.map((f) => [f.label, f.sentence.text, f.why, f.removable]), [["Can't check this attachment", 'site-photos.zip', "Disclosure Gate couldn't read this file. Check what it contains before sending.", false]]);
-  assert.equal(r.message, "Disclosure Gate couldn't check this email. site-photos.zip couldn't be read. If you're sure about what it contains, choose Send Anyway. To check it again, choose Don't Send and press Send.");
+  assert.deepEqual(r.findings.map((f) => [f.label, f.sentence.text, f.why, f.removable]), [["Can't check this attachment", 'site-photos.zip', "Guardcell couldn't read this file. Check what it contains before sending.", false]]);
+  assert.equal(r.message, "Guardcell couldn't check this email. site-photos.zip couldn't be read. If you're sure about what it contains, choose Send Anyway. To check it again, choose Don't Send and press Send.");
 });
 
 test('the dialog names the first finding and counts the rest', async () => {
@@ -77,7 +77,7 @@ test('the digest binds recipients, subject, body, format and attachments', () =>
 });
 
 test('the unavailable sentence is the copy table entry', () => {
-  assert.equal(STRINGS.unavailable, "Disclosure Gate couldn't check this email.");
+  assert.equal(STRINGS.unavailable, "Guardcell couldn't check this email.");
 });
 
 test('sender domain works without config; optional extra domains stay exact',async()=>{assert.equal((await checkDraft(draft({cc:[]}))).state,'clear'); assert.equal((await checkDraft(draft(),{config:{internalDomains:['whitfielddev.example']}})).state,'clear');assert.equal((await checkDraft(draft({to:[{address:'x@sub.northline.example'}],cc:[]}))).reach,'outside');});

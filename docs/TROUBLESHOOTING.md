@@ -43,7 +43,7 @@ dialog's instructions are conditional. Regenerate the manifest from the setup pa
 installation; do not edit the settings in the URLs by hand.
 
 **There is no Review button in the dialog.** The client is older than Mailbox requirement set 1.14.
-The dialog names the *Disclosure Gate* button on the compose ribbon instead, which opens the same pane.
+The dialog names the *Guardcell* button on the compose ribbon instead, which opens the same pane.
 
 **The model doesn't seem to catch what it should.** Classic Outlook for Windows runs the rules only,
 by design. Elsewhere the model is skipped when it is not ready in time (*seen live*: one first Send,

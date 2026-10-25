@@ -1,11 +1,11 @@
-# Disclosure Gate for Outlook: product spec v2
+# Guardcell for Outlook: product spec v2
 
 23 October 2026. Ask-first replaces hold-first behavior. Supersedes v1 where they differ. This is the
 implementation contract and the only document an evaluation-set author reads.
 
 ## 1. The promise
 
-When you press Send, Disclosure Gate checks the email or meeting invitation on your device. If it
+When you press Send, Guardcell checks the email or meeting invitation on your device. If it
 goes outside your organization carrying something that should stay inside, it asks if you are sure
 and explains the concern. You can knowingly choose Send Anyway, review it, or cancel and edit it.
 Intentional disclosures do not require rewording. IT can require a hold, separately for findings
@@ -312,7 +312,7 @@ Office XML has independent bounds of 256 nested elements and 4,194,304 processin
 Modern findings dialogs show Send Anyway for an effective ask outcome, Don't Send to cancel, and
 Review (Take Action), opening dgOpenPane for email or dgOpenMeetingPane for meetings. Review never
 releases an item. Older classic/Mac clients may put Review in the Don't Send position. Before 1.14,
-plain copy uses "Open Disclosure Gate from the ribbon to see why." instead of a Review button.
+plain copy uses "Open Guardcell from the ribbon to see why." instead of a Review button.
 
 The four shapes below are exact examples. Kinds, locations and reasons vary with the result.
 The plain errorMessage carries the same information as sentences, without bold or bullets. Both
@@ -339,7 +339,7 @@ It hasn't been sent. Choose **Review** to see what to change, then press Send ag
 
 **Failures, ask**
 
-**Disclosure Gate couldn't check this email.**
+**Guardcell couldn't check this email.**
 
 It took too long.
 
@@ -347,7 +347,7 @@ If you're sure about what it contains, choose **Send Anyway**. To check it again
 
 **Failures, hold**
 
-**Disclosure Gate couldn't check this email.**
+**Guardcell couldn't check this email.**
 
 It took too long.
 
@@ -372,7 +372,7 @@ Unknown failure reasons, including configuration and invalid-draft reasons, say 
 didn't finish." Only a draft-read failure says "Outlook didn't let it read the draft."
 When settings are unknown, every dialog uses: "If **Send Anyway** is offered and you're sure,
 choose it; otherwise choose **Don't Send**, fix it and press Send." Findings on older clients
-append "Open Disclosure Gate from the ribbon to see why." Size failures also append "Shorten it
+append "Open Guardcell from the ribbon to see why." Size failures also append "Shorten it
 or split it, then press Send." This copy makes no claim about whether the item has been sent.
 
 Mixed results list findings first, including a failure among the bullets. They ask only if every

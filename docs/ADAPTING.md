@@ -1,6 +1,6 @@
 # Adapting the sentence model to your organization's mail
 
-Disclosure Gate ships one on-device sentence model for everyone. This guide is for the IT or ML team
+Guardcell ships one on-device sentence model for everyone. This guide is for the IT or ML team
 deploying the add-in who want that model to fit their own mail: fewer needless questions on what
 their people ordinarily write, or catches for disclosures phrased their own way. Everything here
 runs on your own machines, and the result ships in your own build of the add-in.

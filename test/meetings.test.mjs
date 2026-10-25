@@ -108,7 +108,7 @@ test('appointment prompt-only findings override Enforce only on 1.14; mixed find
     const r=await l.send();assert.equal(r.allowEvent,false);
     assert.equal(r.sendModeOverride,supported&&body!==secret?'promptUser':undefined);
     assert.match(r.errorMessage,/meeting invitation/);
-    if(!supported) assert.match(r.errorMessage,/Open Disclosure Gate from the ribbon/);
+    if(!supported) assert.match(r.errorMessage,/Open Guardcell from the ribbon/);
   }
 });
 

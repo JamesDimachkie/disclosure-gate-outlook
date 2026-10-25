@@ -2,7 +2,7 @@
 import { checkDraft } from '../core/gate.mjs';
 
 // Advisory only: do not persist a release decision. Send always checks independently.
-export async function checkAgain(office, { config, reader = globalThis.DisclosureGateDraft, ocr = globalThis.DisclosureGateOcr, model = globalThis.DisclosureGateSemantic, deadline = Date.now() + 15000 } = {}) {
+export async function checkAgain(office, { config, reader = globalThis.GuardcellDraft, ocr = globalThis.GuardcellOcr, model = globalThis.GuardcellSemantic, deadline = Date.now() + 15000 } = {}) {
   if (ocr) await ocr.prepare(office);
   const draft = await reader.readDraft(office, true, null, { deadline });
   let semantic;

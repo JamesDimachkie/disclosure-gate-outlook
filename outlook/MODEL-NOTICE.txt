@@ -1,4 +1,4 @@
-Disclosure Gate optional on-device sentence classification
+Guardcell optional on-device sentence classification
 
 ONNX Runtime Web 1.30.0, Microsoft, MIT; original WASM loader/binary are copied from
 the pinned npm package. Runtime licence and third-party notices are included here.

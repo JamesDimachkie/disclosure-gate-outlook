@@ -14,7 +14,7 @@ async function getWorker() {
   return starting;
 }
 // One worker, one image at a time. The coordinator serializes all attachment work.
-globalThis.DisclosureGateOcrEngine = {
+globalThis.GuardcellOcrEngine = {
   async recognize(bytes) { return readImage(await getWorker(), bytes); },
   async close() { for (const w of handles) w.terminate(); handles.clear(); worker = null; starting = null; },
 };

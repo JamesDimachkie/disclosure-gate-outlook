@@ -66,7 +66,7 @@
   // HTML body is read as HTML and checked as the visible text, with the breaks the sender sees.
   function readBody(item) {
     return call(item.body,'getTypeAsync').then(function(format) {
-      var html=String(format).toLowerCase()==='html', core=root.DisclosureGateCore;
+      var html=String(format).toLowerCase()==='html', core=root.GuardcellCore;
       if(html && core && typeof core.visibleText==='function') return call(item.body,'getAsync',['html']).then(function(h){return {format:'html',text:core.visibleText(String(h || ''))};});
       return call(item.body,'getAsync',['text']).then(function(t){return {format:html?'html':'text',text:String(t || '')};});
     });
@@ -77,7 +77,7 @@
       var draft=envelope;
       draft.senderEmail=String(profile.emailAddress || '');draft.subject='';draft.location='';draft.body={format:'text',text:''};draft.attachments=[];
       // The mailbox API is the read boundary: do not read the subject, body or files when all are inside.
-      var core=root.DisclosureGateCore;
+      var core=root.GuardcellCore;
       if(core) {
         var classified=core.classifyDraft(draft,{config:core.runtimeConfig(office,root)});
         if(classified.reach==='inside') return draft;
@@ -107,7 +107,7 @@
         });
         return reads.then(function() {
           if(!withContent) return draft;
-          var service=root.DisclosureGateOcr;
+          var service=root.GuardcellOcr;
           if(service) return service.prepare(office,draft.attachments).then(function(){
             return service.wait(office,options && options.deadline ? options.deadline-175 : Date.now());
           }).then(function(){service.apply(office,draft.attachments);return draft;});
@@ -120,7 +120,7 @@
   function fingerprint(draft) {
     var value=JSON.stringify([draft.itemType,draft.senderEmail,draft.from,draft.to,draft.cc,draft.bcc,draft.subject,draft.body,draft.location,draft.locations,
       draft.attachments.map(function(a){return [a.id,a.name,a.size,a.isInline,a.type,a.contentType,a.contentHash || null];})]);
-    return root.DisclosureGateCore.sha256(value);
+    return root.GuardcellCore.sha256(value);
   }
-  root.DisclosureGateDraft={readDraft:readDraft,readBody:readBody,readEnvelope:readEnvelope,itemType:itemType,composeItem:composeItem,locationText:locationText,inThrees:inThrees,fingerprint:fingerprint,call:call};
+  root.GuardcellDraft={readDraft:readDraft,readBody:readBody,readEnvelope:readEnvelope,itemType:itemType,composeItem:composeItem,locationText:locationText,inThrees:inThrees,fingerprint:fingerprint,call:call};
 })(typeof globalThis!=='undefined'?globalThis:this);

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xsi:type="MailApp">
   <Id>cf4aa3ad-2656-4bc5-a8c1-ae4734bf4b32</Id>
-  <Version>2.0.0.0</Version>
-  <ProviderName>Disclosure Gate</ProviderName>
+  <Version>2.1.0.0</Version>
+  <ProviderName>Guardcell</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Disclosure Gate"/>
+  <DisplayName DefaultValue="Guardcell"/>
   <Description DefaultValue="Asks before email or a meeting invitation takes something outside your company that should stay inside. Your IT team can require a hold."/>
   <IconUrl DefaultValue="https://localhost:3443/assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3443/assets/icon-128.png"/>
@@ -71,12 +71,12 @@
           <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3443/taskpane.html?dg=2&amp;findings=ask&amp;failures=ask&amp;domains="/>
         </bt:Urls>
         <bt:ShortStrings>
-          <bt:String id="Group.Label" DefaultValue="Disclosure Gate"/>
-          <bt:String id="Pane.Label" DefaultValue="Disclosure Gate"/>
+          <bt:String id="Group.Label" DefaultValue="Guardcell"/>
+          <bt:String id="Pane.Label" DefaultValue="Guardcell"/>
         </bt:ShortStrings>
         <bt:LongStrings>
-          <bt:String id="MeetingPane.Tip" DefaultValue="See who will receive this meeting invitation and what Disclosure Gate found."/>
-          <bt:String id="Pane.Tip" DefaultValue="See who will receive this email and what Disclosure Gate found."/>
+          <bt:String id="MeetingPane.Tip" DefaultValue="See who will receive this meeting invitation and what Guardcell found."/>
+          <bt:String id="Pane.Tip" DefaultValue="See who will receive this email and what Guardcell found."/>
         </bt:LongStrings>
       </Resources>
     </VersionOverrides>

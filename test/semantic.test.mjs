@@ -144,7 +144,7 @@ test('classic core accepts the optional fake seam without a model engine or load
   const r = await l.core.checkDraft(clean({ body: { text: 'Ordinary detail.' } }), { semantic: fake('personal') });
   assert.equal(r.checked.semantic, 'used');
   assert.deepEqual(plain(r.findings[0].sentence), { text: 'Ordinary detail.', start: 0, end: 16, index: 0, occurrence: 0 });
-  assert.equal(l.context.DisclosureGateSemantic, undefined);
+  assert.equal(l.context.GuardcellSemantic, undefined);
 });
 
 test('IT can turn the model off: the classifier is never called and rules decide alone', async () => {

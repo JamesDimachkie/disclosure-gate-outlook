@@ -1,4 +1,4 @@
-// Draws the Disclosure Gate mark (a near-black rounded square, a white
+// Draws the Guardcell mark (a near-black rounded square, a white
 // dot, a white bar and a green dot) into the PNG sizes the manifest names, with 4x4 supersampling.
 // Run: node outlook/make-icons.mjs  (writes outlook/assets/icon-{16,32,64,80,128}.png)
 import { writeFileSync, mkdirSync } from 'node:fs';

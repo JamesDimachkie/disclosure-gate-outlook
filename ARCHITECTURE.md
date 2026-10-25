@@ -1,6 +1,6 @@
 # Architecture
 
-Disclosure Gate for Outlook is a folder of static files. There is no server, no account and no hosted
+Guardcell for Outlook is a folder of static files. There is no server, no account and no hosted
 model: every check runs inside Outlook on the sender's computer, and nothing in an email is sent anywhere
 to be checked. This document explains how a Send flows through it and why it is built this way.
 `SPEC.md` is the behavioral contract; this file is the map.

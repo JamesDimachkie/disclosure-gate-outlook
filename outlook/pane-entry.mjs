@@ -4,4 +4,4 @@ import * as Config from './config.mjs';
 import './draft.js';
 import './ocr-service.mjs';
 import './taskpane.mjs';
-globalThis.DisclosureGateCore={...Gate,...Config};
+globalThis.GuardcellCore={...Gate,...Config};

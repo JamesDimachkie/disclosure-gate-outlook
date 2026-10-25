@@ -49,11 +49,11 @@ export function createOcrService(root) {
     return s.write;
   }
   function loadEngine() {
-    if (root.DisclosureGateOcrEngine) return Promise.resolve(root.DisclosureGateOcrEngine);
+    if (root.GuardcellOcrEngine) return Promise.resolve(root.GuardcellOcrEngine);
     if (!engineLoading) engineLoading = new Promise((resolve, reject) => {
       const script = root.document.createElement('script');
       script.src = ocrPaths(root.location.href).enginePath;
-      script.onload = () => root.DisclosureGateOcrEngine ? resolve(root.DisclosureGateOcrEngine) : reject(new Error('ocr_load'));
+      script.onload = () => root.GuardcellOcrEngine ? resolve(root.GuardcellOcrEngine) : reject(new Error('ocr_load'));
       script.onerror = () => reject(new Error('ocr_load'));
       root.document.head.appendChild(script);
     }).catch(error => { engineLoading = null; throw error; });
@@ -143,16 +143,16 @@ export function createOcrService(root) {
       while (queue.length) {
         const job = queue.shift(); let timer;
         // OCR owns the heavy-work slot. Terminate model initialization/inference before it starts.
-        try { root.DisclosureGateSemantic?.stopForOcr?.(); } catch { /* Optional model never fails OCR. */ }
+        try { root.GuardcellSemantic?.stopForOcr?.(); } catch { /* Optional model never fails OCR. */ }
         await Promise.race([process(...job), new Promise(resolve => { timer = setTimeout(async () => {
           const [s, a, entry] = job;
           if (s.entries[a.id] === entry) s.entries[a.id] = { name: a.name, size: a.size, token: entry.token, status: 'failed', reason: 'ocr_timeout' };
-          if (root.DisclosureGateOcrEngine?.close) await root.DisclosureGateOcrEngine.close();
+          if (root.GuardcellOcrEngine?.close) await root.GuardcellOcrEngine.close();
           await persist(s); resolve();
         }, LEASE_MS - 1000); })]);
         clearTimeout(timer);
       }
-      if (root.DisclosureGateOcrEngine?.close) await root.DisclosureGateOcrEngine.close();
+      if (root.GuardcellOcrEngine?.close) await root.GuardcellOcrEngine.close();
     })().catch(() => {}).finally(() => { running = null; if (queue.length) drain(); });
   }
   async function prepare(office, attachments, change) {
@@ -218,8 +218,8 @@ export function createOcrService(root) {
     try {
       await prepare(office, null, event); await wait(office, deadline - 500); await stateOf(office.context.mailbox.item).write;
       // Only public asset preparation; no inference or email is retained across activations.
-      let modelOn = false; try { modelOn = root.DisclosureGateCore?.runtimeConfig?.(office, root)?.model === 'on'; } catch { /* Unreadable settings: no preload. */ }
-      if (!done && modelOn) await root.DisclosureGateSemantic?.preload({ deadline: deadline - 100 });
+      let modelOn = false; try { modelOn = root.GuardcellCore?.runtimeConfig?.(office, root)?.model === 'on'; } catch { /* Unreadable settings: no preload. */ }
+      if (!done && modelOn) await root.GuardcellSemantic?.preload({ deadline: deadline - 100 });
     }
     catch { /* The Send read independently fails closed. */ }
     finally { clearTimeout(timer); complete(); }
@@ -227,8 +227,8 @@ export function createOcrService(root) {
   return { prepare, wait, apply, pending, preRead, capable, busy: () => !!running || queue.length > 0, CACHE_CHARS };
 }
 const root = globalThis;
-root.DisclosureGateOcr = createOcrService(root);
+root.GuardcellOcr = createOcrService(root);
 if (root.Office?.actions) {
-  root.Office.actions.associate('onMessageAttachmentsChangedHandler', event => root.DisclosureGateOcr.preRead(root.Office, event));
-  root.Office.actions.associate('onMessageComposeHandler', event => root.DisclosureGateOcr.preRead(root.Office, event));
+  root.Office.actions.associate('onMessageAttachmentsChangedHandler', event => root.GuardcellOcr.preRead(root.Office, event));
+  root.Office.actions.associate('onMessageComposeHandler', event => root.GuardcellOcr.preRead(root.Office, event));
 }

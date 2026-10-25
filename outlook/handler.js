@@ -7,8 +7,8 @@
   var DEADLINE_MS = 4500;
   function run(event, deps) {
     var completed=false, timer, first, started=Date.now();
-    var fingerprint=deps.fingerprint || root.DisclosureGateDraft.fingerprint;
-    var core=root.DisclosureGateCore, config;
+    var fingerprint=deps.fingerprint || root.GuardcellDraft.fingerprint;
+    var core=root.GuardcellCore, config;
     try { config=deps.config ? deps.config() : {findings:'hold',failures:'hold'}; } catch(e) { config={findings:'hold',failures:'hold'}; }
     function supports(version) { try { return version==='1.14' ? deps.reviewButton() : !!(deps.markdown && deps.markdown()); } catch(e) { return false; } }
     function describe(result) {
@@ -83,32 +83,32 @@
   function setPhase(office,phase,result,draft) {
     var data=office.context.mailbox.item.sessionData;
     if(!data || typeof data.setAsync!=='function') return;
-    var at=Date.now(), full=result && draft ? JSON.stringify({at:at,result:result,fingerprint:root.DisclosureGateDraft.fingerprint(draft)}) : '';
+    var at=Date.now(), full=result && draft ? JSON.stringify({at:at,result:result,fingerprint:root.GuardcellDraft.fingerprint(draft)}) : '';
     // A read/timeout failure may have no draft to bind. Keep its reason in the phase for the pane.
     var mark=JSON.stringify({phase:phase,at:at,binding:result && result.binding || null,result:result && (phase==='unavailable' || phase==='too_large') ? result : null});
     return new Promise(function(resolve) {
       var write=function(){data.setAsync('dg-phase',mark,function(){});resolve();};
       // Reserve 12k for OCR plus phase/keys within the older 50k session-data allowance.
       if(full && full.length<28000) data.setAsync('dg-result',full,write);
-      else if(result && draft) data.setAsync('dg-result',JSON.stringify({at:at,fingerprint:root.DisclosureGateDraft.fingerprint(draft),result:{state:result.state,binding:result.binding},recheck:true}),write);
+      else if(result && draft) data.setAsync('dg-result',JSON.stringify({at:at,fingerprint:root.GuardcellDraft.fingerprint(draft),result:{state:result.state,binding:result.binding},recheck:true}),write);
       else { data.setAsync('dg-phase',mark,function(){});resolve(); }
     });
   }
   function onMessageSendHandler(event) {
     var office=root.Office;
-    var itemType=root.DisclosureGateDraft.itemType(office.context.mailbox.item);
+    var itemType=root.GuardcellDraft.itemType(office.context.mailbox.item);
     return run(event,{
       itemType:itemType,commandId:itemType==='appointment'?MEETING_COMMAND_ID:COMMAND_ID,
       config:function(){return coreConfig();},
-      read:function(content,options){return root.DisclosureGateDraft.readDraft(office,content,null,options);},
-      pending:function(){return root.DisclosureGateOcr && root.DisclosureGateOcr.pending(office);},
+      read:function(content,options){return root.GuardcellDraft.readDraft(office,content,null,options);},
+      pending:function(){return root.GuardcellOcr && root.GuardcellOcr.pending(office);},
       check:function(draft,options) {
         // Reserve 500 ms for the unchanged-draft re-read and result persistence. The core
         // calculates the remaining model budget after the mandatory rules have finished.
         var semanticDeadline=options.deadline-500, semantic;
-        var config=root.DisclosureGateCore.runtimeConfig(office,root);
-        try { if(root.DisclosureGateSemantic && config.model==='on') semantic=root.DisclosureGateSemantic.forSend(semanticDeadline); } catch(e) {}
-        return root.DisclosureGateCore.checkDraft(draft,{
+        var config=root.GuardcellCore.runtimeConfig(office,root);
+        try { if(root.GuardcellSemantic && config.model==='on') semantic=root.GuardcellSemantic.forSend(semanticDeadline); } catch(e) {}
+        return root.GuardcellCore.checkDraft(draft,{
           config:config,semantic:semantic,semanticBudgetMs:2500,semanticDeadline:semanticDeadline
         });
       },
@@ -116,7 +116,7 @@
       markdown:function(){try{return office.context.requirements.isSetSupported('Mailbox','1.15');}catch(e){return false;}},
       phase:function(phase,result,draft){return setPhase(office,phase,result,draft);}
     });
-    function coreConfig(){return root.DisclosureGateCore.runtimeConfig(office,root);}
+    function coreConfig(){return root.GuardcellCore.runtimeConfig(office,root);}
   }
   if(root.Office && root.Office.actions) {
     root.Office.actions.associate('onMessageSendHandler',onMessageSendHandler);
@@ -124,5 +124,5 @@
   }
   // Preserve the handshake observed live on the web on 27 September 2026.
   if(root.Office && typeof root.Office.onReady==='function') root.Office.onReady();
-  root.DisclosureGateHandler={run:run,COMMAND_ID:COMMAND_ID};
+  root.GuardcellHandler={run:run,COMMAND_ID:COMMAND_ID};
 })(typeof globalThis!=='undefined'?globalThis:this);

@@ -10,7 +10,7 @@ const arg = name => process.argv.find(x => x.startsWith(`--${name}=`))?.split('=
 const root = resolve(import.meta.dirname, '..');
 const { chromium } = await import(pathToFileURL(arg('playwright')).href);
 const runs = Number(arg('runs') || 3), output = arg('output'), screenshot = arg('screenshot');
-const html = `<!doctype html><title>Disclosure Gate synthetic Send timing</title><pre id="result">Ready</pre>
+const html = `<!doctype html><title>Guardcell synthetic Send timing</title><pre id="result">Ready</pre>
 <script>
 const handlers={}, values={}; let body='', metrics;
 const ok=value=>({status:'succeeded',value}), field=value=>({getAsync:cb=>cb(ok(value))});
@@ -56,7 +56,7 @@ try {
   page.on('pageerror', error => errors.push(error.message));
   const cdp = await context.newCDPSession(page);
   await page.goto(origin);
-  await page.evaluate(() => DisclosureGateSemantic.preload());
+  await page.evaluate(() => GuardcellSemantic.preload());
   const samples = [];
   for (const rate of [1, 4]) {
     await cdp.send('Emulation.setCPUThrottlingRate', { rate });
@@ -70,7 +70,7 @@ try {
     }
     // Only an optimization if this runtime survives compose event completion.
     await page.reload();
-    await page.evaluate(() => DisclosureGateSemantic.preload());
+    await page.evaluate(() => GuardcellSemantic.preload());
     samples.push({ rate, runtime: 'compose-prepared', trial: 0, ...await page.evaluate(() => runSend(10)) });
   }
   const result = { timestamp: new Date().toISOString(), browser: browser.version(), origin, runs, samples, errors,
@@ -79,7 +79,7 @@ try {
     await cdp.send('Emulation.setCPUThrottlingRate', { rate: 1 });
     await page.goto(origin + '/index.html');
     result.landing = { title: await page.title(), results: await page.getByRole('heading', { name: 'How well it works' }).count() };
-    assert.equal(result.landing.title, 'Disclosure Gate for Outlook');
+    assert.equal(result.landing.title, 'Guardcell for Outlook');
     assert.equal(result.landing.results, 1);
     assert.equal(await page.getByRole('heading', { name: 'Asks before it leaves.' }).isVisible(), true);
     for (const [name, width, height] of [['desktop', 1280, 900], ['phone', 390, 844]]) {

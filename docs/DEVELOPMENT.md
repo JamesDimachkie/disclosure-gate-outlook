@@ -1,4 +1,4 @@
-# Developing Disclosure Gate for Outlook
+# Developing Guardcell for Outlook
 
 `SPEC.md` is the product contract. The runtime research and the checks that still need a live
 Outlook are in `outlook/RUNTIME-V2-NOTES.md`.

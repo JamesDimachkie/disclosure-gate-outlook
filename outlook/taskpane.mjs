@@ -18,7 +18,7 @@ import { sha256 } from '../core/sha256.mjs';
 const $ = (id) => document.getElementById(id);
 const POLL_MS = 1500, PHASE_MS = 400, PHASE_KEY = 'dg-phase', RESULT_KEY = 'dg-result';
 const state = { item: null, view: 'idle', result: null, recipients: [], seen: null, files: null, seenIdentity: null, paneSnapshot: null, changedSinceCheck: false, polling: false, phaseAt: 0, errors: new Map(), expanded: new Set(), busy: new Set(), lastPill: null, contents: new Map() };
-const Draft = () => globalThis.DisclosureGateDraft;
+const Draft = () => globalThis.GuardcellDraft;
 const copy = text => copyForItem(text, state.item ? Draft().itemType(state.item) : state.result?.itemType);
 
 function el(tag, attrs = {}, ...children) {
@@ -188,7 +188,7 @@ function render() {
 }
 
 async function prepareImages(event) {
-  const service = globalThis.DisclosureGateOcr;
+  const service = globalThis.GuardcellOcr;
   if (!service || !state.item) return;
   const status = $('ocr-status');
   try {
