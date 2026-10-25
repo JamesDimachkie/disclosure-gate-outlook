@@ -29,7 +29,7 @@ and the Review pane it opens (right).*
 | Card and bank details | Luhn-valid card numbers, valid IBANs, US routing numbers with an account number, UK sort codes with an account number |
 | Government ID numbers | US Social Security, UK National Insurance and Canadian SIN numbers; passport, license and personal tax ID numbers |
 | Lists of people's details | A spreadsheet, table, form or sentence that pairs people with what is sensitive about them: home addresses, ID or tax numbers, health, offences, pay, family members, claims |
-| What it means, not just what it says | Personal details about someone, your own costs and margins, your negotiating position, insults, and physical security (a hidden key, an alarm left off), however they are worded, read by an on-device model |
+| What it means, not just what it says | Personal details about someone, your own costs and margins, your negotiating position, insults, and physical security (a hidden key, an alarm left off), in wordings rules miss, read by an on-device model |
 | Wrong recipient | A greeting to someone who isn't on the recipient lines ("Hi Alex," sent only to Morgan Vale), and addresses that look like yours but aren't (`north1ine.com`) |
 | Marked internal | "Internal only", "not for external distribution", "don't forward this to the client" in an email going outside |
 | Exposed recipient lists | Eight or more outside addresses from three or more organizations in To and Cc |

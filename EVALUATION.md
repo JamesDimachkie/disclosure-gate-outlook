@@ -118,7 +118,7 @@ about half of its flagged sentences were fragments of plain text wrapped at 70 c
 built against that: hand-checked labels on the sentences v2.3 flagged in half the Enron mailboxes,
 retraining, and thresholds set on real ordinary mail; the rules gained profit-and-loss figures,
 "Pin #" and "BK ID" wire details, and one overlong sentence no longer drops the model for a whole
-email. Gate 6 then scored it once, on 2,000 emails from the other half's 72 mailboxes and on a new
+email. Gate 6 then scored it once, on 2,000 emails drawn from the other half (71 of its 72 mailboxes) and on a new
 two-author synthetic set, `everyday7`, whose ordinary mail was written messy on purpose. Labelers read
 every email any system asked about plus 300 none asked about, blind to which system asked, and rated
 each disclosure serious or not ([plan and amendments](docs/gates/GATE-PLAN-6.md)).
