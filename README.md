@@ -66,8 +66,9 @@ against bars fixed in advance: 108 of 120 disclosures caught on the newest set, 
 documented email incidents rebuilt with invented names, it asks about 35.
 
 [EVALUATION.md](EVALUATION.md) has the method, every gate including the ones that failed, and the
-limits. Three attempts to make it ask less (a retrained v2.4, and two calmer settings that asked up to
-43% less often) were rejected because each missed serious disclosures v2.3 catches.
+limits. Four attempts to make it ask less were rejected: a retrained v2.4 and two calmer settings (one
+asked 43% less often) each missed serious disclosures v2.3 catches, and a larger 32M model did no
+better on development mail.
 
 Attachments: 36 everyday documents saved by Chromium and Microsoft Word, as PDF and `.docx`, all read
 in full with every amount, name and accented or non-Latin phrase intact
