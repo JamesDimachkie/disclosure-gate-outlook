@@ -1,10 +1,10 @@
 // Draws the Guardcell mark (a near-black rounded square, a white
-// dot, a white bar and a green dot) into the PNG sizes the manifest names, with 4x4 supersampling.
+// dot, a blue bar and a green dot) into the PNG sizes the manifest names, with 4x4 supersampling.
 // Run: node outlook/make-icons.mjs  (writes outlook/assets/icon-{16,32,64,80,128}.png)
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { deflateSync, crc32 } from 'node:zlib';
 
-const INK = [0x18, 0x18, 0x1b], WHITE = [0xff, 0xff, 0xff], GREEN = [0x22, 0xc5, 0x5e];
+const INK = [0x18, 0x18, 0x1b], WHITE = [0xff, 0xff, 0xff], BLUE = [0x60, 0xa5, 0xfa], GREEN = [0x22, 0xc5, 0x5e];
 const inRoundRect = (x, y, x0, y0, x1, y1, r) => {
   if (x < x0 || x > x1 || y < y0 || y > y1) return false;
   const cx = Math.min(Math.max(x, x0 + r), x1 - r), cy = Math.min(Math.max(y, y0 + r), y1 - r);
@@ -15,7 +15,8 @@ const inCircle = (x, y, cx, cy, r) => (x - cx) ** 2 + (y - cy) ** 2 <= r * r;
 function colourAt(x, y) {
   if (!inRoundRect(x, y, 2, 2, 22, 22, 6)) return null;
   if (inCircle(x, y, 16.75, 12, 2.25)) return GREEN;
-  if (inCircle(x, y, 7.25, 12, 1.75) || inRoundRect(x, y, 11, 5.75, 13, 18.25, 1)) return WHITE;
+  if (inRoundRect(x, y, 11, 5.75, 13, 18.25, 1)) return BLUE;
+  if (inCircle(x, y, 7.25, 12, 1.75)) return WHITE;
   return INK;
 }
 
