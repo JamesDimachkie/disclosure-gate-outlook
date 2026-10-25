@@ -1,4 +1,4 @@
-Disclosure Gate OCR assets
+Guardcell OCR assets
 
 tesseract.js 7.0.0 and tesseract.js-core 7.0.0: Apache-2.0.
 https://github.com/naptha/tesseract.js
