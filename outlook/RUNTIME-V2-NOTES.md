@@ -290,6 +290,15 @@ Source receipt: the release QA record `.qa/live-v2-results.md` and screenshots
 (local QA artifacts, not bundled here). The screenshots support the meeting Review pane,
 unavailable-host choices and model-only Review pane; the receipt supplies the timed sequence.
 
+## Live check after the rename to Guardcell, Outlook on the web, 25 October 2026
+
+The public manifest (version 2.1.0.0, same Id, Ask/Ask, model on) was downloaded from
+`jamesdimachkie.github.io/guardcell-outlook/` and added from file in the test mailbox; it replaced the
+2.0.0.0 installation in place and listed as Guardcell. The fictional Kate/Dan email in the README
+screenshots, sent to an `.example` address, showed "Message from Add-in: Guardcell" with the same
+four findings as before; Review opened the pane from the new address with the same cards. Both drafts
+were discarded without sending. The README and landing screenshots were retaken from this run.
+
 ## Live Outlook acceptance still needed
 
 1. New Outlook for Windows, classic Outlook for Windows and Mac: v2 installation, activation,
