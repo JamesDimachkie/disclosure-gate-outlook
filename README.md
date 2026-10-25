@@ -55,7 +55,9 @@ any system asked about; a random sample of the rest suggests about 34 more that 
 on this mail the default asks about one email in three and catches roughly two serious disclosures in
 three. It is tuned that way on purpose: a needless question costs one click, a missed disclosure can
 cost a client, a fine or a career. Enron's mail is heavy with personal chatter and forwarded chain
-letters; ordinary business mail is likely to be asked about less, but that has not been measured.
+letters; ordinary business mail is likely to be asked about less, but that has not been measured. A
+second, fresh sample of 2,000 emails from the same held-out mailboxes gave the same picture: 32% asked
+about, 40 serious disclosures caught against the rules' 12.
 
 **On blind synthetic sets** written to be hard (disclosures implied, buried in threads, given as bare
 numbers, casual or regional English), by AI models that wrote none of the training data and scored once
@@ -63,8 +65,9 @@ against bars fixed in advance: 108 of 120 disclosures caught on the newest set, 
 53 of its 400 deliberately messy ordinary emails; 101 of 120 and 9 of 398 on the one before. On 49 real,
 documented email incidents rebuilt with invented names, it asks about 35.
 
-[EVALUATION.md](EVALUATION.md) has the method, every gate including the ones that failed (a quieter v2.4
-was rejected because it missed too many serious disclosures), and the limits.
+[EVALUATION.md](EVALUATION.md) has the method, every gate including the ones that failed, and the
+limits. Three attempts to make it ask less (a retrained v2.4, and two calmer settings that asked up to
+43% less often) were rejected because each missed serious disclosures v2.3 catches.
 
 Attachments: 36 everyday documents saved by Chromium and Microsoft Word, as PDF and `.docx`, all read
 in full with every amount, name and accented or non-Latin phrase intact

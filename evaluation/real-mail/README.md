@@ -17,6 +17,9 @@ than most modern business mail.
 | `enron-results.json`, `enron-sample-ids.txt` | Its result (v2.3 asked about 970, 32%; rules alone 73) and the sample's Message-IDs. |
 | `gate6-enron-b.jsonl` | Gate 6: 2,000 held-out outside emails, one line each: Message-ID, whether v2.3, the v2.4 candidate and the rules alone asked, and for the 1,007 labeled emails the label. |
 | `gate6-summary.json` | Gate 6 counts, intervals and bars. |
+| `gate8-summary.json` | Gate 8 on the same 2,000 emails: v2.3 reading already-seen reply history more strictly. Counts only. |
+| `gate9-enron-b2.jsonl` | Gate 9: a fresh 2,000 half-B emails never used before, one line each: Message-ID, whether v2.3, the calmer candidate and the rules asked, and for the 936 labeled emails the label. |
+| `gate9-summary.json` | Gate 9 counts, intervals and bars. |
 
 ## How gate 6 was built
 

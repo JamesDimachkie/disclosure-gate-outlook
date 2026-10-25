@@ -140,6 +140,26 @@ them. Because a missed serious disclosure costs far more than an extra question 
 keeps its recall-first thresholds. A larger 32M encoder trained the same way was tried next ([gate 7](docs/gates/GATE-PLAN-7.md)); it
 did not beat v2.3 at recall-first settings on the development mailboxes, so it was not taken to test.
 
+Two more attempts went after the asks without retraining. [Gate 8](docs/gates/GATE-PLAN-8.md) read
+quoted reply history more strictly when every outside recipient had already been on it (forwards and
+newly added people still read normally); on the same 2,000 emails it asked about 596 against a bar of
+560 and caught 58 serious disclosures, so it failed. Most needless asks come from what the sender wrote,
+not from history. [Gate 9](docs/gates/GATE-PLAN-9.md) also read the sender's own text twice as strictly,
+chosen to keep every serious development catch, and was scored on a fresh sample of 2,000 emails from
+the same held-out mailboxes, never used before, labeled the same way:
+
+| Gate 9, fresh 2,000 emails | Asked | Needless | Serious caught | everyday7 caught | everyday7 questioned |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| v2.3 (current) | 636 (31.8%) | 518 (25.9%) | **40** | 108/120 | 53/400 |
+| Calmer candidate | 362 (18.1%) | 269 (13.5%) | 34 | 95/120 | 28/400 |
+| Rules alone | 47 (2.4%) | 26 (1.3%) | 12 | 11/120 | 0/400 |
+
+It asked about 43% fewer emails but missed six serious disclosures v2.3 caught (an access detail, three
+personal details, an internal cost, a remark) and 13 `everyday7` catches, failing both of its catch
+bars, so v2.3 stays. The fresh sample also replicates v2.3's real-mail result: about a third of
+emails asked about, and roughly three times the rules' serious catches. Its random sample of unasked
+mail suggests about 18 more serious disclosures that no system asked about.
+
 | Gate | Candidate | Caught | Questioned | Bar | Result |
 | --- | --- | ---: | ---: | --- | --- |
 | realistic3 | v2.1 | 48/60 | 1/240 | | (everyday failed: 20/200) |
@@ -153,6 +173,9 @@ did not beat v2.3 at recall-first settings on the development mailboxes, so it w
 | everyday6 | v2.3, recall-first thresholds | 101/120 | 9/398 | ≤ 5%, ≥ 75% | **Pass (current)** |
 | everyday7 + Enron B | v2.4, real-mail thresholds | 104/120; 37 serious | 32/400; 168/2,000 asked | ≤ 5%, ≥ 75%; ≥ 80% of v2.3's serious | Fail |
 | everyday7 + Enron B | v2.3 (comparison) | 108/120; 61 serious | 53/400; 700/2,000 asked | | |
+| Enron B | v2.3, history read ×3 when already seen, rest ×1.1 | 58 serious | 596/2,000 asked | ≤ 560 asked, ≥ 55 serious | Fail |
+| everyday7 + fresh Enron B | v2.3, history ×3, rest ×2 | 95/120; 34 serious | 28/400; 362/2,000 asked | ≥ 96/120; ≤ 75% of v2.3's asks, ≥ 90% of its serious | Fail |
+| everyday7 + fresh Enron B | v2.3 (comparison) | 108/120; 40 serious | 53/400; 636/2,000 asked | | |
 | everyday6 | v2.2, recall-first thresholds (comparison) | 93/120 | 12/398 | | |
 
 Pre-registrations are in `docs/gates/`, preserved from the original model-development history. Each was committed before anyone

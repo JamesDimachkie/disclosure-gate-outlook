@@ -14,7 +14,9 @@ did not open a set before its plan was committed and scored it exactly once.
 | [GATE-PLAN-5.md](GATE-PLAN-5.md) | 691fa104, 24 Oct 10:28 PDT | everyday6b bcbceb16, 10:30; everyday6a d3b864b6, 10:39 | 6b aae1a767, 10:48; 6a f5212919, 14:07; audits ab9676dc 13:41, 31dc31f3 14:12, drops 151102dc 14:13 | 14:13; reports saved by an identical re-run at 14:16 (shipped v2.3, unchanged) |
 
 [GATE-PLAN-6.md](GATE-PLAN-6.md) records the v2.4 real-mail decision plan and its scoring-harness
-addendum. The commit identifiers here refer to the original development history, which is not
+addendum. [GATE-PLAN-7.md](GATE-PLAN-7.md) (a 32M model, not taken to test),
+[GATE-PLAN-8.md](GATE-PLAN-8.md) and [GATE-PLAN-9.md](GATE-PLAN-9.md) (calmer settings, both failed) carry
+their own amendments and outcomes. The commit identifiers here refer to the original development history, which is not
 included in the public repository's fresh history. Read the linked copies for the plans themselves.
 
 Correction: GATE-PLAN-2 and GATE-PLAN-3 say they were written "before" their set "exists". The table

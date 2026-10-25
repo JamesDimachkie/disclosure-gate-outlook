@@ -1,0 +1,46 @@
+{
+ "setting": {
+  "h": 3.0,
+  "o": 1.1
+ },
+ "emails": 2000,
+ "v23_recorded_gate6": {
+  "asked": 700,
+  "serious": 61
+ },
+ "v23_recaptured": {
+  "asked": 702,
+  "serious": 61,
+  "agrees_with_gate6": 2
+ },
+ "candidate": {
+  "asked": 596,
+  "asked_ci": [
+   0.2784,
+   0.3184
+  ],
+  "unlabeled_asked": 2,
+  "needless": 458,
+  "disclosures": 136,
+  "serious": 58
+ },
+ "bars": {
+  "asks_at_most_560": false,
+  "serious_at_least_55": true
+ },
+ "serious_lost": [
+  {
+   "category": "5.4",
+   "in_seen_history_only": true
+  },
+  {
+   "category": "5.7",
+   "in_seen_history_only": true
+  },
+  {
+   "category": "5.4",
+   "in_seen_history_only": false
+  }
+ ],
+ "note": "Gate 8 (docs/gates/GATE-PLAN-8.md): gate 6 sample of Enron B; candidate = v2.3 with seen history x3, other text x1.1."
+}

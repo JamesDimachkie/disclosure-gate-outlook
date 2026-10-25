@@ -1,0 +1,68 @@
+{
+ "emails": 2000,
+ "labeled": 936,
+ "missing_labels": 0,
+ "systems": {
+  "v23": {
+   "asked": 636,
+   "asked_ci": [
+    0.298,
+    0.3387
+   ],
+   "needless": 518,
+   "needless_ci": [
+    0.2403,
+    0.2786
+   ],
+   "disclosures": 118,
+   "serious": 40
+  },
+  "candidate": {
+   "asked": 362,
+   "asked_ci": [
+    0.1647,
+    0.1985
+   ],
+   "needless": 269,
+   "needless_ci": [
+    0.1202,
+    0.1502
+   ],
+   "disclosures": 93,
+   "serious": 34
+  },
+  "rules": {
+   "asked": 47,
+   "asked_ci": [
+    0.0177,
+    0.0311
+   ],
+   "needless": 26,
+   "needless_ci": [
+    0.0089,
+    0.019
+   ],
+   "disclosures": 21,
+   "serious": 12
+  }
+ },
+ "unasked_sample": {
+  "labeled": 300,
+  "disclosures": 6,
+  "serious": 4,
+  "estimated_serious_none_asked": 18
+ },
+ "bars": {
+  "asks_at_most_75pct": true,
+  "serious_at_least_90pct": false
+ },
+ "serious_lost": [
+  "5.1",
+  "5.4",
+  "5.4",
+  "5.4",
+  "5.5",
+  "5.7"
+ ],
+ "note": "Gate 9 (docs/gates/GATE-PLAN-9.md): fresh half-B sample; candidate = v2.3 with seen history x3, other text x2, thresholds capped at 0.9."
+}
