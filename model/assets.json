@@ -4,8 +4,8 @@
   "tokenizer": "0.2.0",
   "files": {
     "engine.js": {
-      "bytes": 89205,
-      "sha256": "0a58be5e3a56922d312dddb052eb9dc1b04a985e6ee26018fc159ac877e89577"
+      "bytes": 89581,
+      "sha256": "24f79ddc90f5ac802f1521b9fd56b00c19c6ecdbada0ae77d2e96eaf1ffa939d"
     },
     "ort-wasm-simd-threaded.mjs": {
       "bytes": 24381,
@@ -28,5 +28,5 @@
       "sha256": "1e8423f3019ae146acbb917a192249ae5580731038b197ff2038fd86ab4810e0"
     }
   },
-  "revision": "89f0f6d635a42dc08832df63477f2f450119e49a23b0ab58e9fdbe86cee210c0"
+  "revision": "9a975090e63d41e41efe6e5a008b281a56207c57b6958a08adafb9d99589fe85"
 }
