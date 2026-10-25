@@ -137,7 +137,8 @@ failed and v2.3 stays. On the development mailboxes, v2.3 and four v2.4 recipes 
 catch-against-ask curve: the 17M model, not its training data, seems to limit how well real-mail
 nuance is told apart. The rule and reader changes ship with v2.3; the real-mail numbers above include
 them. Because a missed serious disclosure costs far more than an extra question (one click), v2.3
-keeps its recall-first thresholds.
+keeps its recall-first thresholds. A larger 32M encoder trained the same way was tried next ([gate 7](docs/gates/GATE-PLAN-7.md)); it
+did not beat v2.3 at recall-first settings on the development mailboxes, so it was not taken to test.
 
 | Gate | Candidate | Caught | Questioned | Bar | Result |
 | --- | --- | ---: | ---: | --- | --- |

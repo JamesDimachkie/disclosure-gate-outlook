@@ -27,3 +27,14 @@ labelers did not label are labeled with the same brief, blind to which system as
    within its 2.5-second share of Send, with the model preloaded at compose as v2 does.
 
 **Reported, whatever it shows:** all of the above with 95% intervals, per category, and v2.3 alongside.
+
+## Outcome (24 October 2026): not run
+
+The 32M model trained (best of 4 epochs; int8 export 2.5.0-32m) but could not meet its own
+pre-registered development criterion: on the half-A development mailboxes it reaches v2.3's 24 of 28
+serious disclosures only when asking about 50% of emails (v2.3: 32%); at v2.3's ask rate it catches
+22. It is slightly better than v2.3 only at quiet settings (20 serious at 9% asked, against 17 at
+11%), which is not the operating point this product uses. So no threshold was frozen, Enron half B and
+`everyday7` were not reused, and v2.3 stays. Two encoder sizes and five training recipes now trace
+essentially the same catch-against-ask curve on real mail; the development serious set (28 emails) is
+too small to separate them further.
