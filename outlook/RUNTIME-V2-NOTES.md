@@ -246,30 +246,64 @@ Timing: the model's 1.5 s share of Send left about 0.3 s spare on this laptop in
 1.3 s from cache plus classify). A slower machine will more often fall back to rules only, which the
 design allows but which lowers what the model catches in practice.
 
+## Live evidence: v2 manifest, Outlook on the web, 24 October 2026
+
+Evening run: Outlook on the web (`outlook.cloud.microsoft`) in the T3 collaborative browser, private
+test tenant, synthetic content and fictional `.example` outside recipients. Microsoft had not yet
+delivered the centrally deployed v2 update to the mailbox, so **Disclosure Gate (v2 test)** was
+sideloaded with manifest version 2.0.0.1, findings=ask, failures=ask, model on and PromptUser, served
+by the local dev server at `https://localhost:3443`. This tests v2's own manifest, without the earlier
+v1.1 runtime shim; it does not establish Microsoft's delivery of the central update.
+
+Every mail/meeting compose used a full-page deeplink (separate-window compose). The runtime frame
+`commands.html?dg=2&findings=ask&failures=ask&domains=` was present before Send. An earlier sideload
+smoke test also saw `commands.html?dg=2&findings=ask&failures=ask&domains=&et=` when opening mail
+compose, before Send, then a fake-password dialog naming Disclosure Gate (v2 test), saying
+"This email goes outside your company and includes a password" / "In the body: a password", with
+Send anyway / Review / Don't send. The dialog did not expose the password.
+
+Timings below run from the scripted Send click to the first 100–150 ms poll finding dialog text.
+A successful send closes the deeplink page; closure time is not the add-in's decision time.
+
+| Runbook # / test | Result | Send-to-dialog |
+|---|---|---|
+| Installation / compose smoke | Sideloaded v2 test manifest, Ask/Ask, model on, localhost dev server. Runtime frame present before Send; fake-password Send showed Send anyway / Review / Don't send. | Not timed |
+| M1 inside-only invitation, gate code in location | Sent without a dialog; Sent Items and calendar confirmed. The original comma-separated location had no rule match, so this does not prove the inside-only read shortcut. | No dialog |
+| M2 outside required attendee, gate code in body | Meeting finding; markdown headline and bullet rendered; Review opened the organizer pane with meeting copy and the body finding. Review kept it unsent. | 0.31 s |
+| M3 outside optional attendee, location "Side gate, code 4471" | Failed: sent with no dialog. Rule gap found live and subsequently fixed on main: comma, bracket or dash between the place and "code" now counts. The original text was not retested live after that fix. | No dialog |
+| M3b outside optional attendee alone, location "Side gate code 4471" | Passed live: "In the location: a gate code"; Don't send kept the draft. Confirms optional attendee screening and location findings. | 0.46 s |
+| #18 dev server stopped | PromptUser first showed taking longer at 5.1 s, then unavailable with Send anyway / Try later at 9.3 s; Try later kept the draft. | 9.3 s to unavailable |
+| #24a first Send, runbook's health sentence | Personal-details finding, but local rules also catch this sentence; not evidence of the model. | 0.31 s |
+| #24b first Send, model-only health sentence | Rules alone had no finding; after 24 s in compose, the personal-details dialog appeared and Review opened the matching pane card. | 0.31 s |
+| #10 attached deploy-settings.png, waited about 30 s | API-key finding named the file without exposing the value; Don't send kept the draft. Earlier v1.1-shim first-Send OCR took 4.5 s. | 0.42 s |
+| Clean outside email | Sent without a dialog; confirmed in Sent Items. Page closed about 6.2 s after Send; that is not a decision-time measurement. | No dialog |
+
+**Caveats.** #24's clear from top-level `setup.html` found empty Cache Storage/IndexedDB and did not
+reach the add-in's own storage. Storage partitioning is the inferred explanation; this was **not a
+cold-download test**, and the model assets were probably already cached. #24b shows a fresh
+compose's first Send after preload, not a first-ever model download. For #10, pre-reading on attach
+is **inferred from timing**; the read itself was not observed. These are individual laptop runs,
+not a latency distribution or proof of the two-second typical target across clients.
+
+Source receipt: the release QA record `.qa/live-v2-results.md` and screenshots
+`m2-review-pane.png`, `18-unavailable.png`, `24b-review-pane.png` in `.qa/live-v2-shots/`
+(local QA artifacts, not bundled here). The screenshots support the meeting Review pane,
+unavailable-host choices and model-only Review pane; the receipt supplies the timed sequence.
+
 ## Live Outlook acceptance still needed
 
-1. Upload the dev manifest as an update to the existing test installation. Confirm v2 actually
-   reaches each tested client and that dgOpenPane opens the real pane.
-2. Web/new Windows/Mac: check page settings and the preserved Office.onReady handshake.
-3. Classic Windows: test one pre-2403 client (ideally the stated 2206 minimum) and one Mailbox 1.14+
-   client. Confirm script override loading, query recovery, the mailbox-domain-only fallback when settings cannot be read,
-   and that the ES2016 adapter behaves in the actual engine.
-4. Synthetic sends under all four settings combinations: internal-only, clean external, sensitive external, unreadable file,
-   PPTX notes, inline image, changed draft, and unavailable/slow runtime.
-5. After detectors integration, verify exposed-list-only promptUser on 1.14+, mixed outcomes following the two settings, and recipient cards without Remove. Pre-1.14 Block cannot offer this override.
-6. Confirm result persistence before Review, including large-result reconstruction and a new compose
-   item; clear results never release a changed fingerprint.
-7. Measure Send-to-dialog time, not just core time. The 4.5-second guard starts at handler invocation.
-   Host startup and throttled timers are outside that measurement. Synchronous extraction can also
-   delay a timer callback; a wall-clock recheck prevents a late Clear, but VM timings do not establish
-   a hard five-second host response or the spec's two-second typical Send target.
-8. Repeat unavailable-static-host tests. September v1 observed a silently browser-denied runtime
-   could send despite Block, whereas a refused connection held. This is unresolved live evidence,
-   not a behavior this static migration can guarantee.
+1. New Outlook for Windows, classic Outlook for Windows and Mac: v2 installation, activation,
+   dialogs, settings, OCR/model capability and timings. For classic, include pre-2403 and 1.14+
+   runtimes, script override loading and the settings-unavailable fallback.
+2. A true cold first Send, with the add-in's own asset storage cleared and the download/preload
+   observed. The #24 setup-page clear did not exercise this path.
+3. Microsoft's delivery of the centrally deployed v2 manifest to the mailbox, followed by activation
+   from that installation; sideloading does not verify central-update propagation.
 
-The weakest point is native classic Outlook acceptance, especially the older runtime and settings-unavailable
-configuration fallback. Outlook on the web has v2 Send evidence (above); new Outlook, classic and Mac
-have none yet, and v2's own manifest (compose and attachment events, meetings, PromptUser) is untested live.
+The detailed historical Ask/Hold, OCR and meeting checklists retain the remaining edge cases:
+SoftBlock override, the Block/browser-denial case, large-result reconstruction, mid-check edits,
+appointment updates/series, rooms/resources, embedded forms and meeting Send anyway were not
+established by this sideload run. The weakest client point remains native classic Outlook acceptance.
 
 ## OCR: documented support versus implementation inference
 
@@ -339,7 +373,9 @@ is 827,631 bytes; this implementation is 6,968,027 bytes, an increase of **6,140
 and licences. The remaining 54,343 bytes are runtime/pane/setup/manifest changes. These are file
 sizes, not network-compressed transfers or runtime memory measurements.
 
-Live Outlook verification still required:
+Historical OCR checklist (before the 24 October live runs): the v2 evidence above now establishes
+on-device OCR in Outlook on the web and records one Send after an attachment wait. Broader coverage,
+client support and the edge cases below remain to be checked.
 
 1. Worker/WASM/BigInt availability, CSP, same-origin model loading and failure copy in web/new
    Windows/Mac event runtimes and each supported pane webview. No Microsoft sandbox guarantee was found.
@@ -356,7 +392,8 @@ Live Outlook verification still required:
    confidence is not a language detector and cannot establish correctness for arbitrary images.
 
 The weakest OCR point is generalization of the empty-image classifier and the substantial remaining
-photo/low-quality over-holds. Native event-runtime support, memory and timing remain unverified.
+photo/low-quality over-holds. Native event-runtime support outside Outlook on the web, broader memory
+measurements and cold/multi-image timing remain unverified.
 
 ## Meetings: Microsoft documentation versus implementation decisions
 
@@ -402,7 +439,9 @@ Implementation decisions and inferences, rather than Microsoft guarantees:
   above is specific to web/new Windows. Update/series activation and room completeness still need
   native-client evidence. Local fake Office APIs do not establish those behaviors.
 
-Meeting live acceptance to add to the existing runtime/OCR checklist:
+Historical meeting checklist (before the 24 October v2 run): the live evidence above now establishes
+new separate-window invitations with required/optional attendees, body/location findings and Review
+in Outlook on the web. The remaining clients, updates/series, room/resource and other edge cases follow.
 
 1. Install the updated manifest in a test tenant. On web, new/classic Windows and new Mac, send a
    new organizer invitation and an existing appointment update; test a recurring series and one

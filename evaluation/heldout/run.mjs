@@ -80,7 +80,9 @@ async function main() {
  if(options.has('--semantic')){
   const dir=path.resolve(options.get('--semantic'));const ort=await import('onnxruntime-web');const {createClassifier}=await import(pathToFileURL(path.resolve(directory,'../../model/classifier.mjs')).href);
   ort.env.wasm.numThreads=1;ort.env.wasm.wasmBinary=await fs.readFile(path.resolve(directory,'../../node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.wasm'));
-  semantic=await createClassifier({ort,modelBytes:await fs.readFile(path.join(dir,'model.onnx')),tokenizerJson:JSON.parse(await fs.readFile(path.join(dir,'tokenizer.json'),'utf8')),labelsJson:JSON.parse(await fs.readFile(path.join(dir,'labels.json'),'utf8'))});
+  const tokenizerJson=JSON.parse(await fs.readFile(path.join(dir,'tokenizer.json'),'utf8')),labelsJson=JSON.parse(await fs.readFile(path.join(dir,'labels.json'),'utf8'));const {withAdmission}=await import(pathToFileURL(path.resolve(directory,'../../outlook/model-input.mjs')).href);
+  // Send's worker leaves sentences longer than the model's window unread; score exactly that.
+  semantic=withAdmission(await createClassifier({ort,modelBytes:await fs.readFile(path.join(dir,'model.onnx')),tokenizerJson,labelsJson}),tokenizerJson,labelsJson);
  }
  const results=[];
  for(const c of cases) {

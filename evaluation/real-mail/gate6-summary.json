@@ -1,0 +1,75 @@
+{
+ "labeled": 1007,
+ "missing_labels": 0,
+ "union": 707,
+ "sampled_unflagged": 300,
+ "disclosures_in_union": 143,
+ "serious_in_union": 62,
+ "disclosures_in_unflagged_sample": 11,
+ "serious_in_unflagged_sample": 8,
+ "estimated_disclosures_none_asked": 47,
+ "estimated_serious_none_asked": 34,
+ "systems": {
+  "v24": {
+   "asked": 168,
+   "asked_rate": 0.084,
+   "asked_ci": [
+    0.0726,
+    0.097
+   ],
+   "needless": 99,
+   "needless_rate": 0.0495,
+   "needless_ci": [
+    0.0408,
+    0.0599
+   ],
+   "disclosures_caught": 69,
+   "serious_caught": 37
+  },
+  "v23": {
+   "asked": 700,
+   "asked_rate": 0.35,
+   "asked_ci": [
+    0.3294,
+    0.3712
+   ],
+   "needless": 559,
+   "needless_rate": 0.2795,
+   "needless_ci": [
+    0.2603,
+    0.2996
+   ],
+   "disclosures_caught": 141,
+   "serious_caught": 61
+  },
+  "rules": {
+   "asked": 53,
+   "asked_rate": 0.0265,
+   "asked_ci": [
+    0.0203,
+    0.0345
+   ],
+   "needless": 26,
+   "needless_rate": 0.013,
+   "needless_ci": [
+    0.0089,
+    0.019
+   ],
+   "disclosures_caught": 27,
+   "serious_caught": 19
+  }
+ },
+ "bars": {
+  "B_asks_at_most_half_of_v23": true,
+  "B_needless_at_most_10pct": true,
+  "B_serious_at_least_80pct_of_v23": false,
+  "serious_v23_caught_also_caught_by_v24": "36/61"
+ },
+ "matched_ask_v23": {
+  "quantile": 0.987,
+  "asked": 165,
+  "needless": 107,
+  "disclosures_caught_in_union": 58,
+  "serious_caught_in_union": 32
+ }
+}

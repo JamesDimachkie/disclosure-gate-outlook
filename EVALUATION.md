@@ -41,7 +41,7 @@ product contract) and the case format, with written rules:
 | everyday6b | gpt-6-luna | 200 | 60 | Check 5, hard (retired) |
 
 The training data for the sentence model came from separate authors: two rounds of
-whole labelled emails by Claude Opus 5.5 and GPT-6.1 Sol (1,320 emails), plus 1,000 contrastive pairs
+whole labeled emails by Claude Opus 5.5 and GPT-6.1 Sol (1,320 emails), plus 1,000 contrastive pairs
 (a disclosing sentence and a near-identical one that is not).
 
 ## History
@@ -109,6 +109,36 @@ scoring run printed its results but failed to save its reports (a wrong output p
 deterministic commands were re-run two minutes later to save them, and every result the first run
 printed matches.
 
+**Real mail, and gate 6 (v2.4 rejected; v2.3 stays).** Every set above is synthetic. The first test on
+real mail, 3,000 outside emails Enron employees sent in 1999–2002 (public CMU corpus, see
+[evaluation/real-mail](evaluation/real-mail/)), changed the picture: v2.3 asked about 32% of them, the
+rules alone 2.4%. Reading samples showed why: the model reacted to how real mail sounds (banter,
+forwarded jokes and chain letters, family news, any price) rather than to what it disclosed, and
+about half of its flagged sentences were fragments of plain text wrapped at 70 columns. A v2.4 was
+built against that: hand-checked labels on the sentences v2.3 flagged in half the Enron mailboxes,
+retraining, and thresholds set on real ordinary mail; the rules gained profit-and-loss figures,
+"Pin #" and "BK ID" wire details, and one overlong sentence no longer drops the model for a whole
+email. Gate 6 then scored it once, on 2,000 emails from the other half's 72 mailboxes and on a new
+two-author synthetic set, `everyday7`, whose ordinary mail was written messy on purpose. Labelers read
+every email any system asked about plus 300 none asked about, blind to which system asked, and rated
+each disclosure serious or not ([plan and amendments](docs/gates/GATE-PLAN-6.md)).
+
+| Gate 6 | Real mail: asked | Needless | Serious caught | everyday7 caught | everyday7 questioned |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| v2.3 (current) | 700/2,000 (35%) | 559 (28%) | **61** | 108/120 | 53/400 |
+| v2.4 candidate | 168/2,000 (8.4%) | 99 (5.0%) | 37 | 104/120 | 32/400 |
+| Rules alone | 53/2,000 (2.7%) | 26 (1.3%) | 19 | 11/120 | 0/400 |
+
+The labelers found 62 serious disclosures among the emails any system asked about; the random sample
+of the rest suggests about 34 more that no system asked about. v2.4 asked a quarter as often but
+caught 24 fewer serious disclosures (personal details 7 of 17 against 15, remarks 8 against 17,
+negotiation 6 against 11) and questioned 8% of `everyday7`'s ordinary mail against a 5% bar, so it
+failed and v2.3 stays. On the development mailboxes, v2.3 and four v2.4 recipes trace the same
+catch-against-ask curve: the 17M model, not its training data, seems to limit how well real-mail
+nuance is told apart. The rule and reader changes ship with v2.3; the real-mail numbers above include
+them. Because a missed serious disclosure costs far more than an extra question (one click), v2.3
+keeps its recall-first thresholds.
+
 | Gate | Candidate | Caught | Questioned | Bar | Result |
 | --- | --- | ---: | ---: | --- | --- |
 | realistic3 | v2.1 | 48/60 | 1/240 | | (everyday failed: 20/200) |
@@ -120,6 +150,8 @@ printed matches.
 | everyday5 | v2.3, recall-first thresholds | 60/60 | 2/300 | ≤ 5%, ≥ 75%, ≥ v2.2 | Pass |
 | everyday5 | v2.2, recall-first thresholds (comparison) | 60/60 | 1/300 | | |
 | everyday6 | v2.3, recall-first thresholds | 101/120 | 9/398 | ≤ 5%, ≥ 75% | **Pass (current)** |
+| everyday7 + Enron B | v2.4, real-mail thresholds | 104/120; 37 serious | 32/400; 168/2,000 asked | ≤ 5%, ≥ 75%; ≥ 80% of v2.3's serious | Fail |
+| everyday7 + Enron B | v2.3 (comparison) | 108/120; 61 serious | 53/400; 700/2,000 asked | | |
 | everyday6 | v2.2, recall-first thresholds (comparison) | 93/120 | 12/398 | | |
 
 Pre-registrations are in `docs/gates/`, preserved from the original model-development history. Each was committed before anyone
@@ -150,8 +182,18 @@ name and accented or non-Latin phrase intact ([evaluation/everyday-docs](evaluat
 Its first run found one gap, an "î" that Chromium writes as two characters, since fixed. Second, does a
 hostile file break anything? 1,586 files from Mozilla's pdf.js and Apache POI test collections, which
 exist to break parsers, each ran in a bounded process: none crashed or hung. The reader refuses to pass
-a file on a partial read, so 636 of those 1,008 PDFs and 106 of the 578 Office files come back as
+a file on a partial read, so 621 of those 1,008 PDFs and 107 of the 578 Office files come back as
 can't-check, which asks. Neither check measures how often a real attachment is a disclosure.
+
+A reproducible [GovDocs1 and mutation check](docs/DEVELOPMENT.md#real-web-documents-and-mutation-fuzzing)
+adds 2,176 files harvested from government websites: 346 of 957 PDFs,
+15 of 21 DOCX, 9 of 20 XLSX, 0 of 20 PPTX, 74 of 78 CSV and 270 of 317 TXT read fully; the remainder
+needed OCR or asked as can't-check. All 763 legacy DOC/XLS/PPT/RTF files asked, with no silent pass.
+Two of the PDFs needed OCR and 609 were can't-check. No corpus input crashed or timed out.
+Separately, before the two later PDF-reader fixes, 21,000 seeded mutations (20,942 unique payloads)
+ran in bounded child processes with no remaining finding, crash or timeout after the earlier
+robustness fixes. The mutation suite was not rerun for the two later fixes. These checks measure parser
+robustness and format coverage, not disclosure-detection accuracy or OCR accuracy.
 
 ## What these numbers do not show
 
@@ -163,8 +205,11 @@ can't-check, which asks. Neither check measures how often a real attachment is a
   93 of 120 on `everyday6`.
 - The model runs only in Outlook on the web, the new Outlook and Outlook for Mac. Classic Outlook for
   Windows uses the rules alone.
-- Live behavior in Outlook was tested by hand in Outlook on the web; see
-  `outlook/RUNTIME-V2-NOTES.md`.
+- Live behavior was tested in Outlook on the web, including the sideloaded v2 manifest's compose
+  activation, separate-window invitations, Review pane and PromptUser unavailable-host choices.
+  A model-only finding appeared after compose preload; picture pre-reading is inferred from timing.
+  Other clients, a true cold first Send and Microsoft's centrally deployed v2 delivery remain unverified;
+  see [runtime notes](outlook/RUNTIME-V2-NOTES.md#live-evidence-v2-manifest-outlook-on-the-web-24-october-2026).
 
 ## Reproducing
 

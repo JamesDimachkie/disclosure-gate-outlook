@@ -28,3 +28,23 @@ test('corpus runner kills a blocked parser in its child and records the file ins
     await rm(temp, { recursive: true, force: true });
   }
 });
+
+test('all-format corpus checks exercise legacy ask decisions without retaining document contents', async () => {
+  const temp = await mkdtemp(join(tmpdir(), 'dg-corpus-formats-'));
+  try {
+    const data = join(temp, 'data'), output = join(temp, 'summary.json'); await mkdir(data);
+    const content = 'Synthetic output privacy sentinel';
+    for (const kind of ['doc', 'xls', 'ppt', 'rtf', 'txt', 'csv']) await writeFile(join(data, 'sample.' + kind), content);
+    await exec(process.execPath, [fileURLToPath(new URL('../tools/corpus-check.mjs', import.meta.url)), data, output, '--all-formats'], { windowsHide: true, timeout: 10000 });
+    const raw = await readFile(output, 'utf8'), s = JSON.parse(raw);
+    assert.equal(s.files, 6); assert.equal(raw.includes(content), false);
+    for (const row of s.results) {
+      assert.match(row.sha256, /^[a-f0-9]{64}$/); assert.ok(row.peakRssKiB > 0);
+      if (['doc', 'xls', 'ppt', 'rtf'].includes(row.kind)) {
+        assert.equal(row.reason, 'type'); assert.deepEqual(row.legacyDecision, { state: 'held', outcome: 'ask', unreadable: true });
+      }
+    }
+  } finally {
+    assert.equal(dirname(temp), resolve(tmpdir())); await rm(temp, { recursive: true, force: true });
+  }
+});

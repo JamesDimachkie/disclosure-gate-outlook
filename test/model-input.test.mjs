@@ -51,3 +51,29 @@ test('delivered source and model artifacts match the recorded copy provenance', 
   }
   for (const name of ['classifier.mjs', 'tokenize.mjs']) assert.doesNotMatch(readFileSync(new URL('../model/' + name, import.meta.url), 'utf8'), /\bfetch\s*\(|sendBeacon|XMLHttpRequest/);
 });
+
+test('admission reads each sentence alone when only its context overflows, and leaves only overlong sentences unread', async () => {
+  const { createInputAdmission, mergeAdmitted } = await import('../outlook/model-input.mjs');
+  const admit = createInputAdmission(tokenizer, labels);
+  const long = 'Previous schedule item with many words. '.repeat(40);
+  const plan = admit([
+    { text: 'Short sentence.', context: 'Earlier detail.' },
+    { text: 'Please review.', context: long },
+    { text: long, context: '' },
+  ]);
+  assert.deepEqual(plan.positions, [0, 1]);
+  assert.deepEqual(plan.unread, [2]);
+  assert.equal(plan.admitted[1].context, '');
+  const merged = mergeAdmitted(3, plan, [{ label: 'none', score: 0.9, scores: {} }, { label: 'personal', score: 0.8, scores: {} }]);
+  assert.equal(merged[1].label, 'personal'); assert.equal(merged[2].unread, true); assert.equal(merged.incomplete, true);
+});
+
+test('a long line costs only its own sentence the model pass, and the pass reports partial', async () => {
+  const semantic = { classify: async items => items.map(i => ({ label: /chemo/.test(i.text) ? 'personal' : 'none', score: 0.9, scores: {} })) };
+  const { withAdmission } = await import('../outlook/model-input.mjs');
+  const guarded = withAdmission(semantic, tokenizer, labels);
+  const body = 'Hi Kate,\n' + 'the schedule and the logistics of the site visit and '.repeat(40) + '\nBetween us, Dan starts chemo on Monday.\nThanks,';
+  const r = await checkDraft(draft({ body: { text: body, format: 'text' } }), { config: { internalDomains: [] }, semantic: guarded, semanticBudgetMs: 60000 });
+  assert.equal(r.checked.semantic, 'partial');
+  assert.ok(r.findings.some(f => f.category === 'personal'));
+});

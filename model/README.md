@@ -13,5 +13,8 @@ skips a whole semantic pass when its untruncated tokenizer input exceeds that wi
 check the full admitted text.
 
 `out/` contains the real `model.onnx`, `tokenizer.json` and `labels.json`. Builds copy these public
-files to `dist/model/`. The base model is Ettin-17M; its upstream MIT licence is served alongside
-the runtime. The repository's Apache-2.0 licence applies to Disclosure Gate source.
+files to `dist/model/`. The base model is Ettin-17M; its upstream MIT license is served alongside
+the runtime. The repository's Apache-2.0 license applies to Disclosure Gate source.
+
+To recalibrate, fine-tune or retrain the model on your own mail, see [docs/ADAPTING.md](../docs/ADAPTING.md).
+The pipeline is in [train/](train/README.md) and the v2.3 training data in [data/](data/README.md).

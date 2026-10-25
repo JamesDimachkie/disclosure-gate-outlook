@@ -72,7 +72,8 @@ export async function semanticFindings(parts, rules, semantic, budgetMs = SEMANT
       findings.push({ ...unit, category: r.label, subkind: SUBKINDS[r.label], severity: 'stop',
         marks: [{ start: 0, end: unit.sentence.text.length }], found_by: 'model' });
     });
-    return { findings, state: partial ? 'partial' : 'used' };
+    // Sentences the model could not read (longer than its window) make the pass partial, not skipped.
+    return { findings, state: partial || result.some(r => r.unread) ? 'partial' : 'used' };
   } catch (error) {
     // Never copy model exceptions into diagnostics: they may contain an input sentence.
     return skip(REASONS.has(error?.semanticReason) ? error.semanticReason : 'error');

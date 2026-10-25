@@ -68,7 +68,7 @@ test('unknown settings use neutral instructions in every dialog shape and fit th
 
 test('landing and README describe flags and failures without claiming an automatic hold', () => {
   for (const path of ['../outlook/index.html', '../README.md']) {
-    assert.match(read(path), /Ordinary emails asked about/);
+    assert.match(read(path), /[Ee]mails asked about/);
     assert.doesNotMatch(read(path), /Ordinary emails held by mistake|are held as "can't check"/);
   }
   assert.match(read('../outlook/index.html'), /pending OCR or incomplete PDF coverage follows IT's failures setting/);

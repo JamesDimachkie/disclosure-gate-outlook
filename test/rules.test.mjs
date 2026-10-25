@@ -217,3 +217,25 @@ test('after a label, any word is a password unless it is a status or pointer on 
     'Password: reset link sent', 'Password: ********', 'Password: <your password>', 'I reset my password this morning.', 'The password is case-sensitive.',
     'The password is too short.', 'Password: expired', 'Password: n/a', 'Password: via SMS', 'Password: please call me']) assert.ok(!access(t), t);
 });
+
+test('a gate code still counts when a comma, bracket or dash separates the place from "code" (live meeting location)', () => {
+  for (const text of ['Side gate, code 4471', 'Side gate (code 4471)', 'Side gate - code 4471', 'Door, code 1234 works'])
+    assert.deepEqual(screenText(text).map((f) => f.category), ['access'], text);
+  for (const text of ['The gate, coded blue, opens at 9.', 'Open the side gate, code review at 4.'])
+    assert.deepEqual(screenText(text), [], text);
+});
+
+test('profit-and-loss figures, a PIN after "#" and a bank ID label are caught (real-mail misses)', () => {
+  for (const text of ['Monthly P/L is $671,000.', 'Total P/L for April, 2001 $1,231,300', 'July, 2001 profit to date is $190,000'])
+    assert.deepEqual(screenText(text).map((f) => f.category), ['economics'], text);
+  assert.deepEqual(screenText('Beeper (800) 374-4434 Pin # 13050').map((f) => f.category), ['access']);
+  for (const text of ['Our profit share offer to you is 10%.', 'The P/L template is attached.', 'Profit and loss statement attached.'])
+    assert.deepEqual(screenText(text), [], text);
+});
+
+test('wire instructions labelled "BK ID" with an account number are a bank detail; the routing number alone is not', async () => {
+  const { checkDraft } = await import('../core/gate.mjs');
+  const check = (text) => checkDraft({ from: { address: 'a@x.example' }, to: [{ address: 'b@y.example' }], cc: [], bcc: [], subject: 's', body: { format: 'text', text }, attachments: [] }, { config: { internalDomains: [] } });
+  assert.ok((await check('CR BK ID: 111000012\nCR ACCT: 4479921856')).findings.some((f) => f.subkind === 'bank'));
+  assert.equal((await check('CR BK ID: 021000021')).state, 'clear');
+});

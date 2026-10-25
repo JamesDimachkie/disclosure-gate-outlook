@@ -1,0 +1,78 @@
+{
+ "corpus": "CMU Enron email corpus, enron_mail_20150507.tar.gz",
+ "archive_sha256": "b3da1b3fe0369ec3140bb4fbce94702c33b7da810ec15d718b3fadf5cd748ca7",
+ "model": "2.3.0",
+ "seed": 1,
+ "counts": {
+  "sent_files": 125682,
+  "parsed": 125682,
+  "unique": 96654,
+  "enron_sender": 95584,
+  "any_outside": 27491,
+  "bad_address": 1000
+ },
+ "sample": 3000,
+ "body_words": {
+  "median": 92,
+  "p90": 465
+ },
+ "results": {
+  "model": {
+   "asked": 970,
+   "stop": 955,
+   "prompt": 15,
+   "clear": 2030,
+   "other": 0,
+   "by_category": {
+    "remark": 607,
+    "negotiation": 209,
+    "economics": 75,
+    "personal": 424,
+    "recipient": 43,
+    "access": 45,
+    "internal": 1
+   },
+   "by_source": {
+    "rules_only": 41,
+    "model_only": 897,
+    "both": 32
+   },
+   "semantic": {
+    "used": 2984,
+    "skipped:limit": 16
+   },
+   "asked_rate": 0.3233,
+   "asked_ci95": [
+    0.3068,
+    0.3403
+   ]
+  },
+  "rules": {
+   "asked": 73,
+   "stop": 44,
+   "prompt": 29,
+   "clear": 2927,
+   "other": 0,
+   "by_category": {
+    "recipient": 43,
+    "personal": 13,
+    "remark": 7,
+    "access": 10,
+    "internal": 1,
+    "negotiation": 1,
+    "economics": 1
+   },
+   "by_source": {
+    "rules_only": 73,
+    "model_only": 0,
+    "both": 0
+   },
+   "semantic": {},
+   "asked_rate": 0.0243,
+   "asked_ci95": [
+    0.0194,
+    0.0305
+   ]
+  }
+ }
+}

@@ -279,7 +279,10 @@ test('model worker bridge pins single-thread WASM, accepts the classifier contra
   await context.onmessage({ data: { type: 'classify', items: [{ text: 'Ordinary detail.', context: '' }] } });
   assert.equal(messages[1].type, 'result'); assert.equal(messages[1].result[0].label, 'personal');
   await context.onmessage({ data: { type: 'classify', items: [{ text: 'TOO_LONG', context: '' }] } });
-  assert.deepEqual(JSON.parse(JSON.stringify(messages.at(-1))), { type: 'skipped', reason: 'input_limit' });
+  // A sentence too long for the window is left unread on its own; the batch is not thrown away.
+  assert.equal(messages.at(-1).type, 'result'); assert.equal(messages.at(-1).result[0].label, 'none'); assert.equal(messages.at(-1).result[0].unread, true);
+  await context.onmessage({ data: { type: 'classify', items: [{ text: 'TOO_LONG', context: '' }, { text: 'Ordinary detail.', context: '' }] } });
+  assert.equal(messages.at(-1).result[0].unread, true); assert.equal(messages.at(-1).result[1].label, 'personal');
   await context.onmessage({ data: { type: 'init', paths: { engine: 'https://cdn.example/model.js' } } });
   assert.deepEqual(JSON.parse(JSON.stringify(messages.at(-1))), { type: 'error' });
 });

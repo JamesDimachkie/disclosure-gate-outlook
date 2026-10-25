@@ -1,0 +1,6 @@
+PASS final: 260 cases; schema, consecutive IDs, literal fidelity, quotas, duplicates, outside-only domains, no attachments, deciding sentences/placements, numeric screen and README agreement.
+Composition: secrets=12 stop; personal=12 stop; economics=12 stop; negotiation=12 stop; remark=12 stop; none=200 pass; prompt=0.
+Ordinary=100; boundary=100; ordinary settings=100; messy ordinary=70.
+Hardness: {"implicit":29,"buried":10,"numbers":8,"casual":26,"mixed":27}
+Messy kinds: {"banter":17,"forward":11,"chain":11,"emotion":15,"terse":11,"footer":11}
+SHA-256: 0eb0a9eed8c8a2d82f73f9f602a3810f4726df8dc94650bbe096e0b7870e7f2a

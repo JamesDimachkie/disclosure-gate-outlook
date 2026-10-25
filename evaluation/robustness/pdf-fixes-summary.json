@@ -1,0 +1,5798 @@
+{
+  "at": "2026-10-25T01:36:32.984Z",
+  "parserSourceCommit": "d3677c96",
+  "parserFixCommits": [
+    "98d27faa",
+    "19f8c772"
+  ],
+  "earlierBaselineCommit": "c80811249f5dfae328a3bfed86aa9fefd941a726",
+  "pinsVerified": {
+    "publicFiles": 1586,
+    "publicMethod": "Git blob SHA-1 and byte size against DOWNLOAD.json; pinned pdf.js and POI revisions",
+    "govdocsFiles": 2176,
+    "govdocsMethod": "SHA-256 and byte size against DOWNLOAD.json, identical to committed govdocs-manifest.json"
+  },
+  "receipts": {
+    "public-pdf-fixes.json": "af44560e072dcf136c0d97b81ccef26a745ed179cab5993528e57612b21fbc37",
+    "real-pdf-fixes.json": "843b23519a3b5bf5e8213747c66f6ca10d83410096313c1537c285bce94d705c",
+    "public-earlier-baseline.json": "762fe8aa8b9387af6155e26518d927292cc596617c33298a22b2636270ef52fe"
+  },
+  "publicPrevious": {
+    "before": {
+      "pdf": {
+        "cant_check": 629,
+        "ok": 376,
+        "needs_ocr": 3
+      },
+      "docx": {
+        "ok": 90,
+        "needs_ocr": 15,
+        "cant_check": 25
+      },
+      "pptx": {
+        "cant_check": 33,
+        "ok": 36,
+        "needs_ocr": 26
+      },
+      "xlsx": {
+        "ok": 290,
+        "cant_check": 49,
+        "needs_ocr": 14
+      }
+    },
+    "after": {
+      "pdf": {
+        "cant_check": 621,
+        "ok": 384,
+        "needs_ocr": 3
+      },
+      "docx": {
+        "ok": 90,
+        "needs_ocr": 15,
+        "cant_check": 25
+      },
+      "pptx": {
+        "cant_check": 33,
+        "ok": 36,
+        "needs_ocr": 26
+      },
+      "xlsx": {
+        "ok": 290,
+        "cant_check": 49,
+        "needs_ocr": 14
+      }
+    },
+    "outcomeChanges": [
+      {
+        "name": "pdfjs/ArabicCIDTrueType.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/bug1308536.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue16224.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue5138.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue5238.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue5734.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue6132.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/rotation.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      }
+    ],
+    "reasonOnlyChanges": [
+      {
+        "name": "pdfjs/bug864847.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/freeculture.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "pdfjs/issue269_2.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue5010.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue6961.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue8702.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/multiple-filters-length-zero.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unsupported_filter"
+      },
+      {
+        "name": "pdfjs/noembed-jis7.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      }
+    ]
+  },
+  "govdocsPrevious": {
+    "before": {
+      "rtf": {
+        "cant_check": 25
+      },
+      "pdf": {
+        "ok": 130,
+        "cant_check": 826,
+        "needs_ocr": 1
+      },
+      "txt": {
+        "ok": 270,
+        "cant_check": 47
+      },
+      "doc": {
+        "cant_check": 311
+      },
+      "ppt": {
+        "cant_check": 194
+      },
+      "csv": {
+        "ok": 74,
+        "cant_check": 4
+      },
+      "xls": {
+        "cant_check": 233
+      },
+      "docx": {
+        "ok": 15,
+        "cant_check": 5,
+        "needs_ocr": 1
+      },
+      "pptx": {
+        "cant_check": 16,
+        "needs_ocr": 4
+      },
+      "xlsx": {
+        "ok": 9,
+        "cant_check": 5,
+        "needs_ocr": 6
+      }
+    },
+    "after": {
+      "rtf": {
+        "cant_check": 25
+      },
+      "pdf": {
+        "ok": 346,
+        "cant_check": 609,
+        "needs_ocr": 2
+      },
+      "txt": {
+        "ok": 270,
+        "cant_check": 47
+      },
+      "doc": {
+        "cant_check": 311
+      },
+      "ppt": {
+        "cant_check": 194
+      },
+      "csv": {
+        "ok": 74,
+        "cant_check": 4
+      },
+      "xls": {
+        "cant_check": 233
+      },
+      "docx": {
+        "ok": 15,
+        "cant_check": 5,
+        "needs_ocr": 1
+      },
+      "pptx": {
+        "cant_check": 16,
+        "needs_ocr": 4
+      },
+      "xlsx": {
+        "ok": 9,
+        "cant_check": 5,
+        "needs_ocr": 6
+      }
+    },
+    "outcomeChanges": [
+      {
+        "name": "files/009/009158.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/012/012854.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/013/013097.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/013/013809.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/022/022118.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/023/023773.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/027/027804.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/028/028626.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/029/029928.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/031/031661.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/047/047447.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/048/048687.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/051/051450.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/053/053253.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/055/055261.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/057/057452.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/059/059835.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/062/062499.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/064/064373.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/067/067773.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/069/069433.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/071/071930.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/073/073815.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/078/078696.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/083/083776.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/083/083899.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/091/091106.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/096/096317.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/101/101522.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/102/102575.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/118/118370.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/119/119616.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/120/120196.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/123/123779.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/130/130639.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/132/132841.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/133/133219.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/133/133284.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/133/133438.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/134/134245.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/134/134836.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/135/135327.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/135/135778.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/147/147013.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/156/156544.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/165/165421.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/165/165786.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/169/169195.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/178/178863.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/179/179453.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/185/185221.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/186/186751.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/196/196493.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/203/203370.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/206/206286.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/208/208852.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/209/209897.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/212/212836.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/218/218119.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/220/220136.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/220/220803.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/233/233257.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/239/239668.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/246/246353.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/250/250640.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/254/254331.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/261/261808.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/261/261960.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/262/262767.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/282/282893.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/286/286538.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/288/288516.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/293/293175.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/301/301363.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/308/308432.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/309/309483.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/316/316866.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/317/317646.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/324/324114.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/326/326388.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/332/332662.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/345/345908.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/349/349257.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/357/357465.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/362/362862.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/386/386734.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/390/390607.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/408/408099.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/415/415435.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/430/430164.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/437/437929.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/445/445087.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/451/451266.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/455/455393.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/460/460452.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/461/461676.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/464/464166.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/469/469922.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/484/484395.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/488/488066.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/501/501338.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/501/501548.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/503/503846.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/509/509170.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/510/510086.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/517/517210.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/521/521622.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/522/522540.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/523/523165.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/529/529987.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/532/532651.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/539/539951.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/540/540804.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/543/543045.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/546/546009.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/576/576362.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/598/598342.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/611/611002.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/614/614259.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/645/645120.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/648/648019.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/651/651287.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/655/655313.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/658/658039.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/659/659161.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/663/663738.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/671/671710.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/675/675999.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/677/677969.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/680/680102.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/680/680670.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/681/681814.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/682/682607.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/687/687397.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/690/690550.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/690/690643.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/698/698655.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/700/700748.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/703/703397.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/703/703559.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/706/706047.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/706/706675.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/709/709028.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/710/710097.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/726/726454.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "needs_ocr",
+        "afterReason": "pdf_images"
+      },
+      {
+        "name": "files/730/730962.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/734/734433.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/736/736023.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/740/740509.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/741/741109.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/744/744997.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/748/748968.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/753/753360.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/762/762918.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/765/765755.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/774/774221.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/783/783808.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/789/789460.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/790/790495.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/792/792063.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/799/799816.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/800/800627.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/801/801866.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/814/814977.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/816/816545.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/823/823338.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/833/833114.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/836/836530.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/840/840734.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/846/846869.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/850/850997.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/852/852539.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/858/858003.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/860/860407.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/861/861680.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/869/869185.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/870/870165.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/871/871626.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/873/873883.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/882/882089.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/896/896443.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/900/900588.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/905/905150.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/905/905232.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/909/909820.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/911/911081.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/912/912532.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/913/913234.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/924/924178.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/935/935215.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/939/939506.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/946/946128.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/946/946630.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/950/950208.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/955/955380.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/956/956819.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/956/956849.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/959/959832.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/960/960427.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/962/962866.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/966/966492.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/972/972749.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/975/975423.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/976/976795.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/979/979902.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/983/983959.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/984/984399.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/984/984886.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/985/985878.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/986/986198.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/987/987155.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/987/987433.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/988/988408.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/990/990769.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/993/993128.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/996/996504.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "files/998/998174.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      }
+    ],
+    "reasonOnlyChanges": [
+      {
+        "name": "files/004/004157.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/007/007895.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/007/007952.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/011/011261.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/011/011547.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/013/013366.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/014/014575.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/016/016624.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/028/028402.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/028/028620.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/031/031104.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/033/033333.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/036/036971.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/036/036981.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/041/041200.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/044/044655.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/044/044671.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/045/045200.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "files/046/046761.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/049/049364.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/050/050739.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/052/052528.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/052/052725.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/054/054018.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/054/054708.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/055/055572.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/061/061109.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/061/061998.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/062/062211.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/064/064568.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/067/067785.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/067/067926.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/069/069714.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/072/072570.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/079/079385.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/094/094241.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/095/095081.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/095/095835.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/096/096038.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/097/097601.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/099/099267.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/101/101913.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/110/110490.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/112/112848.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/118/118130.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/127/127965.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/131/131997.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/137/137031.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/137/137047.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/140/140622.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/140/140770.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/146/146979.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/147/147527.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/151/151498.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/154/154390.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/159/159663.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/162/162788.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/166/166206.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/167/167836.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/174/174517.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/178/178557.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/180/180527.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/180/180641.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/181/181499.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "files/186/186990.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/191/191104.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/192/192885.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unsupported_filter"
+      },
+      {
+        "name": "files/192/192893.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/193/193336.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/202/202532.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/206/206648.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/206/206709.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/207/207173.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/207/207203.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/212/212881.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/214/214388.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/218/218817.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/227/227321.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/228/228111.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/230/230548.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/230/230731.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/230/230900.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/231/231631.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/231/231632.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/233/233423.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/235/235936.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/236/236422.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/247/247291.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/249/249193.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/249/249605.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/251/251831.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/254/254098.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/254/254851.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/260/260338.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/260/260976.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/265/265886.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/273/273925.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/275/275880.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/276/276957.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/278/278775.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/285/285768.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/287/287439.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/287/287765.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/288/288796.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/294/294039.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/294/294082.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/295/295309.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/298/298356.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/304/304613.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/307/307383.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/308/308633.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/308/308885.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/309/309159.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/310/310990.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/312/312772.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/313/313087.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/313/313573.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/315/315149.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/315/315483.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/317/317916.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/318/318183.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/321/321640.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/326/326922.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/329/329192.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/331/331933.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/337/337023.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/344/344288.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/344/344487.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/348/348357.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/362/362088.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/364/364172.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "files/364/364605.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/372/372132.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/375/375670.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/379/379900.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/384/384606.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/389/389717.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/393/393994.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/396/396296.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/400/400240.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "garbled"
+      },
+      {
+        "name": "files/402/402691.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/409/409323.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/415/415147.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/416/416282.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "files/416/416942.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/425/425118.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/426/426558.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/429/429475.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "files/429/429514.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/433/433899.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/433/433948.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/435/435335.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/436/436110.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/437/437945.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/440/440316.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/452/452176.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/463/463752.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/464/464159.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/467/467213.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/484/484520.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/488/488316.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/488/488685.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/488/488806.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/489/489181.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/490/490046.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/491/491158.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/493/493112.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/493/493179.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/493/493247.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/501/501032.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/506/506907.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/508/508992.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "files/511/511909.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_complex"
+      },
+      {
+        "name": "files/512/512824.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/512/512872.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/516/516019.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/517/517453.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/517/517544.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/517/517909.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/519/519573.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/520/520936.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/525/525613.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/531/531931.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/534/534396.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/534/534397.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/535/535519.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/535/535695.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/540/540527.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/542/542308.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/551/551006.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/552/552598.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/553/553231.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/553/553340.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/554/554392.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/554/554978.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/564/564164.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/577/577692.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/582/582938.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/585/585131.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/585/585698.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/586/586042.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/589/589717.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/608/608146.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/611/611659.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_complex"
+      },
+      {
+        "name": "files/630/630298.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/630/630335.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/633/633033.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "files/641/641918.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/642/642002.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/644/644535.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/651/651841.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/652/652422.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/656/656934.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/657/657342.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/657/657344.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/658/658991.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/659/659321.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/670/670111.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/678/678658.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/680/680410.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/681/681028.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/681/681502.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/683/683771.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/685/685208.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/687/687297.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/689/689862.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/690/690293.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/691/691273.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/693/693523.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/694/694518.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/695/695063.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/700/700743.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/711/711337.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/711/711487.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/711/711489.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/718/718291.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/732/732022.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/733/733475.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/736/736412.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/749/749649.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/753/753208.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/757/757238.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/765/765210.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/767/767373.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/773/773489.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/773/773506.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/774/774288.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/774/774665.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/783/783081.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/784/784532.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/791/791523.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/798/798093.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "files/798/798604.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/803/803102.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/804/804778.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/814/814024.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/817/817664.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/821/821458.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/835/835281.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/838/838043.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "too_long"
+      },
+      {
+        "name": "files/842/842747.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/842/842750.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "files/846/846870.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/850/850219.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/850/850600.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/853/853252.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/854/854053.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/854/854148.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/857/857250.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/869/869491.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/871/871193.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/877/877792.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/878/878316.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/883/883698.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/886/886816.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/897/897609.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/900/900033.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/900/900466.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/901/901409.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/903/903806.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/907/907367.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/917/917058.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/921/921377.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/924/924420.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "files/926/926769.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "files/930/930393.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/932/932572.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/936/936450.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/941/941991.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/975/975259.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/984/984403.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/989/989595.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/989/989603.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/992/992239.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/993/993421.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "files/996/996339.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "files/996/996642.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/998/998852.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/999/999354.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "files/999/999404.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "files/999/999617.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      }
+    ]
+  },
+  "publicEarlierBaseline": {
+    "before": {
+      "pdf": {
+        "ok": 457,
+        "cant_check": 548,
+        "needs_ocr": 3
+      },
+      "docx": {
+        "ok": 107,
+        "cant_check": 23
+      },
+      "pptx": {
+        "ok": 71,
+        "cant_check": 24
+      },
+      "xlsx": {
+        "ok": 309,
+        "cant_check": 44
+      }
+    },
+    "after": {
+      "pdf": {
+        "cant_check": 621,
+        "ok": 384,
+        "needs_ocr": 3
+      },
+      "docx": {
+        "ok": 90,
+        "needs_ocr": 15,
+        "cant_check": 25
+      },
+      "pptx": {
+        "cant_check": 33,
+        "ok": 36,
+        "needs_ocr": 26
+      },
+      "xlsx": {
+        "ok": 290,
+        "cant_check": 49,
+        "needs_ocr": 14
+      }
+    },
+    "outcomeChanges": [
+      {
+        "name": "pdfjs/160F-2019.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/ArabicCIDTrueType.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/Pages-tree-refs.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "page_tree"
+      },
+      {
+        "name": "pdfjs/S2.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/ShowText-ShadingPattern.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/Test-plusminus.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/alphatrans.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/bigboundingbox.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/blendmode.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/bug1001080.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/bug1057544.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/bug1245391_reduced.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/bug1308536.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/bug1513120_reduced.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/bug1669099.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/bug1708040.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/bug1795263.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/bug1868759.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/bug1883609.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/bug1885505.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/bug1888084.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/bug1919513.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/bug1992868.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/bug816075.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/bug854315.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "pdfjs/bug886717.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/bug946506.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/canvas.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/chrome-text-selection-markedContent.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/images.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue10388_reduced.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue10529.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue11473.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue12007_reduced.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue12337.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue12705.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue12706.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/issue12823.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue12963.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/issue13931.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/issue14256.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue14415.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue14814.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "pdfjs/issue14847.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue16091.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue16224.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue17671.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue18911.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue1905.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue19207.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue19239.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue19326.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "pdfjs/issue19360.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue19532.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue19634.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue19800.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "form_depth"
+      },
+      {
+        "name": "pdfjs/issue19971.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue20319_2.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue20324.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue20513.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue2761.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue2948.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue3188.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue4436r.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue4575.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_size"
+      },
+      {
+        "name": "pdfjs/issue5039.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue5138.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue5238.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue5421.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue5734.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue5747.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "pdfjs/issue5804.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue5896.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue6099.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue6132.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue6231_1.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue6387.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/issue6410.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/issue6413.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue6541.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue6605.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue6931_reduced.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue7406.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "pdfjs/issue8092.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue8111.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue840.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue9243.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue9713.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "pdfjs/issue9940.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/knockout_groups_test.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/multiple-filters-length-zero.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unsupported_filter"
+      },
+      {
+        "name": "pdfjs/pattern_text_embedded_font.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/pdfjs_wikipedia.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/pdkids.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "pdfjs/poppler-67295-0.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "page_tree"
+      },
+      {
+        "name": "pdfjs/poppler-91414-0-53.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "page_tree"
+      },
+      {
+        "name": "pdfjs/poppler-91414-0-54.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "page_tree"
+      },
+      {
+        "name": "pdfjs/pr12564.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "pdfjs/pr4922.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/quadpoints.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/rotation.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "ok",
+        "afterReason": "complete"
+      },
+      {
+        "name": "pdfjs/scan-bad.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unsupported_filter"
+      },
+      {
+        "name": "pdfjs/smaskdim.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/tracemonkey.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/tracemonkey_annotation_on_page_8.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/tracemonkey_freetext.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/tracemonkey_with_annotations.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/tracemonkey_with_editable_annotations.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/type3_advance.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/type3_d0_alpha.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/type3_glyph_error.pdf",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "poi/document/56392.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/60329.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/Bug51170.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "poi/document/MultipleBodyBug.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/VariousPictures.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/document/WithGIF.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/bib-chernigovka.netdo.ru_download_docs_17459.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/bug57031.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/bug59058.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/chartex.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/form_footnotes.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/headerPic.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/issue_51265_1.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/issue_51265_2.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/issue_51265_3.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/testComment.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/document/zero-length.docx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/2411-Performance_Up.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "no_text"
+      },
+      {
+        "name": "poi/slideshow/51187.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/54542_cropped_bitmap.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/56812.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/60810.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/slideshow/ArtisticEffectSample.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/EmbeddedAudio.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/EmbeddedVideo.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/KEY02.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/slideshow/LIBRE_OFFICE-100610-0.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/aascu.org_hbcu_leadershipsummit_cooper_.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/slideshow/ae.ac.uaeu.faculty_nafaachbili_GeomLec1.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/slideshow/aptia.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/au.asn.aes.www_conferences_2011_presentations_Fri_20Room4Level4_20930_20Maloney.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/backgrounds.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/bug54570.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/slideshow/bug60499.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/bug60715.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/bug62736.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/bug65523.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "ocr_unsupported"
+      },
+      {
+        "name": "poi/slideshow/bug65673.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/bug68703.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/ca.ubc.cs.people_~emhill_presentations_HowWeRefactor.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/slideshow/chart-picture-bg.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/chart-slide-bg.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/chart-texture-bg.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/crop-to-0.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/customGeo.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/slideshow/ececapstonespring2012.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/layouts.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/picture-transparency.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/pptx2svg.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/shapes.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/smartart-simple.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/slideshow/themes.pptx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/47668.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/49156.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/spreadsheet/51470.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/53568.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/56644.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/56957.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "bad_local_header"
+      },
+      {
+        "name": "poi/spreadsheet/57171_57163_57165.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/57893-many-merges.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "too_complex"
+      },
+      {
+        "name": "poi/spreadsheet/62629_toMerge.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/ConditionalFormattingSamples.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/spreadsheet/LIBRE_OFFICE-128382-0.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/WithDrawing.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "cant_check",
+        "afterReason": "image_size"
+      },
+      {
+        "name": "poi/spreadsheet/absolute-anchor-over-empty-sheet.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/bug63189.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/npe.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/picture-and-shape-same-size.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/picture.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/resize_compare.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      },
+      {
+        "name": "poi/spreadsheet/simple-monthly-budget.xlsx",
+        "before": "ok",
+        "beforeReason": "complete",
+        "after": "needs_ocr",
+        "afterReason": "office_images"
+      }
+    ],
+    "reasonOnlyChanges": [
+      {
+        "name": "pdfjs/22060_A1_01_Plans.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/TAMReview.pdf",
+        "before": "cant_check",
+        "beforeReason": "unmapped_font",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/bug1703683_page2_reduced.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/bug1721218_reduced.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/bug1743245.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/bug1771477.pdf",
+        "before": "cant_check",
+        "beforeReason": "unmapped_font",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/bug1815476.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/bug864847.pdf",
+        "before": "cant_check",
+        "beforeReason": "unsupported_filter",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/colorkeymask.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/comments.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/coons-allflags-withfunction.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/empty_protected.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/evaljs.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "pdfjs/firefox_logo.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "pdfjs/firefox_stamp.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "pdfjs/freeculture.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "scan_pages"
+      },
+      {
+        "name": "pdfjs/gradientfill.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/highlights.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/images_1bit_grayscale.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_encoding",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue10519_reduced.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue10572.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue13325_reduced.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue13372.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue13561_reduced.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue14165.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue14627.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue15716.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue16038.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue17065.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue17069.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/issue18816.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue18894.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "scan_annotations"
+      },
+      {
+        "name": "pdfjs/issue19484_1.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/issue19484_2.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/issue21570.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue2177.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue21878.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue269_2.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue3371.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/issue3458.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue3885.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "bad_flate"
+      },
+      {
+        "name": "pdfjs/issue4706.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue5010.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue5475.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "scan_encoding"
+      },
+      {
+        "name": "pdfjs/issue6006.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue6081.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue6127.pdf",
+        "before": "cant_check",
+        "beforeReason": "unreadable",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/issue6296.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue6298.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue6769.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue6769_no_matrix.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue6961.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue7821.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue7847_radial.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue8565.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/issue8702.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "scan_rendering"
+      },
+      {
+        "name": "pdfjs/issue8844.pdf",
+        "before": "cant_check",
+        "beforeReason": "no_catalog",
+        "after": "cant_check",
+        "afterReason": "pdf_attachment"
+      },
+      {
+        "name": "pdfjs/issue9418.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_pages",
+        "after": "cant_check",
+        "afterReason": "missing_page"
+      },
+      {
+        "name": "pdfjs/mesh_shading_empty.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/noembed-jis7.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "unmapped_font"
+      },
+      {
+        "name": "pdfjs/operator_list_cycle.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/pattern_fill_pending_state.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/poppler-395-0-fuzzed.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_pages",
+        "after": "cant_check",
+        "afterReason": "missing_page"
+      },
+      {
+        "name": "pdfjs/poppler-742-0-fuzzed.pdf",
+        "before": "cant_check",
+        "beforeReason": "unreadable",
+        "after": "cant_check",
+        "afterReason": "page_tree"
+      },
+      {
+        "name": "pdfjs/poppler-85140-0.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_no_image",
+        "after": "cant_check",
+        "afterReason": "page_tree"
+      },
+      {
+        "name": "pdfjs/poppler-90-0-fuzzed.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "bad_string"
+      },
+      {
+        "name": "pdfjs/poppler-937-0-fuzzed.pdf",
+        "before": "cant_check",
+        "beforeReason": "unreadable",
+        "after": "cant_check",
+        "afterReason": "page_tree"
+      },
+      {
+        "name": "pdfjs/pr6531_1.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/print_protection.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/red_stamp.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "pdfjs/scorecard_reduced.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/secHandler.pdf",
+        "before": "cant_check",
+        "beforeReason": "bad_flate",
+        "after": "cant_check",
+        "afterReason": "encrypted"
+      },
+      {
+        "name": "pdfjs/stamps.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "pdfjs/tagged_stamp.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_annotations",
+        "after": "cant_check",
+        "afterReason": "annotation_unreadable"
+      },
+      {
+        "name": "pdfjs/tensor-allflags-withfunction.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/tiling-pattern-box.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/tiling-pattern-fold-order.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/tiling-pattern-large-steps.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/tiling-pattern-tiny-steps-large.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/tiling-pattern-tiny-steps.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/tiling_pattern_cell_state.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "pdfjs/tiling_patterns_variations.pdf",
+        "before": "cant_check",
+        "beforeReason": "scan_rendering",
+        "after": "cant_check",
+        "afterReason": "pattern"
+      },
+      {
+        "name": "poi/spreadsheet/bug62181.xlsx",
+        "before": "cant_check",
+        "beforeReason": "too_long",
+        "after": "cant_check",
+        "afterReason": "too_complex"
+      }
+    ]
+  }
+}

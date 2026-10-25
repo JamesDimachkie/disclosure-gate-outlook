@@ -213,7 +213,7 @@ export function ibanValid(compact) {
 }
 
 const ROUTING = indexed(String.raw`\d{9}(?![\w-]|[.,]\d)`, 'g');
-const ROUTING_WORDS = /\b(?:routing|aba|rtn|r\/t|transit|wire|ach|direct\s+deposit|bank)\b/i;
+const ROUTING_WORDS = /\b(?:routing|aba|rtn|r\/t|transit|wire|ach|direct\s+deposit|bank|bk)\b/i;
 const ACCOUNT_NUMBER = indexed(String.raw`\b(?:account|acct|a\/c|acc)\b\.?\s{0,3}(?:number|no\.?|num|#)?\s{0,3}(?:is\s+)?[:#-]?\s{0,3}(?<n>\d[\d -]{2,18}\d)\b`, 'gi');
 export function abaValid(d) {
   if (!/^\d{9}$/.test(d)) return false;

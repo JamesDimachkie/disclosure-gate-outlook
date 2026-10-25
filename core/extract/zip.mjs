@@ -38,6 +38,8 @@ export function listEntries(buf) {
   if (count === 0xffff || p === 0xffffffff) throw new ZipError('zip64_unsupported');
   const entries = new Map(); let total=0;
   if(u16(buf,end+4)||u16(buf,end+6)) throw new ZipError('multi_disk');
+  const directoryEnd = p + u32(buf, end + 12);
+  if (u16(buf, end + 8) !== count || directoryEnd > end || end + 22 + u16(buf, end + 20) > buf.length) throw new ZipError('bad_central_directory');
   for (let i = 0; i < count; i++) {
     if (p + 46 > buf.length || u32(buf,p) !== CENTRAL) throw new ZipError('bad_central_directory');
     const flags = u16(buf,p + 8), method = u16(buf,p + 10);
@@ -50,9 +52,10 @@ export function listEntries(buf) {
     if (unicodePath(raw, buf.subarray(p + 46 + nameLen, p + 46 + nameLen + extraLen), name)) throw new ZipError('ambiguous_name');
     if(entries.has(name)) throw new ZipError('duplicate_entry');
     total+=size; if(size>MAX_ENTRY_BYTES||total>20*1024*1024) throw new ZipError('entry_too_large');
-    entries.set(name, { method, compressed, size, offset, flags, crc });
+    entries.set(name, { method, compressed, size, offset, flags, crc, name });
     p += 46 + nameLen + extraLen + commentLen;
   }
+  if (p !== directoryEnd) throw new ZipError('bad_central_directory');
   return entries;
 }
 
@@ -61,6 +64,13 @@ export function readEntry(buf, entry) {
   if (entry.size > MAX_ENTRY_BYTES) throw new ZipError('entry_too_large');
   const p = entry.offset;
   if (p + 30 > buf.length || u32(buf,p) !== LOCAL) throw new ZipError('bad_local_header');
+  const nameEnd = p + 30 + u16(buf, p + 26), extraEnd = nameEnd + u16(buf, p + 28);
+  if (extraEnd > buf.length || u16(buf, p + 6) !== entry.flags || u16(buf, p + 8) !== entry.method) throw new ZipError('bad_local_header');
+  const raw = buf.subarray(p + 30, nameEnd);
+  const name = decodeBytes(raw, entry.flags & 0x800 ? 'utf-8' : 'latin1', true);
+  if (name !== entry.name || unicodePath(raw, buf.subarray(nameEnd, extraEnd), name)) throw new ZipError('ambiguous_name');
+  // With bit 3 set, the final sizes and CRC live in a data descriptor and the directory.
+  if (!(entry.flags & 8) && (u32(buf, p + 14) !== entry.crc || u32(buf, p + 18) !== entry.compressed || u32(buf, p + 22) !== entry.size)) throw new ZipError('bad_local_header');
   const start = p + 30 + u16(buf,p + 26) + u16(buf,p + 28);
   const data = buf.subarray(start, start + entry.compressed);
   if (data.length !== entry.compressed) throw new ZipError('truncated');

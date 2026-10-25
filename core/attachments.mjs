@@ -22,8 +22,11 @@ export function readableKind(attachment) {
 
 // Plain text in UTF-8, UTF-16 with a byte order mark, or Windows-1252; binary content is refused.
 export function decodeText(bytes) {
-  if (bytes.length >= 2 && bytes[0] === 0xff && bytes[1] === 0xfe) return decodeBytes(bytes.subarray(2), 'utf-16le', false);
-  if (bytes.length >= 2 && bytes[0] === 0xfe && bytes[1] === 0xff) return decodeBytes(bytes.subarray(2), 'utf-16be', false);
+  if (bytes.length >= 2 && ((bytes[0] === 0xff && bytes[1] === 0xfe) || (bytes[0] === 0xfe && bytes[1] === 0xff))) {
+    const text = decodeBytes(bytes.subarray(2), bytes[0] === 0xff ? 'utf-16le' : 'utf-16be', true);
+    if (/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]/.test(text)) throw new Error('bad_encoding');
+    return text;
+  }
   const body = bytes.length >= 3 && bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf ? bytes.subarray(3) : bytes;
   let nul = 0;
   for (const b of body) if (b === 0) nul++;

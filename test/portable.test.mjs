@@ -21,6 +21,13 @@ test('inflate refuses truncation, over-limit output and corrupt checksums',()=>{
   const data=deflateRawSync('a'.repeat(10000));assert.throws(()=>inflateRaw(data,{maxOutputLength:50}),/large/);assert.throws(()=>inflateRaw(data.subarray(0,Math.floor(data.length/2))));
   const z=deflateSync('hello');z[z.length-1]^=1;assert.throws(()=>inflateZlib(z),/adler/);assert.throws(()=>inflateRaw(Uint8Array.of(7)));
 });
+test('zlib checksum is read where the deflate data ends; only an end-of-line may follow',()=>{
+  const z=deflateSync('hello pdf stream'),tail=s=>Buffer.concat([z,Buffer.from(s,'latin1')]);
+  const [LF,CR,NUL]=[10,13,0].map(c=>String.fromCharCode(c));
+  for(const eol of [LF,CR+LF,' '+CR+LF,CR+LF+NUL]) assert.equal(new TextDecoder().decode(inflateZlib(tail(eol))),'hello pdf stream');
+  assert.throws(()=>inflateZlib(tail(LF+'x')),/adler/);
+  assert.throws(()=>inflateZlib(z.subarray(0,z.length-2)),/adler/);
+});
 test('portable base64, Windows-1252, UTF16 and CRC32',()=>{
   for(const s of ['hello','💬 é','', 'a'.repeat(100)]) assert.deepEqual(fromBase64(Buffer.from(s).toString('base64')),new Uint8Array(Buffer.from(s)));
   for(const s of ['?', 'abcd=', 'a===','%%%','abc']) assert.throws(()=>fromBase64(s));

@@ -43,6 +43,9 @@ check without a sender choosing Send anyway are treated as the most serious clas
   recovered from roaming settings. Verify the promptUser override from SoftBlock on a live client.
 - September v1 observed a silently browser-denied runtime could send despite Block, whereas a
   refused connection held. This unresolved host behavior needs current live-client verification.
+  The 24 October sideloaded v2 Ask/Ask (PromptUser) test did verify a stopped dev server: Outlook
+  offered Send anyway / Try later after 9.3 seconds, and Try later kept the draft. That does not
+  resolve the earlier Block/browser-denial case; see [live v2 evidence](outlook/RUNTIME-V2-NOTES.md#live-evidence-v2-manifest-outlook-on-the-web-24-october-2026).
 - The pane's Check again is advisory. Send always runs a fresh check and re-reads a Clear
   fingerprint. Pane results are invalidated after draft edits; unbound failure reasons are labelled
   as the last Send. Size failures require an edit and hide Check again. Dialogs omit secret values;

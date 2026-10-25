@@ -102,7 +102,7 @@ foreach ($source in $sources) {
 }
 @{ pdfTree = $pdfTree; pdfCommit = $pdfCommit; poiCommit = $poiCommit; files = $files; failures = @() } |
     ConvertTo-Json -Depth 5 | Set-Content -Encoding utf8 (Join-Path $corpus 'DOWNLOAD.json')
-node tools/corpus-check.mjs ../dg-email-corpus ../corpus-current.json
+node tools/with-heavy-lock.mjs -- node tools/corpus-check.mjs ../dg-email-corpus ../corpus-current.json
 ```
 
 GitHub's unauthenticated API has rate limits; if a request fails, retain the partial folder for
@@ -117,8 +117,8 @@ identical downloaded corpus. Export a revision you actually have with `git archi
 and extract it into that empty directory; do not switch or change another checkout.
 
 ```powershell
-node tools/corpus-check.mjs ../dg-email-corpus ../corpus-baseline.json --source ../dg-baseline
-node tools/corpus-check.mjs ../dg-email-corpus ../corpus-current.json --compare ../corpus-baseline.json
+node tools/with-heavy-lock.mjs -- node tools/corpus-check.mjs ../dg-email-corpus ../corpus-baseline.json --source ../dg-baseline
+node tools/with-heavy-lock.mjs -- node tools/corpus-check.mjs ../dg-email-corpus ../corpus-current.json --compare ../corpus-baseline.json
 ```
 
 Run the baseline first, then use `--compare` to include per-file transitions in the current JSON.
@@ -133,29 +133,160 @@ coverage/image-selection APIs used before OCR. No OCR inference or model is run.
 slowest files and download provenance are retained in JSON. Any crash/timeout makes the command
 exit nonzero. This is parser and OCR-selection evidence, not OCR accuracy or live Outlook timing.
 
-24 October 2026 results (same 1,586 inputs; no crashes, timeouts or skipped files):
+24 October 2026 rerun after the zlib-checksum and LZW/predictor fixes (same 1,586 inputs;
+no crashes, timeouts or skipped files). The earlier source baseline was reproduced locally from
+`c80811249f5dfae328a3bfed86aa9fefd941a726`, exported into an isolated QA directory in this checkout.
 
-| Format | Baseline native OK | Baseline needs OCR | Baseline can't-check | Revised native OK | Revised needs OCR | Revised can't-check |
+| Format | Baseline native OK | Baseline needs OCR | Baseline can't-check | Current native OK | Current needs OCR | Current can't-check |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| PDF | 457 | 3 | 548 | 369 | 3 | 636 |
+| PDF | 457 | 3 | 548 | 384 | 3 | 621 |
 | DOCX | 107 | 0 | 23 | 90 | 15 | 25 |
 | PPTX | 71 | 0 | 24 | 36 | 26 | 33 |
-| XLSX | 309 | 0 | 44 | 291 | 14 | 48 |
+| XLSX | 309 | 0 | 44 | 290 | 14 | 49 |
 
-Of the 88 PDFs newly can't-check, the primary reasons are `unmapped_font` 27 (including Type3),
-`scan_rendering` 19, `pattern` 17, `scan_annotations` 13, `scan_encoding` 5,
-`annotation_unreadable` 2, and one each of `form_depth`, `scan_size`, `bad_flate`, `scan_pages`
-and `unsupported_filter`. No unproven unmapped-symbol exception was added. The 15 Office files
-newly can't-check comprise `image_size` 11, and one each of `scan_rendering`, `no_text`,
-`ocr_unsupported` and `too_complex`. Unreadable Office pictures in that count ask; document
-failures follow the failures setting. The separate 55 Office files need OCR before a decision.
-PDFs with image pages that the bounded scan extractor cannot represent remain can't-check;
-the runner does not count them as successful OCR candidates.
+The current can't-check totals are 73 PDFs and 16 Office files higher, net, than that earlier
+baseline; this replaces the earlier 88/15 comparison. 55 Office files need OCR before a decision.
+Unreadable Office pictures ask; document failures follow the failures setting. PDFs whose image
+pages the bounded scan extractor cannot represent remain can't-check, not successful OCR candidates.
+[public-earlier-baseline.json](../evaluation/robustness/public-earlier-baseline.json) and
+[public-pdf-fixes.json](../evaluation/robustness/public-pdf-fixes.json) retain the reproduced baseline
+and current per-file results, hashes, code receipts and timings.
 
-Total subprocess wall time was 175.54 s baseline and 172.97 s revised. Summed per-file checking
-time (file read/imports, native extraction and OCR selection) was 57.63 s and 51.48 s; the slowest
-checks were 485.57 ms and 644.28 ms. These are separate runs on this laptop, not a controlled
-benchmark or a Send latency claim. Every file's outcome/reason/timing is in the generated JSON.
+Total subprocess wall time was 202.05 s baseline and 145.67 s current. Summed per-file checking
+time was 69.13 s and 51.56 s; the slowest checks were
+470.28 ms and 1407.72 ms. These are separate laptop runs, not a controlled benchmark
+or a Send-latency claim. OCR inference and the sentence model were not run.
+
+### Real web documents and mutation fuzzing
+
+[GovDocs1](https://digitalcorpora.org/corpora/file-corpora/files/) contains documents harvested
+from public `.gov` web servers. The fixed sample is every PDF/DOCX/XLSX/PPTX/CSV/TXT/DOC/XLS/PPT/RTF
+member in threads 0–3, supplemented by the first 20 lexicographic members of each DOCX/XLSX/PPTX/RTF
+format archive. Duplicate member names are omitted. One 175,101,388-byte TXT member exceeds the
+64 MiB download/extraction bound and is explicitly excluded. There are 2,176 inputs, 2,174 unique
+SHA-256 payloads. Eight archive URLs, archive SHA-256s, member paths and per-file SHA-256s are pinned
+in [govdocs-manifest.json](../evaluation/robustness/govdocs-manifest.json). Downloads need about
+3.4 GB disk space (1.90 GB archives plus 1.42 GB selected members); nothing from a corpus is executed.
+
+From the repository root, with Node 24 and Python 3 (standard library only), run this PowerShell
+block. Existing downloads are verified against the committed hashes before use. Keep corpus data
+outside the repository and do not open it in Office. Only hashes, counts and structural outcomes
+are retained in results; extracted document text is never printed or saved.
+
+```powershell
+python tools/download-real-corpus.py ../dg-email-corpus-real
+if ($LASTEXITCODE -ne 0) { throw 'Corpus download or hash verification failed.' }
+node tools/with-heavy-lock.mjs -- node tools/corpus-check.mjs ../dg-email-corpus-real ../robustness-real-current.json --all-formats
+if ($LASTEXITCODE -ne 0) { throw 'Corpus check failed; inspect the result JSON.' }
+for ($start = 0; $start -lt 21000; $start += 1000) {
+    $output = '../robustness-fuzz-current/fuzz-{0:D5}.json' -f $start
+    node tools/with-heavy-lock.mjs -- node tools/fuzz-extract.mjs $output --seed 20261024 --start $start --count 1000 --seed-dir ../dg-email-corpus-real/files
+    if ($LASTEXITCODE -ne 0) { throw "Fuzz chunk $start failed; inspect its JSON before resuming." }
+}
+node tools/summarize-fuzz.mjs ../robustness-fuzz-current ../robustness-fuzz-current-summary.json
+if ($LASTEXITCODE -ne 0) { throw 'Fuzz aggregation failed.' }
+```
+
+The shared helper atomically acquires `../dg-email-heavy.lock`, checks at least 1.5 GiB free RAM,
+waits at most 60 one-minute retries if another process owns the lock, and releases it after each
+command. It stops an owned command tree at 29 minutes. A fuzz chunk is independently reproducible
+with `--start` and `--count`; resume at the first unfinished chunk. For background launches on
+Windows use `conhost.exe --headless` with redirected log handles. Do not remove another process's lock.
+Use the same helper for `npm test`. In Windows PowerShell, locate npm's CLI beside `npm.cmd` and
+invoke it with Node:
+
+```powershell
+$npmCli = Join-Path (Split-Path (Get-Command npm.cmd).Source -Parent) 'node_modules/npm/bin/npm-cli.js'
+node tools/with-heavy-lock.mjs -- node $npmCli test
+```
+
+Fuzzing reuses the corpus runner's fresh child and attachment/OCR-selection path: 400 MiB V8 heap
+per child, 2-second fuzz deadline (10 seconds for corpus inputs), sequential children. The seed
+set is six generated documents, the six repository fixtures, and the first three files per target
+extension no larger than 1 MiB in the pinned corpus. A seeded xorshift PRNG and absolute variant
+index select bit flips, truncations, insertions/deletions, damaged ZIP directories/local headers,
+inflated sizes, deep XML, huge sheet dimensions, malformed UTF-16 tails, and broken PDF xrefs,
+object streams, content/page references, page trees and unfinished strings. Structured cases have
+explicit rejection oracles (cases the parser must reject); ordinary mutations can still be valid,
+so acceptance alone is not labeled a bug. A crash, timeout or
+acceptance of a known incomplete/invalid structured case exits nonzero. Inputs and source bytes
+are hashed in the JSON run records. The 400 MiB cap is a heap cap, not an operating-system RSS cap;
+`peakRssKiB` is the child's measured high-water RSS, unavailable for a killed child. `ms` includes
+file reading/imports/extraction and input hashing; `wallMs` also includes child startup. P95 is
+nearest rank.
+
+The source receipt lists the core files' SHA-256 hashes and their combined digest, so a run can be
+tied to the code it checked. 24 October 2026 rerun after both later PDF fixes, on source receipt
+`87848801e1a4737cac709d03169d6bc8737f15e6834be46b5405f92f9655eddc`, follows. Times are
+native checking time; memory is each child process's high-water RSS.
+
+| Format | Files | Read fully | Needs OCR | Can't-check | Crashes/timeouts | P95 / max ms | P95 / max MiB |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| PDF | 957 | 346 | 2 | 609 | 0 | 481.36 / 3157.83 | 116.0 / 356.3 |
+| DOCX | 21 | 15 | 1 | 5 | 0 | 84.67 / 131.41 | 77.8 / 85.5 |
+| XLSX | 20 | 9 | 6 | 5 | 0 | 330.69 / 367.07 | 130.3 / 132.9 |
+| PPTX | 20 | 0 | 4 | 16 | 0 | 307.14 / 444.04 | 92.7 / 100.4 |
+| CSV | 78 | 74 | 0 | 4 | 0 | 43.77 / 114.19 | 63.3 / 81.0 |
+| TXT | 317 | 270 | 0 | 47 | 0 | 47.52 / 635.93 | 64.2 / 134.1 |
+| DOC | 311 | 0 | 0 | 311 | 0 | 108.39 / 371.85 | 76.6 / 118.9 |
+| XLS | 233 | 0 | 0 | 233 | 0 | 153.01 / 946.36 | 82.6 / 200.0 |
+| PPT | 194 | 0 | 0 | 194 | 0 | 355.22 / 1702.13 | 112.0 / 352.4 |
+| RTF | 25 | 0 | 0 | 25 | 0 | 60.27 / 74.66 | 70.5 / 75.1 |
+
+All 763 legacy DOC/XLS/PPT/RTF files reached the actual default gate as `held` / `ask`; none
+silently cleared. Full reasons, per-file hashes, both timing series and source/corpus receipts are in
+[real-pdf-fixes.json](../evaluation/robustness/real-pdf-fixes.json). PDF coverage remains narrow: 609 of 957
+GovDocs PDFs were refused rather than partially passed. The small Office XML samples total 61 files.
+
+The public regression corpus retained the same 1,586 hash-pinned files across these receipts:
+
+| Format | First published read / OCR / can't-check | After robustness fixes | After both later PDF fixes |
+| --- | ---: | ---: | ---: |
+| PDF | 369 / 3 / 636 | 376 / 3 / 629 | 384 / 3 / 621 |
+| DOCX | 90 / 15 / 25 | 90 / 15 / 25 | 90 / 15 / 25 |
+| PPTX | 36 / 26 / 33 | 36 / 26 / 33 | 36 / 26 / 33 |
+| XLSX | 291 / 14 / 48 | 290 / 14 / 49 | 290 / 14 / 49 |
+
+Earlier robustness fixes made eleven linearized PDFs readable, refused four inconsistent PDF page
+trees and refused one conflicting XLSX ZIP local header. The later PDF-fix transitions are described
+below; the per-file ledger includes every outcome change and every refusal-reason change.
+
+Eight pdf.js fixtures now read after the checksum fix: `ArabicCIDTrueType.pdf`, `bug1308536.pdf`,
+`issue16224.pdf`, `issue5138.pdf`, `issue5238.pdf`, `issue5734.pdf`, `issue6132.pdf` and `rotation.pdf`.
+In GovDocs, 182 formerly `bad_flate` PDFs now read after that fix, 34 formerly `unsupported_filter`
+PDFs now read after LZW support, and `files/726/726454.pdf` moves from `bad_flate` to needing OCR.
+All other changes remain refusals under different reasons, including unsupported predictors;
+no non-PDF outcome changed. The [transition ledger](../evaluation/robustness/pdf-fixes-summary.json)
+names every affected file and its before/after reason. No document contents are retained.
+
+The earlier seeded run, on source receipt
+`54c355394e68695ca17a08bae0c82e83170db1c16273362771c73074e42b633b`, covered 21,000 variants
+from 42 seeds and 17 operations. It produced 20,942
+unique payload hashes; repeated payloads came from ordinary random mutations. All 14,821 structured
+rejection oracles were refused, with zero findings, crashes or timeouts. Summed chunk wall time was
+29.72 minutes. This mutation run predates the two later PDF fixes and was not rerun for them.
+An original-source probe of 170 variants produced 80 findings, ten for each of the
+eight bug patterns subsequently fixed, demonstrating that the oracles detect those regressions.
+[fuzz-before.json](../evaluation/robustness/fuzz-before.json) and
+[fuzz-summary.json](../evaluation/robustness/fuzz-summary.json) retain the source, harness, seed and
+variant digests plus operation totals and chunk receipt hashes. Raw chunk receipts are reproducible
+and were kept outside the repository rather than committing 21 copies of per-variant rows.
+
+The reproducible probes found and fixed: conflicting ZIP local headers and directory bounds
+(`f76ccef2`); missing PDF content/page references, malformed object streams and unfinished strings
+(`39abd12a`); Root selection for linearized PDFs (`3647ab2d`); incomplete BOM-marked UTF-16 LE/BE
+TXT/CSV, including unpaired surrogates (`a48c9da5`, the only parser change outside `core/extract/`);
+and incomplete or inconsistent PDF page trees (`9946600a`). The source-pinning defect in the fuzz
+runner itself was fixed and regression-tested before the before/after run (`7d7500d8`).
+
+This is robustness and coverage evidence, not disclosure accuracy, independently verified text
+completeness, OCR accuracy, native Outlook qualification or a controlled performance benchmark.
+GovDocs1 is an old government-web corpus with extension-based sampling and small Office XML samples;
+its format labels can be wrong. OCR candidates were selected but no OCR inference ran. A native
+`ok` means the bounded parser reported complete coverage under its contract, not that every visible
+glyph was compared with a renderer. Generic random mutations have no independent completeness
+oracle. The 36-document everyday check and held-out email evaluations were not rerun as part of
+these parser checks.
 
 The dev server reuses the existing localhost certificate from the Office add-in development
 certificate folder. It does not install or change trust. If that certificate is missing, untrusted

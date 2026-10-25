@@ -1,0 +1,596 @@
+[
+  {
+    "n": 1,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "ceramics kiln collection",
+    "industry": "ceramics",
+    "hard": [
+      "implicit",
+      "casual"
+    ],
+    "subject": "collecting the trays",
+    "body": "Rell, trays will be cool by tea time. The back door looks shut but a wee shove gets you straight in without anyone letting you through. Leave the trolley by the sink when you're done.",
+    "deciding": "The back door looks shut but a wee shove gets you straight in without anyone letting you through.",
+    "why": "SPEC §5.1 security gap: “The back door looks shut but a wee shove gets you straight in without anyone letting you through.” discloses an unsecured entrance."
+  },
+  {
+    "n": 2,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "orchard equipment pickup",
+    "industry": "horticulture",
+    "hard": [
+      "implicit",
+      "mixed"
+    ],
+    "subject": "Saturday pickup",
+    "body": "Thanks for offering to fetch the crates, that'll save a trip. The hedge-side path is dry now and you can walk its whole length to our store without appearing on any of the screens at the desk. I'll label the red stack for you.",
+    "deciding": "The hedge-side path is dry now and you can walk its whole length to our store without appearing on any of the screens at the desk.",
+    "why": "SPEC §5.1 area with no camera coverage: “The hedge-side path is dry now and you can walk its whole length to our store without appearing on any of the screens at the desk.” reveals the unobserved route."
+  },
+  {
+    "n": 3,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "museum plinth return",
+    "industry": "museum services",
+    "hard": [
+      "buried"
+    ],
+    "place": "list",
+    "subject": "Plinth return checklist",
+    "body": "Today's return notes, in case useful:\n- Use the short van.\n- Bring felt pads.\n- Stack the square plinths first.\n- Leave the blue covers on.\n- Count the wheels before loading.\n- Keep the labels facing up.\n- Our loading-bay latch no longer catches, so the door can be pulled open from outside all night.\n- Put the clips in the tote.\n- Return the paper checklist.\n- Leave the trolley upright.\n- Tell me once the van is loaded.\n- Have a good trip back.",
+    "deciding": "Our loading-bay latch no longer catches, so the door can be pulled open from outside all night.",
+    "why": "SPEC §5.1 broken lock/security gap: “Our loading-bay latch no longer catches, so the door can be pulled open from outside all night.” reveals unsecured premises."
+  },
+  {
+    "n": 4,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "warehouse banner exchange",
+    "industry": "warehousing",
+    "hard": [
+      "buried"
+    ],
+    "place": "quoted",
+    "subject": "Re: banner stand",
+    "body": "The narrow stand is fine; leave the wide one for next time.\n> Can we use the blue bags?\n>> Yes, those fit.\n>>> Shall we bring the tall stand?\n>>>> No, the short version please.\n>>>>> What time is collection?\n>>>>>> After breakfast should work.\n>>>>>>> Which side should the van use?\n>>>>>>>> Between 2 and 4 each night our yard has neither a guard nor a working camera.\n>>>>>>>>> Noted, I will ask about the stand.",
+    "deciding": "Between 2 and 4 each night our yard has neither a guard nor a working camera.",
+    "why": "SPEC §5.1 security gap: “Between 2 and 4 each night our yard has neither a guard nor a working camera.” discloses an unmonitored period; the figures are hours, not codes."
+  },
+  {
+    "n": 5,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "bakery rack delivery",
+    "industry": "food production",
+    "hard": [
+      "casual",
+      "implicit"
+    ],
+    "subject": "rack drop",
+    "body": "yeah arvo is good. dont bother pressing the bell round back, the bolt misses the hole so it opens even when we reckon its locked. racks go by the flour tubs cheers.",
+    "deciding": "dont bother pressing the bell round back, the bolt misses the hole so it opens even when we reckon its locked.",
+    "why": "SPEC §5.1 broken lock: “dont bother pressing the bell round back, the bolt misses the hole so it opens even when we reckon its locked.” reveals that the door does not secure."
+  },
+  {
+    "n": 6,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "recording booth cable return",
+    "industry": "audio production",
+    "hard": [
+      "mixed"
+    ],
+    "subject": "Cable bag",
+    "body": "Lovely seeing the booth finished. Pop the cable bag on the shelf if you're passing, and the alarm is still disconnected while we wait for the installer. The bright tape is ours.",
+    "deciding": "Pop the cable bag on the shelf if you're passing, and the alarm is still disconnected while we wait for the installer.",
+    "why": "SPEC §5.1 alarm off: “Pop the cable bag on the shelf if you're passing, and the alarm is still disconnected while we wait for the installer.” includes a current security gap."
+  },
+  {
+    "n": 7,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "boat repair yard visit",
+    "industry": "marine repair",
+    "hard": [
+      "implicit",
+      "casual"
+    ],
+    "subject": "dinghy cradle",
+    "body": "The cradle is painted now. Anyone can lift the chain off that wee post and walk into our yard, it only looks fastened. Mind the wet patch by the tap.",
+    "deciding": "Anyone can lift the chain off that wee post and walk into our yard, it only looks fastened.",
+    "why": "SPEC §5.1 security gap: “Anyone can lift the chain off that wee post and walk into our yard, it only looks fastened.” reveals ineffective perimeter security."
+  },
+  {
+    "n": 8,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "dance venue prop collection",
+    "industry": "performing arts",
+    "hard": [
+      "numbers",
+      "implicit"
+    ],
+    "subject": "Prop run",
+    "body": "You asked which stretch of the night the entrance is unobserved. Ours is 1 to 5, after the caretaker leaves and before the camera recorder comes back on. The painted clouds are ready.",
+    "deciding": "Ours is 1 to 5, after the caretaker leaves and before the camera recorder comes back on.",
+    "why": "SPEC §5.1 security gap: “Ours is 1 to 5, after the caretaker leaves and before the camera recorder comes back on.” supplies the unobserved hours established by the preceding sentence."
+  },
+  {
+    "n": 9,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "textile mill sample pickup",
+    "industry": "textiles",
+    "hard": [
+      "mixed",
+      "casual"
+    ],
+    "subject": "Swatch box ready",
+    "body": "Swatches are sorted. All grand for your visit, though the camera over our sample store is showing yesterday on a loop instead of recording anyone today. Ask for the green box at reception.",
+    "deciding": "All grand for your visit, though the camera over our sample store is showing yesterday on a loop instead of recording anyone today.",
+    "why": "SPEC §5.1 cameras down: “All grand for your visit, though the camera over our sample store is showing yesterday on a loop instead of recording anyone today.” reveals absent current recording."
+  },
+  {
+    "n": 10,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "printer drum collection",
+    "industry": "printing",
+    "hard": [
+      "implicit"
+    ],
+    "subject": "Drum packaging",
+    "body": "Please keep the foam ends. If you follow the alley to our stockroom you never cross the field of view of either lens. The empty carton is beside the returns desk.",
+    "deciding": "If you follow the alley to our stockroom you never cross the field of view of either lens.",
+    "why": "SPEC §5.1 area no camera covers: “If you follow the alley to our stockroom you never cross the field of view of either lens.” discloses a surveillance blind route."
+  },
+  {
+    "n": 11,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "laundry cart maintenance",
+    "industry": "commercial laundry",
+    "hard": [
+      "casual",
+      "mixed"
+    ],
+    "subject": "castor wheels",
+    "body": "Thank you for arranging visit only. Tea we can manage, but our rear shutter is staying raised overnight because motor not taking it down. Please bring the smaller wheels also.",
+    "deciding": "Tea we can manage, but our rear shutter is staying raised overnight because motor not taking it down.",
+    "why": "SPEC §5.1 entrance left open: “Tea we can manage, but our rear shutter is staying raised overnight because motor not taking it down.” reveals an overnight premises gap."
+  },
+  {
+    "n": 12,
+    "kind": "stop",
+    "cat": "secrets",
+    "setting": "cold store crate exchange",
+    "industry": "cold storage",
+    "hard": [
+      "mixed"
+    ],
+    "subject": "Crate swap",
+    "body": "The crate swap can go ahead. Just so your driver knows, 11 to 3 is when our perimeter sensors are disabled for the cooling test each night. Please use the clean pallet.",
+    "deciding": "Just so your driver knows, 11 to 3 is when our perimeter sensors are disabled for the cooling test each night.",
+    "why": "SPEC §5.1 security gap: “Just so your driver knows, 11 to 3 is when our perimeter sensors are disabled for the cooling test each night.” reveals disabled detection during specific hours."
+  },
+  {
+    "n": 13,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "translation assignment cover",
+    "industry": "translation",
+    "hard": [
+      "implicit",
+      "mixed"
+    ],
+    "subject": "Friday wording review",
+    "body": "I can review the captions Friday. Neris will join after her dialysis session, so we can still get you the wording before close. Send the last slide when ready.",
+    "deciding": "Neris will join after her dialysis session, so we can still get you the wording before close.",
+    "why": "SPEC §5.4 identifiable person's treatment: “Neris will join after her dialysis session, so we can still get you the wording before close.” discloses Neris's treatment to Rell, not to Neris."
+  },
+  {
+    "n": 14,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "landscape tender cover",
+    "industry": "landscape design",
+    "hard": [
+      "casual",
+      "mixed"
+    ],
+    "subject": "hedge plan",
+    "body": "Plan looks fine from here. Jorren's sorting the divorce papers this arvo, but I'll pick up the planting query. no rush on the colour swatches.",
+    "deciding": "Jorren's sorting the divorce papers this arvo, but I'll pick up the planting query.",
+    "why": "SPEC §5.4 family matters: “Jorren's sorting the divorce papers this arvo, but I'll pick up the planting query.” reveals Jorren's divorce to a third party."
+  },
+  {
+    "n": 15,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "conference badge reorder",
+    "industry": "events",
+    "hard": [
+      "buried"
+    ],
+    "place": "list",
+    "subject": "Badge desk notes",
+    "body": "For the replacement print run:\n- Use cream stock.\n- Retain the large type.\n- Make the corner holes round.\n- Sort by surname.\n- Put blank badges last.\n- Reserve the narrow tray.\n- Melvi has been put on a performance plan here.\n- Keep spare clips nearby.\n- Send the courier to reception.\n- Use paper wrapping.\n- Recycle the sample sheets.\n- Confirm arrival before lunch.",
+    "deciding": "Melvi has been put on a performance plan here.",
+    "why": "SPEC §5.4 HR matters: “Melvi has been put on a performance plan here.” reveals an identifiable colleague's performance plan."
+  },
+  {
+    "n": 16,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "survey crew rota",
+    "industry": "surveying",
+    "hard": [
+      "buried",
+      "implicit"
+    ],
+    "place": "quoted",
+    "subject": "Re: tripod case",
+    "body": "The smaller case will do; thank you for finding it.\n> Does it need new foam?\n>> The old foam is sound.\n>>> Will the tall tripod fit?\n>>>> Fold the feet inward first.\n>>>>> Can someone collect it?\n>>>>>> We can arrange a run.\n>>>>>>> Is Tavren driving?\n>>>>>>>> Tavren has his chemotherapy on Thursday.\n>>>>>>>>> Friday is another option for the case.",
+    "deciding": "Tavren has his chemotherapy on Thursday.",
+    "why": "SPEC §5.4 medical treatment: “Tavren has his chemotherapy on Thursday.” reveals Tavren's treatment in forwarded history."
+  },
+  {
+    "n": 17,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "temporary reception staffing",
+    "industry": "staffing",
+    "hard": [
+      "numbers",
+      "implicit"
+    ],
+    "subject": "Reception cover",
+    "body": "You asked what our employee Selka takes home each month. Hers is 2400 after deductions. The desk needs cover on Tuesday.",
+    "deciding": "Hers is 2400 after deductions.",
+    "why": "SPEC §5.4 pay: “Hers is 2400 after deductions.” gives Selka's monthly take-home pay in the preceding sentence's context."
+  },
+  {
+    "n": 18,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "arts grant meeting",
+    "industry": "arts administration",
+    "hard": [
+      "casual",
+      "mixed"
+    ],
+    "subject": "meeting papers",
+    "body": "i've got the papers ready. Davren got the sack yesterday, mind, so send any edits to me and we'll keep things moving. ta.",
+    "deciding": "Davren got the sack yesterday, mind, so send any edits to me and we'll keep things moving.",
+    "why": "SPEC §5.4 being fired: “Davren got the sack yesterday, mind, so send any edits to me and we'll keep things moving.” reveals Davren's dismissal."
+  },
+  {
+    "n": 19,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "tour route planning",
+    "industry": "tour operations",
+    "hard": [
+      "implicit"
+    ],
+    "subject": "Route proof",
+    "body": "Could you check the bridge name? Eshri is at her father's funeral this morning. I'll collect the map proofs later.",
+    "deciding": "Eshri is at her father's funeral this morning.",
+    "why": "SPEC §5.4 family death: “Eshri is at her father's funeral this morning.” reveals a named colleague's bereavement."
+  },
+  {
+    "n": 20,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "gallery loan logistics",
+    "industry": "art logistics",
+    "hard": [
+      "casual",
+      "mixed"
+    ],
+    "subject": "frame measurements",
+    "body": "Thanks for the measurements. Kelro's been nicked for assault, so for now just put my name against the collection and we'll sort the rest. The corner pads arrived.",
+    "deciding": "Kelro's been nicked for assault, so for now just put my name against the collection and we'll sort the rest.",
+    "why": "SPEC §5.4 arrest/legal trouble: “Kelro's been nicked for assault, so for now just put my name against the collection and we'll sort the rest.” discloses Kelro's arrest."
+  },
+  {
+    "n": 21,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "library workshop staffing",
+    "industry": "library services",
+    "hard": [
+      "mixed"
+    ],
+    "subject": "Workshop notes",
+    "body": "I have the workshop notes ready. Fenra's annual bonus was 1800, and I can still get the reading list to you on Monday. Let me know whether you prefer the large-print list.",
+    "deciding": "Fenra's annual bonus was 1800, and I can still get the reading list to you on Monday.",
+    "why": "SPEC §5.4 bonus: “Fenra's annual bonus was 1800, and I can still get the reading list to you on Monday.” discloses the named librarian's bonus alongside ordinary reading-list logistics."
+  },
+  {
+    "n": 22,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "exhibition lighting approval",
+    "industry": "exhibition design",
+    "hard": [
+      "implicit",
+      "mixed"
+    ],
+    "subject": "Light positions",
+    "body": "The diagram is readable now. Please give Odrin an extra day, he's recovering from his hip replacement and can still check it from home. I'll confirm the lamp count.",
+    "deciding": "Please give Odrin an extra day, he's recovering from his hip replacement and can still check it from home.",
+    "why": "SPEC §5.4 medical treatment: “Please give Odrin an extra day, he's recovering from his hip replacement and can still check it from home.” reveals Odrin's surgery to another person."
+  },
+  {
+    "n": 23,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "community theatre poster",
+    "industry": "theatre",
+    "hard": [
+      "casual"
+    ],
+    "subject": "poster linebreaks",
+    "body": "can you move the date down a line. Brina is in court over custody of her boy this week. I'll sort the proof on our side.",
+    "deciding": "Brina is in court over custody of her boy this week.",
+    "why": "SPEC §5.4 family custody: “Brina is in court over custody of her boy this week.” reveals a colleague's family proceedings."
+  },
+  {
+    "n": 24,
+    "kind": "stop",
+    "cat": "personal",
+    "setting": "equipment calibration visit",
+    "industry": "calibration services",
+    "hard": [
+      "mixed",
+      "casual"
+    ],
+    "subject": "Bench availability",
+    "body": "Bench will be clear by ten. Kindly call me instead of Veyla, she has been given written warning for lateness but we will still have someone ready. Thank you for adjusting visit.",
+    "deciding": "Kindly call me instead of Veyla, she has been given written warning for lateness but we will still have someone ready.",
+    "why": "SPEC §5.4 HR disciplinary matters: “Kindly call me instead of Veyla, she has been given written warning for lateness but we will still have someone ready.” reveals Veyla's written warning."
+  },
+  {
+    "n": 25,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "custom lampshade production",
+    "industry": "lighting manufacture",
+    "hard": [
+      "numbers",
+      "implicit"
+    ],
+    "subject": "Shade samples",
+    "body": "On each shade, the first figure is what we pay to make it and the second is what the buyer pays. Ours is 18 against 45. The linen sample looks nicest in daylight.",
+    "deciding": "Ours is 18 against 45.",
+    "why": "SPEC §5.5 own costs and cost build-up: “Ours is 18 against 45.” reveals unit production cost against the selling price using the preceding context."
+  },
+  {
+    "n": 26,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "sign fabrication estimate",
+    "industry": "signmaking",
+    "hard": [
+      "implicit",
+      "mixed"
+    ],
+    "subject": "Letter spacing",
+    "body": "Happy with the wider spacing. The aluminium eats a fifth of what we charge for the sign, so the sample thickness is fine for us. Can you confirm the paint finish?",
+    "deciding": "The aluminium eats a fifth of what we charge for the sign, so the sample thickness is fine for us.",
+    "why": "SPEC §5.5 cost build-up including ratios: “The aluminium eats a fifth of what we charge for the sign, so the sample thickness is fine for us.” reveals the sender's material cost ratio."
+  },
+  {
+    "n": 27,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "packaging prototype review",
+    "industry": "packaging",
+    "hard": [
+      "buried"
+    ],
+    "place": "list",
+    "subject": "Prototype observations",
+    "body": "Notes from the folding bench:\n- The lid sits flat.\n- Corners line up.\n- The small tab folds cleanly.\n- The sleeve slides well.\n- Keep the cream colour.\n- Use the round seal.\n- Each box sells for 8 and leaves us 3 after all our costs.\n- The base needs no extra fold.\n- Put the sample in a bag.\n- Keep the printed face outward.\n- Return the cutting guide.\n- Thanks for the quick turnaround.",
+    "deciding": "Each box sells for 8 and leaves us 3 after all our costs.",
+    "why": "SPEC §5.5 own profit: “Each box sells for 8 and leaves us 3 after all our costs.” discloses the sender's per-box profit."
+  },
+  {
+    "n": 28,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "archive shelving bid",
+    "industry": "archive fitout",
+    "hard": [
+      "buried",
+      "numbers"
+    ],
+    "place": "quoted",
+    "subject": "Re: shelf depth",
+    "body": "The deeper sample is the one we want to see.\n> Was the shallow shelf tested?\n>> Yes, with the grey boxes.\n>>> Did the labels fit?\n>>>> They did after trimming.\n>>>>> Should we keep the end panels?\n>>>>>> Please keep both types.\n>>>>>>> What did we carry for fitting in our bid build-up?\n>>>>>>>> We put in 14 for that against a customer line of 27.\n>>>>>>>>> I'll return the sample on Tuesday.",
+    "deciding": "We put in 14 for that against a customer line of 27.",
+    "why": "SPEC §5.5 what the sender carried for an item: “We put in 14 for that against a customer line of 27.” gives the fitting allowance from the quoted bid-build-up question."
+  },
+  {
+    "n": 29,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "artisan tile pricing",
+    "industry": "tile manufacture",
+    "hard": [
+      "casual",
+      "implicit"
+    ],
+    "subject": "blue glaze",
+    "body": "blue looks bonzer. firing n clay together take about half what we get for each tile. reckon the matt one photographs better.",
+    "deciding": "firing n clay together take about half what we get for each tile.",
+    "why": "SPEC §5.5 own costs as a ratio: “firing n clay together take about half what we get for each tile.” reveals the sender's manufacturing cost share."
+  },
+  {
+    "n": 30,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "exhibition stand estimating",
+    "industry": "stand construction",
+    "hard": [
+      "mixed"
+    ],
+    "subject": "Canopy detail",
+    "body": "The canopy drawing is approved. Nice simple shape, and we've tucked 6 into our own contingency for every 100 of the stand price. Please keep the edge white.",
+    "deciding": "Nice simple shape, and we've tucked 6 into our own contingency for every 100 of the stand price.",
+    "why": "SPEC §5.5 contingency: “Nice simple shape, and we've tucked 6 into our own contingency for every 100 of the stand price.” reveals the sender's internal contingency ratio."
+  },
+  {
+    "n": 31,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "studio backdrop purchase",
+    "industry": "photography services",
+    "hard": [
+      "numbers",
+      "implicit"
+    ],
+    "subject": "Backdrop colour",
+    "body": "We were comparing what the backdrop costs our studio with what we bill for it. It's 32 coming in and 79 going out. The warmer grey suits the room.",
+    "deciding": "It's 32 coming in and 79 going out.",
+    "why": "SPEC §5.5 own costs: “It's 32 coming in and 79 going out.” reveals acquisition cost versus billing using the preceding sentence's context."
+  },
+  {
+    "n": 32,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "furniture upholstery estimate",
+    "industry": "furniture",
+    "hard": [
+      "casual",
+      "mixed"
+    ],
+    "subject": "seat fabric",
+    "body": "Fabric sample reached, thanks. We are keeping one quarter of your seat payment after paying all our expenses, so no difficulty doing the piping neatly also. Please select the darker thread.",
+    "deciding": "We are keeping one quarter of your seat payment after paying all our expenses, so no difficulty doing the piping neatly also.",
+    "why": "SPEC §5.5 own profit: “We are keeping one quarter of your seat payment after paying all our expenses, so no difficulty doing the piping neatly also.” reveals the sender's profit share."
+  },
+  {
+    "n": 33,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "floral installation buying",
+    "industry": "floristry",
+    "hard": [
+      "mixed"
+    ],
+    "subject": "Arch shape",
+    "body": "The sketch is nearly ready. Thanks for settling on the round arch, and the stems cost us less than the ribbon charge on your invoice. I'll send the sketch in the next message.",
+    "deciding": "Thanks for settling on the round arch, and the stems cost us less than the ribbon charge on your invoice.",
+    "why": "SPEC §5.5 sender's own costs: “Thanks for settling on the round arch, and the stems cost us less than the ribbon charge on your invoice.” discloses an input-cost bound inside an ordinary design acknowledgement."
+  },
+  {
+    "n": 34,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "coffee roaster wholesale order",
+    "industry": "coffee roasting",
+    "hard": [
+      "casual"
+    ],
+    "subject": "bag colour",
+    "body": "The pale bags are grand. We buy the green beans at 7 a kilo and get 22 for the roasted lot, before our other spend. Let's use black print.",
+    "deciding": "We buy the green beans at 7 a kilo and get 22 for the roasted lot, before our other spend.",
+    "why": "SPEC §5.5 own input costs: “We buy the green beans at 7 a kilo and get 22 for the roasted lot, before our other spend.” reveals bean acquisition cost."
+  },
+  {
+    "n": 35,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "bike rental fleet refresh",
+    "industry": "cycle hire",
+    "hard": [
+      "mixed"
+    ],
+    "subject": "Rack spacing",
+    "body": "Thanks for checking the spacing. We have 9 thousand set aside in our own fleet-replacement budget, though the rack layout can wait till Tuesday. Leave room for the wider tyres.",
+    "deciding": "We have 9 thousand set aside in our own fleet-replacement budget, though the rack layout can wait till Tuesday.",
+    "why": "SPEC §5.5 internal budget: “We have 9 thousand set aside in our own fleet-replacement budget, though the rack layout can wait till Tuesday.” gives the sender's internal allocation."
+  },
+  {
+    "n": 36,
+    "kind": "stop",
+    "cat": "economics",
+    "setting": "joinery drawer estimate",
+    "industry": "joinery",
+    "hard": [
+      "implicit",
+      "casual"
+    ],
+    "subject": "drawer runners",
+    "body": "Soft-close it is then. By the time we've paid timber, runners and labour, two quid in every ten you pay is still ours. will bring the sample round.",
+    "deciding": "By the time we've paid timber, runners and labour, two quid in every ten you pay is still ours.",
+    "why": "SPEC §5.5 profit as a ratio: “By the time we've paid timber, runners and labour, two quid in every ten you pay is still ours.” reveals the sender's retained profit."
+  },
+  {
+    "n": 37,
+    "kind": "stop",
+    "cat": "negotiation",
+    "setting": "software licence mediation",
+    "industry": "software licensing",
+    "hard": [
+      "implicit",
+      "mixed"
+    ],
+    "subject": "Tomorrow's discussion",
+    "body": "Rell, thanks for advising us on the talks with Velmora. If their buyer pushes on renewal, the extra year is ours to throw in, though I won't start there. The room is booked for ten.",
+    "deciding": "If their buyer pushes on renewal, the extra year is ours to throw in, though I won't start there.",
+    "why": "SPEC §5.6 room to concede and strategy: “If their buyer pushes on renewal, the extra year is ours to throw in, though I won't start there.” reveals a fallback to an adviser, not an offer to the buyer."
+  },
+  {
+    "n": 38,
+    "kind": "stop",
+    "cat": "negotiation",
+    "setting": "distribution terms coaching",
+    "industry": "distribution",
+    "hard": [
+      "numbers",
+      "implicit"
+    ],
+    "subject": "Prep for buyer call",
+    "body": "We're talking about the payment period we'd concede to Brindlewick, in days. I'd go from 30 to 60 if that's what gets their signature. Your advice on the call would help.",
+    "deciding": "I'd go from 30 to 60 if that's what gets their signature.",
+    "why": "SPEC §5.6 terms the sender would concede: “I'd go from 30 to 60 if that's what gets their signature.” discloses a payment-term fallback to an adviser."
+  },
+  {
+    "n": 39,
+    "kind": "stop",
+    "cat": "negotiation",
+    "setting": "venue hire negotiation advice",
+    "industry": "venue hire",
+    "hard": [
+      "buried",
+      "casual"
+    ],
+    "place": "list",
+    "subject": "Buyer meeting notes",
+    "body": "Rell, notes for you as our outside adviser before we meet Orlatch:\n- Meeting is upstairs.\n- Bring the seating sketch.\n- Use the circular layout.\n- Tea will be ready.\n- Start with the date options.\n- Show the foyer photo.\n- reckon they'll ask us to chuck in the rehearsal day for nowt.\n- Keep the discussion to an hour.\n- Test the screen first.\n- Put the pens on the table.\n- Return the sample boards.\n- I'll meet you there.",
+    "deciding": "reckon they'll ask us to chuck in the rehearsal day for nowt.",
+    "why": "SPEC §5.6 expected counteroffer: “reckon they'll ask us to chuck in the rehearsal day for nowt.” predicts the other party's concession demand."
+  },
+  {
+    "n": 40,
+    "kind": "stop",
+    "cat": "negotiation",
+    "setting": "freight contract adviser thread",
+    "industry": "freight",
+    "hard": [
+      "buried",
+      "mixed"
+    ],
+    "place": "quoted",
+    "subject": "Re: table layout",
+    "body": "Round table confirmed for the call with our outside adviser.\n> Shall we bring the route map?\n>> Yes, the folded copy.\n>>> Does the projector work?\n>>>> It does now.\n>>>>> Can we start after lunch?\n>>>>>> That suits me.\n>>>>>>> Anything else before the buyer joins tomorrow?\n>>>>>>>> Lovely if we can settle it quickly, but we can waive the fuel adjustment if their buyer refuses it.\n>>>>>>>>> I'll book the smaller room.",
+    "deciding": "Lovely if we can settle it quickly, but we can waive the fuel adjustment if their buyer refuses it.",
+    "why": "SPEC §5.6 room to concede: “Lovely if we can settle it quickly, but we can waive the fuel adjustment if their buyer refuses it.” reveals a fallback in quoted history, not a proposal to that buyer."
+  }
+]

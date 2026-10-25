@@ -1,0 +1,260 @@
+{"id":"everyday7a-001","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-002","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-003","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-004","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-005","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-006","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-007","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-008","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-009","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-010","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-011","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the patient’s test result is written to the patient, within the §5.4 own-details exception."}
+{"id":"everyday7a-012","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-013","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-014","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-015","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-016","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-017","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-018","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this gives ordinary delivery access logistics; it provides no code, hidden key, or security gap (§5.1)."}
+{"id":"everyday7a-019","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-020","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-021","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-022","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-023","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-024","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-025","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-026","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-027","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-028","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-029","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-030","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-031","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-032","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-033","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-034","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the guest Wi-Fi is explicitly open, with no code given (§5.1)."}
+{"id":"everyday7a-035","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-036","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-037","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-038","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this is Daniel’s pay information written directly to Daniel, within the §5.4 own-details exception."}
+{"id":"everyday7a-039","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-040","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-041","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the hearing results are written to the patient, within the §5.4 own-details exception."}
+{"id":"everyday7a-042","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-043","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-044","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-045","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-046","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-047","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-048","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-049","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-050","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-051","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-052","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-053","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-054","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-055","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-056","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-057","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-058","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-059","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-060","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-061","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-062","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-063","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-064","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-065","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-066","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: sk-xxxx and password: ******** are explicit placeholders excluded by §5.1."}
+{"id":"everyday7a-067","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-068","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-069","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-070","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-071","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-072","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-073","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-074","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-075","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-076","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-077","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-078","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-079","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-080","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-081","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-082","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-083","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the intercom access is by design and no code or security gap is disclosed (§5.1)."}
+{"id":"everyday7a-084","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-085","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-086","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-087","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-088","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-089","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-090","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-091","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-092","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-093","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-094","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-095","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-096","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-097","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-098","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-099","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-100","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-101","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-102","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-103","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-104","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-105","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-106","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-107","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-108","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-109","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-110","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-111","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-112","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-113","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the patient’s health details are written to that patient, within the §5.4 own-details exception."}
+{"id":"everyday7a-114","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the sentence discloses Mr Sharma’s wife’s cancer treatment, a family illness under §5.4."}
+{"id":"everyday7a-115","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-116","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-117","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-118","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-119","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-120","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-121","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-122","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this describes the public visitor buzzer, with no code or hidden key (§5.1)."}
+{"id":"everyday7a-123","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-124","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-125","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-126","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-127","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-128","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-129","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-130","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-131","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-132","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-133","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-134","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-135","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-136","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-137","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-138","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-139","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-140","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-141","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-142","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-143","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-144","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-145","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-146","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-147","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-148","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-149","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-150","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-151","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-152","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-153","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this performance-plan letter is written directly to the employee it concerns, within the §5.4 own-details exception."}
+{"id":"everyday7a-154","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-155","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-156","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-157","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-158","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-159","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-160","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-161","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-162","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-163","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-164","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-165","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-166","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-167","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the keys are held by the concierge, not hidden, and no code is given (§5.1)."}
+{"id":"everyday7a-168","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-169","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-170","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-171","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-172","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-173","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-174","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-175","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-176","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-177","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-178","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-179","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-180","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-181","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-182","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-183","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the sentence discloses Katie’s pay to a hiring manager; it is personal pay information under §5.4, even though it also informs hiring negotiation."}
+{"id":"everyday7a-184","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-185","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this self-assessment amount is the recipient’s own tax detail, written to that person under the §5.4 own-details exception."}
+{"id":"everyday7a-186","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-187","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-188","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-189","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-190","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-191","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-192","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-193","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-194","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-195","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Close call, agree: the line teases about Zeke’s previous event attendance; in context it reads as banter about an event, not a disparaging remark about a person or company under §5.7."}
+{"id":"everyday7a-196","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-197","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-198","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-199","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-200","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-201","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-202","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-203","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-204","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-205","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-206","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-207","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-208","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the supplier dispute is the sender company’s own legal matter stated as business, which §5.4 expressly does not flag."}
+{"id":"everyday7a-209","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-210","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-211","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-212","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-213","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-214","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-215","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-216","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-217","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-218","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Close call, agree: this criticizes Marguerite’s sales ability by an idiom rather than calling her incompetent directly, but it is still a disparaging remark about a named person under §5.7."}
+{"id":"everyday7a-219","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-220","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-221","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-222","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-223","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-224","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-225","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-226","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-227","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-228","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-229","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-230","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-231","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-232","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-233","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-234","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: the patient’s blood-pressure readings are written to that patient, within the §5.4 own-details exception."}
+{"id":"everyday7a-235","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: it discloses the sender’s own milling cost per kilo and gives a minimum resale instruction, within §5.5 costs and floor price."}
+{"id":"everyday7a-236","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-237","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-238","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: this states a conditional negotiation position or expected counter to an outside adviser or other third party; it is not an offer made to this recipient (§5.6)."}
+{"id":"everyday7a-239","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-240","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-241","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-242","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-243","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-244","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-245","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-246","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-247","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-248","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-249","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Agree: ghp_xxxx and password: ******** are explicit placeholders excluded by §5.1."}
+{"id":"everyday7a-250","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-251","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-252","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-253","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-254","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-255","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-256","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-257","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-258","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-259","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7a-260","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}

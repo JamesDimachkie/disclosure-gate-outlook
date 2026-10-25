@@ -23,7 +23,9 @@ function tree(lengths) {
 }
 let FIXED=null;
 const fixedTrees=()=>FIXED||(FIXED=[tree(Array.from({length:288},(_,i)=>i<144?8:i<256?9:i<280?7:8)), tree(Array(32).fill(5))]);
-export function inflateRaw(data, {maxOutputLength=10*1024*1024}={}) {
+export const inflateRaw = (data, options) => inflate(data, options).out;
+// The decoded bytes and `end`, the offset of the first input byte after the final deflate block.
+function inflate(data, {maxOutputLength=10*1024*1024}={}) {
   let pos=0, buf=0, cnt=0, used=0, out=new Uint8Array(Math.min(32768,maxOutputLength));
   const fill=()=>{ while(cnt<=24 && pos<data.length) { buf=(buf|data[pos++]<<cnt)>>>0; cnt+=8; } };
   const bits=n=>{ if(!n) return 0; if(cnt<n) fill(); if(cnt<n) BAD(); const v=buf&((1<<n)-1); buf>>>=n; cnt-=n; return v; };
@@ -66,13 +68,17 @@ export function inflateRaw(data, {maxOutputLength=10*1024*1024}={}) {
       for(let k=0;k<n;k++) { out[used]=out[used-d];used++; }
     }
   }
-  return out.slice(0,used);
+  return {out:out.slice(0,used), end:pos-(cnt>>3)};
 }
+// The Adler-32 checksum follows the deflate data. Only whitespace may follow it: PDF writers end a
+// stream with an end-of-line before `endstream`, which is not part of the data (PDF 32000 section 7.3.8.1).
 export function inflateZlib(data, options) {
   if(data.length<6 || (data[0]&15)!==8 || data[0]>>>4>7 || (data[0]*256+data[1])%31 || data[1]&32) throw new Error('bad_zlib');
-  const out=inflateRaw(data.subarray(2,data.length-4),options);let a=1,b=0;
+  const {out,end}=inflate(data.subarray(2),options), at=2+end;let a=1,b=0;
+  if(at+4>data.length) throw new Error('bad_adler');
+  for(let i=at+4;i<data.length;i++) if(![0x0a,0x0d,0x20,0x09,0x0c,0x00].includes(data[i])) throw new Error('bad_adler');
   for(const v of out) { a=(a+v)%65521;b=(b+a)%65521; }
-  const n=data.length, expected=(data[n-4]*0x1000000+(data[n-3]<<16)+(data[n-2]<<8)+data[n-1])>>>0;
+  const expected=(data[at]*0x1000000+(data[at+1]<<16)+(data[at+2]<<8)+data[at+3])>>>0;
   if(((b<<16|a)>>>0) !== expected) throw new Error('bad_adler');
   return out;
 }

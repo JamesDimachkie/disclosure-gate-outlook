@@ -27,7 +27,7 @@ and the Review pane it opens (right).*
 | --- | --- |
 | Passwords, keys and codes | A password or PIN that is actually given, a login with its password, API keys and tokens (AWS, GitHub, Slack, Stripe, Google, OpenAI, Anthropic), private keys, JSON Web Tokens, database connection strings, and door, gate, alarm or Wi-Fi codes |
 | Card and bank details | Luhn-valid card numbers, valid IBANs, US routing numbers with an account number, UK sort codes with an account number |
-| Government ID numbers | US Social Security, UK National Insurance and Canadian SIN numbers; passport, licence and personal tax ID numbers |
+| Government ID numbers | US Social Security, UK National Insurance and Canadian SIN numbers; passport, license and personal tax ID numbers |
 | Lists of people's details | A spreadsheet, table, form or sentence that pairs people with what is sensitive about them: home addresses, ID or tax numbers, health, offences, pay, family members, claims |
 | What it means, not just what it says | Personal details about someone, your own costs and margins, your negotiating position, insults, and physical security (a hidden key, an alarm left off), however they are worded, read by an on-device model |
 | Wrong recipient | A greeting to someone who isn't on the recipient lines ("Hi Alex," sent only to Morgan Vale), and addresses that look like yours but aren't (`north1ine.com`) |
@@ -39,35 +39,42 @@ Email that stays inside your organization is never held. Meeting invitations are
 
 ## How well it works
 
-On the newest and hardest blind test set, 518 outside emails written to be hard the way real mail is
-(disclosures implied rather than stated, buried in long threads, given as bare numbers, in casual or
-regional English), by two AI models from different companies that wrote none of the training data,
-label-checked by the other company's model, and scored once against a bar fixed before anyone deciding
-had seen the set:
+**On real mail.** 2,000 outside emails that Enron employees sent in 1999–2002 (the public CMU corpus),
+from mailboxes never used in development, read in full by labelers who could not see which system had
+asked:
 
-| | Disclosures caught | Ordinary emails asked about |
-| --- | --- | --- |
-| Rules, recipients and the on-device model v2.3 (default) | **101 of 120** (84%) | **9 of 398** (2.3%) |
-| Rules and recipient checks only (model off) | 15 of 120 | 0 of 398 |
+| | Serious disclosures caught | Emails asked about | Asked about needlessly |
+| --- | --- | --- | --- |
+| Rules, recipients and the on-device model v2.3 (default) | **61** | 700 (35%) | 559 (28%) |
+| Rules and recipient checks only (model off) | 19 | 53 (2.7%) | 26 (1.3%) |
 
-It misses about one disclosure in six on this set, most often internal costs given as bare figures or
-a ratio (16 of 24 caught). On an easier earlier set it caught 60 of 60. Expect some misses on real mail.
+"Serious" means a disclosure that could plausibly cause harm if it reached the wrong eyes: credentials or
+account details, internal costs and negotiating limits, a third person's health, family or legal
+situation, a disparaging remark about a business contact. The labelers found 62 such emails among those
+any system asked about; a random sample of the rest suggests about 34 more that nothing asked about. So
+on this mail the default asks about one email in three and catches roughly two serious disclosures in
+three. It is tuned that way on purpose: a needless question costs one click, a missed disclosure can
+cost a client, a fine or a career. Enron's mail is heavy with personal chatter and forwarded chain
+letters; ordinary business mail is likely to be asked about less, but that has not been measured.
 
-It is tuned to catch rather than miss: a question on an ordinary email costs one click; a missed
-disclosure can cost a client, a fine or a career. On 49 real, documented email incidents rebuilt with
-invented names, it asks about 35. [EVALUATION.md](EVALUATION.md) has the method, every gate including
-the ones that failed, and the limits: all test mail is synthetic, and each set has only 60 to 120
-disclosures.
+**On blind synthetic sets** written to be hard (disclosures implied, buried in threads, given as bare
+numbers, casual or regional English), by AI models that wrote none of the training data and scored once
+against bars fixed in advance: 108 of 120 disclosures caught on the newest set, `everyday7`, questioning
+53 of its 400 deliberately messy ordinary emails; 101 of 120 and 9 of 398 on the one before. On 49 real,
+documented email incidents rebuilt with invented names, it asks about 35.
+
+[EVALUATION.md](EVALUATION.md) has the method, every gate including the ones that failed (a quieter v2.4
+was rejected because it missed too many serious disclosures), and the limits.
 
 Attachments: 36 everyday documents saved by Chromium and Microsoft Word, as PDF and `.docx`, all read
 in full with every amount, name and accented or non-Latin phrase intact
 ([evaluation/everyday-docs](evaluation/everyday-docs/)). On 1,008 Mozilla pdf.js PDFs and 578 Apache
 POI Office files, regression collections built to break parsers, each file runs in its own bounded
-process: no crashes or timeouts, and the slowest check took 644 ms (OCR inference excluded). A file
-that can't be read completely is reported as can't-check and asks, instead of passing on what was
-read; in all, 636 of the PDFs and 106 of the Office files come back can't-check (88 and 15 more
-than an earlier reader that passed partial reads), and 55 Office files go to OCR for their embedded
-pictures. Neither collection measures accuracy on ordinary mail.
+process: no crashes or timeouts, and the slowest check took 1.41 seconds (OCR inference excluded).
+A file that can't be read completely is reported as can't-check and asks, instead of passing on what
+was read; in all, 621 of the PDFs and 107 of the Office files come back can't-check (73 and 16 net
+more than an earlier reader, reproduced from its archived source), and 55 Office files go to
+OCR for their embedded pictures. Neither collection measures accuracy on ordinary mail.
 Outcomes, provenance and the command are in [DEVELOPMENT.md](docs/DEVELOPMENT.md#public-attachment-corpus-check).
 
 PDF image-only pages and images beside native text require OCR, which is combined with native page,
@@ -87,7 +94,8 @@ limits fail closed. See [SPEC §6](SPEC.md#6-attachments) for the exact limits. 
 runtime, runs in English on the device, and never replaces native document validation.
 
 The model runs in Outlook on the web, the new Outlook for Windows and Outlook for Mac; classic Outlook
-for Windows uses the rules alone. IT can switch the model off at setup.
+for Windows uses the rules alone. IT can switch the model off at setup, or adapt it to their own
+mail ([docs/ADAPTING.md](docs/ADAPTING.md)).
 
 ## Install
 
@@ -100,6 +108,8 @@ A Microsoft 365 admin installs it once; users do nothing.
 2. In the Microsoft 365 admin center, go to Settings > Integrated apps > Upload custom apps and
    upload the manifest.
 3. Assign users or groups. Microsoft can take up to a day to deliver it to Outlook.
+
+If something doesn't behave as expected, see [Troubleshooting](docs/TROUBLESHOOTING.md).
 
 To host the files yourself, build them (`npm ci && npm run build`), serve `dist/` over HTTPS, and
 enter that address on the setup page.
@@ -146,7 +156,10 @@ Compose preparation initializes a worker/session that repeat Sends reuse if that
 A fresh Send runtime still verifies cached public files and initializes its own session. Timeouts
 and OCR preemption terminate the worker. [Browser Send timings and their limits](docs/SEMANTIC-INTEGRATION.md#browser-send-timing).
 The model reads each sentence with the one before it; an input beyond its 128-token window skips the model pass.
-Live in Outlook on the web, Send to dialog took about 1.2 to 1.4 seconds with the model; the other clients have not yet been measured live.
+Live in Outlook on the web with the sideloaded v2 manifest, findings dialogs appeared in 0.31–0.46 seconds:
+0.31 seconds for a model-only finding after compose preload and 0.42 seconds for an attached picture
+after a 30-second wait. Picture pre-reading is inferred from timing; a true cold model download and
+the other clients have not been measured live. [Live results and limits](outlook/RUNTIME-V2-NOTES.md#live-evidence-v2-manifest-outlook-on-the-web-24-october-2026).
 
 Works in Outlook on the web, the new Outlook for Windows, classic Outlook for Windows (2206 or later)
 and Outlook for Mac (new UI, 16.65 or later), with Exchange Online. Outlook on phones doesn't run Send
@@ -157,6 +170,9 @@ admin; it is not published in the Microsoft Marketplace.
 
 Node 24. `npm ci`, then `npm test` (builds, then runs the offline suite) or `npm run dev` (serves
 `dist/` at `https://localhost:3443`). Details: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+
+For model work: [adaptation guide](docs/ADAPTING.md), [training pipeline](model/train/README.md),
+[published training data](model/data/README.md), and [gate pre-registrations](docs/gates/README.md).
 
 ## Security
 

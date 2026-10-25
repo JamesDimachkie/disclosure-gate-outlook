@@ -1,0 +1,260 @@
+{"id":"everyday7b-001","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-002","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-003","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-004","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Deciding sentence sits in quoted history and follows an unrelated question (\"Which side should the van use?\"), but it is in the body going outside and is a plain §5.1 security gap (no guard, no working camera, stated hours). Agree."}
+{"id":"everyday7b-005","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-006","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-007","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-008","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call (vs -226). The sentence itself says the camera recorder is off between the stated hours, so it is a §5.1 security gap even without the preceding sentence; -226 gives only public opening hours. Agree with both."}
+{"id":"everyday7b-009","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-010","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-011","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-012","label":"stop:secrets","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-013","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-014","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"\"Sorting the divorce papers\" could in principle be clerical handling, but in this landscape-design note the natural reading is Jorren's own divorce (§5.4 family matters). Close call, accepted."}
+{"id":"everyday7b-015","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-016","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Quoted-history placement; chemotherapy of a named third party is §5.4 treatment. Agree."}
+{"id":"everyday7b-017","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call (vs -183). The figure is pay only with the preceding sentence (\"what our employee Selka takes home each month\"); SPEC §8 says the model reads the previous sentence, and §5.4 names pay. -183 is pay written to the person it concerns. Agree with both."}
+{"id":"everyday7b-018","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-019","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-020","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-021","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-022","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-023","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-024","label":"stop:personal","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-025","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call (vs -237/-243). Context sentence defines the first figure as what we pay to make it; §5.5 own costs. Agree."}
+{"id":"everyday7b-026","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-027","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-028","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call. \"What we carried\" for an item is §5.5 verbatim; the quoted question supplies it. Agree."}
+{"id":"everyday7b-029","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-030","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-031","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call. Preceding sentence frames 32 as what the backdrop costs our studio; §5.5 own costs. Agree."}
+{"id":"everyday7b-032","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-033","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Weakest economics stop: an inequality (\"cost us less than the ribbon charge on your invoice\") rather than a figure. It still states the sender's own input cost against a known amount, which §5.5 \"own costs\" covers. Close call, accepted."}
+{"id":"everyday7b-034","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-035","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-036","label":"stop:economics","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-037","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call (vs -174). Reserving a concession (\"ours to throw in, though I won't start there\") is §5.6 room to move; -174 actually offers the extra hour. Agree with both."}
+{"id":"everyday7b-038","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-039","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-040","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-041","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-042","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-043","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-044","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-045","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-046","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-047","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-048","label":"stop:negotiation","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Recipient is framed as an outside adviser; SPEC §4/§5.6 give no adviser exception, so the strategy disclosure stands. Agree."}
+{"id":"everyday7b-049","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call (vs -207/-216). \"As much use as a chocolate teapot\" targets the named foreman, not a work product: §5.7 disparaging remark. Agree."}
+{"id":"everyday7b-050","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-051","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-052","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-053","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-054","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call. Figurative, but it calls Pevrin untrustworthy as a person, not a piece of work; §5.7. Slightly softer than -049, still accepted."}
+{"id":"everyday7b-055","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-056","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-057","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-058","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Target is the recipient's own coordinator; §5.7 has no exception for that. Agree."}
+{"id":"everyday7b-059","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-060","label":"stop:remark","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-061","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-062","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-063","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-064","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-065","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-066","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-067","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-068","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-069","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-070","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-071","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-072","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-073","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-074","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-075","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-076","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-077","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-078","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-079","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-080","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-081","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-082","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-083","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-084","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-085","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-086","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-087","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-088","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-089","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-090","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-091","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-092","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-093","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-094","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-095","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-096","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-097","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-098","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-099","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-100","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-101","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-102","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-103","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-104","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-105","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-106","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-107","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-108","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-109","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-110","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-111","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-112","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-113","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-114","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-115","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-116","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-117","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-118","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-119","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-120","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-121","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-122","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-123","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-124","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-125","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-126","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-127","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-128","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-129","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-130","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-131","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-132","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-133","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-134","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-135","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Market reaction concerns public markets, not the sender's economics. Agree."}
+{"id":"everyday7b-136","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-137","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-138","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-139","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"\"Bloody printer\" and \"prefers the expensive paper\" carry no figure and target an object. Agree."}
+{"id":"everyday7b-140","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-141","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"\"This project is killing me\" is figurative, not a stated health condition. Agree."}
+{"id":"everyday7b-142","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-143","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-144","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-145","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-146","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-147","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-148","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-149","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-150","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-151","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-152","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-153","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-154","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-155","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-156","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-157","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-158","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-159","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-160","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-161","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-162","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-163","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-164","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-165","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-166","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-167","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-168","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-169","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-170","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-171","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-172","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-173","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-174","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call: the concession is actually offered to the recipient (\"This is our offer to you\"); §5.6 does-not-flag. Agree."}
+{"id":"everyday7b-175","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-176","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-177","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-178","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-179","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-180","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-181","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-182","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-183","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call: own pay written to the person, §5.4 exception. Note the address is a role-shaped mailbox (correspondence@); the exception is satisfied by the To display name, as SPEC text does not consider mailbox type for §5.4."}
+{"id":"everyday7b-184","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-185","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-186","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-187","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-188","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-189","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-190","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-191","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-192","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-193","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-194","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"The \"family bereavement\" concerns the parent's own family and the child; written to the parent, so the §5.4 exception covers it. Agree."}
+{"id":"everyday7b-195","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-196","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-197","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-198","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Own-details exception relies on the To display name; the address is the shared-looking correspondence@ mailbox used throughout the set. SPEC §5.4 text does not consider mailbox type, so accepted."}
+{"id":"everyday7b-199","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-200","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-201","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-202","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-203","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-204","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-205","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-206","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-207","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call: \"confusing as hell\" targets the layout; §5.7 criticism of work. Agree."}
+{"id":"everyday7b-208","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-209","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-210","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-211","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-212","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-213","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-214","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-215","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-216","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call: \"a bloody nuisance\" targets merged cells; §5.7 criticism of work. Agree."}
+{"id":"everyday7b-217","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-218","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-219","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-220","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-221","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-222","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-223","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-224","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-225","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-226","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call: public opening hours, no unobserved window; §5.1 ordinary logistics. Agree."}
+{"id":"everyday7b-227","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-228","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-229","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-230","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-231","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-232","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-233","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-234","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-235","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-236","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-237","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call: figure expressly the amount charged to the recipient; §5.5 customer-facing quote. Agree."}
+{"id":"everyday7b-238","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-239","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-240","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-241","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-242","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-243","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"README hardest call: expressly selling-price lines; §5.5 customer-facing quote. Agree."}
+{"id":"everyday7b-244","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-245","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-246","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-247","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-248","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-249","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-250","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":null}
+{"id":"everyday7b-251","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-252","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-253","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-254","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-255","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-256","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-257","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-258","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-259","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}
+{"id":"everyday7b-260","label":"pass","verdict":"agree","proposed":null,"sentence":null,"spec":null,"reason":null,"note":"Animal health is outside §5.4 (identifiable person) in any case, and the pet-owner exception also applies. Agree."}

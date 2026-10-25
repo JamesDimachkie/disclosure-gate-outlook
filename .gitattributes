@@ -7,3 +7,6 @@ model/out/labels.json -text whitespace=cr-at-eol
 
 # PDF xref offsets require byte-preserving checkouts, even for synthetic ASCII-only fixtures.
 *.pdf binary
+
+# The published v2.3 training data keeps the bytes its SHA-256 in model/out/labels.json names.
+model/data/v23-train.jsonl -text

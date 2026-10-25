@@ -54,6 +54,7 @@ function lexer(buf, pos = 0, work = null) {
       else if (c === 0x29) { if (--depth === 0) break; out.push(c); }
       else out.push(c);
     }
+    if (depth !== 0) fail('bad_string');
     return { str: Uint8Array.from(out) };
   }
   function hex() {
@@ -145,6 +146,11 @@ function load(buf) {
   // A parse that fails is skipped (a damaged object); running out of budget is not.
   const tolerant = (fn) => { try { return fn(); } catch (error) { if (error.message === 'too_complex') throw error; return undefined; } };
   let trailer = null;
+  // ISO 32000-1 F.3.4: a linearized PDF's first-page trailer carries Root; the
+  // physically last (main-xref) trailer need not. Keep the latest Root-bearing
+  // trailer, rather than overwriting it with that rootless dictionary. Explicit
+  // null/broken Roots still fail, and encryption in either trailer is refused.
+  const useTrailer = t => { if (t.Encrypt) fail('encrypted'); if (!trailer || t.Root !== undefined) trailer = t; };
   for (let at = 0; ;) {
     const k = text.indexOf('obj', at);
     if (k < 0) break;
@@ -169,19 +175,23 @@ function load(buf) {
       at = end;
     }
     objects.set(head.num, { v, stream });
-    if (v && v.dict && v.dict.Type?.name === 'XRef') trailer = v.dict;
+    if (v && v.dict && v.dict.Type?.name === 'XRef') useTrailer(v.dict);
   }
-  for (const m of text.matchAll(/trailer\s*<</g)) { const t = tolerant(() => lexer(buf, m.index + 7, work).value().dict); if (t) trailer = t; }
+  for (const m of text.matchAll(/trailer\s*<</g)) { const t = tolerant(() => lexer(buf, m.index + 7, work).value().dict); if (t) useTrailer(t); }
   const doc = { objects, trailer, work, decoded: new Map(), fonts: new Map() };
   // Objects packed in object streams.
   for (const [, o] of [...objects]) {
     if (o.v?.dict?.Type?.name !== 'ObjStm' || !o.stream) continue;
     const data = decode(doc, o);
     const n = o.v.dict.N, first = o.v.dict.First;
-    if (!Number.isInteger(n) || !Number.isInteger(first)) continue;
+    if (!Number.isSafeInteger(n) || n < 0 || n > 100000 || !Number.isSafeInteger(first) || first < 0 || first > data.length) fail('bad_object_stream');
     const head = lexer(data, 0, work);
     const pairs = [];
-    for (let i = 0; i < n; i++) { const num = head.token(), off = head.token(); if (!num || !off) break; pairs.push([num.num, off.num]); }
+    for (let i = 0; i < n; i++) {
+      const num = head.token(), off = head.token();
+      if (!Number.isSafeInteger(num?.num) || num.num <= 0 || !Number.isSafeInteger(off?.num) || off.num < 0 || first + off.num >= data.length || head.state.pos > first) fail('bad_object_stream');
+      pairs.push([num.num, off.num]);
+    }
     for (const [num, off] of pairs) if (!objects.has(num)) { const v = tolerant(() => lexer(data, first + off, work).value()); if (v !== undefined) objects.set(num, { v, stream: null }); }
   }
   if (!trailer) fail('no_trailer');
@@ -205,20 +215,51 @@ function ascii85(data) {
   if (group.length) { const n = group.length; while (group.length < 5) group.push(84); let v = 0; for (const d of group) v = v * 85 + d; out.push(...[(v >>> 24) & 255, (v >>> 16) & 255, (v >>> 8) & 255, v & 255].slice(0, n - 1)); }
   return Uint8Array.from(out);
 }
+// LZWDecode (PDF 32000 section 7.4.4): variable-width codes from 9 to 12 bits, 256 clears the table,
+// 257 ends the data. EarlyChange 1 (the default) widens the code one entry early. Output is bounded
+// like Flate's; a code that is neither in the table nor the next one to be added is malformed.
+function lzw(data, early, limit) {
+  const out = [], table = [];
+  for (let i = 0; i < 256; i++) table.push([i]);
+  table.push(null, null);
+  let width = 9, buf = 0, cnt = 0, pos = 0, prev = null;
+  for (;;) {
+    while (cnt < width && pos < data.length) { buf = (buf << 8 | data[pos++]) >>> 0; cnt += 8; }
+    if (cnt < width) break;
+    const code = (buf >>> (cnt - width)) & ((1 << width) - 1);
+    cnt -= width; buf &= (1 << cnt) - 1;
+    if (code === 256) { table.length = 258; width = 9; prev = null; continue; }
+    if (code === 257) break;
+    let entry;
+    if (code < table.length && table[code]) entry = table[code];
+    else if (code === table.length && prev) entry = [...prev, prev[0]];
+    else fail('bad_lzw');
+    if (out.length + entry.length > limit) fail('too_complex');
+    for (const b of entry) out.push(b);
+    if (prev && table.length < 4096) table.push([...prev, entry[0]]);
+    prev = entry;
+    if (table.length + early >= (1 << width) && width < 12) width++;
+  }
+  return Uint8Array.from(out);
+}
 // A stream's decoded bytes, kept per object so a form drawn on every page is decoded once. Every
 // decoded byte counts against the document's budget.
 function decode(doc, o) {
   if (doc.decoded && doc.decoded.has(o)) return doc.decoded.get(o);
   const d = o.v.dict, work = doc.work || newWork();
   const filters = [].concat(resolve(doc, d.Filter) ?? []).map((f) => resolve(doc, f)?.name);
+  const parms = [].concat(resolve(doc, d.DecodeParms) ?? []).map((p) => { const v = resolve(doc, p); return v?.dict ?? v; });
   let data = o.stream;
-  for (const f of filters) {
-    const room = MAX_DECODED - work.decoded;
+  for (const [i, f] of filters.entries()) {
+    const room = MAX_DECODED - work.decoded, parm = parms.length > 1 ? parms[i] : parms[0];
+    // PNG and TIFF predictors are not decoded; refusing beats reading filtered bytes as text.
+    if (resolve(doc, parm?.Predictor) > 1) fail('unsupported_filter');
     if (f === 'FlateDecode' || f === 'Fl') {
       try { data = inflateZlib(data, { maxOutputLength: Math.max(0, Math.min(10 * 1024 * 1024, room)) }); }
       catch (error) { fail(error.message === 'entry_too_large' && room < 10 * 1024 * 1024 ? 'too_complex' : 'bad_flate'); }
     } else if (f === 'ASCIIHexDecode' || f === 'AHx') { let h = latin1(data).replace(/[^0-9a-fA-F]/g, ''); if (h.length % 2) h += '0'; data = fromHex(h); }
     else if (f === 'ASCII85Decode' || f === 'A85') data = ascii85(data);
+    else if (f === 'LZWDecode' || f === 'LZW') data = lzw(data, resolve(doc, parm?.EarlyChange) === 0 ? 0 : 1, Math.min(10 * 1024 * 1024, room));
     else fail('unsupported_filter');
     if ((work.decoded += data.length) > MAX_DECODED) fail('too_complex');
   }
@@ -340,13 +381,22 @@ function pages(doc) {
   const root = dictOf(doc, doc.trailer.Root);
   if (!root) fail('no_catalog');
   const seen = new Set();
-  const walk = (ref, inherited) => {
+  const walk = (ref, inherited, depth = 0) => {
+    if (depth > 256) fail('too_complex');
     const key = ref?.ref;
-    if (key !== undefined) { if (seen.has(key)) return; seen.add(key); }
+    if (key !== undefined) { if (seen.has(key)) fail('page_tree'); seen.add(key); }
     const node = dictOf(doc, ref);
-    if (!node) return;
+    if (!node) fail('missing_page');
     const resources = node.Resources !== undefined ? node.Resources : inherited;
-    if (node.Type?.name === 'Pages' || Array.isArray(resolve(doc, node.Kids))) { for (const kid of resolve(doc, node.Kids) || []) walk(kid, resources); return; }
+    const kids = resolve(doc, node.Kids);
+    if (node.Type?.name === 'Pages' || Array.isArray(kids)) {
+      if (!Array.isArray(kids)) fail('page_tree');
+      const before = out.length;
+      for (const kid of kids) walk(kid, resources, depth + 1);
+      const count = resolve(doc, node.Count);
+      if (count !== undefined && (!Number.isSafeInteger(count) || count < 0 || count !== out.length - before)) fail('page_tree');
+      return;
+    }
     out.push({ node, resources });
   };
   walk(root.Pages, null);
@@ -357,10 +407,12 @@ function pages(doc) {
 function contentOf(doc, contents) {
   let list = contents;
   if (list && list.ref !== undefined && !doc.objects.get(list.ref)?.stream) list = resolve(doc, list);
+  if (contents && !list) fail('missing_content');
   const parts = [];
   for (const ref of Array.isArray(list) ? list : list ? [list] : []) {
     const o = objectOf(doc, ref);
-    if (o?.stream) parts.push(decode(doc, o), utf8('\n'));
+    if (!o?.stream) fail('missing_content');
+    parts.push(decode(doc, o), utf8('\n'));
   }
   return concatBytes(parts);
 }
